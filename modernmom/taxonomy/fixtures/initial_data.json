@@ -1,0 +1,56 @@
+[
+    {
+        "pk": 1, 
+        "model": "taxonomy.category", 
+        "fields": {
+            "name": "Around The House",
+            "slug": "around-the-house"
+						}
+    },
+    {
+        "pk": 2, 
+        "model": "taxonomy.category", 
+        "fields": {
+            "name": "Beauty & Style",
+            "slug": "beauty-style"
+
+        }
+    },
+		    {
+        "pk": 3, 
+        "model": "taxonomy.category", 
+        "fields": {
+            "name": "Food & Drink",
+            "slug": "food-drink"
+
+        }
+    },
+		    {
+        "pk": 4, 
+        "model": "taxonomy.category", 
+        "fields": {
+            "name": "Living Healthy",
+            "slug": "living-healthy"
+
+        }
+    },
+		    {
+        "pk": 5, 
+        "model": "taxonomy.category", 
+        "fields": {
+            "name": "Parenting",
+            "slug": "parenting-pregnancy"
+
+        }
+    },
+		   {
+        "pk": 6, 
+        "model": "taxonomy.category", 
+        "fields": {
+            "name": "Relationships",
+            "slug": "relationships-family"
+
+        }
+    }
+]
+

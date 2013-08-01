@@ -7,3 +7,23 @@
         <meta property="og:title" content="ModernMom Scoop">
         <meta property="og:image" content="">
 {% endblock %}
+{% block content %}
+<div class="row admin">
+{% if ADMIN_FORMS %}
+<table>
+{% for topic in SCOOP_TOPICS %}
+<tr><td>{{ topic.name }}</td><td>{{ 
+{% endfor %}
+</ul>
+
+<form method="post" aciton="." class="form-horizontal">
+	{% csrf_token %}
+{{ ADMIN_FORMS.add_topic }}
+<button type="submit">Add New Topic</button>
+</form>
+</div>
+{% endif %}
+{% for topic in SCOOP_TOPICS %}
+{{ topic }}
+{% endfor %}
+{% endblock %}

@@ -54,3 +54,8 @@ class UUIDField(CharField):
                 value = unicode(self.create_uuid())
                 setattr(model_instance, self.attname, value)
         return value
+
+#http://south.readthedocs.org/en/latest/tutorial/part4.html#tutorial-part-4
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^fields\.UUIDField"])
+
