@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="google-site-verification" content="">
+        <meta name="msvalidate.01" content="">
+        <meta property="og:site_name" content="ModernMom">
+        <meta property="fb:admins" content="">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
+        <link rel="shortcut icon" href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/favicon.ico">
+        <link rel="icon" href="">
+        <link rel="alternate" type="application/rss+xml" title="" href="">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
+        </script>
+        <script src="/media/js/bootstrap.js">
+        </script>
+        <title>{% block title %}ModernMom{% endblock %}</title>
+        <meta name="description" content="ModernMom is a community for moms, mothers, and the woman behind the mom. Find smart advice and practical tips for moms by moms on parenting, finances, careers, fitness, beauty, babies, children and much more.">
+        <meta name="pagetype" scheme="DMINSTR2" content="Home">
+				{% block meta_og %}
+        <meta property="og:url" content="">
+        <meta property="og:description" content="ModernMom is a community for moms, mothers, and the woman behind the mom. Find smart advice and practical tips for moms by moms on parenting, finances, careers, fitness, beauty, babies, children and much more.">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="ModernMom">
+        <meta property="og:image" content="">
+{% endblock %}
+        <link rel="canonical" href="">
+        <!--[if lt IE 9]>
+            <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->{% block head %}{% endblock %}
+    </head>
+    <body id="taxo-level-0" class="home">
+        <div id="page">
+            <a href="#main" id="skipLink">Skip to main content.</a>
+            <header>
+                <div class="col-width clearfix">
+                    <div id="google-mobile-leaderboard">
+                    </div>
+                    <div class="banner-ad">
+                    </div>
+                    <div id="header-group" class="clearfix">
+                        <a id="logo" class="ir" href="http://www.modernmom.com" rel="home">Modern Mom</a>
+                    </div>
+                </div>
+            </header>
+            <nav id="navigation">
+                <div class="col-width">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="http://brookeburke.modernmom.com/brookeburke.com">Brooke Burke</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'scoop_home' %}">Scoop</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contests_home' %}">Contests</a>
+                        </li>
+                        <li>
+                            <a href="http://modernmom.com/contributors/">Contributors</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'toolbox_home' %}">Tool Box</a>
+                        </li>
+                        <li>
+                            <a href="http://modernmom.com/videos/">Videos (Youtube)</a>
+                        </li>
+                        <li>
+                            <a href="http://babooshbaby.com">Shop</a>
+                        </li>
+                        <li>
+                            <a href="http://musthave.modernmom.com">Must-Haves</a>
+                        </li>
+                        <li>
+                            <a href="http://musthave.modernmom.com/recalls">Recalls</a>
+                        </li>
+												{% if not request.user.is_authenticated %}
+												<li>
+                            <a href="{% url 'login' %}">LogIn</a>
+                        </li>
+												{% endif %}
+                    </ul>
+                </div>
+            </nav>
+            <div class="container">
+            	{% block container %}
+            
+                <div class="row">
+                    <div class="span2">
+                        <div class="widget">
+                            <h3 class='content-aside'>Motherhood</h3>
+                            <ul id="subnav" class="demand-icon-list">
+                                <li class="item-1">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/around-the-house/">Around the House</a>
+                                </li>
+                                <li class="item-2">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/beauty-style/">Beauty &amp; Style</a>
+                                </li>
+                                <li class="item-3">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/food-drink/">Food &amp; Drink</a>
+                                </li>
+                                <li class="item-4">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/living-healthy/">Living Healthy</a>
+                                </li>
+                                <li class="item-5">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/parenting-pregnancy/">Parenting</a>
+                                </li>
+                                <li class="item-6">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/relationships-family/">Relationships</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="span7">
+                    	{% block content %}{% endblock %}
+                    </div>
+                    <!-- Start Sidebar -->
+                    <aside class="span3">
+                       <img src="http://placehold.it/300x250">
+                    </aside>
+                </div>
+                <!--end row--><!-- End Sidebar -->
+								{% endblock %}
+            </div>
+            <footer>
+                <div id="footer-container">
+                    <a id="footer-logo" href="http://demandmedia.com" class="ir">Driven by Demand Media</a>
+                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/sitemap.html" title="Motherhood Sitemap">Motherhood Index</a>
+                </div>
+                <p class="copyright">
+                    Copyright 2013 Modern Mom
+                </p>
+            </footer>
+        </div>
+       
+    </body>
+</html><!-- Rendered: 2013-06-25 08:52:23.305277 -->

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block container %}
+<div class="row">
+        <div class="span8">
+        	<div id="whats-new">
+        		{% for product in products %}
+            	<div class="whats-new-thumb-first">
+					<a href="#"><img src="{{ product.image.get_180X113_url }}" alt="{{ product }}"></a>
+					<p class="thumb-title"><a href="{{ product.get_absolute_url }}">{{ product }}</a></p>
+				</div>
+				{% endfor %}
+				<div class="clear-both"></div>
+                <div class="bottom-line">&nbsp;</div>
+			</div>
+        </div> <!-- /span12 -->
+				<div class="span4">
+					<ul class="nav">
+						{% for group in groupmusthaves %}
+						<li><a href="{{ group.get_absolute_url }}">{{ group }}</a></li>
+						{% endfor %}
+						</ul>
+					</div>
+    </div> <!-- /row -->
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<div class="row">
+	<div class="span12">
+		
+		<div class="row">
+			<div class="span4">
+				<h3>Product</h3>
+				<form action="{% url 'product_detail_edit' product.uuid %}" method="post" class="form">
+					{% csrf_token %}
+					{{ product_form.as_p }}
+					<button type="submit">Save Product</button>
+				
+			</form>
+			</div>
+			<div class="span4">
+				<h3>Image</h3>
+				{% if product.image %}
+				<img src="{{ product.image.get_300X250_url }}">
+				{% else %}None	{% endif %}
+				<form action="{% url 'product_detail_edit_image' product.uuid %}" method="post">
+					{% csrf_token %}
+					{{ product_image_form.as_p }}
+					<button type="submit">Save Image</button>
+				</form>
+			</div>
+			<div class="span4">
+				<h3>Links</h3>
+				<ul class="nav">
+					{% for link in product.productlink_set.all %}
+					<li class="nav-header">{{ link.label }}</li>
+					<li>{{ link.get_link_type_display }}</li>
+					<li>{{ link.url }}</li>
+					{% endfor %}
+				</ul>
+				<h5>Add New Link</h5>
+				<form action="{% url 'product_detail_edit' product.uuid %}" method="post">
+					{% csrf_token %}{{ product_link_form.as_p }}
+				<button type="submit">Add Link</button>
+				</form>
+			</div>
+		</div>
+	
+		
+		
+		
+	
+	
+</div>
+
+{% endblock %}

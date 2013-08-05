@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load avatar_tags comments topic_blocks %}
+{% block title %}{{ item }}{% endblock %}
+{% block head %}
+<meta property="og:image" content="http://mommytrack.com{{ MEDIA_URL }}{{ item.image.image }}"/>
+
+<style type="text/css">
+	section {
+margin-bottom: 30px;
+overflow: auto;
+}
+.stumble-item {
+position: relative;
+overflow: hidden;
+background: #F7F7F4;
+}
+.wrapper-comment {
+padding: 15px 15px 15px 73px;
+border-top: 2px solid white;
+}
+.wrapper-comment img {
+margin-left: -58px;
+float: left;
+}
+img {
+
+vertical-align: middle;
+}
+form {
+margin: 0;
+}
+.url-content label, .url-content legend {
+font-size: 13px;
+}
+.form-stacked label {
+width: auto;
+padding: 0 0 3px 0;
+display: block;
+float: none;
+font-size: 16px;
+text-align: left;
+}
+.form-stacked label {
+font-weight: bold;
+line-height: 20px;
+}
+label {
+width: 130px;
+padding-top: 4px;
+float: left;
+text-align: right;
+color: #888;
+cursor: pointer;
+}
+textarea {
+overflow: auto;
+vertical-align: top;
+resize: vertical;
+}
+input[type="text"], input[type="email"], input[type="password"], textarea, .uneditable-input {
+width: 210px;
+height: 18px;
+padding: 2px 4px;
+margin: 0;
+display: inline-block;
+color: #444;
+background-color: white;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+border: 1px solid #B2B2B2;
+}
+label, input, select, textarea, input[type="text"], input[type="password"], textarea, .uneditable-input, .form-link {
+font-size: 13px;
+line-height: 16px;
+font-weight: normal;
+line-height: normal;
+}
+
+</style>
+{% endblock %}
+
+{% block container %}
+
+<div style="width:980px;">
+	<div style="width:210px; float:left;">
+		<img src="{{ item.image.get_display_url }}" />
+	</div>
+	<div style="width:500px; float:left; padding:0,16px;">
+	<h1>{{ item }}</h1>
+	<div class="sourceInfoBar">
+		
+	{{ item.source.host }}
+		
+	</div>
+	<!--BEGIN BOX-->
+	   {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+	 <div>
+	 	<h2>People who added this.</h2>
+	<ul>
+		<li style="height:86px; float:left;">
+    	<div style="float:left; width:80px; padding:3px; overflow:hidden;">{% avatar  item.poster 80 %}</div>
+    	<div style="float:left; width:150px; padding:3px; overflow:hidden; text-align: left;"><h3>{{  item.poster.username }}</h3>
+    		{{ item.poster.myposts.count|add:item.poster.posted_items }} Posts | {{  item.poster.mytracks.count }} Tracks
+    		<br>{{  item.poster.user_likes.count }} Likes
+    		<br><a href="">Follow</a>
+    		
+    	</div>
+    		
+    		</li>
+		
+   {% for p in item.posted_by_list.all %}
+    
+    <li style="height:86px; float:left;">
+    	<div style="float:left; width:80px; padding:3px; overflow:hidden;">{% avatar p.poster 80 %}</div>
+    	<div style="float:left; width:150px; padding:3px; overflow:hidden; text-align: left;"><h3>{{ p.poster.username }}</h3>
+    		{{ p.poster.myposts.count|add:p.poster.posted_items }} Posts | {{ p.poster.mytracks.count }} Tracks
+    		<br>{{ p.poster.user_likes.count }} Likes
+    		<br><a href="">Follow</a>
+    		
+    	</div>
+    		
+    		</li>
+    
+    
+    {% endfor %}
+    	</ul>
+ </div>
+ 
+ <div style="width:100%; clear:both;">
+	 	<h2>People who liked this.</h2>
+	<ul>
+		
+   {% for p in item.item_likes.all|slice:'6' %}
+    
+    <li style="height:86px; float:left;">
+    	<div style="float:left; width:80px; padding:3px; overflow:hidden;">{% avatar p.user 80 %}</div>
+    	<div style="float:left; width:150px; padding:3px; overflow:hidden; text-align: left;"><h3>{{ p.user.username }}</h3>
+    		{{ p.user.myposts.count|add:p.user.posted_items }} Posts | {{ p.user.mytracks.count }} Tracks
+    		<br>{{ p.user.user_likes.count }} Likes
+    		<br><a href="">Follow</a>
+    		
+    	</div>
+    		</li>
+    
+    {% endfor %}
+    	</ul>
+    	<div style="float:right; clear:both;"><a href="">More...</a></div>
+ </div>
+
+        {% get_comment_list for item as comment_list %}
+        <section id="comments" style="clear:both;">
+                <h2>Comments About This</h2>
+                                    <article class="stumble-item">
+                        <div class="wrapper-comment">
+                            {% avatar user 42 %}
+                            <form method="post" id="comment-form" class="form-stacked" action="{% url add_item_comment item.id %}?next={% url item_stats item.id %}">
+                            	{% csrf_token %}
+                            	 <ul class="comments-user">
+                                      {% for comment in comment_list %}
+                                      <li>                                                                                                                      
+                            {% avatar comment.user 42 %}
+                            <mark class="comment-data">
+                                Commented by {{ comment.user.username }} on {{ comment.submit_date }}
+                            </mark>
+                            <p class="comment-text">
+                                {{ comment.comment }}
+                            </p>
+                        </li>
+                        {% endfor %}
+                                                                                                                                                                    
+                          
+                                                        </ul>
+                                <fieldset>
+                                    <label for="edit-comment">Your Comment</label>
+                                    <textarea name="comment" id="id_comment"></textarea>
+                                   
+                                   
+                                </fieldset>
+                        
+                                <div class="actions">
+                                    <button type="submit" class="btn primary medium-alt1">Post</button>
+                                </div>
+                              
+                            </form>
+                        </div>
+                    </article>
+              </section>
+        <!--div class="activity" style="clear:both; width:100%">
+         
+			<h2>Comments</h2>
+            {% for comment in comment_list %}
+            <div class="comment-tn"><a href="">{% avatar comment.user 80 %}</a></div>
+            <div class="comment-dt"><a href="" class="b">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+                <br>{{ comment.comment }}
+            </div>
+	  	    <div class="clear"></div>
+                {% endfor %}
+
+       
+            <div class="comment-section">
+            {% if user.is_authenticated %}
+            	<form id="submitcomment-form" method="post" action="{% url add_item_comment item.id %}">
+	 {% csrf_token %}
+    <fieldset class="form-stacked">
+        <ul class="comments-user">
+                                      {% for comment in comment_list %}
+                                      <li>                                                                                                                      
+                            {% avatar comment.user 42 %}
+                            <mark class="comment-data">
+                                Commented by {{ comment.user.username }} on {{ comment.submit_date }}
+                            </mark>
+                            <p class="comment-text">
+                                {{ comment.comment }}
+                            </p>
+                        </li>
+                        {% endfor %}
+                                                                                                                                                                    
+                          
+                                                        </ul>
+        <div class="wrapper-input">
+            <label for="comment-your">Your Comment</label>
+            <div class="input">
+                <textarea id="id_comment" name="comment"></textarea>
+            </div>
+        </div>
+        <div class="actions">
+           <input type="submit" value="Save">
+            <a href="#" class="btn close-overlay-btn" data-overlayname="comment-menu">Cancel</a>
+        </div>
+        
+
+
+
+    </fieldset>
+</form>
+                                
+                </form-->
+                {% else %}
+                <p><form action="{% url facebook_connect %}?facebook_login=1" method="post">
+               <input type="image" src="{{ MEDIA_URL }}images/button_facebook_connect.jpg" />
+                <input type="hidden" value="{{ request.path }}" name="next" />
+                <input type="hidden" name="connect_facebook" value="1">
+            </form></p>
+                {% endif %}
+                </div>
+        </div>   
+        </div>             
+</div>
+	
+{% endblock %}
+{% block scripts_footer %}
+
+{% endblock %}

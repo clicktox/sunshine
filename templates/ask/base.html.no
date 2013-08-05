@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# modernmom: http://ogp.me/ns/fb/modernmom#">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% block title %}Moms helping Moms{% endblock %}</title>
+		<link rel="image_src" href="http://www.modernmom.com/sites/default/files/logo.jpg" />
+		{% block meta %}
+		<meta property="og:title" content="Moms Helping Moms" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://conversations.modernmom.com/" />
+		<meta property="og:site_name" content="Conversations" />
+		<meta property="fb:app_id" content="208027353668" />
+		<meta property="fb:admins" content="622302511" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		{% endblock %}
+		<link rel="shortcut icon" href="http://cdn-a.static-modernmom.com/sites/default/files/favicon.ico" type="image/x-icon" />
+		<link type="text/css" rel="stylesheet" media="all" href="{{STATIC_URL}}css/global.css" />
+		<script type="text/javascript" src="http://www.modernmom.com/sites/default/files/js/js_2cfaf8b47b3470a968cf6b70499f0c73.js"></script>
+		<link type="text/css" rel="stylesheet" media="all" href="{{ MEDIA_URL }}css/style.css" />
+		{% block head %}{% endblock %}
+	
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9629029-18']);
+  _gaq.push(['_setDomainName', 'modernmom.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+	</head>
+	<body  class="front not-logged-in one-sidebar sidebar-last">
+		<div id="container">
+			
+
+			<div id="header">
+
+				<div id="branding">
+
+					<h2 class="logo logo"><span id="logo"> <a href="/" rel="home" class="active"> <img src="http://mommytrack.modernmom.com/media/images/MommyTrack_Logo.png" alt="ModernMom.com logo" title="Home page"/></a> </span></h2><!-- /logo/site name -->
+
+				</div>
+				<!-- /branding -->
+
+				{% include 'common_includes/user_header.html' %}
+				
+				{% block header_region %}
+				
+				{% endblock %}
+			</div>
+			<!-- /header -->
+
+			<div id="columns">
+				{% block container %}
+				<div class="columns-inner clearfix">
+
+					<div id="content-column">
+						<div class="column1 content-inner">
+
+							<div id="main-content">
+
+								<div id="content">
+									{% block content %}{% endblock %}
+								</div>
+
+							</div>
+							<!-- /main-content -->
+
+						</div>
+					</div>
+					<!-- /content-column -->
+
+					<div id="sidebar-last" class="column2 sidebar">
+						{% block sidebar %}
+			
+			
+						
+						<!-- /block -->
+						
+						
+						<!-- /block -->
+						<div id="block-block-26" class="block block-block even block-region-sidebar-last block-count-12 -ce-capture sidebar-last--ce-capture">
+							
+						</div>
+						<!-- /block -->
+						<div id="block-views-4ed2aeedcad031ac3dbf83bbc44480e3" class="block block-views odd block-region-sidebar-last block-count-13 header-black sidebar-last-header-black">
+							<div class="block-inner">
+								<div class="title-wrapper">
+									<h2 class="title"><span class="word-1-of-3">Recent</span><span class="word-2-of-3">Featured</span><span class="word-3-of-3">Articles</span></h2>
+								</div>
+								<div class="content">
+									<div class="view view-block-display view-featured-content-all-front view-id-featured_content_all_front view-display-id-block_1 view-dom-id-a7a9f89e62eadfb14f4aaaa8b9b12cf4">
+
+										<div class="view-content">
+											<div class="views-row-unformatted views-row views-row-1 views-row-odd views-row-first clearfix">
+
+												<div class="field-featured-photo-fid">
+
+													<span class="field-content"><a href="http://www.modernmom.com/blogs/blythe-newsome/the-real-beauty-of-the-honey-boo-boo-family" class="imagecache imagecache-size60x60 imagecache-linked imagecache-size60x60_linked"><img src="http://cdn-b.static-modernmom.com/sites/default/files/imagecache/size60x60/featured/blog/10/here-comes-honey-boo-boo1.jpg" alt="" title="" width="60" height="60" class="imagecache imagecache-size60x60"/></a></span>
+												</div>
+
+												<div class="title">
+
+													<span class="field-content"><a href="http://www.modernmom.com/blogs/blythe-newsome/the-real-beauty-of-the-honey-boo-boo-family">The Real Beauty of the &quot;Honey Boo Boo&quot; Family</a></span>
+												</div>
+
+												<span class="body"> <span class="field-content"> Last night, I did what every good, tired mom does after a long day when it’s still too early for the children to go to...</span> </span>
+												<!--/views-view-fields.tpl.php -->
+											</div>
+											<div class="views-row-unformatted views-row views-row-2 views-row-even clearfix">
+
+												<div class="field-featured-photo-fid">
+
+													<span class="field-content"><a href="http://www.modernmom.com/blogs/the-nutrition-twins/deliciously-scary-halloween" class="imagecache imagecache-size60x60 imagecache-linked imagecache-size60x60_linked"><img src="http://cdn-b.static-modernmom.com/sites/default/files/imagecache/size60x60/featured/blog/10/delicious-halloween.jpg" alt="" title="" width="60" height="60" class="imagecache imagecache-size60x60"/></a></span>
+												</div>
+
+												<div class="title">
+
+													<span class="field-content"><a href="http://www.modernmom.com/blogs/the-nutrition-twins/deliciously-scary-halloween">Deliciously Scary Healthy Halloween Treats</a></span>
+												</div>
+
+												<span class="body"> <span class="field-content"> As fall gets into full swing, we can't help but be super excited for one of our favorite holidays, HALLOWEEN!
+														When we...</span> </span>
+												<!--/views-view-fields.tpl.php -->
+											</div>
+											<div class="views-row-unformatted views-row views-row-3 views-row-odd clearfix">
+
+												<div class="field-featured-photo-fid">
+
+													<span class="field-content"><a href="http://www.modernmom.com/blogs/leslie-morgan-steiner/bowl-of-condoms-in-my-bathroom" class="imagecache imagecache-size60x60 imagecache-linked imagecache-size60x60_linked"><img src="http://cdn-b.static-modernmom.com/sites/default/files/imagecache/size60x60/featured/blog/10/istock_000014287752xsmall.jpg" alt="" title="" width="60" height="60" class="imagecache imagecache-size60x60"/></a></span>
+												</div>
+
+												<div class="title">
+
+													<span class="field-content"><a href="http://www.modernmom.com/blogs/leslie-morgan-steiner/bowl-of-condoms-in-my-bathroom">Bowl of Condoms in My Bathroom?</a></span>
+												</div>
+
+												<span class="body"> <span class="field-content"> Not surprisingly, recent headlines about free birth control really caught America’s attention.
+														A St. Louis research...</span> </span>
+												<!--/views-view-fields.tpl.php -->
+											</div>
+											<div class="views-row-unformatted views-row views-row-4 views-row-even clearfix">
+
+												<div class="field-featured-photo-fid">
+
+													<span class="field-content"><a href="http://www.modernmom.com/article/don-t-get-sick-this-year" class="imagecache imagecache-size60x60 imagecache-linked imagecache-size60x60_linked"><img src="http://cdn-b.static-modernmom.com/sites/default/files/imagecache/size60x60/featured/article/10/111932943a.jpg" alt="" title="" width="60" height="60" class="imagecache imagecache-size60x60"/></a></span>
+												</div>
+
+												<div class="title">
+
+													<span class="field-content"><a href="http://www.modernmom.com/article/don-t-get-sick-this-year">Don&#039;t Get Sick This Year!</a></span>
+												</div>
+
+												<span class="body"> <span class="field-content"> Winter is coming, and that means germs are a-spreadin’.  How do you prevent a cold from ruining you or your child’s...</span> </span>
+												<!--/views-view-fields.tpl.php -->
+											</div>
+											<div class="views-row-unformatted views-row views-row-5 views-row-odd views-row-last clearfix">
+
+												<div class="field-featured-photo-fid">
+
+													<span class="field-content"><a href="http://www.modernmom.com/blogs/risa-green/why-college-essays-are-just-like-real-life" class="imagecache imagecache-size60x60 imagecache-linked imagecache-size60x60_linked"><img src="http://cdn-b.static-modernmom.com/sites/default/files/imagecache/size60x60/featured/blog/10/istock_000002422788small.jpg" alt="" title="" width="60" height="60" class="imagecache imagecache-size60x60"/></a></span>
+												</div>
+
+												<div class="title">
+
+													<span class="field-content"><a href="http://www.modernmom.com/blogs/risa-green/why-college-essays-are-just-like-real-life">Why College Essays are Just Like Real Life</a></span>
+												</div>
+
+												<span class="body"> <span class="field-content"> Eight years ago, when my son was born, I made the decision to quit my job as a college counselor in order to dedicate...</span> </span>
+												<!--/views-view-fields.tpl.php -->
+											</div>
+											<!-- /views-view-unformatted -->
+										</div>
+
+										<div class="more-link">
+											<a href="/featured-content"> see all </a>
+										</div>
+
+									</div>
+									<!-- /views-view-block -->
+								</div>
+
+							</div>
+						</div>
+						<!-- /block -->
+						{% endblock %}
+					</div>
+					<!-- /sidebar-last -->
+
+				</div>
+				{% endblock %}
+			</div>
+			<!-- /columns -->
+
+			<div id="footer">
+
+				<div id="footer-region">
+					
+					<!-- /block -->
+					
+					<!-- /block -->
+					<div id="block-panels_mini-footer_container" class="block block-panels_mini odd block-region-footer block-count-16">
+						<div class="block-inner">
+
+							<div class="content">
+								<div class="panel-display panel-1col clear-block" id="mini-panel-footer_container">
+									<div class="panel-panel panel-col">
+										<div>
+											<div class="panel-pane pane-block pane-menu-menu-footer-nav footer-footer-links" >
+
+												<div class="pane-content">
+													<ul class="menu">
+														<li class="leaf">
+															<a href="/about-us" title="About Us" class="menuitem-about-us">About Us</a>
+														</li>
+														<li class="leaf">
+															<a href="/user/register" title="Create an Account" class="menuitem-register">Register</a>
+														</li>
+														<li class="leaf">
+															<a href="/advertising" title="Advertising" class="menuitem-advertising">Advertising</a>
+														</li>
+														<li class="leaf">
+															<a href="/pages/modernmom-seal-of-approval" title="" class="menuitem-mm-seal-of-approval">MM Seal of Approval</a>
+														</li>
+														<li class="leaf">
+															<a href="/press" title="Press" class="menuitem-press">Press</a>
+														</li>
+														<li class="leaf">
+															<a href="/privacy-policy" title="Privacy Policy" class="menuitem-privacy-policy">Privacy Policy</a>
+														</li>
+														<li class="leaf">
+															<a href="/terms-of-use" title="Terms of Use" class="menuitem-terms-of-use">Terms of Use</a>
+														</li>
+														<li class="leaf">
+															<a href="/contact" title="" class="menuitem-contact-us">Contact Us</a>
+														</li>
+														<li class="leaf">
+															<a href="/link_to" title="" class="menuitem-link-to-us">Link To Us</a>
+														</li>
+														<li class="leaf">
+															<a href="/community" title="" class="menuitem-community">Community</a>
+														</li>
+													</ul>
+												</div>
+
+											</div>
+											<!-- /panels-pane -->
+											<div class="panel-region-separator"></div>
+											<div class="panel-pane pane-block pane-block-17 footer-footer-social-media" >
+
+												<div class="pane-content">
+													<dt>
+														Stay Connected with ModernMom.com
+													</dt>
+													<dd>
+														<a class="IconFacebook" href="http://www.facebook.com/pages/ModernMom/197177430011">Fan <strong><em>ModernMom</em></strong>
+														<br />
+														on <strong>Facebook</strong></a>
+													</dd>
+													<dd>
+														<a class="IconTwitter" href="http://www.twitter.com/modernmom">Follow <strong><em>ModernMom</em></strong>
+														<br />
+														on <strong>Twitter</strong></a>
+													</dd>
+													<dd>
+														<a class="IconRSS" href="/feeds/">Subscribe to <strong><em>ModernMom</em></strong>
+														<br />
+														<strong>RSS Feeds</strong></a>
+													</dd>
+													<dd>
+														<a class="IconYouTube" href="http://www.youtube.com/user/modernmom">Watch <strong><em>ModernMom</em></strong>
+														<br />
+														on <strong>YouTube</strong></a>
+													</dd>
+												</div>
+
+											</div>
+											<!-- /panels-pane -->
+											<div class="panel-region-separator"></div>
+											<div class="panel-pane pane-block pane-block-32"  id="footer-sistersites">
+
+												<div class="pane-content">
+													<table class="clear" id="sistersites">
+														<tbody>
+															<tr>
+																<td class="first">Visit our sister sites</td>
+																<td>MommyTracked
+																<br />
+																<a href="http://www.mommytracked.com/downloads" target="_blank">Printable Calendars</a></td>
+																<td>BabooshBaby
+																<br />
+																<a href="http://www.babooshbaby.com/servlet/the-Tauts--dsh--Belly-Wraps/Categories" target="_blank">Post-pregnancy Wrap</a></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+
+											</div>
+											<!-- /panels-pane -->
+											<div class="panel-region-separator"></div>
+											<div class="panel-pane pane-block pane-block-14 footer-footer-copyright" >
+
+												<div class="pane-content">
+													<p>
+														(c) Copyright 2012 Mom, Inc. All Rights Reserved.
+														<br />
+														Reproduction of any portion of this website only at the express permission of Mom, Inc.
+													</p>
+												</div>
+
+											</div>
+											<!-- /panels-pane -->
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- /block -->
+				</div>
+				<!-- /footer-region -->
+
+			</div>
+			<!-- /footer -->
+		</div>
+		<!-- /container -->
+
+		<div id="fb-root"></div>
+	{% block footer_scripts %}
+	
+		{% endblock %}
+
+	</body>
+</html>

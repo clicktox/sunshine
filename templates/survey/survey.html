@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load survey_extras %}
+
+{% block container %}
+
+<h1>Welcome to {{survey.name|title}}</h1>
+<div class="survey-description">
+	{{survey.description|safe}}
+</div>
+
+<div>
+	<form action="/survey/{{survey.id}}/" method="post">{% csrf_token %}
+
+		
+
+		<ol class="survey-questions">
+
+			{% for field in response_form %}
+				
+					<li class="q-item" value="{% counter %}">
+					{% if field.field.required %} 
+					<div class="field-wrapper question-required"> 
+						{{ field.errors }}
+						<span class="asterix"> * </span><label class="label-inline">{{ field.label }}</label>
+					{% else %} 
+					<div class="field-wrapper"> 
+						{{ field.errors }}
+						<label class="label-inline">{{ field.label }}</label>
+					{% endif %}
+						<span class="form-help-text">{{ field.help_text}}</span>
+						<div class="form-field-body">
+							{{ field }}
+						</div>
+					</div>
+					</li>
+				
+			{% endfor %}
+
+		</ol>
+
+		<div class="submit-button"><input type="submit" value="I'm done!"></div>
+	</form>
+
+</div>
+
+{% endblock %}
+
+{% block extrajs %}
+	<script src="/media/js/jquery.collapsible.js"></script>	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//collapsible management
+			$('.collapsible').collapsible({defaultOpen: 'response_metadata'});
+		});
+	</script>
+{% endblock %}

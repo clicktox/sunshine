@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Gift Ideas and Suggestions{% endblock %}
+{% block head %}
+	<style type="text/css">
+	/* MEDIA GRID */
+	.thumbnails li {
+	    position: relative;
+	    overflow: hidden;
+	}
+	.text {
+	            background-color: #000;
+		color: #fff;
+		bottom: 4px;
+		display: block;
+		left: 5px;
+		line-height: 1.6em;
+		position: absolute;
+		padding: 5px 10px;
+		width: 270px;
+		opacity: .70;
+		-moz-opacity: .70;
+		filter: alpha(opacity=70);
+	}
+	.item-title {
+		margin: 10px 0px 5px 0px;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.item-desc {
+		margin-bottom: 5px;
+	}
+	</style>
+{% endblock %}
+{% block container %}
+    <ul class="media-grid thumbnails">
+        {% for gg in giftguides %}
+        {% if gg.giftguidetitlebanner_set.count == 0 %}
+        <li class="span4">
+            <div class="thumbnail">
+                <a href="{{ gg.get_absolute_url }}">
+                <div><img src="http://www.placehold.it/300x250" /></div> <!-- /image -->
+                <div class="text">{{ gg }}</div> <!-- /text -->
+                </a>
+            </div> <!-- /thumbnail -->
+        </li> <!-- /span4 -->
+        {% else %}
+    	{% for image in gg.giftguidetitlebanner_set.all|slice:'1' %}
+        <li class="span4">
+            <div class="thumbnail">
+                <a href="{{ gg.get_absolute_url }}">
+                <div><img src="{{ image.get_300X250_url }}"></div> <!-- /image -->
+                <div class="text">{{ gg }}</div> <!-- /text -->
+                </a>
+            </div> <!-- /thumbnail -->
+        </li> <!-- /span4 -->
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </ul> <!-- /media-grid thumbnails -->
+{% endblock %}

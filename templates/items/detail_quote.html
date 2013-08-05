@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load avatar_tags comments topic_blocks %}
+{% block head %}
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'1d057cac-11c7-4a27-9d1b-c8f8dab15f64'});</script>
+<script type="text/javascript">
+function myCallbackFunction (event,service)
+{
+     alert("event called is:"+event); //the event type. Only "click" is supported.
+     alert("service called is:"+service); //the service shared by user. e.g. facebook
+}
+
+stLight.subscribe("click",myCallbackFunction); //register the callback function with sharethis 
+
+</script>
+<style type="text/css">
+.box h1 { font-size:36px; }
+.box h1 em { font-size:24px; }
+</style>
+{% endblock %}
+{% block content %}
+	<!--BEGIN BOX-->
+	<div class="box main-track" style="width:400px;">
+    {% if item.image %}}
+  		<div>
+        	<a href="{{ post.image.source.url }}" target="_blank"><img src="{{ post.image.get_display_url }}" /></a>
+        </div>
+     {% endif %}
+		<h1>{{ post.description }} - <em>{{ post.my_quote.quote_source }}</em></h1>
+        <!--BEGIN TRACK INFO-->
+        <div class="track-info track-info-desc">
+            {% get_comment_list for post as comment_list %}
+			
+            {% for comment in comment_list %}
+	            <div class="{% if forloop.counter == 1 %}first-track-comment{% else %}track-comment{% endif %}">
+                	{% avatar comment.user 29 %}
+                	<p>{{ comment.comment }}{% if comment.user == user %}<a href="{% url delete_post_comment post.id,comment.id %}">Delete</a>{% endif %}
+                    {% if user.is_staff %}<a href="{% url delete_post_comment post.id,comment.id %}">Delete</a>{% endif %}</p>
+    	        </div>
+                {% endfor %}
+                
+         <span  class='st_email' ></span>
+         
+         <span id="button_1"></span>
+
+            <div class="comment-section">
+            {% if user.is_authenticated %}
+            	{% avatar request.user 29 %}
+            	 <form action="http://mommytrack.com{% url add_post_comment post.id %}" method="POST" class="commentForm" name="commentsForm">
+                    <textarea id="MainTrackComment" name="comment"></textarea>
+            	<p class="add-comment"><a class="button" href="javascript:document.commentsForm.submit();">Add Comment</a></p>
+                
+                </form>
+                {% else %}
+                <p>Please <a href="{% url login %}">Login</a> or <a href="{% url register %}">Register</a> to engage with this post!</p>
+                {% endif %}
+            </div>
+        </div>
+        <!--END TRACK INFO-->
+    </div>
+    <!--END BOX-->
+	<!--BEGIN BOX-->
+	<div class="box">
+  		<div class="thumb-grid">
+        	{% render_topic_block post.topic %}
+        </div>
+	</div>
+    <!--END BOX-->
+{% endblock %}
+{% block scripts_footer %}
+<script>
+var $container = $('#container');
+
+$container.imagesLoaded( function(){
+  $container.masonry({
+    itemSelector : '.box',
+	columnWidth: 20,
+	isAnimated: true,
+	isFitWidth: true,
+  });
+});
+</script>
+{% endblock %}

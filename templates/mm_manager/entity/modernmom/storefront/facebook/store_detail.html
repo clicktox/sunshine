@@ -1,0 +1,65 @@
+{% extends 'storefront/base.html' %}
+{% load pagination_tags %}
+{% block content %}
+{% autopaginate products 9 %}
+
+<div class="storefrontWidgetHeader" id="storefrontWidgetHeader">
+    <div id="hideMe"> <!-- hideMe class -->
+    
+    <select id="categoryBox" class="categoryBox" name="categoryList" onchange="switchCategory(this.value)">
+    
+    <option value="featured" selected="selected">Featured Items</option>
+        <option value="3">On Sale</option>
+        <option value="">Price Low to High</option>
+        <option value="">Price High to Low</option>
+         <option value="">All Items</option>
+       
+        </select>
+
+    <div id="headerRightAlignedStuff" style="float:right; width:222px;">
+        <div id="pageCount" class="browseBarText" style="display: block; ">{% paginate %}</div>
+    </div>
+    <div style="clear:both;"></div>
+    </div> <!-- close hideMe class -->
+</div>
+
+
+<div style="clear:both;"></div>
+{% for product in products %}
+		<div class="productGridBox">
+          {% if product.image %}
+			<div class="thumbnailImage"> <img class="img" src="{{ product.image.get_thumbnail_url }}" style="height:100px;"></div>
+            {% endif %}
+	        <div class="productTitle" style="text-align:center;"> <a target="_top" href="{{ product.external_url }}">{{ product.title}}</a> </div>
+          	<div class="productPrice" class="staticProductPrice">{{ product.list_price }}</div>
+            <div style="clear:both;"></div>
+            <div class="socialButtonsWidgetWrapper">
+ 
+<div class="socialButtons">
+    
+    
+        <div id="likeButtonContainer0_0" class="likeButtonContainer left" style="width: 57px;">
+        <fb:like href="{{ product.external_url }}" send="false" layout="button_count" width="100" show_faces="false" font=""></fb:like>
+        </div>    
+   
+        <div style="text-align: right;">
+            <!--
+            <a onClick="showShareMenu('0_0', $(this).text());"
+               class="shareLink" id="shareLink0_0">Share</a>
+            -->
+            <div class="shareLinkCont" id="shareLinkCont0_0">
+                <a class="shareLinks">Share</a>
+            </div>
+            <div style="clear: both;"></div>
+            
+        </div>
+  </div>
+  </div>  
+        </div>
+        
+{% endfor %}
+
+{% endblock %}
+
+
+      

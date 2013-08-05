@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>All Styles</title>
+
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/content.css" media="screen" />
+ <link href="{{ MEDIA_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+ <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bootstrap/css/bootstrap-wysihtml5.css" />
+<style type="text/css">
+input.text, input.search, textarea.textarea {
+border-top: 1px solid #7C7C7C;
+border-left: 1px solid #C3C3C3;
+border-right: 1px solid #C3C3C3;
+border-bottom: 1px solid #DDD;
+}
+input.text, input.search, input.file, textarea.textarea, select.select {
+font-family: "Lucida Grande", Tahoma, Arial, sans-serif;
+font-size: 100%;
+color: #333;
+margin: 0;
+padding: 2px 0;
+}
+label, legend.desc {
+font-size: 95%;
+font-weight: bold;
+color: #222;
+line-height: 150%;
+margin: 0;
+padding: 0 0 3px 0;
+border: none;
+display: block;
+white-space: normal;
+width: 100%;
+}
+
+.forma { width: 400px; margin:0 auto;}
+
+.editor { float: left; width:400px;}
+.article { float:left; }
+</style>
+</head>
+
+<body>
+ <div class="container">
+<div class="row">
+    <div class="span7">
+ 
+
+<section class="article">
+	<article class="blog">
+		<h1>{{ content.title }}</h1>
+        <h2>{{ content.subtitle }}</h2>
+        <h3>By: {{ content.added_by }}</h3>
+        
+        <figure class="featured-image">
+        {% if not content.articleimage %}
+        <a href="#myModal" data-toggle="modal"><img src="{{ MEDIA_URL}}images/dummy/Main Article Image.jpg" /></a>
+        	       <figcaption class="caption">
+            	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non dolor mauris, vitae mattis risus. Sed placerat aliquet tortor.
+            </figcaption>
+        	{% else %}
+        	  	<a href="#myModal" data-toggle="modal"><img src="{{ content.articleimage.image.get_article_display_url }}" /></a>
+        	       <figcaption class="caption">
+            	{{ content.articleimage.image.caption }}
+            </figcaption>
+        	{% endif %}
+     
+        </figure>
+{% if content.articledescription %}        
+        <p class="article-body">
+        {{ content.articledescription.content }}
+        </p><a href="#adescriptionModal" data-toggle="modal">Edit Article description</a>
+{% else %}
+<a href="#adescriptionModal" data-toggle="modal">Enter a description...</a>
+{% endif %} 
+        
+        {% if content.articlequote %}
+        <blockquote class="quote">
+        	<p>"{{ content.articlequote.content }}"</p>
+            <cite class="quote-author">
+            	— {{ content.articlequote.source }}
+            </cite>
+        </blockquote>
+        {% endif %}
+        
+        {% for p in content.articlecontent_set.all %}
+        <h4>{{ p.title }}</h4>
+        <p class="article-body">{{p.content}}</p>
+        <a data-target="#editContentModal-{{ p.id }}" href="{% url content_edit_content content.slug,p.id %}" role="button" class="btn" data-toggle="modal">Edit Content</a>
+<!-- ARTICLE CONTENT Modal -->
+<div id="editContentModal-{{ p.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editContentModal-{{ p.id }}Label" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="editContentModal-{{ p.id }}">Edit Article Content</h3>
+  </div>
+  <div class="modal-body">
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+        
+			{% if forloop.counter == 2 %}
+			{% if content.articlesidebar %}
+        <!-- BEGIN SIDEBAR -->
+        <div class="sidebar">
+        	<h5>{{ content.articlesidebar.title }}</h5>
+			<p>{{ content.articlesidebar.content }}</p>
+			         </div>
+        <!-- END SIDEBAR -->
+			{% endif %}      
+			{% endif %}
+        {% endfor %}
+ <div class="clear"></div>  
+<hr>      
+                <a data-target="#aContentModal" role="button" class="btn" data-toggle="modal">Add Content</a>
+
+      
+          
+        
+		
+        <div class="clear"></div>
+       
+        <div class="author-box">
+        	<div>
+            	<img class="avatar" src="{{ MEDIA_URL}}images/dummy/AuthorImage.jpg" />
+                <strong>About Lorem Ipsum</strong>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non dolor mauris, vitae mattis risus. Sed placerat aliquet tortor. Vestibulum eget dui in magna dignissim ultricies. Duis a risus vitae <a href="#">purus condimentum accumsan</a> in sit amet quam. Vestibulum gravida scelerisque justo, et venenatis quam blandit vitae. Donec egestas ipsum a <a href="#">felis luctus ultricies</a>.</p>
+            </div>
+        </div>
+	</article>
+</section>
+</div>
+    <div class="span3">
+    
+
+<h3>Article Details</h3>
+{{ article_form }}
+
+<!-- ARTICLE QUOTE -->
+<h3>Article Quote</h3>
+{% if content.articlequote %}
+<a href="{% url content_update_quote content.slug %}?purge={{ csrf_token }}">Delete Quote</a>
+ <a data-target="#aQuoteModal" href="{% url content_update_quote content.slug %}" role="button" class="btn-mini" data-toggle="modal">Edit Quote</a>
+{% else %}
+ <a data-target="#aQuoteModal" href="{% url content_update_quote content.slug %}" role="button" class="btn-mini" data-toggle="modal">Add Quote</a>
+{% endif %}
+
+<!-- END ARTICLE QUOTE -->
+
+<!-- ARTICLE SIDEBAR -->
+<h3>Article Sidebar</h3>
+{% if content.articlesidebar %}
+<a href="{% url content_update_sidebar content.slug %}?purge={{ csrf_token }}">Delete Sidebar</a>
+ <a data-target="#aSidebarModal" href="{% url content_update_sidebar content.slug %}" role="button" class="btn-mini" data-toggle="modal">Edit Sidebar</a>
+{% else %}
+ <a data-target="#aSidebarModal" href="{% url content_update_sidebar content.slug %}" role="button" class="btn-mini" data-toggle="modal">Add Sidebar</a>
+{% endif %}
+<!-- ARTICLE SIDEBAR Modal -->
+<div id="aSidebarModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="c" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="aSidebarModal">Article Sidebar</h3>
+  </div>
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+<!-- END ARTICLE SIDEBAR -->
+
+
+</section>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{{ MEDIA_URL}}bootstrap/js/bootstrap.min.js"></script>
+    
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+   <form id="content_update_image_form" method="POST" action="{% url content_update_image content.slug %}" enctype="multipart/form-data">
+{% csrf_token %}
+{{ content_image_form.as_p }}
+</form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button id="content_update_image_form-submit" class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+    <script>
+  $('#content_update_image_form-submit').on('click', function(e){
+    // We don't want this to act as a link so cancel the link action
+    //e.preventDefault();
+
+    // Find form and submit it
+    $('#content_update_image_form').submit();
+  });
+  </script>
+  
+<!-- Modal -->
+<div id="adescriptionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="adescriptionModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="adescriptionModalLabel">Article Description</h3>
+  </div>
+  <div class="modal-body">
+  <form id="article_description_form" method="POST" action="{% url content_update_description content.slug %}">
+{% csrf_token %}
+
+<textarea name="{{ article_description_form.content.html_name }}" id="{{ article_description_form.content.html_name }}_id">
+{{ content.articledescription.content }}
+</textarea>
+</form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button id="article_description_form-submit" class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+
+    <script>
+ $('#article_description_form-submit').on('click', function(e){
+    // We don't want this to act as a link so cancel the link action
+    //e.preventDefault();
+
+    // Find form and submit it
+    $('#article_description_form').submit();
+  });
+ 
+</script>
+
+<!-- QUOTE Modal -->
+<div id="aQuoteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="aQuoteModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="aQuoteModalLabel">Article Quote</h3>
+  </div>
+  <div class="modal-body">
+  
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button id="article_quote_form-submit" class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+    <script>
+ $('#article_quote_form-submit').on('click', function(e){
+    // We don't want this to act as a link so cancel the link action
+    //e.preventDefault();
+
+    // Find form and submit it
+    $('#article_quote_form').submit();
+  });
+ 
+</script>
+
+<!-- ARTICLE CONTENT Modal -->
+<div id="aContentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="aSidebarModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="aContentModal">Article Content</h3>
+  </div>
+  <div class="modal-body">
+  <form id="article_content_form" method="POST" action="{% url content_add_content content.slug %}">
+{% csrf_token %}
+
+{{ article_content_form.as_p }}
+</form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button id="article_content_form-submit" class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+    <script>
+ $('#article_content_form-submit').on('click', function(e){
+    // We don't want this to act as a link so cancel the link action
+    //e.preventDefault();
+
+    // Find form and submit it
+    $('#article_content_form').submit();
+  });
+ 
+</script>
+
+
+
+
+    </div>
+</div></div>
+
+
+</body>
+</html>

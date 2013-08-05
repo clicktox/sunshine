@@ -1,0 +1,38 @@
+{% extends 'entity/brooke-burke/base.html' %}
+{% block title %}{{ entity }}{% endblock %}
+
+{% block head %}
+<style type="text/css">
+#header { width:990px; padding:25px; }
+#col1 { width:630px; float:left; padding:5px 30px 5px 5px; }
+#col2 { width:300px; float:left; }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div id="header">
+Welcome to the {{ entity }} page!
+</div>
+<div id='col1'>
+</div>
+<div id='col2'>
+
+{% for  fp in entity.entityfacebookfanpage_set.all %}
+<div class="fb-like-box" data-href="{{ fp.fanpage.url }}" data-width="292" data-show-faces="true" data-stream="false" data-header="false"></div>
+{% endfor %}
+{% if entity.store_friend.count > 0 %}
+<h2>Shop my favorite stores!</h2>
+{% for  fp in entity.store_friend.all %}
+{{ fp.store }}
+	{% for promo in fp.store.promotion_set.all %}
+		<li><a href="">{{ promo.title }}</a></li>
+	{% endfor %}
+	{% for p in fp.store.entity.entity_promotions.all %}
+		<li><a href="{% url promotion_detail fp.store.entity.slug, p.slug %}">{{ p.name }}</a></li>
+	{% endfor %}
+{% endfor %}
+{% endif %}
+
+{% endblock %}

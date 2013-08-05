@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block container %}
+    <div class="row">
+        <div class="span12">
+            <div id="whats-new">
+                {% for product in products %}
+                    <div class="whats-new-thumb-first">
+                    	<a href="{{ product.get_absolute_url }}"><img src="{{ product.image.get_180X113_url }}" alt="{{ product }}"></a>
+                    	<p class="thumb-title"><a href="{{ product.get_absolute_url }}">{{ product }}</a></p>
+                    </div> <!-- /whats-new-thumb-first -->
+                {% endfor %}
+            	<div class="clear-both"></div>
+            	<div class="bottom-line">&nbsp;</div> <!-- /bottom-line -->
+            </div> <!-- /whats-new -->
+        </div> <!-- /span12 -->
+    </div> <!-- /row -->
+{% endblock %}

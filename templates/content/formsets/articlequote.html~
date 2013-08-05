@@ -1,0 +1,15 @@
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bootstrap/css/bootstrap-wysihtml5.css" />
+<form method="POST" action="{% url content_update_quote article.slug %}">
+{% csrf_token %}
+{{ article_quote_form.as_p }}
+<button class="btn btn-success">Save</button>
+</form>
+wysihtml5-0.3.0.js
+wysihtml5-0.3.0.js
+
+<script src="{{MEDIA_URL}}bootstrap/js/wysihtml5-0.3.0.js"></script>
+<script src="{{MEDIA_URL}}bootstrap/js/bootstrap-wysihtml5.js"></script>
+
+<script>
+	$('#id_content').wysihtml5();
+</script>

@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% block title %}Swigoh{% endblock %}</title>
+<link type="text/css" rel="stylesheet" media="all" href="http://cdn-a.static-modernmom.com/sites/default/files/css/css_c9f1f6735487eaacb69b46c198301d47.css" />
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+{%block head %}{% endblock %}
+<style type="text/css">
+#header { height:auto;}
+</style>
+</head>
+
+<body>
+<div id="fb-root"></div>
+<div id="container">
+<div id="header">
+    <div id="branding" role="banner">
+    	<div class="logo logo-site-name">
+    		<span id="logo"><a href="{% url entity_detail entity.slug %}" rel="home"><img src="http://cdn-b.static-modernmom.com/sites/default/files/logo.jpg" alt="ModernMom.com logo" title="Home page"></a></span>
+        </div> <!-- /logo/site name -->
+    </div> <!-- /branding -->
+    <div class="header-user">
+    
+                    <div class="user-links"><h2>Welcome {% if user.is_authenticated %}<span>{{ user }}</span>{% endif %}</h2>
+			   <a class="context-block-region" id="context-block-region-user_info">User Info</a>
+      <div id="block-admin-account" class="block block-admin odd block-region-user-info block-count-3">
+  <div class="block-inner">
+   
+    <div class="content"><div class="item-list"><ul class="menu">
+     {% if user.is_authenticated %}
+     	<li class="leaf even first"><a href="/users/seedwithroot">View my account</a></li>
+		<li class="leaf odd"><a href="/user/5779/edit">Edit my account</a></li>
+		<li class="leaf even last"><a href="/logout">Logout</a></li>
+	{% endif %}
+{% block header_user %}{% endblock %}
+</ul></div><a id="context-block-admin-account" class="context-block editable edit-modernmom-global-global"></a></div>
+
+    
+  </div>
+</div> <!-- /block -->
+      <div id="menu-accountmenu" class="block context-block-hidden"><a id="context-block-menu-accountmenu" class="context-block editable edit-modernmom-global-global"></a></div>
+  			         </div> <!-- /user-links -->
+            </div>
+
+              <div id="header-region">
+
+<div id="primary" class="nav">
+	<h2 class="element-invisible">Main Menu</h2>
+	<ul class="nice-menu nice-menu-down" id="nice-menu-0">
+    	<li id="menu-1292" class="menu-path-front home"><a href="{% url entity_detail entity.slug %}" title="" class="menuitem-home">Home</a></li>
+		<li id="menu-19342" class="menuparent menu-path-taxonomy-term-29"><a href="/article-categories/parenting" title="Parenting" class="menuitem-parenting">Contests</a>
+			<ul>
+                {% for promotion in entity.entity_promotions.all %}
+                <li id=""><a href="{{ promotion.get_absolute_url }}" title="{{ promotion.name }}" class="menuitem-{{ promotion.slug }}">{{ promotion.name }}</a></li>
+                {% endfor %}
+            </ul>
+		</li>
+	</ul>
+</div> 
+         </div> <!-- /header region -->
+        
+    </div>
+    <div id="columns">
+{% block content %}
+{% endblock %}
+</div>
+
+</div>
+<script>
+FB.init({appId: '203749419652728', status: true, cookie: true, xfbml: true});
+    FB.Event.subscribe('edge.create', function(href, widget)
+    {
+        // Do something, e.g. track the click on the "Like" button here
+        share_submit('facebook','like', href);
+    });
+function fb_login(path, permissions, action)
+{
+    FB.login(function(response)
+    {
+        if (response.session)
+        {
+          if (response.perms)
+            if (action == "share")
+                share_facebook();
+            else
+				document.location = '{{ promotion.get_absolute_url }}';
+                //page_reload();
+        }
+    }, {perms:permissions});
+}
+        
+        </script>    
+</body>
+
+</html>

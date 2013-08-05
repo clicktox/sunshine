@@ -1,0 +1,118 @@
+{% extends 'facebookbase.html' %}
+{% load taxonomy_tags %}
+{% block head %}
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span6">
+        <a target="_blank" href="https://www.facebook.com/dialog/pagetab?app_id=161584677351550&next=http://musthave.modernmom.com">Add this page to your facebook</a>
+    </div>
+    <div class="span6">
+        <ul class="nav">
+        <li class="nav-header">
+            Gift Guides
+        </li>
+        {% for gg in giftguides %}
+        <li>
+            <a href="{{ gg.get_absolute_url }}">{{ gg }}</a>
+        </li>
+        {% endfor %}
+				</ul>
+    </div>
+</div>
+<div class="row">
+
+{% for product in new_products %}
+                <div class="span2">
+                    <a href="#"><img src="{{ product.image.get_boardthumb_url }}" width="70px" alt="{{ product }}"></a>
+                    <p class="thumb-title">
+                        <a href="{{ product.get_absolute_url }}">{{ product }}</a>
+                    </p>
+                </div>
+                {% endfor %}
+
+</div>
+{% endblock %}
+{% block no %}
+<div class="row">
+    <div class="span6">
+        <a target="_blank" href="https://www.facebook.com/dialog/pagetab?app_id=161584677351550&next=http://musthave.modernmom.com">Add this page to your facebook</a>
+    </div>
+    <div class="span3 home2">
+        <ul class="nav">
+        <li class="nav-header">
+            Gift Guides
+        </li>
+        {% for gg in giftguides %}
+        <li>
+            <a href="{{ gg.get_absolute_url }}">{{ gg }}</a>
+        </li>
+        {% endfor %}
+    </div>
+</div>
+<div class="clear2">
+</div>
+<div class="container">
+    <div class="strip-title">
+        <div class="strip-text">
+            <span class="wht-bg-H1 pink">What's <span class="black">New</span></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div id="whats-new">
+                {% for product in new_products %}
+                <div class="whats-new-thumb-first">
+                    <a href="#"><img src="{{ product.image.get_180X113_url }}" alt="{{ product }}"></a>
+                    <p class="thumb-title">
+                        <a href="{{ product.get_absolute_url }}">{{ product }}</a>
+                    </p>
+                </div>
+                {% endfor %}
+                <div class="clear-both">
+                </div>
+                <div class="bottom-line">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <!-- /span12 -->
+    </div>
+    <!-- /row -->
+</div>
+<!-- /container -->
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="span8">
+            </div>
+            <!-- /span4 -->
+            <div class="span4">
+                <div class="section-title">
+                    <div class="newsletter-box">
+                        <div class="nl-form">
+                            <div class="control-group">
+                                <!-- Prepended text-->
+                                <div class="controls">
+                                    <div class="input-prepend">
+                                        <span class="add-on"><i class="icon-envelope"></i></span>
+                                        <input class="span2" placeholder="Email Address" id="prependedInput" type="text">
+                                        <button class="btn btn-primary">
+                                            Sign Up
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /nl-form -->
+                    </div>
+                </div>
+                <!-- /section-title -->
+            </div>
+            <!-- /span4 -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+{% endblock %}

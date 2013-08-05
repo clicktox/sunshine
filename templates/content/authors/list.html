@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block container %}
+{% for author in authors %}
+<h5>{{ author }}</h5>
+<P>{{ author.description }}</p>
+<ul>
+	{% for content in author.contentauthor_set.all %}
+	<li><a href="{{ content.content.get_absolute_url }}">{{ content.content }}</a></li>
+	{% endfor %}
+</ul>
+
+{% endfor %}
+<div class="pagination">  
+  <ul>  
+   {% if authors.has_previous %}
+            <li><a href="?page={{ authors.previous_page_number }}">Prev</a></li> 
+        {% endif %}
+
+	{% for p in paginator.page_range %}
+    <li {% if paginator.page == p %}class="active"{% endif %}><a href="?page={{ p }}">{{ p }}</a></li>  
+	{% endfor  %}
+
+	{% if authors.has_next %}
+            <li><a href="?page={{ authors.next_page_number }}">Next</a></li> 
+        {% endif %}
+     
+  </ul>  
+</div>  
+{% endblock %}

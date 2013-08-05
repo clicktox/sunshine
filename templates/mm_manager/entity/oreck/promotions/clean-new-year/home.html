@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% block title %}{{ promotion.name }}{% endblock %}
+{% block head %}
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">
+stLight.options({
+				publisher:'1d057cac-11c7-4a27-9d1b-c8f8dab15f64'
+				});</script>
+<style type="text/css">
+* {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	margin: 0px auto;
+	padding: 0px;
+}
+#oreck-container {
+	width: 960px;
+	margin: 0px auto;
+	padding: 0px;
+}
+#oreck-logo {
+	width: 960px;
+	height: 67px;
+	background-image: url({{ MEDIA_URL}}promotions_assets/clean-new-year/logo.png);
+	margin: 0px auto;
+	padding: 0px;
+}
+#oreck-header {
+	width: 960px;
+	height: auto;
+	margin: 0px auto;
+	padding: 0px;
+}
+#oreck-fb-float {
+	float: right;
+	width:192px;
+}
+#oreck-body {
+	width: 960px;
+	height: auto;
+	margin: 0px auto;
+	padding: 0px;
+	{% if form %}
+	background-image:url('{{ MEDIA_URL}}promotions_assets/clean-new-year/body.png'); 
+	{% else %}
+	background-image:url('{{ MEDIA_URL}}promotions_assets/clean-new-year/body-thanks.png'); 
+	
+	{% endif %}
+	height:448px;
+}
+#oreck-generic {
+	width: 960px;
+	height: auto;
+	margin: 0px auto;
+	padding: 0px;
+}
+#oreck-body #block {
+	margin-left:500px;
+	padding-top:150px;
+	width:400px;
+}
+#oreck-content {
+	width: 960px;
+	height: auto;
+	margin: 0px auto;
+	padding: 0px;
+}
+
+.oreck-text {
+	padding: 0px 30px 0px 30px;
+	color: #273447;
+	font-size: 18px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#oreck-products {
+	width: 960px;
+	margin: 0px auto;
+	padding: 0px;
+}
+.oreck-disclaimer {
+	padding: 5px 30px 0px 30px;
+	color: #273447;
+	font-size: 10px;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+
+label {
+ width: 255px; display:block;
+	text-align: left; font-size: 14px; color: #445668; 
+	text-transform: uppercase; text-shadow: 0px 1px 0px #f2f2f2;
+}
+
+input[type=text] {
+	width: 200px; height: 25px; padding: 5px 20px 0px 20px; margin: 0 0 10px 0; 
+	background: #5E768D;
+	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
+	font-family: sans-serif; font-size: 16px; color: #f2f2f2; text-transform: uppercase; text-shadow: 0px -1px 0px #334f71; 
+}
+	input::-webkit-input-placeholder  {
+    	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
+	}
+	input:-moz-placeholder {
+	    color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
+	}
+
+textarea {
+	width: 200px; height: 25px; padding: 12px 20px 0px 20px; margin: 0 0 20px 0; 
+	background: #5E768D;
+	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
+	font-family: sans-serif; font-size: 14px; color: #f2f2f2; text-transform: uppercase; text-shadow: 0px -1px 0px #334f71; 
+}
+	textarea::-webkit-input-placeholder  {
+    	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
+	}
+	textarea:-moz-placeholder {
+	    color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
+	}
+	
+input:focus, textarea:focus {
+	background: #728eaa;
+	background: -moz-linear-gradient(top, #668099 0%, #728eaa 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#668099), color-stop(20%,#728eaa)); /* webkit */
+}
+
+input[type=submit] {
+	width: 105px; height: 38px; float: right; padding: 10px 15px; margin: -38px 45px 0 0;
+	-moz-box-shadow: 0px 0px 5px #999;-webkit-box-shadow: 0px 0px 5px #999;
+	border: 1px solid #556f8
+	background: -moz-linear-gradient(top, #718DA9 0%, #415D79 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#718DA9), color-stop(100%,#415D79)); /* webkit */
+	cursor: pointer;
+}
+
+.share_it_g { width:300px; margin:0 auto; height:17px; margin-top:10px; }
+.share_it_g span span { float:left; width:45px; }
+.share_it_g span p { float:right; width:249px; text-align:left; color: #273447;
+	font-size: 18px;
+	font-family:Arial, Helvetica, sans-serif; }
+	
+.share_it { width:300px; margin:0 auto; height:37px; }
+.share_it span span { float:left; width:45px; }
+.share_it span p { float:right; width:249px; text-align:left; color: #273447;
+	font-size: 18px;
+	font-family:Arial, Helvetica, sans-serif; }
+	
+#button_4 {  margin-top:5px; }
+</style>
+{% endblock %}
+{% block content %}
+<div id="oreck-container">
+<div id="oreck-logo">
+  <div id="oreck-fb-float"> 
+  <fb:like-box href="http://www.facebook.com/oreck" width="292" show_faces="false" stream="false" header="true"></fb:like-box>
+  </div>
+</div>
+<div id="oreck-header"> <img src="{{ MEDIA_URL}}promotions_assets/clean-new-year/header.png" /> </div>
+<div id="oreck-body">
+    <div id="block">
+   This contest has ended, thank you for participating.
+        
+    
+    </div>
+</div>
+<div id="oreck-content">
+  <p class="oreck-text">From the floor to the air, Oreck has a wide range of products to help keep your home clean. We are giving away one of each of the following powerful cleaning tools: Grab-It & Steam-It™ Steam Mop, Magnesium™ Vacuum, AirInstinct™ 200 Air Purifier and the DualMax™ Air Purifier. Enter now for your chance to win!</p>
+</div>
+<div id="oreck-generic"> <img src="{{ MEDIA_URL}}promotions_assets/clean-new-year/products-week4.png" border="0" usemap="#Map" />
+  <map name="Map" id="Map">
+    <area shape="rect" coords="705,36,924,516" href="http://www.oreck.com/Oreck-Magnesium-Vacuum-Cleaner?keycode=FH481" target="_blank" />
+    <area shape="rect" coords="488,36,703,517" href="http://www.oreck.com/Oreck-AirInstinct-200-Air-Purifier?keycode=FH481" target="_blank" />
+    <area shape="rect" coords="37,35,257,517" href="http://www.oreck.com/Grab-It-And-Steam-It?keycode=FH481" target="_blank" />
+    <area shape="rect" coords="259,35,487,516" href="http://www.oreck.com/Oreck-DualMax-Air-Purifier?keycode=FH481" target="_blank" />
+  </map>
+</div>
+
+<div id="oreck-generic">
+  <p class="oreck-disclaimer">By entering the contest, you agree to the <a href="{% url promotion_rules entity.slug, promotion.slug %}">Terms & Conditions</a>. This contest will end on February 29, 2012. Four winners (one winner each week) will be randomly selected and notified by email. Your email address will ONLY be used to contact you in the event that you are the winner of the contest, unless you opt-in to receive the Oreck newsletter. Multiple entries are allowed (max once per day) and will increase your chances of winning. Prizes are only available to members who live in the US. Prizes must be claimed within 48 hours of notice of winning or we will be forced to choose another winner.</p>
+</div>
+</div>
+<!--script>
+         stWidget.addEntry({
+                 "service":"email",
+                 "element":document.getElementById('button_1'),
+                 "url":"http://savvy.modernmom.com{% url promotion_detail entity.slug,promotion.slug %}",
+                 "title":"{{ promotion.name }}",
+                 "type":"large",
+                 "text":"InviteAFriend" ,
+                 "image":"http://savvy.modernmom.com{{ promotion.image.get_display_url }}",
+                 "summary":"Clean Up in the New Year #Contest - Enter now to #win 1 of 4 cleaning products from @Oreck - via @ModernMom"
+         });
+		   stWidget.addEntry({
+                 "service":"facebook",
+                 "element":document.getElementById('button_2'),
+                 "url":"http://savvy.modernmom.com{% url promotion_detail entity.slug,promotion.slug %}",
+                 "title":"{{ promotion.name }}",
+                 "type":"large",
+                 "text":"InviteAFriend" ,
+                 "image":"http://savvy.modernmom.com{{ promotion.image.get_display_url }}",
+                 "summary":"Clean Up in the New Year #Contest - Enter now to #win 1 of 4 cleaning products from @Oreck - via @ModernMom"
+         });
+		     stWidget.addEntry({
+                 "service":"twitter",
+                 "element":document.getElementById('button_3'),
+                 "url":"http://savvy.modernmom.com{% url promotion_detail entity.slug,promotion.slug %}",
+                 "title":"Clean Up in the New Year #Contest - Enter now to #win 1 of 4 cleaning products from @Oreck - via @ModernMom",
+                 "type":"large",
+                 "text":"InviteAFriend" ,
+                 "image":"http://savvy.modernmom.com{{ promotion.image.get_display_url }}",
+                 "summary":"{{ promotion.name }}"
+         });
+			   stWidget.addEntry({
+                 "service":"plusone",
+                 "element":document.getElementById('button_4'),
+                 "url":"http://savvy.modernmom.com{% url promotion_detail entity.slug,promotion.slug %}",
+                 "title":"{{ promotion.name }}",
+                 "type":"large",
+                 "text":"InviteAFriend" ,
+                 "image":"http://savvy.modernmom.com{{ promotion.image.get_display_url }}",
+                 "summary":"Clean Up in the New Year #Contest - Enter now to #win 1 of 4 cleaning products from @Oreck - via @ModernMom"
+         });
+</script-->
+<script>
+        //fb functions
+        fb_init('203749419652728');
+        U = 'modernmom';
+        I = 32381;
+        MEM = '';
+        OMEM = '';
+        count_down_init('#count-down','1314849540');    
+        
+        function fb_login(path, permissions, action)
+{
+    FB.login(function(response)
+    {
+        if (response.session)
+        {
+          if (response.perms)
+            if (action == "share")
+                share_facebook();
+            else
+				document.location = '{{ promotion.get_absolute_url }}';
+                //page_reload();
+        }
+    }, {perms:permissions});
+}
+        
+        </script>
+{% endblock %}
+
+{% comment %}
+
+{% endcomment %}

@@ -1,0 +1,21 @@
+
+		
+		<div class="section-title">
+            	<div class="bars">
+                	<span class="wht-bg-H1 pink">{{ category.name }}</span>
+                </div> <!-- /bars --> 
+                <div><img src="{{ category.categoryimage.get_thumbnail_url }}"></div>
+				{% for catcon in category.contentcategory_set.all|slice:1 %}
+			
+                <div class="feat-title">{{ catcon.content.title }}</div> <!-- /feat-title -->
+                <div class="feat-text">Molly Sims is looking great! Just seven months after giving birth to son Brooks, the 39-year-old model posted a pic of herself looking fab in a black bikini.</div> <!-- /feat-text -->
+				{% endfor %}
+			    <div class="section-list">
+                	<ul>
+                		{% for catcon in category.contentcategory_set.all|slice:limit %}
+                    	<li>Why Are More Women Having Twins?</li>
+						{% endfor %}
+                    </ul>
+                    <div class="section-end">More in Pregnancy <i class="icon-caret-right"></i></div> <!-- /section-end -->
+                </div> <!-- /section-list -->
+            </div>

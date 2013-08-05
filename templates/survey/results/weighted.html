@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block container %}
+<table class="table">  
+        <thead>  
+          <tr>  
+            <th>Question</th>  
+            <th>Choice</th>  
+            <th>User Count</th>  
+           </tr>  
+        </thead>  
+        <tbody>  
+         
+{% for r in results %}
+ <tr>  
+            <td>{{ r.question }}</td>  
+            <td>{{ r.choice }} </td>  
+            <td>{{ r.count }}</td>   
+          </tr>  
+{% endfor %}
+</tbody>
+</table>
+<table class="table">  
+        <thead>  
+          <tr>  
+            <th>User</th> 
+			<th>Birthdate</th>  
+			<th>Email</th>
+            <th>Score</th>  
+           </tr>  
+        </thead>  
+        <tbody>  
+         
+{% for k,v in users_list %}
+ <tr>  
+            <td><a target="_blank" href="{% url survey_results_user survey.id,k.id %}">{{ k }}</a></td>
+		<td>{{ k.get_profile.memberbirthdate }}</td>
+			 <td>{{ k.email }}</td>    
+            <td>{{ v }} </td>  
+           
+          </tr>  
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

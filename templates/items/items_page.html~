@@ -1,0 +1,38 @@
+{% load endless comments avatar_tags %}
+
+{% paginate objects %}
+{% for item in objects %}
+      {% get_comment_list for item as comment_list %}
+      {% get_comment_count for item as comment_count  %}
+      <div class="item box-border {{ item.source.host }}">
+      {% for t in item.itemtype_set.all %}
+      {{ t.itemtype }}
+      {% endfor %}
+       <div class="box-divider"></div>
+      	{% if item.image %}
+      <a href="{% url item_detail item.id %}"><img src="{{ item.image.get_display_url }}" width="210" /></a>
+      {% endif %}
+        {% if item.my_price %}
+           <strong class="PriceContainer"><strong class="price">${{ item.my_price.price }}</strong></strong>
+        {% endif %}
+        <div class="box-info">
+        	<span class="box-title blk" style="font-family: 'Alegreya SC', serif; font-size: 20px;"><a href="{% url item_detail item.id %}">{{ item.title }}</a></span><br>
+        	<span>Posted by <a href="{% url user_profile item.poster.username %}">{{ item.poster }} </a>
+        		{% if item.posted_by_list.count > 0 %} and {{ item.posted_by_list.count }} Other(s).{% endif %}</span>
+          <div class="box-divider"></div>
+           <div class="box-meta">
+            <span id="">
+                 {% if request.user.is_staff %}<a href="{% url delete_post item.id  %}" dataid="{{ item.id }}" id="DeletePost" class="box-delete" name="DeletePost">X</a>{% endif %}
+                <a href="{% url like_item item.id  %}" dataid="{{ item.id }}" id="LikePost" class="box-like" name="LikePost">{{ item.item_likes.count }}</a>
+                <a href="{% url item_detail item.id %}" class="box-comments">{{ comment_count }}</a>
+            </span>
+        </div>
+<div class="box-divider"></div>
+           Tags:<div class="box-meta">
+           {{ item.tags }}
+        </div>
+      </div>
+      {% endfor %} 
+       	{% show_more %}
+ 
+

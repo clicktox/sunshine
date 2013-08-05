@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load pagination_tags %}
+{% block title %}Editing {{ topic }}{% endblock %}
+{% block content %}
+
+<div class="box main-track" >
+<div id="steps">
+<form method="post" action="{% url edit_topic user.username,topic.slug%}">
+{{ form.as_p }}
+<p>
+                        <button id="registerButton" type="submit" class="next">Save</button>
+                    </p> 
+                    <p>
+                        <button id="deleteButton" type="" class="next">Delete</button>
+                    </p> 
+</form>
+
+</div></div>
+{% endblock %}
+

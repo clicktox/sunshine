@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<div class="row">
+	<div class="span8">
+		<h3>Simple Product Entry</h3>
+		<p>The easiest way to add a product to our system to just simply add the url of the product page itself.  Our engine will take care of the rest!</p>
+		<form  method="POST" action='{% url 'product_add_fromurl' %}'>
+			{% csrf_token %}
+			{{ product_from_url.url }}
+			<button type="submit">Add Product</button>
+		</form>
+		OR
+		<div class="row">
+			<div class="span3">
+				<b>Who produces this product?</p>
+				{{ product_form.producer }}
+			</div>
+			<div class="span5">
+				
+			<form class="well">
+			{{ producer_form.as_p }}
+			</form>
+		</div>
+	<div class="row">
+		<div class="span8">
+			<form >
+				{{ product_form.name }}
+				{{ product_form.description }}
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

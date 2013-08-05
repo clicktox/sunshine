@@ -1,0 +1,9 @@
+<form method="POST" action="{% url content_update_topics content.guid %}" class="well" id="content_update_topics_form">
+{% csrf_token %}
+{% for topic in topics %}
+ <label class="checkbox">  
+ <input type="checkbox" name="topics" value="{{ topic.id }}">{{ topic }}
+  </label>  
+
+{% endfor %}
+</form>

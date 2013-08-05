@@ -1,0 +1,251 @@
+{% extends 'base.html' %}
+{% block head %}
+<style type="text/css">
+    .social-media-links {
+        margin-top: 0px;
+        width: 300px;
+        height: 66px;
+    }
+    
+    /* FEATURED STRIP */
+    #whats-new {
+        width: 1200px;
+        margin: 0 auto;
+        line-height: 18px;
+    }
+    
+    #whats-new .whats-new-thumb-first {
+        margin: 5px 2px 5px 0px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    #whats-new .whats-new-thumb {
+        margin: 5px 0 5px 10px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    .thumb-title {
+        margin-top: 5px;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .strip-title {
+        text-align: center;
+        margin-bottom: 5px;
+        background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+    }
+    
+    .strip-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: #ed145b;
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        margin: 0px auto;
+    }
+    
+    .bottom-line {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+        width: 940px;
+        clear: both;
+    }
+    
+    /* SITES WE LOVE STRIP */
+    #swl-new {
+        width: 1200px;
+        margin: 0 auto;
+        line-height: 18px;
+    }
+    
+    #swl-new .first {
+        margin: 5px 0;
+    }
+    
+    #swl-new .swl-thumb {
+        margin: 5px 0 5px 8px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    ul.swl-links-list {
+        margin-top: 10px;
+        font-size: 14px;
+        text-align: left;
+        list-style-type: none;
+    }
+    
+    li.swl-links {
+        list-style-type: none;
+        margin-left: -20px;
+        border-bottom: 1px dotted #F06;
+    }
+    
+    .swl-thumb-title {
+        margin-top: 5px;
+        font-size: 18px;
+        text-align: center;
+        list-style-type: none;
+    }
+    
+    .swl-strip-title {
+        text-align: center;
+        margin-bottom: 5px;
+        background: url(../img/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+    }
+    
+    .swl-strip-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: #ed145b;
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        margin: 0px auto;
+    }
+    
+    .swl-bottom-line {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        background: url(../img/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+        width: 940px;
+        clear: both;
+    }
+</style>
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span2">
+        <div class="widget">
+            <h3 class='content-aside'>Motherhood</h3>
+            <ul id="subnav" class="demand-icon-list">
+                {% for category in CHANNELS %}
+                <li class="item-{{ category.id }}">
+                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="span5 home">
+        <!--  Carousel - consult the Twitter Bootstrap docs at
+        http://twitter.github.com/bootstrap/javascript.html#carousel -->
+        <div id="this-carousel-id" class="carousel slide">
+            <!-- class of slide for animation -->
+            <div class="carousel-inner">
+                {% for fc in FEATURED_ITEMS %}
+                <div class="item {% if forloop.counter == 1 %}active{% endif %}">
+                    <!-- class of active since it's the first item --><img src="{{ fc.image.get_500X400VH_url }}" alt="" />
+                    <div class="carousel-caption">
+                        <p>
+                            {{ fc.name }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- /.carousel-inner --><!--  Next and Previous controls below
+            href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+        </div>
+        <!-- /.carousel -->
+        <div class="slider-thumbs">
+            {% for fc in featured_content|slice:'4' %}<img src="{{ fc.image.get_100X63_url }}">{% endfor %}
+        </div>
+    </div>
+    <div class="span5">
+        <div class="row">
+            <div class="span2 home2">
+            </div>
+            <!-- Start Sidebar -->
+            <aside class="span3">
+                <img src="http://placehold.it/300x250">
+            </aside>
+        </div>
+        <div class="row">
+            <div class="span5">
+                Message
+            </div>
+        </div>
+    </div>
+</div>
+<!--end row-->
+<div class="container">
+    <div class="strip-title">
+        <div class="strip-text">
+            <span class="wht-bg-H1 pink">What's <span class="black">New</span></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <div id="whats-new">
+            	{% for article in latest %}
+                <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
+                    <a href="{{ article.get_absolute_url }}"><img src="http://placehold.it/180x113" alt="{{ article }}"></a>
+                    <p class="thumb-title">
+                        <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                    </p>
+                </div>
+							{% endfor %}
+              
+                <div class="clear-both">
+                </div>
+                <div class="bottom-line">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <!-- /span12 -->
+    </div>
+    <!-- /row -->
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                {% for category in CHANNELS %}
+                <div class="span4">
+                    <div class="section-title">
+                        <div class="bars">
+                            <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
+                        </div>
+                        <!-- /bars -->
+                        <div class="section-list">
+                            <ul>
+                                {% for ci in category.items.all %}
+                                <li>
+                                    <a href="{{ ci.object.get_absolute_url }}">{{ ci }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="section-end">
+                                More in {{ category }} <i class="icon-caret-right"></i>
+                            </div>
+                            <!-- /section-end -->
+                        </div>
+                        <!-- /section-list -->
+                    </div>
+                    <!-- /section-title -->
+                    {% endfor %}
+                </div>
+                <!-- /span12 -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+        {% endblock %}

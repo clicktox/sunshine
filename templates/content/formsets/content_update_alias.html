@@ -1,0 +1,8 @@
+<form method="post" action="{% url content_update_alias content.guid %}">
+	{% csrf_token %}
+	<label>Short Alias</label>
+	<input type="text" name="short" value="{{ content.get_short_alias }}"><br>
+	<label>Homepage Alias</label>
+	<input type="text" name="homepage" value="{{ content.get_homepage_alias }}"><br>
+	<button type="submit">Update Alias</button>
+</form>

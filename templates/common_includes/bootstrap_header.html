@@ -1,0 +1,24 @@
+{% load subdomainurls %}
+<div class="container">
+    	
+		<div class="row">
+            <div class="span8">
+                <div class="logo">
+                    <span class="logo-link">
+                    	<a href="#"></a>
+                    </span>
+                </div>
+            </div>
+            <div class="span4">
+            	<div class="login-holder">
+                    <div><span class="welcome-b">Welcome to</span> <span class="welcome-p">ModernMom</span></div>
+					{% if user.is_authenticated %}
+					<a href="http://connect.modernmom.com/">My Dashboard</a>
+                    <div>{{ user }} <a href="{% url 'auth_logout' subdomain='connect' %}">Log Out</a> {% if user.is_staff %}<a href="http://manager.modernmom.com/">Admin</a>{% endif %}</div>
+					{% else %}
+					  <div><a href="{% url 'auth_login' subdomain='connect' %}?next=//{{ request.META.HTTP_HOST }}{{ request.get_full_path }}">Log In</a> or <a href="{% url 'registration_register' subdomain='connect' %}">Register</a></div>
+					{% endif %}
+                </div>
+            </div>
+        </div>
+

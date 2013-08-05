@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load avatar_tags comments %}
+{% block content %}
+<section id="main">
+	<div class="wrap group">
+		<div class="inner-container group">
+			<div class="box-hold group">
+				<article class="entry box format-image">
+					<div class="entry-intro">
+						<h1>{{ item.title }}</h1><span class="entry-meta"><strong>{{ item.source.entity.name }}</strong><!--, at
+							<time datetime="2012-08-07">
+								July 7th, 2012
+							</time></span--><a class="single-heart-this" href="#" title="Love this."> <span class="heart-icon"></span> <span class="heart-no">{{ item.likes.count }}</span></a>
+					</div><!-- .entry-intro -->
+
+					<figure class="entry-image">
+						<a href="" data-lightbox="fancybox"><img src="{{ item.image.get_display_url }}" alt=""></a>
+					</figure>
+
+					<div class="social-share"></div>
+					<div style="clear:both">
+						<span>{{ item.description|safe }}</span>
+						<a href="{{ item.source }}" >SOURCE</a>
+					</div>
+
+					<div id="block-disqus-disqus_comments" class="block block-disqus even block-region-content-bottom block-count-6">
+						<div class="block-inner">
+
+							<div class="content">
+								<div id="disqus_thread"></div>
+								<noscript>
+									<div class="disqus-noscript">
+										<a href="http://mommytrack.disqus.com/?url={{ item.source }}">View the discussion thread.</a>
+									</div>
+								</noscript>
+							</div>
+
+						</div>
+					</div>
+					<script type="text/javascript">
+						/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+						var disqus_shortname = 'mommytrack';
+						// required: replace example with your forum shortname
+						/* * * DON'T EDIT BELOW THIS LINE * * */
+						(function() {
+							var dsq = document.createElement('script');
+							dsq.type = 'text/javascript';
+							dsq.async = true;
+							dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+							(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+						})();
+
+					</script>
+					<noscript>
+						Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+					</noscript>
+				</article>
+			</div><!-- .box-hold -->
+
+			<div class="box-hold">
+
+				<div class="box post-comments">
+					<div class="box-content">
+						<h3>Recent Videos</h3>
+
+						<ol id="comment-list" class="group">
+							{% for video in recent_videos %}
+							<li class="comment">
+								<span class="comment-meta">Posted by <strong>{{ video.source.entity.name }}</strong><!--, at
+									<time datetime="2012-08-07">
+										July 7th, 2012
+									</time> &mdash; --><a class="comment-reply-link" href="{{ video.get_absolute_url }}">Read</a></span>
+
+								<div class="comment-text group">
+									<img class="avatar" src="{{ video.image.get_boardthumb_url }}" alt="">
+
+									<div class="comment-copy">
+										<p>
+											{{ video.description }}
+										</p>
+									</div>
+								</div>
+							</li>
+							{% endfor %}
+
+						</ol><!--a class="load-more-comments" href="#">View 38 More Comments...</a-->
+					</div>
+				</div>
+			</div><!-- .box-hold -->
+		</div><!-- .inner-container -->
+	</div><!-- .wrap < #main -->
+</section><!--  #main -->
+{% endblock %}

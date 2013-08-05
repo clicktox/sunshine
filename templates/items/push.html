@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% block title %}{{ item }}{% endblock %}
+		{% block meta %}
+		<meta property="og:title" content="{{ item }}" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://mommytrack.modernmom.com{% url item_detail item.id %}" />
+		<meta property="og:site_name" content="Mommytrack" />
+		<meta property="fb:app_id" content="208027353668" />
+		<meta property="fb:admins" content="622302511" />
+		<meta name="description" content="{{ item.description }}" />
+		<meta name="keywords" content="" />
+		{% endblock %}
+{% block head %}
+<link type="text/css" rel="stylesheet" media="all" href="http://mommytrack.modernmom.com/css/items.css" />
+{% endblock %}
+{% block content %}
+<div id="main-content-header">
+	<h1 id="page-title" class="Heading1a articleTitle ">{{ item }}</h1>
+</div>
+
+<div id="content">
+	<div id="article-{{ item.id }}" class="clearfix article article-article">
+
+		<div class="note byline submitted">
+			By <a href="" title="View user profile.">{{ item.source.entity.name }}</a> on {{ item.publish_on|date:"D d M Y" }}
+		</div>
+
+		<ul class="ShareTools">
+
+		</ul>
+
+		<div style="float: right; padding: 2px 0 0 10px;">
+			<div class="field field-type-filefield field-field-featured-photo">
+				<div class="field-items">
+					<div class="field-item">
+						<a href="{{ item.get_aboslute_url }}" rel="lightbox[field_featured_photo][&lt;br/&gt;]" class="imagefield imagefield-lightbox2 imagefield-lightbox2-width_400 imagefield-field_featured_photo imagecache imagecache-field_featured_photo imagecache-width_400 imagecache-field_featured_photo-width_400 lightbox-processed">
+							<img src="{{ item.image.get_display_url }}" alt="{{ item }}" title="{{ item }}" width="" class="imagecache imagecache-width_400" original="{{ item.image.get_display_url }}"></a>
+					</div>
+				</div>
+			</div>
+
+			<div class="field field-type-text field-field-article-photo-caption">
+				<div class="field-items">
+					<div class="field-item"></div>
+				</div>
+			</div>
+		</div>
+		<div class="body">
+			<div class="about">
+				<p class="articleIntro">
+					{{ item.description }}
+				</p>
+				<p><a href="{{item.source }}" target="_blank">Source</a></p>
+			</div>
+			<p></p>
+		</div>
+
+
+
+		
+		<div class="clear"></div>
+
+		{% if item.is_pushed %}
+
+		This item was pushed by {{ item.is_pushed.pusher }} on {{ item.is_pushed.pushed_on }}
+		{% else %}
+	<form class="alone" method="post" action="{% url push_item item.id %}?next=http://mommytrackb.modernmom.com{{item.get_absolute_url }}">
+			{% csrf_token %}
+			<input type='hidden' name='item' value='{{item.id }}'>
+<p><label for="id_title">Why are you pushing this? ( Public )</label> 
+	<br>
+<textarea id="id_body" rows="10" cols="40" name="description">{{ item.description }}</textarea></p>
+
+	<input class="submit" type="submit" name="submit" value="Push"/>
+</form>
+{% endif %}
+		<div class="clear"></div>
+       
+
+	</div>
+	<!-- /article -->
+</div>
+{% endblock %}
+
+{% block sidebar %}
+			
+			
+						
+						<!-- /block -->
+						
+						
+						<!-- /block -->
+						<div id="block-block-26" class="block block-block even block-region-sidebar-last block-count-12 -ce-capture sidebar-last--ce-capture">
+							
+						</div>
+						<!-- /block -->
+						{% if col1.count > 0 %}
+						<div id="block-views-4ed2aeedcad031ac3dbf83bbc44480e3" class="block block-views odd block-region-sidebar-last block-count-13 header-black sidebar-last-header-black">
+							<div class="block-inner">
+								<div class="title-wrapper">
+									<h2 class="title"><span class="word-1-of-3">Recent</span><span class="word-2-of-3">Related</span><span class="word-3-of-3">Articles</span></h2>
+								</div>
+								<div class="content">
+									<div class="view view-block-display view-featured-content-all-front view-id-featured_content_all_front view-display-id-block_1 view-dom-id-a7a9f89e62eadfb14f4aaaa8b9b12cf4">
+
+										<div class="view-content">
+											{% for f in col1|slice:'5' %}
+											<div class="views-row-unformatted views-row views-row-1 views-row-odd views-row-first clearfix">
+
+												<div class="field-featured-photo-fid">
+
+													<span class="field-content">
+														<a href="" class="imagecache imagecache-size60x60 imagecache-linked imagecache-size60x60_linked">
+															<img src="{{f.image.get_boardthumb_url }}" alt="" title="" width="60" height="60" class="imagecache imagecache-size60x60"/></a></span>
+												</div>
+
+												<div class="title">
+
+													<span class="field-content"><a href="{% url item_detail f.id %}">{{ f }}</a></span>
+												</div>
+
+												<!--span class="body"> <span class="field-content">{{f.description}}</span> </span-->
+												<!--/views-view-fields.tpl.php -->
+											</div>
+											{% endfor %}
+											
+										
+
+									</div>
+									<!-- /views-view-block -->
+								</div>
+
+							</div>
+						</div>
+						</div>
+						{% endif %}
+						<div id="block-views-4ed2aeedcad031ac3dbf83bbc44480e3" class="block block-views odd block-region-sidebar-last block-count-13 header-black sidebar-last-header-black">
+							<div class="block-inner">
+								<div class="title-wrapper">
+									<h2 class="title"><span class="word-1-of-3">Recent</span><span class="word-2-of-3">Trending</span><span class="word-3-of-3">Articles</span></h2>
+								</div>
+								<div class="content">
+									<div class="view view-block-display view-featured-content-all-front view-id-featured_content_all_front view-display-id-block_1 view-dom-id-a7a9f89e62eadfb14f4aaaa8b9b12cf4">
+
+										<div class="view-content">
+											{% for f in col2|slice:'5' %}
+											<div class="views-row-unformatted views-row views-row-1 views-row-odd views-row-first clearfix">
+
+												<div class="field-featured-photo-fid">
+
+													<span class="field-content">
+														<a href="" class="imagecache imagecache-size60x60 imagecache-linked imagecache-size60x60_linked">
+															<img src="{{f.image.get_boardthumb_url }}" alt="" title="" width="60" height="60" class="imagecache imagecache-size60x60"/></a></span>
+												</div>
+
+												<div class="title">
+
+													<span class="field-content"><a href="{% url item_detail f.id %}">{{ f }}</a></span>
+												</div>
+
+												<!--span class="body"> <span class="field-content">{{f.description}}</span> </span-->
+												<!--/views-view-fields.tpl.php -->
+											</div>
+											{% endfor %}
+											
+										
+
+									</div>
+									<!-- /views-view-block -->
+								</div>
+
+							</div>
+						</div>
+						</div>
+						<!-- /block -->
+						{% endblock %}

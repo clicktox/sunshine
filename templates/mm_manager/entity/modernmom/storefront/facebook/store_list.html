@@ -1,0 +1,156 @@
+{% extends 'entity/modernmom/storefront/facebook/base.html' %}
+{% load pagination_tags %}
+{% block head %}
+<style type="text/css">
+.title-wrapper {
+font-size: 12px;
+color: #EA3565;
+}
+.title-wrapper h2 {
+font-style: normal;
+font-weight: bold;
+text-transform: uppercase;
+font-size: 32px;
+line-height: 34px;
+letter-spacing: -0.05em;
+vertical-align: middle;
+margin: 0;
+color: black;
+white-space: nowrap;
+}
+a {
+background-color: white;
+text-decoration: none;
+}
+
+ a {
+color: #FD0F74;
+text-decoration: none;
+outline: none;
+}
+
+.title-wrapper h2 a {
+font-size: inherit !important;
+}
+
+.word-2-of-3 {
+font-weight: normal;
+color: black;
+}
+</style>
+{% endblock %}
+{% block content %}
+
+
+   {% if fanpage.require_like  %}
+   
+    {% if data.page.liked %}
+        <div style="width:520px; height:160px;">
+        
+        {% for promotion in promotions %}
+        <div style="padding:25px">
+        {{ promotion.title }}</p>
+        {% if promotion.code %}
+        <div>Use Code: <span style="font-size:18px;">{{ promotion.code }}</span></div>
+        {% endif %}
+        </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div style="background:url('{{ MEDIA_URL }}storefront/babooshbaby/mm_pink_520_likelock.png?c') no-repeat; width:520px; height:160px;">
+        <script>
+        FB.Event.subscribe('edge.create', function(resp) {
+            $('#theText').html('Redirecting you to the store!  If this takes longer than 5 seconds, please refresh this page.');
+           setTimeout(function() {
+              try {
+                 top.location.href = "{{ fanpage.fanpage.url }}?sk=app_108202865940688";
+              } catch(er) {};
+           }, 5000);
+        });
+        </script>
+        <div style="padding-top:80px; padding-left:50px;">
+        <fb:like href="{{ fanpage.fanpage.url }}" layout="button_count" send="false" width="250" show_faces="false" font=""></fb:like>
+        </div>
+          
+        </div>
+    {% endif %}
+{% else %}
+{% if data.page.admin %}
+This page is not authorised.
+{% endif %}
+{% endif %}
+{% if stores %}
+    <div class="title-wrapper">
+    <h2 class="title"><a href="http://babooshbaby.com" target="_blank"><span class="word-1-of-3">SHOP</span> <span class="word-2-of-3">OUR</span> <span class="word-3-of-3">STORE</span></a></h2></div>
+
+{% endif %}
+
+
+<div class="storefrontWidgetHeader" id="storefrontWidgetHeader">
+    <div id="hideMe">Featured Items 
+    <div style="clear:both;"></div>
+    </div> <!-- close hideMe class -->
+</div>
+
+
+<div style="clear:both;"></div>
+{% for product in featured %}
+		<div class="productGridBox" id="productGridBox{{ forloop.counter }}">
+                  {% if product.product.image %}
+			<div class="thumbnailImage"> <a target="_top" href="{{ product.product.external_url }}"><img class="img" src="{{ product.product.image.get_thumbnail_url }}" style="height:100px;"></a> </div>
+            {% endif %}
+	        <div class="productTitle" style="text-align:center;"> <a target="_top" href="{{ product.product.external_url }}">{{ product.product.title}}</a> </div>
+          	<div class="productPrice">{{ product.product.list_price }}</div>
+            <div style="clear:both;"></div>
+            <div class="socialButtonsWidgetWrapper">
+ 				<div class="socialButtons">
+                    <div id="likeButtonContainer{{ forloop.counter }}" class="likeButtonContainer left" style="width: 57px;">
+                    	<fb:like href="{{ product.product.external_url }}" send="false" layout="button_count" width="100" show_faces="false" font=""></fb:like>
+                    </div>    
+                    <div class="shareLinkCont" id="shareLinkCont0_0">
+                        <a class="shareLinks" href="{{ product.product.external_url }}">Buy</a>
+                    </div>
+                    <div style="clear: both;"></div>
+                    
+            </div>
+      </div>
+  </div>  
+        </div>
+        
+{% endfor %}
+<div style="clear:both;"></div>
+<div class="storefrontWidgetHeader" id="storefrontWidgetHeader">
+    <div id="hideMe">Specials   
+    <div style="clear:both;"></div>
+    </div> <!-- close hideMe class -->
+</div>
+
+
+<div style="clear:both;"></div>
+{% for product in special %}
+		<div class="productGridBox" id="productGridBox{{ forloop.counter }}">
+          {% if product.image %}
+			<div class="thumbnailImage"> <img class="img" src="{{ product.image.get_thumbnail_url }}" style="height:100px;"> </div>
+            {% endif %}
+	        <div class="productTitle" style="text-align:center;"> <a target="_top" href="{{ product.external_url }}">{{ product.title}}</a> </div>
+          	<div class="productPrice">
+            {% if product.sale_price %}<span style="text-decoration:line-through;">{{ product.list_price }}</span>  {{ product.sale_price }}{% else %}{{ product.list_price }}{% endif %}</div>
+            <div style="clear:both;"></div>
+            <div class="socialButtonsWidgetWrapper">
+ 				<div class="socialButtons">
+                    <div id="likeButtonContainer{{ forloop.counter }}" class="likeButtonContainer left" style="width: 57px;">
+                    	<fb:like href="{{ product.external_url }}" send="false" layout="button_count" width="100" show_faces="false" font=""></fb:like>
+                    </div>    
+                    <div class="shareLinkCont" id="shareLinkCont0_0">
+                        <a class="shareLinks" href="{{ product.external_url }}" target="_blank">Buy</a>
+                    </div>
+                    <div style="clear: both;"></div>
+                    
+            </div>
+      </div>
+  </div>  
+        </div>
+        
+{% endfor %}
+
+{% endblock %}

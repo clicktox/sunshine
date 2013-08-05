@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+div class="container">
+            	{% block container %}
+            
+                <div class="row">
+                    <div class="span2">
+                        Welcome back {{ user }}
+												<a href="{% url 'logout' %}">Logout</a>
+												<div class="widget">
+                            <h3 class='content-aside'>Motherhood</h3>
+                            <ul id="subnav" class="demand-icon-list">
+                                <li class="item-1">
+                                    <a href="/channels/around-the-house/">Around the House</a>
+                                </li>
+                                <li class="item-2">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/beauty-style/">Beauty &amp; Style</a>
+                                </li>
+                                <li class="item-3">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/food-drink/">Food &amp; Drink</a>
+                                </li>
+                                <li class="item-4">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/living-healthy/">Living Healthy</a>
+                                </li>
+                                <li class="item-5">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/parenting-pregnancy/">Parenting</a>
+                                </li>
+                                <li class="item-6">
+                                    <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/relationships-family/">Relationships</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="span7">
+                    	{% block content %}{% endblock %}
+                    </div>
+                    <!-- Start Sidebar -->
+                    <aside class="span3">
+                       <img src="http://placehold.it/300x250">
+                    </aside>
+                </div>
+                <!--end row--><!-- End Sidebar -->
+								{% endblock %}

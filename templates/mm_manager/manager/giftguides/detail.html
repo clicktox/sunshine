@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load coupon_tags %}
+{% block title %}ModermMom Gift Guide Manager{% endblock %}
+
+{% block head %}
+<style type="text/css">
+.active h3{ color:green;}
+.inactive h3{ color:red; }
+
+.item img { width:180px; float: left;}
+.item { clear:both; margin-top:15px; padding:6px;}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>ModernMom GiftGuide Manager</h1>
+<form method="POST" action="{% url giftguideitem_add guide.slug %}">
+				{% csrf_token %}
+				{{ form }}
+				<input type="submit" value="add item">
+			</form>
+{% for item in giftguide.giftguideitem_set.all %}
+<div {% if item.active %}class="item active"{% else %}class="item inactive"{% endif %}>
+<img src="{{ item.item.image.get_display_url }}">
+
+<h3>{{ item.title }}</h3>
+<p>{{item.description }}</p>
+<ul>
+<li>{{ item.added_by }}</li>
+</ul>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block sidebar %}{% endblock %}

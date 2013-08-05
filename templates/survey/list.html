@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block container %}
+<ul>
+{% for survey in surveys %}
+<li>{{ survey }} <a href="{% url survey_results_weighted survey.id %}">Weighted Results</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

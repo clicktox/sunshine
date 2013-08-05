@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block container %}
+
+<form method="POST" action="">
+	{% csrf_token %}
+	 {% for p in products %}
+    <div class="row">
+        <div class="span1">
+            <input type="checkbox" name="product_id" value="{{ p.id }}">
+        </div>
+        <div class="span2">
+            <img src="{{ p.product.image.get_thumbnail_url }}">
+        </div>
+        <div class="span6">
+            <p>{{ p.p.product.description }}</p>
+			<p><a href="{% url product_detail_edit p.product.uuid %}" target="_blank"><i class='icon-edit'></i>Edit Product</a></p>
+        </div>
+    </div>
+	
+
+    {% endfor %}
+</div>
+<button type="submit">Add Products</a>
+</form>
+{% endblock %}

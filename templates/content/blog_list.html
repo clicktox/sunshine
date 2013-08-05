@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}ModernMom Article Collection{% endblock %}
+{% block head %}
+<style type="text/css">
+	a { color:#ea3565;}
+</style>
+{% endblock %}
+
+ {% block meta %}
+        <meta property="og:title" content="ModernMom Article Collection" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://www.modernmom.com{% url article_list %}" />
+        <meta property="og:site_name" content="ModernMom" />
+        <meta property="fb:app_id" content="208027353668" />
+        <meta property="fb:admins" content="622302511" />
+		<link rel="canonical" href="http://www.modernmom.com{% url article_list %}"/>
+        <meta name="description" content="ModernMom comtains one of the largest collections for articles for motherhood.  ModernMom articles have either been written by experts in thier respective fields, or moms with a combination of real world experience and expertise." />
+        <meta name="keywords" content="{% for n in TOP_LEVEL_CATEOGORIES %}{{ n }} {% endfor %}" />
+        {% endblock %}
+		
+{% block container %}
+
+{% for content in contents %}
+
+<div class="span8">
+    
+    <div class="row">
+       {% if content.image %}<div class="span3">
+        <a href="{{ content.get_absolute_url }}" class="thumbnail">
+          
+                                <img src="{{ content.image.get_content_200X107_url }}" width="200" alt="">
+								
+        </a>
+		
+      </div>{% endif %}
+      <div class="span5">      
+<strong><a href="{{ content.get_absolute_url }}">{{ content.title }}</a></strong>
+        <p class="span5" style="height:84px; overflow:hidden;">
+         {{ content.contentdescription }}
+        </p>
+		<!--a class="btn-mini" href="{% url content_article_detail content.slug %}">Read more</a-->
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <p></p>
+        <p>
+          <i class="icon-user"></i> by <a href="#">{{ content.added_by }}</a> 
+          | <i class="icon-calendar"></i> {{ content.publish_on }}
+          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+          | <i class="icon-share"></i> <a href="#">39 Shares</a>
+		  {% if request.user.is_staff %}
+		  | <i class="icon-edit"></i> <a href="{{ content.get_edit_url }} ">Edit</a>
+		  {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+  	{% endfor %}
+
+<div class="pagination">  
+  <ul>  
+   {% if contents.has_previous %}
+            <li><a href="?page={{ contents.previous_page_number }}">Prev</a></li> 
+        {% endif %}
+
+	{% for p in paginator.page_range %}
+    <li {% if paginator.page == p %}class="active"{% endif %}><a href="?page={{ p }}">{{ p }}</a></li>  
+	{% endfor  %}
+
+	{% if contents.has_next %}
+            <li><a href="?page={{ contents.next_page_number }}">Next</a></li> 
+        {% endif %}
+     
+  </ul>  
+</div>  
+
+
+{% endblock %}

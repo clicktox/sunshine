@@ -1,0 +1,6 @@
+
+
+<form method="POST" action="{% url content_update_quote content.guid %}" id="content_update_quote_form">
+{% csrf_token %}
+{{ form.as_p }}
+</form>

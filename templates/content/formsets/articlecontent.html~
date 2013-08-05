@@ -1,0 +1,4 @@
+<form method="POST" action="{% url content_edit_content article.slug,content.id %}">
+{{ article_content_form.as_p }}
+<button class="btn btn-success">Save</button>
+</form>

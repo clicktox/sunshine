@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ contest.name }}{% endblock %}
+        {% block meta %}
+     <meta property="og:title" content="{{ contest.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
+<meta property="og:description" content="{{ contest.contestdescription.content }}" />
+<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_largegrid_url }}" />
+<meta property="og:site_name" content="Modernom Contests" />
+<meta property="fb:app_id" content="208027353668" />
+<meta property="fb:admins" content="622302511" />
+        {% endblock %}
+		{% block head %}
+			<style type="text/css">
+			.success-message {
+				padding: 10px;
+				font-size: 20px;
+			}
+			.success-message .congrats {
+				font-size: 30px;
+				margin-bottom: 10px;
+			}
+			</style>
+
+{% endblock %}
+{% block container %}
+<div class="row">
+    	<div class="span12">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <div class="success-message">
+                    <div class="congrats">This contest is no longer accepting entries.</div>
+                    <div class="message">Check out these great contests below for more opportunities to win!</div>
+                </div> <!-- /success-message -->
+        	</div> <!-- /alert alert-success -->
+    	</div> <!-- /span12 -->
+    </div> <!-- /row -->
+	<div class="row">
+        <div class="span8">
+            <div id="content" class="contestlist">
+                <div class="contest-list">
+                    {% for contest in contests %}
+                    <div class="contest" data-contest-id="{{ contest.guid }}">
+                        <div class="content">
+                            <a href="{{ contest.get_absolute_url }}">
+                            	
+								
+                                <div class="avatar img-inset" style="background: url({{ contest.contestimage.get_contest_thumbnail_url }})"></div>
+								
+                                <h2 class="gl-contest-title">
+                                <span rel="contest_name" class="contest-name">{{ contest.name }}</span>
+                                
+                                </h2>
+                            </a>
+							
+                            <p class="description">
+                               {{ contest.contestdescription }}
+                            </p>
+							
+                            <div class="follow-btn-holder">
+                                <a href="{{ contest.get_absolute_url }}" class="btn btn-primary" style="float:right">Enter Contest</a>
+                            </div>
+                        </div>
+                    </div> <!-- /contest -->
+                    {% endfor %}
+                    
+                    <!-- *****LOOP CONTESTS FOR HOW MANY EVER CONTESTS WE HAVE RUNNING***** -->
+                </div> <!-- /contest-list -->
+            </div> <!-- /#content -->
+        </div> <!-- /span8 -->
+        </div> <!-- /row -->
+        <div class="span3">
+        	
+        </div> <!-- /span3 -->
+{% endblock %}

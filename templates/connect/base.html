@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load subdomainurls %}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# modernmom: http://ogp.me/ns/fb/modernmom#">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% block title %}Connect{% endblock %}</title>
+		<link rel="image_src" href="http://www.modernmom.com/sites/default/files/logo.jpg" />
+		{% block meta %}
+		<meta property="og:title" content="ModernMom" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://connect.modernmom.com/" />
+		<meta property="og:site_name" content="ModernMom" />
+		<meta property="fb:app_id" content="208027353668" />
+		<meta property="fb:admins" content="622302511" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		{% endblock %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}connect/css/style.css" />
+
+		{% block head %}{% endblock %}
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/4365379/ModernMomRegistrationTop', [300, 250], 'div-gpt-ad-1354832655688-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/4365379/ModernMomRegistration2', [300, 250], 'div-gpt-ad-1354833389740-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/4365379/MM_Internal_300x250', [300, 250], 'div-gpt-ad-1367435218945-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9629029-1']);
+  _gaq.push(['_setDomainName', 'modernmom.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+	</head>
+
+<body>
+	<div class="container">
+<div class="container">
+    	
+		<div class="row">
+            <div class="span8">
+                <div class="logo">
+                    <span class="logo-link">
+                    	<a href="#"></a>
+                    </span>
+                </div>
+            </div>
+            <div class="span4">
+            	<div class="login-holder">
+                    <div><span class="welcome-b">Welcome to</span> <span class="welcome-p">ModernMom</span></div>
+					{% if user.is_authenticated %}
+					<a href="http://connect.modernmom.com/">My Dashboard</a>
+                    <div>{{ user }} <a href="{% url 'logout' subdomain='connect' %}">Log Out</a> {% if user.is_staff %}<a href="http://manager.modernmom.com/">Admin</a>{% endif %}</div>
+					{% else %}
+					  <div><a href="{% url 'login' subdomain='connect' %}?next=//{{ request.META.HTTP_HOST }}{{ request.get_full_path }}">Log In</a> or <a href="{% url 'register' subdomain='connect' %}">Register</a></div>
+					{% endif %}
+                </div>
+            </div>
+        </div>
+
+<div class="container">
+	{% block container %}
+	{% endblock %}
+</div> <!-- /container -->
+        <div id="fb-root">
+        </div>
+        
+        
+        <script src="http://code.jquery.com/jquery-latest.js">
+        </script>
+        <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.js">
+        </script>
+		{% block lower_js %}{% endblock %}
+</body>
+</html>

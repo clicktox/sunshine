@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ contest.name }}{% endblock %}
+        {% block meta %}
+     <meta property="og:title" content="{{ contest.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
+<meta property="og:description" content="{{ contest.contestdescription.content }}" />
+<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_largegrid_url }}" />
+<meta property="og:site_name" content="Modernom Contests" />
+<meta property="fb:app_id" content="208027353668" />
+<meta property="fb:admins" content="622302511" />
+        {% endblock %}
+		{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/style.css">
+
+{% endblock %}
+{% block container %}
+<div class="row">
+        <div class="span12 lindt1">
+        	
+        </div> <!-- /span12 lindt1 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 lindt2">
+        	
+        </div> <!-- /span12 lindt2 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 lindt3">
+        	<img src="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/LindtLayout-ThankYou-Phase2v2_03.png" usemap="#Map" />
+            <map name="Map">
+              <area shape="rect" coords="40,385,251,408" href="http://www.lindtgoldbunny.com/" target="_blank" alt="">
+              <area shape="rect" coords="657,377,784,428" href="http://www.lindtgoldbunny.com/" target="_blank" alt="">
+            </map>
+        </div> <!-- /span12 lindt3 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 lindt4">
+        	
+        </div> <!-- /span12 lindt4 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 disclaimer">
+        	*By entering the contest, you agree to the <a href="http://www.modernmom.com/contest-rules">Terms & Conditions</a>. This contest will end on March 31, 2013. One (1) winner will be randomly selected and will win a custom Lindt Easter Gift Basket. Winner will be notified by email. Your email address will ONLY be used to contact you in the event that you are the winner of the contest. Prizes are only available to members who live in the United States and are at least 18 years of age. Winners must claim prize within 48 hours of notification, or another winner will be chosen.
+        </div> <!-- /span12 ikea1 -->
+    </div> <!-- /row -->
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load subdomainurls %}
+{% block container %}
+<div class="row">
+<div class="span8">
+	<h2>ModernMom Users</h2>
+	<p>
+		Public Users: {{ public_users.count }}<br>
+		Public Members: {{ members.count }}<br>
+		Active Bot Users: {{ bot_users.count }}
+	</p>
+	<h2>Content</h2>
+	<p>
+		Articles <a href="{% url 'article_list' subdomain=None %}" target="_blank">{{ articles.count }}<a/> <a href="{% url 'content_create' subdomain=None %}">Create new article</a>
+	</p>
+					
+				
+						<!-- /block -->
+						
+						
+						
+</div>
+</div>
+
+		{% endblock %}

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>All Styles</title>
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/content.css" media="screen" />
+ <link href="{{ MEDIA_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<style type="text/css">
+input.text, input.search, textarea.textarea {
+border-top: 1px solid #7C7C7C;
+border-left: 1px solid #C3C3C3;
+border-right: 1px solid #C3C3C3;
+border-bottom: 1px solid #DDD;
+}
+input.text, input.search, input.file, textarea.textarea, select.select {
+font-family: "Lucida Grande", Tahoma, Arial, sans-serif;
+font-size: 100%;
+color: #333;
+margin: 0;
+padding: 2px 0;
+}
+label, legend.desc {
+font-size: 95%;
+font-weight: bold;
+color: #222;
+line-height: 150%;
+margin: 0;
+padding: 0 0 3px 0;
+border: none;
+display: block;
+white-space: normal;
+width: 100%;
+}
+
+.forma { width: 400px; margin:0 auto;}
+
+.editor { float: left; width:400px;}
+.article { float:left; }
+</style>
+</head>
+
+<body>
+
+ <div class="container">
+<div class="row">
+    <div class="span6]">
+<section class="article">
+	<article class="blog">
+		<h1>{{ content.title }}</h1>
+        <h2>{{ content.subtitle }}</h2>
+        <h3>By: {{ content.added_by }}</h3>
+        
+        <figure class="featured-image">
+        {% if not content.articleimage %}
+       
+        	{% else %}
+        	  	<img src="{{ content.articleimage.image.get_article_display_url }}" />
+        	       <figcaption class="caption">
+            	{{ content.articleimage.image.caption }}
+            </figcaption>
+        	{% endif %}
+     
+        </figure>
+{% if content.articledescription %}        
+        <p class="article-body">
+        {{ content.articledescription.content }}
+        </p>
+{% endif %} 
+        
+        {% if content.articlequote %}
+        <blockquote class="quote">
+        	<p>"{{ content.articlequote.content }}"</p>
+            <cite class="quote-author">
+            	— {{ content.articlequote.source }}
+            </cite>
+        </blockquote>
+        {% endif %}
+        
+        {% for p in content.articlecontent_set.all %}
+        <h4>{{ p.title }}</h4>
+        <p class="article-body">{{p.content}}</p>
+               
+			{% if forloop.counter == 2 %}
+			{% if content.articlesidebar %}
+        <!-- BEGIN SIDEBAR -->
+        <div class="sidebar">
+        	<h5>{{ content.articlesidebar.title }}</h5>
+			<p>{{ content.articlesidebar.content }}</p>
+			         </div>
+        <!-- END SIDEBAR -->
+			{% endif %}      
+			{% endif %}
+        {% endfor %}
+ <div class="clear"></div>  
+		
+        <div class="clear"></div>
+       
+        <div class="author-box">
+        	<div>
+            	<img class="avatar" src="{{ MEDIA_URL}}images/dummy/AuthorImage.jpg" />
+                <strong>About Lorem Ipsum</strong>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non dolor mauris, vitae mattis risus. Sed placerat aliquet tortor. Vestibulum eget dui in magna dignissim ultricies. Duis a risus vitae <a href="#">purus condimentum accumsan</a> in sit amet quam. Vestibulum gravida scelerisque justo, et venenatis quam blandit vitae. Donec egestas ipsum a <a href="#">felis luctus ultricies</a>.</p>
+            </div>
+        </div>
+	</article>
+</section>
+</div>
+    <div class="span3">
+    
+    </div>
+</div></div>
+
+
+</body>
+</html>

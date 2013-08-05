@@ -1,0 +1,17 @@
+{% extends "registration/base_registration.html" %}
+{% load subdomainurls %}
+{% block head %}{% endblock %}
+{% block hero %}
+ <h1>Come back soon!</h1>
+        <p>We are sorry to see you go, but we know how busy you are!</p>
+		
+{% endblock %}
+
+
+
+{% block form %}
+{% if form.error %}
+{{ form.error }}
+{% endif %}
+  <a href="{% url 'login' subdomain='connect' %}">Log In</a>
+{% endblock %}

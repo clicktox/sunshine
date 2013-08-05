@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load coupon_tags %}
+{% block title %}ModermMom Gift Guide Manager{% endblock %}
+{% block content %}
+<h1>ModernMom GiftGuide Manager</h1>
+
+{% for guide in giftguides %}
+<a href="{% url manager_gift_guides_detail guide.id %}">{{ guide }}</a>
+{% endfor %}
+{% endblock %}
+
+{% block sidebar %}
+				
+						
+					
+						{% endblock %}

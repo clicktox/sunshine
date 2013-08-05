@@ -1,0 +1,11 @@
+
+{% block container %}
+{{ addblogform.errors }}
+ <form method="post" action="{% url blogfollow_add_blog %}" class="well form-search">
+ 	{% csrf_token %}  
+  <input type="text" class="input-large search-query" name="{{ addblogform.url.html_name }}" id="id_{{ addblogform.url.html_name }}">  
+  <button type="submit" class="btn">Add Blog</button>  
+</form>
+
+ {% endblock %}
+ 

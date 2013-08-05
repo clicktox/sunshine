@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# modernmom: http://ogp.me/ns/fb/modernmom#">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% block title %}OneVoice Mom Blogs{% endblock %}</title>
+		<link rel="image_src" href="http://www.modernmom.com/sites/default/files/logo.jpg" />
+		{% block meta %}
+		<meta property="og:title" content="Mommytrack" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://onevoice.modernmom.com/" />
+		<meta property="og:site_name" content="OneVoice" />
+		<meta property="fb:app_id" content="208027353668" />
+		<meta property="fb:admins" content="622302511" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		{% endblock %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bloglovin.css" />
+
+		{% block head %}{% endblock %}
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/4365379/ModernMomRegistrationTop', [300, 250], 'div-gpt-ad-1354832655688-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/4365379/ModernMomRegistration2', [300, 250], 'div-gpt-ad-1354833389740-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9629029-18']);
+  _gaq.push(['_setDomainName', 'modernmom.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+	</head>
+
+<body>
+	<div class="container">
+    	{% include 'common_includes/bootstrap_header_noauth.html' %}
+
+<div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                     <div class="nav-collapse">
+                        <ul class="nav">
+                            <li class="">
+                                <a href="http://modernmom.com/">Home</a>
+                            </li>
+                            <li>
+                                <a href="http://onevoice.modernmom.com/">OneVoice</a>
+                            </li>
+							<li>
+                                <a href="http://conversations.modernmom.com/">Conversations</a>
+                            </li>
+                            <li>
+                                <a href="http://savvy.modernmom.com/">Deals and Coupons</a>
+                            </li>
+							<li>
+                                <a href="http://mommytrack.modernmom.com/">Mommytrack</a>
+                            </li>
+							<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Brooke Burke <b class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column-menu">
+                                    <li>
+                                        <a href="http://brookeburke.modernmom.com/">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="http://www.modernmom.com/blogs/brooke-burke">Blog</a>
+                                    </li>
+									 <li>
+                                        <a href="http://www.modernmom.com/brooke-burke/oh-my-bod">Oh My Bod!</a>
+                                    </li>
+									 <li>
+                                        <a href="http://brookeburke.modernmom.com/bb365">BB365</a>
+                                    </li>
+									 <li>
+                                        <a href="http://www.modernmom.com/brooke-burke/the-naked-mom-book">The Naked Mom</a>
+                                    </li>
+                                   
+                                   
+                                </ul>
+                            </li>
+                        
+                        </ul>
+                        <form class="navbar-search pull-right" action="">
+                            <input type="text" class="search-query span2" placeholder="Search">
+                        </form>
+                    </div><!-- /.nav-collapse -->
+                </div><!-- /.container -->
+            </div><!-- /.navbar-inner -->
+        </div><!-- /.navbar -->
+    </div>
+<div class="container">
+	{% block container %}
+	{% endblock %}
+</div> <!-- /container -->
+        <div id="fb-root">
+        </div>
+        
+        
+        <script src="http://code.jquery.com/jquery-latest.js">
+        </script>
+        <script src="{{ MEDIA_URL }}bootstrap/js/bootstrap.min.js">
+        </script>
+</body>
+</html>

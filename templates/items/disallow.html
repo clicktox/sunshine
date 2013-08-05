@@ -1,0 +1,125 @@
+<!doctype html>
+{% load comments avatar_tags %}
+
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>{{ item.title }}</title>
+	<meta property="og:title" content="{{ item.title }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://mommytrack.com{% url item_detail item.id %}" />
+<meta property="og:image" content="http://mommytrack.com{{ item.image.get_display_url }}" />
+	
+	<meta name="description" content="{% if item.description %}{{ item.description }}{% else %}{{ item.title }}{% endif %}">
+	<meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/frame-style.css">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/comment.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+    <script src="/media/js/comments.js"></script>
+</head>
+
+<body class="page-frame">
+    <!-- begin of social-media coding block -->
+
+    <div id="fb-root"></div>
+    <div id="tb-toolbar" class="tb-user tb-has-notifications tb-mtrack-discoverer">
+    <ul id="tb-toolbar-left">
+        
+                                    <li id="tb-mtrack" class="tb-btn " style="float: left;">
+    <a href="/"><img src="http://mommytrack.com/media/images/FrameLogo.png" height="40px"></a>
+    <span id="tooltip-arrow"></span>
+</li>
+                            <li class="tb-space-solid tb-hide-visitor" style="float: left; width: 1px;">&nbsp;</li>
+                            <li id="tb-like" class="tb-btn tb-hide-visitor tips tb-showtext" style="float: left;" data-tooltip="Like web pages so we can show you even more pages you'll like.">
+    <a href="{% url like_item item.id  %}">
+        <span class="tb-btn-ico"></span>
+        <span class="tb-btn-text">I like it!</span>
+    </a>
+</li>
+                            <li class="tb-space-solid tb-hide-visitor" style="float: left; width: 1px;">&nbsp;</li>
+                            <li id="tb-like" class="tb-btn tb-hide-visitor tips tb-showtext" style="float: left;" data-tooltip="Like web pages so we can show you even more pages you'll like.">
+    <a href="{% url item_stats item.id  %}">
+        <span class="tb-btn-ico"></span>
+        <span class="tb-btn-text">Stats</span>
+    </a>
+</li>
+            <li class="tb-space-solid tb-hide-visitor" style="float: left; width: 1px;">&nbsp;</li>
+                            <li id="tb-comment" class="tb-btn tb-btn-notext tb-hide-visitor tips" style="float: left;" data-tooltip="Tell other mtrackrs what you think about this page.">
+    <!-- Login Starts Here -->
+            <div id="commentContainer">
+            	{% get_comment_list for item as comment_list %}
+            	{% if comment_list %}
+            	 {% for comment in comment_list|slice:'1' %}
+            	 <div id="commentButton" class="Comment">
+                {% avatar comment.user 42 %}
+                            {{ comment.user.username }} said <b>{{ comment.comment }}</b></div>
+
+                {% endfor %}
+                {% else %}
+                <a href="#" id="commentButton"><span>Comment</span><em></em></a>
+                
+                {% endif %}
+                <div style="clear:both"></div>
+                <div id="commentBox">                
+                  <iframe frameborder="0" class="tb-overlay-iframe" id="tb-overlay-iframe-comment-menu" src="comments/" style="width: 100%; height: 411px; border: none; overflow: auto; background-color: transparent; background-position: 50% 50%; background-repeat: no-repeat no-repeat; "></iframe>
+        
+                </div>
+            </div>
+            <!-- Login Ends Here -->
+</li>
+                           
+                          
+
+                          
+                        </ul>
+ {% if user.is_authenticated %}
+    <ul id="tb-toolbar-right">
+    	 <li id="tb-settings" class="tb-btn tb-btn-notext tb-hide-visitor tips" style="float: right;" data-tooltip="Browse your Likes, adjust your settings and explore more">
+    <a href="{% url edit_user_profile user.username %}">
+        <span class="tb-btn-ico"></span>
+        <span class="tb-btn-text">Settings</span>
+    </a>
+</li>
+{% endif %}
+    	<li id="tb-login" class="tb-btn " style="float: right;" data-tooltip="">
+    <a href="{{ item.source.url }}">
+        <span class="tb-btn-ico"}></span>
+        <span class="tb-btn-text">Close Frame</span>
+    </a>
+</li>
+  {% if user.is_authenticated %}
+  <li id="tb-login" class="tb-btn " style="float: right;" data-tooltip="">
+    <a href="{% url user_profile user.username %}">
+        <span class="tb-btn-ico"}></span>
+        <span class="tb-btn-text">{{ user.username }}</span>
+    </a>
+</li>
+
+                           
+{% else %}
+<li id="tb-login" class="tb-btn " style="float: right;" data-tooltip="">
+
+ <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+	           				<input type="image" src="{{ MEDIA_URL }}images/button_facebook_connect.jpg" />
+	       </form>
+	</li>	
+{% endif %}
+
+                           
+
+                           
+
+                            <li class="tb-space-solid tb-hide-user" style="float: right; width: 1px;">&nbsp;</li>
+                        </ul>
+</div>
+
+	
+	<div id="frame-site">
+		<div style="align:center"><p>{{ d }}  Please visit the page directly at <a href="{{ item.source }}">{{ item.source }}</a>.</p></div>
+			
+	</div>
+	<div id="frame-footer">
+   </div>
+</body>
+</html>

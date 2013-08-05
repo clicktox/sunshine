@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% block title %}{{ contest }}{% endblock %}
+{% block meta %}
+     <meta property="og:title" content="{{ contest.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
+<meta property="og:description" content="{{ contest.contestdescription.content }}" />
+<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_largegrid_url }}" />
+<meta property="og:site_name" content="Modernom Contests" />
+<meta property="fb:app_id" content="208027353668" />
+<meta property="fb:admins" content="622302511" />
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/style.css" />
+<script type="text/javascript" src="{{ STATIC_URL }}js/swfobject.js">
+</script>
+{% endblock %}
+{% block container %}
+<div class="row">
+    <a href="http://www.simplehuman.com" target="_blank">
+        <div class="span12 sh1">
+        </div>
+    </a>
+    <!-- /span12 sh1 -->
+</div>
+<!-- /row -->
+<div class="row">
+    <div class="span12 sh2">
+    </div>
+    <!-- /span12 sh2 -->
+</div>
+<!-- /row -->
+<div class="row">
+    <div class="span12 sh3">
+    </div>
+    <!-- /span12 sh3 -->
+</div>
+<!-- /row -->
+<div class="row">
+    <div class="span12 sh4">
+        <a id='videoAction' href="http://www.youtube.com/watch?v=JiMJj7v4LGA" target="_blank"><img src="/media/contests/custom/b073ad32-a090-11e2-9b06-bc764e047f7a/SimpleHumanLayout_04.jpg" /></a>
+    </div><!-- /span12 sh4 -->
+</div><!-- /row -->
+<div class="row">
+    <div class="span12 sh5">
+    </div>
+</div>
+<!-- /row -->
+<div class="row">
+    <div class="span6 sh6">
+        <img src="/media/contests/custom/b073ad32-a090-11e2-9b06-bc764e047f7a/InsidersSay.jpg" />{% for review in reviews %}
+        <div class="insider-comment">
+            <div class="insider-title">
+                <span>{{ review.rating_to_icons|safe }}{{ review.review_title }}</span>
+            </div>
+            <!-- /insider-title -->
+            <div class="insider-copy">
+                {{ review.review }}
+            </div>
+            <!-- /insider-copy -->
+            <div class="insider-by">
+                - by {{ review.insider.user.first_name }}
+            </div>
+            <!-- /insider-by -->
+        </div>
+        {% endfor %}
+    </div>
+    <!-- /span6 sh6 -->
+    <div class="span6 sh7">
+        <div class="sh-form">
+            <form id="form_{{contest.guid}}" name="form_{{contest.guid }}" id="form_{{contest.guid }}" class="form-horizontal" method="post" action="{% url contest_detail contest.url %}">
+                {% csrf_token %}
+                {% if 'reached_total_max' in request.GET  %}
+                <div class="control-group">
+                    <div class="controls span3">
+                        <p class="help-block">
+                            You have reached your maximum entries for this contest.
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+                {% if 'reached_daily_max' in request.GET  %}
+                <div class="control-group">
+                    <div class="controls span3">
+                        <p class="help-block">
+                            You have reached your maximum entires for this contest today.
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+                {% if 'entry_success' in request.GET %}
+                <div class="control-group">
+                    <div class="controls span3">
+                        <p class="help-block">
+                            Your entry was successfully entered.
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="control-group">
+                    <!-- Text input-->
+                    <label class="control-label" for="input01">
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="{{ contest.guid }}full_name" placeholder="Full Name" class="input-xlarge">
+                        <p class="help-block">
+                        </p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <label class="control-label" for="input01">
+                    </label>
+                    <div class="controls">
+                        <input type="text" name='email' placeholder="Email Address" class="input-xlarge">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <!-- Text input-->
+                    <label class="control-label" for="input01">
+                    </label>
+                    <div class="controls">
+                        <input type="checkbox" name='{{ contest.guid }}simplehuman_subscribe' class="input-xlarge">Subscribe to the simplehuman newsletter to gain another entry!
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">
+                    </label>
+                    <!-- Button -->
+                    <div class="controls">
+                        <button class="btn btn-custom" type="submit">
+                            Enter Now
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /sh-form -->
+    </div>
+    <!-- span6 sh7 -->
+</div>
+<!-- /row -->
+<div class="row">
+    <div class="span12 disclaimer">
+        *By entering the contest, you agree to the <a href="http://www.modernmom.com/contest-rules">Terms & Conditions</a>. This contest will end on May 17, 2013. Twenty (20) winners will be randomly selected and will win a simplehuman Sensor Mirror. Winners will be notified by email. Your email address will ONLY be used to contact you in the event that you are the winner of the contest. Prizes are only available to members who live in the United States and are at least 18 years of age. Winners must claim prize within 48 hours of notification, or another winner will be chosen.
+    </div>
+    <!-- /span12 disclaimer -->
+</div>
+<!-- /row -->
+</div>
+<!-- /container --><!-- MODAL -->
+<div class="modal hide fade" id="VideoModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            X
+        </button>
+    </div>
+    <div class="modal-body" style="text-align:center;">
+        <div id="ytapiplayer">
+            You need Flash player 8+ and JavaScript enabled to view this video.
+        </div>
+    </div>
+</div>
+    <!-- MODAL -->
+    <div class="modal hide fade" id="ThanksModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                X
+            </button>
+        </div>
+        <div class="modal-body" style="text-align:center;">
+            <div class="row-fluid">
+                <div class="span9 offset2">
+                    <div id="modalTab">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="login">
+                                <h3>Thank you for entering.</h3>
+                                <p>
+                                    Your entry was successful!
+                                </p>
+                                <div class="border-bottom">
+                                    &nbsp;
+                                </div>
+                                <p>
+                                    For an extra entry share our contest: 
+                                    <form name="facebookshareform" id="facebookshareform" method="post" action="{{ contest.get_share_url }}?share_on=0">
+                                        {% csrf_token %}
+                                        <button stylw="">
+                                            <i class="icon-facebook-sign fb-share">&nbsp;</i>
+                                            Share On Facebook
+                                        </button>
+                                    </form>
+                                    <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-text="I just entered to #win one of 20 sensor mirrors from @simplehuman">Share On Twitter</a>
+                                    <script>
+                                        !function(d, s, id){
+                                            var js, fjs = d.getElementsByTagName(s)[0];
+                                            if (!d.getElementById(id)) {
+                                                js = d.createElement(s);
+                                                js.id = id;
+                                                js.src = "https://platform.twitter.com/widgets.js";
+                                                fjs.parentNode.insertBefore(js, fjs);
+                                            }
+                                        }(document, "script", "twitter-wjs");
+                                    </script>
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="newsletter">
+                                <form method="post" action='' name="newsletter">
+                                    <h3>Thank you!</h3>
+                                    <p>
+                                        We will notify the winners by email on or about XX/XX/XX
+                                    </p>
+                                    <p>
+                                        <button type="submit" class="btn btn-custom" data-dismiss="modal" aria-hidden="true">
+                                            Close
+                                        </button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        {% block footer_scripts %}
+        <script>
+            var ytplayer = 'False';
+            function onYouTubePlayerReady(playerId){
+            
+                ytplayer = document.getElementById("myytplayer");
+                ytplayer.playVideo();
+            }
+            
+            $("#videoAction").click(function(event){
+                event.preventDefault();
+                $('#VideoModal').modal('show');
+                
+                
+                
+            });
+            
+            $("#form_{{contest.guid }}").submit(function(event){
+                event.preventDefault();
+                var dataString = $("#form_{{contest.guid}}").serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "{% url contest_detail contest.url %}",
+                    data: dataString,
+                    success: function(data){
+                        if (data.error) {
+                            alert(data.message);
+                        }
+                        else {
+                            $('#facebookshareform').append($('<input/>').attr('type', 'hidden').attr('name', 'contestant').val(data.contestant));
+                            $('#ThanksModal').modal('show');
+                        }
+                        
+                        //$('#ThanksModal').modal('show');
+                        //alert(html);
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            
+            var params = {
+                allowScriptAccess: "always"
+            };
+            var atts = {
+                id: "myytplayer"
+            };
+            swfobject.embedSWF("http://www.youtube.com/v/JiMJj7v4LGA?enablejsapi=1&playerapiid=ytplayer&version=3", "ytapiplayer", "500", "281", "8", null, null, params, atts);
+        </script>
+        {% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block head %}
+<script src="http://platform.twitter.com/anywhere.js?id=boQO83MMzXZZJzBESD9S4w&v=1" type="text/javascript"></script>
+<style type="text/css">
+#motoactv-container {
+	width: 960px;
+	margin: 0px auto 0px auto;
+	padding: 0px;
+}
+#motoactv-header {
+	width: 960px;
+	height: 110px;
+	margin: 0px auto 0px auto;
+	padding: 0px;
+}
+#motoactv-hero {
+	width: 960px;
+	height: 605px;
+	margin: 0px auto 0px auto;
+	padding: 0px;
+	clear: both;
+	background-image:url('{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_02.png');
+	background-repeat:no-repeat;
+}
+#motoactv-desc {
+	width: 960px;
+	height: auto;
+	clear: both;
+	color: #000;
+}
+#motoactv-feats {
+	width: 960px;
+	margin: 0px auto 0px auto;
+	padding: 0px;
+}
+#motoactv-more {
+	width: 960px;
+	margin: 0px auto 0px auto;
+	padding: 0px;
+	text-align: center;
+}
+#motoactv-rules {
+	width: 960px;
+	height: auto;
+	clear: both;
+	color: #000;
+	font-size: 10px;
+}
+.motoactv-clear {
+	clear: both;
+}
+
+.motoactv-desc{
+	margin-left:635px; padding-top:165px;width:291px; color:#FFF;
+}
+.motoactv-desc h2{ text-transform:uppercase; text-align:center; }
+.motoactv-desc p{ text-transform:uppercase; font-size:14px; text-align:center;}
+.motoactv-desc p b { font-size:18px; display:block;}
+.motoactv-desc form p { text-align:left; padding-left:10px;}
+.errorlist { font-size:10px; color:#CCC; }
+</style>
+{% endblock %}
+{% block content %}
+<div id="motoactv-container">
+	<div id="motoactv-header">
+    	<img src="{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_01.png" />
+    </div>
+    <div id="motoactv-hero">
+    	<div class="motoactv-desc">
+        <h2>{{ promotion.name }}</h1>
+        <p>{{ promotion.description|safe }}</p>
+        
+        {% if user.is_authenticated %}
+        	{% if entry %}
+            <p>Thank you for entering {{ user.first_name }}! </p>
+            <p>Share this giveaway with your friends for more chances to win!</p>
+            <div id="tbox"></div>
+<script type="text/javascript">
+ 
+  twttr.anywhere(function (T) {
+    T("#tbox").tweetBox({
+      height: 50,
+      width: 291,
+      defaultContent: "{{ promotion.name }} #savvymodernmom",
+	  onTweet: function(plain, html){ alert(plain); }
+    });
+  });
+ 
+</script>
+            {% else %}
+             Welcome Back {{ user.first_name }}!  You are about to enter the contest as {{ user.email }}.  Good Luck!
+           
+            <form action="{% url promotion_detail entity.slug,promotion.slug %}" method="post">
+                {% if user.first_name %}
+                	<input type="hidden" name="first_name" value="{{ user.first_name }}">
+                {% else %}
+                    <p>First Name{% if form.first_name.errors %} <span class="errorlist">{% for error in form.first_name.errors %}{{ error }}, {% endfor %}</span>{% endif %}<br />
+        {{ form.first_name }}</p>
+                {% endif %}
+                
+                {% if user.last_name %}
+                	<input type="hidden" name="last_name" value="{{ user.last_name }}">
+                {% else %}
+                       <p>Last Name{% if form.last_name.errors %} <span class="errorlist">{% for error in form.last_name.errors %}{{ error }} {% endfor %}</span>{% endif %}<br />
+        {{ form.last_name }}</p>
+                {% endif %}
+                 <div style="clear:both"></div>
+       
+                <input type="hidden" name="email" value="{{ user.email }}" >
+                <input type="submit" value="Enter">
+            
+            </form>
+            {% endif %}
+       
+       {% else %}
+         <form action="{% url promotion_detail entity.slug,promotion.slug %}" method="post">
+        <p>First Name{% if form.first_name.errors %} <span class="errorlist">{% for error in form.first_name.errors %}{{ error }}, {% endfor %}</span>{% endif %}<br />
+        {{ form.first_name }}</p>
+        <p>Last Name{% if form.last_name.errors %} <span class="errorlist">{% for error in form.last_name.errors %}{{ error }} {% endfor %}</span>{% endif %}<br />
+        {{ form.last_name }}</p>
+       <p>
+         Email Address{% if form.email.errors %} <span class="errorlist">{% for error in form.email.errors %}{{ error }}, {% endfor %}</span>{% endif %}<br />
+        {{ form.email }}</p>
+          <input type="submit" value="Enter">
+        
+       </form>
+          {% endif %}
+      
+      
+          </div>
+     
+    </div>
+    <div id="motoactv-desc">
+    	<p>Feel the burn and the beat with MOTOACTV, a lightweight, wearable fitness performance tracker and smart music player rolled into one. Sync MOTOACTV with your PC, and you can check out the music you perform to best or track your workouts over extended time periods, set goals, and even create workout competitions with your friends or via the MOTOACTV Web Portal.</p>
+    </div>
+    <div class="motoactv-clear">&nbsp;</div>
+    <div id="motoactv-feats">
+    	<img src="{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_04.png" /><img src="{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_05.png" /><img src="{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_06.png" />
+    </div>
+    <div id="motoactv-feats">
+    	<img src="{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_07.png" /><img src="{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_08.png" /><img src="{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_09.png" />
+    </div>
+    <div id="motoactv-more">
+    	<img src="{{ MEDIA_URL}}promotion_assets/new-year-new-you//MOTOACTV-Layout_12.png" />
+    </div>
+    <div id="motoactv-rules">
+    	<p>By entering the contest, you agree to the <a href="http://www.modernmom.com/contest-rules">Terms & Conditions</a>. This contest will end on December 2, 2011. One winner will be randomly selected and notified by email. Your email address will ONLY be used to contact you in the event that you are the winner of the contest. Multiple entries are allowed and will increase your chances of winning. Prizes are only available to members who live in the US. Prizes must be claimed within 72 hours of notice of winning or we will be forced to choose another winner.</p>
+    </div>
+</div>
+{% endblock %}

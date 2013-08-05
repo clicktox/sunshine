@@ -1,0 +1,73 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Signup" %}{% endblock %}
+{% block head %}
+<style type="text/css">
+.signup_wrapper {
+	width: 960px;
+	height:800px;
+	background-image:url('/media/YouTube_Takeover.jpg')
+
+
+}
+	.signup_box {
+
+width: 293px;
+float:right;
+position: relative;
+margin:20px;
+
+}
+.signup_box_form {
+background-repeat: no-repeat;
+background-position: top right;
+background-color: white;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+border-radius: 6px 6px 6px 6px;
+-moz-box-shadow: 0 0 12px rgba(0,0,0,.2);
+-webkit-box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+width: 253px;
+padding: 20px;
+
+}
+#header {
+height: 82px;
+</style>
+{% endblock %}
+{% block header_region %}{% endblock %}
+{% block container %}
+<div class="signup_wrapper"><div class='signup_box'>
+	 <div class="signup_box_form">
+<form action="" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend>{% trans "Signup" %}</legend>
+    {{ form.non_field_errors }}
+    {% for field in form %}
+    {{ field.errors }}
+    {% comment %} Displaying checkboxes differently {% endcomment %}
+    {% if field.name == 'tos' %}
+    <p class="checkbox">
+    <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+    </p>
+    {% else %}
+    <p>
+    {{ field.label_tag }} 
+    {{ field }}
+    </p>
+    {% endif %}
+    {% endfor %}
+  </fieldset>
+  <input type="submit" value="{% trans "Signup"%}" />
+</form>
+</div>
+</div>
+<div style="padding-top:170px;padding-left:28px;">
+<iframe width="580" height="360" src="http://www.youtube.com/embed/fM0GLe8aQzs?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+
+{% endblock %}

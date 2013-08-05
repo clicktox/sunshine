@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block container %}
+<div class="object-list">
+	<ul>
+	{% for q in questions %}
+		<li>
+			<p class="title">{{ q.title }} <a href="{% url view_question q.id %}">{% trans 'Ver respuestas' %}.</a></p>
+			<p class="body">{{ q.body }}</p>
+			<p class="author-time">{% blocktrans with q.user.username as q_username and q.created|date:"h:i" as q_created_time and q.created|date:"d M y" as q_create_date and q.last_modified|date:"d M y" as q_modified_date and q.last_modified|date:"h:i" as q_modified_time %}creada por {{ q_username }} a las {{ q_created_time }} del {{ q_create_date }}, ultima actividad {{ q_modified_date }} a las {{ q_modified_time }}.{% endblocktrans %}
+			</p>
+		</li>
+	{% endfor %}
+	</div>
+</ul>
+
+{% if user.is_authenticated %} 
+<form method="post" action="{% url add_question %}">
+	<h2>{% trans 'Hac&eacute; tu pregunta' %}</h2>
+	{{ form.as_p }}
+	<input class="submit" type="submit" name="enviar" value="{% trans 'enviar' %}"/>
+</form>
+{% else %}
+<div class="help">
+<p>{% url login as login_url %}{% blocktrans %}Vos podrias hacer preguntas, pero para eso tenes que <a href="{{ login_url }}">ingresar</a> con tu usuario y contraseña.{% endblocktrans %}</p>
+<p>{% url register as reg_url %}{% blocktrans %}Todavia no ten&eacute;s usuario y contraseña? <a href="{{ reg_url }}">hace click aca.</a>{% endblocktrans %}</p>
+</div>
+{% endif %}
+
+{% endblock %}

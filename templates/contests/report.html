@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block title %}{{ contest.name }}{% endblock %}
+{% block meta %}
+{% endblock %}
+{% block head %}
+<style type="text/css">
+    .success-message {
+        padding: 10px;
+        font-size: 20px;
+    }
+    
+    .success-message .congrats {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+</style>
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span12">
+    {{ contest.name }}<br>
+    {{ contest.guid }}<br>
+    {{ contest.url}}<br>
+    {{ contest.get_status_value }}<br>
+    {{ contest.starts_on}}<br>
+    {{ contest.ends_on}}<br>
+    {{ contest.entries_per_day }}<br>
+    {{ contest.total_entry_count}}<br>
+<hr>	
+<h4>Current Winners</h4>
+<table class="table">
+	<thead>
+          <tr>
+            <th>Winner</th>
+			<th>Additional Fields</th>
+            <th>Chosen By</th>
+            <th>Chosen On</th>
+            <th>Is Verified</th>
+          </tr>
+        </thead>
+		
+	
+{% for w in winners %}
+
+
+<tr>
+	<td>{{ w.contestantentry.contestant }}</td>
+	<td><table>{% for k in w.contestantentry.contestantentrykey_set.all %}
+<tr><td>{{ k.entry_key }}</td><td>{{ k.entry_value }}</td></tr>
+{% endfor %}
+</table>
+</td>
+
+<td>{{ w.chosen_by }}</td>
+<td>{{ w.chosen_on }}</td>
+<td>No</td>
+</tr>
+{% endfor %}
+</table>	
+
+<h4>Random Contestant</h4>
+	<table class="table">
+		<thead>
+          <tr>
+            <th>Contestant</th>
+            <th></th>
+            <th>Entered On</th>
+			<th>IP Address</th>
+            <th>Additional Fields</th>
+          </tr>
+        </thead>
+<tr>
+<td>{{ random.contestant }}</td>
+<td><form method="post" action="">
+	{% csrf_token %}
+	<input type="hidden" name="{{ winner_form.contestantentry.html_name }}" value="{{ random.id }}">
+	<button type="subit" class="btn btn-success">Choose</button>
+</form></td>
+<td>{{ random.entered_on }}</td>
+<td>{{ random.ip_address }}</td>
+<td><table>{% for k in random.contestantentrykey_set.all %}
+<tr><td>{{ k.entry_key }}</td><td>{{ k.entry_value }}</td></tr>
+{% endfor %}
+</table>
+</td>
+</tr>
+
+</table>	
+<hr>
+<h4>Current Contestants ({{ contest.contestantentry_set.count }})</h4>
+	<table class="table">
+				<thead>
+          <tr>
+            <th>Contestant</th>
+            <th></th>
+            <th>Entered On</th>
+			<th>IP Address</th>
+            <th>Additional Fields</th>
+          </tr>
+        </thead>
+{% for c in contest.contestantentry_set.all %}
+<tr>
+<td>{{ c.contestant }}</td>
+<td><form method="post" action="">
+	{% csrf_token %}
+	<input type="hidden" name="{{ winner_form.contestantentry.html_name }}" value="{{ c.id }}">
+	<button type="subit" class="btn btn-success">Choose</button></form></td>
+<td>{{ c.entered_on }}</td>
+<td>{{ c.ip_address }}</td>
+<td><table>{% for k in c.contestantentrykey_set.all %}
+<tr><td>{{ k.entry_key }}</td><td>{{ k.entry_value }}</td></tr>
+{% endfor %}
+</table>
+</td>
+</tr>
+{% endfor %}
+</table>	
+	
+    </div>
+    <!-- /span12 -->
+</div>
+<!-- /row -->
+{% endblock %}

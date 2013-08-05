@@ -1,0 +1,537 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>All Styles</title>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/content.css" media="screen" />
+        <link href="{{ MEDIA_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bootstrap/css/bootstrap-wysihtml5.css" />
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bootstrap/css/bootstrap-lightbox.css" />
+        <link href="http://vitalets.github.com/bootstrap-datepicker/bootstrap-datepicker/css/datepicker.css" rel="stylesheet">
+        <style type="text/css">
+            input.text, input.search, textarea.textarea {
+                border-top: 1px solid #7C7C7C;
+                border-left: 1px solid #C3C3C3;
+                border-right: 1px solid #C3C3C3;
+                border-bottom: 1px solid #DDD;
+            }
+            
+            input.text, input.search, input.file, textarea.textarea, select.select {
+                font-family: "Lucida Grande", Tahoma, Arial, sans-serif;
+                font-size: 100%;
+                color: #333;
+                margin: 0;
+                padding: 2px 0;
+            }
+            
+            label, legend.desc {
+                font-size: 95%;
+                font-weight: bold;
+                color: #222;
+                line-height: 150%;
+                margin: 0;
+                padding: 0 0 3px 0;
+                border: none;
+                display: block;
+                white-space: normal;
+                width: 100%;
+            }
+            
+            .forma {
+                width: 400px;
+                margin: 0 auto;
+            }
+            
+            .editor {
+                float: left;
+                width: 400px;
+            }
+            
+            .article {
+                float: left;
+            }
+            
+            .datepicker {
+                z-index: 9999;
+                top: 0;
+                left: 0;
+                padding: 4px;
+                margin-top: 1px;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                border-radius: 4px;
+            }
+        </style>
+		<script src="{{ MEDIA_URL}}bootstrap/js/wysihtml5-0.3.0.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+        </script>
+        <script src="{{ MEDIA_URL}}bootstrap/js/bootstrap.js">
+        </script>
+		 <script src="{{ MEDIA_URL}}bootstrap/js/bootstrap-lightbox.js">
+		 </script>
+		 <script src="{{ MEDIA_URL}}bootstrap/js/bootstrap-wysihtml5.js">
+		</script>
+        <script src="http://vitalets.github.com/bootstrap-datepicker/bootstrap-datepicker/js/bootstrap-datepicker.js">
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span8">
+                    <section class="article">
+                        <article class="blog">
+                            <h1>{{ content.title }}</h1>
+                            <h2>{{ content.subtitle }}</h2>
+                            <h3>Created By:  {{ content.added_by }}</h3>
+                            <h3>Author(s):  {% for author in content.contentauthor_set.all %} 
+								<a data-target="#editAuthorModal_{{ author.author.guid }}" href="{% url edit_author_profile author.author.guid %}" role="button" class="btn-mini" data-toggle="modal">{{ author.author }}</a>
+							<a href="{% url content_edit_author content.guid %}?purge={{csrf_token}}&caid={{ author.id }}">x</a>&nbsp;&nbsp;
+                                <div id="editAuthorModal_{{ author.author.guid }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editAuthorModal_{{ author.author.guid }}" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                        <h3 id="addAuthorModal">Edit Author</h3>
+                                    </div>
+                                    <div class="modal-body"></div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                                {% endfor %}</h3>
+								<!-- ADD NEW AUTHOR-->
+								
+							<!-- END AUTHOR -->
+                            <!--CONTENT IMAGE -->
+                            <figure class="featured-image">
+                                {% if not content.image %}<a data-target="#content_update_image" href="{% url content_update_image content.guid %}" role="button" class="btn" data-toggle="modal"><img src="{{ MEDIA_URL}}images/dummy/Main Article Image.jpg" /></a>
+                                <figcaption class="caption">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non dolor mauris, vitae mattis risus. Sed placerat aliquet tortor.
+                                </figcaption>
+                                {% else %}<a data-target="#content_update_image" href="{% url content_update_image content.guid %}" role="button" class="btn" data-toggle="modal"><img src="{{ content.image.get_article_display_url }}" /></a>
+                                <figcaption class="caption">
+                                    {{ content.image.caption }}
+                                </figcaption>
+                                {% endif %}<!-- ARTICLE CONTENT Modal -->
+                                <div id="content_update_image" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="content_update_imageLabel" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            x
+                                        </button>
+                                        <h3 id="content_update_image">Update Content Image</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div>
+                            </figure>
+                            <!--END CONTENT IMAGE -->
+							
+							<!-- BEGIN CONTENT DESCRIPTION -->
+                            <div class="article-body">
+                            	<form method="post" action="{% url content_update_description content.guid %}">
+                            		{% csrf_token %}
+                            	<textarea id="content_update_description" class="span8" rows="15"  name="{{ content_description_form.description.html_name }}">
+                            	{% if content.contentdescription %} {{ content.contentdescription }}{% endif %}
+								</textarea>
+								<button type="submit">Save Description</button>
+								</form>
+                            </div>
+                  			<!-- END CONTENT DESCRIPTION -->
+							
+                            {% if content.articlequote %}
+                            <blockquote class="quote">
+                                <p>
+                                    "{{ content.contentquote.content }}"
+                                </p>
+                                <cite class="quote-author">
+                                    {{ content.contentquote.source }}
+                                </cite>
+                            </blockquote>
+                            {% endif %}
+							
+							
+							
+                            {% for p in content.contentsection_set.all %}<h4>{{ p.title }}</h4>
+                            <div class="article-body">
+                                {{p.text|safe}}
+                            </div>
+							{{ p.contentsectionimage.image.get_display_url }}
+							
+                            <a class='btn btn-danger btn-mini' href="{% url content_update_section content.guid,p.id %}?purge={{ csrf_token }}">Delete Content</a>
+							 <a data-target="#editContentModal-{{ p.id }}" href="{% url content_update_section content.guid,p.id %}" role="button" class="btn btn-mini" data-toggle="modal">Edit Content</a>
+                           
+						
+                            <!-- ARTICLE CONTENT Modal -->
+                            <div id="editContentModal-{{ p.id }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editContentModal-{{ p.id }}Label" aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        x
+                                    </button>
+                                    <h3 id="editContentModal-{{ p.id }}">Edit Article Content</h3>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                            {% if forloop.counter == 2 %}
+                            {% if content.articlesidebar %}<!-- BEGIN SIDEBAR -->
+                            <div class="sidebar">
+                                <h5>{{ content.articlesidebar.title }}</h5>
+                                <p>
+                                    {{ content.articlesidebar.content }}
+                                </p>
+                            </div>
+                            <!-- END SIDEBAR -->{% endif %} 
+                            {% endif %}
+                            {% endfor %}
+                            <div class="clear">
+                            </div>
+                            
+							<hr>
+							<!-- ADD NEW CONTENT SECTION -->
+							<form method="post" action="{% url content_add_section content.guid %}" class="well" enctype="multipart/form-data">
+								{% csrf_token %}
+								<div class="row">
+									<div class="span5">
+										<label>Content Section Title</label>
+										<input type="text" class="span4" name="{{ content_section_form.title.html_name }}" id="id_{{ content_section_form.title.html_name }}">
+									<label>Content Section Order</label>
+										{{ content_section_form.order }}
+									</div>
+									<div class="span4">
+										{{ image_form.as_p }}
+									</div>
+								</div>
+									<label>Content Section Content</label>
+										<textarea class="textarea span7" name="{{ content_section_form.text.html_name }}" id="id_{{ content_section_form.text.html_name }}"></textarea>
+								<button type="submit">Add Content Section</button>
+							
+							</form>
+						  <!-- END ADD NEW CONTENT SECTION -->
+							
+							{% for author in content.contentauthor_set.all %} 
+                            <div class="clear">
+                            </div>
+                            <div class="author-box">
+                                <div>
+                                    <img class="avatar" src="{{ MEDIA_URL}}images/dummy/AuthorImage.jpg" /><strong>{{ author.author }} <a href="{% url content_edit_author content.guid %}?purge={{csrf_token}}&caid={{ author.id }}">x</a></strong>
+                                    <p>
+                                        {{ author.author.description|safe }}
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </article>
+                    </section>
+                </div>
+                <div class="span3">
+                	{% comment %}
+                <h3>Article Details</h3>
+                {{ article_form }}
+				
+				<!-- END ARTICLE QUOTE --><!-- ARTICLE SIDEBAR --><h3>Article Sidebar</h3>
+                {% if content.articlesidebar %}<a href="{% url content_update_sidebar content.slug %}?purge={{ csrf_token }}">Delete Sidebar</a>
+                <a data-target="#aSidebarModal" href="{% url content_update_sidebar content.slug %}" role="button" class="btn-mini" data-toggle="modal">Edit Sidebar</a>
+                {% else %}<a data-target="#aSidebarModal" href="{% url content_update_sidebar content.slug %}" role="button" class="btn-mini" data-toggle="modal">Add Sidebar</a>
+                {% endif %}<!-- ARTICLE SIDEBAR Modal -->
+                <div id="aSidebarModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="c" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            x
+                        </button>
+                        <h3 id="aSidebarModal">Article Sidebar</h3>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">
+                            Close
+                        </button>
+                    </div>
+                </div>
+				{% endcomment %}
+                <!-- END ARTICLE SIDEBAR -->
+                <ul class="nav nav-list">
+                	<!--CONTENT ALIAS-->
+					<li class="nav-header">Content Homepage Alias</li>
+					<li>  {{ content.get_homepage_alias }}</li>
+					<li><a data-target="#content_update_alias" href="{% url content_update_alias content.guid %}" role="button" class="btn-mini" data-toggle="modal">&nbsp;+&nbsp;Update Alias</a></li>
+					<li class="nav-header">Content Short Alias</li>
+					<li>{{ content.get_short_alias }}</li>
+					<li><a data-target="#content_update_alias" href="{% url content_update_alias content.guid %}" role="button" class="btn-mini" data-toggle="modal">&nbsp;+&nbsp;Update Alias</a>
+                            <div id="content_update_alias" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="content_update_aliasLabel" aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        x
+                                    </button>
+                                    <h3 id="">Content Alias</h3>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                        Close
+                                    </button>
+                                </div>
+                            </div></li>
+					
+                    <!-- ARTICLE CATEGORIES -->
+					<li class="nav-header">Authors</li>
+					
+					{% for author in content.contentauthor_set.all %} 
+					<li><a data-target="#editAuthorModal_{{ author.author.guid }}" href="{% url edit_author_profile author.author.guid %}" role="button" class="btn-mini" data-toggle="modal">{{ author.author }}</a>
+                                <div id="editAuthorModal_{{ author.author.guid }}" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editAuthorModal_{{ author.author.guid }}" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                                        <h3 id="addAuthorModal">Edit Author</h3>
+                                    </div>
+                                    <div class="modal-body"></div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                            Close
+                                        </button>
+                                    </div>
+                                </div></li>
+                                {% endfor %}
+								<li><a data-target="#content_update_author" href="{% url content_edit_author content.guid %}" role="button" class="btn-mini" data-toggle="modal">&nbsp;+&nbsp;Add Author</a>
+                            <div id="content_update_author" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addAuthorModalLabel" aria-hidden="true">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        x
+                                    </button>
+                                    <h3 id="">Add Author</h3>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                        Close
+                                    </button>
+                                </div>
+                            </div></li>
+					
+					<!-- CONTENT UPDATE CATEGORIES -->			
+					<li class="nav-header">Categories</li>
+					{% for category in content.content_categories.categories.all %}
+					<li><a href="{% url content_update_categories content.guid %}?purge={{ category.id }}&token={{ csrf_token }}">&nbsp;-&nbsp;{{ category }}</a></li>
+					{% endfor %}
+                    <li>
+                        <a data-target="#content_catogories_modal" href="{% url content_update_categories content.guid %}" role="button" class="btn-mini" data-toggle="modal">Manage Categories</a>
+                    </li>
+                    <div id="content_catogories_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="c" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                x
+                            </button>
+                            <h3 id="aSidebarModal">Article Categories</h3>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                Nevermind
+                            </button>
+                        </div>
+                    </div>
+                    <!-- END CONTENT UPDATE CATEGORIES -->
+					
+					<!-- CONTENT UPDATE TOPICS -->			
+					<li class="nav-header">Topics</li>
+					{% for topic in content.content_topics.topics.all %}
+					<li><a href="{% url content_update_topics content.guid %}?purge={{ topic.id }}&token={{ csrf_token }}">&nbsp;-&nbsp;{{ topic }}</a></li>
+					{% endfor %}
+                    <li>
+                        <a data-target="#content_update_topics_modal" href="{% url content_update_topics content.guid %}" role="button" class="btn-mini" data-toggle="modal">Add Topics</a>
+                    </li>
+                    
+                    <!-- END CONTENT UPDATE TOPICS -->
+					
+					<!-- ARTICLE QUOTE -->
+					<li class="nav-header">Content Quote</li>
+                <li>{% if content.contentquote %}<a href="{% url content_update_quote content.guid %}?purge={{ csrf_token }}">Delete Quote</a>
+                <a data-target="#aQuoteModal" href="{% url content_update_quote content.guid %}" role="button" class="btn-mini" data-toggle="modal">Edit Quote</a>
+                {% else %}<a data-target="#aQuoteModal" href="{% url content_update_quote content.guid %}" role="button" class="btn-mini" data-toggle="modal">Add Quote</a>
+				{% endif %}</li>
+				
+				<!-- UPDATE CONTENT SIDEBAR -->
+					<li class="nav-header">Content Sidebar</li>
+                <li>{% if content.contentsidebar %}<a href="{% url content_update_sidebar content.guid %}?purge={{ csrf_token }}">Delete Sidebar</a>
+                <a data-target="#content_update_sidebar_modal" href="{% url content_update_sidebar content.guid %}" role="button" class="btn-mini" data-toggle="modal">Edit Sidebar</a>
+                {% else %}<a data-target="#content_update_sidebar_modal" href="{% url content_update_sidebar content.guid %}" role="button" class="btn-mini" data-toggle="modal">Add Sidebar</a>
+				{% endif %}</li>
+				
+				
+				
+					<!-- ARTICLE FLAGS -->
+					<li class="nav-header">Sponsored Content</li>
+                    <li>
+                        <a data-target="#content_sponsored_modal" href="{% url content_update_sponsored content.guid %}" role="button" class="btn-mini" data-toggle="modal"> Sponsored <span style="color:red">NO</span></a>
+                    </li>
+                    <div id="content_sponsored_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="c" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                x
+                            </button>
+                            <h3 id="aSidebarModal">Sponsor This Content</h3>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+					<li class="nav-header">Featured Content</li>
+                    <li>
+                        <a data-target="#content_featured_modal" href="{% url content_update_featured content.guid %}" role="button" class="btn-mini" data-toggle="modal">Featured {% if content.is_featured %}<span style="color:green">YES</span> 
+						<a data-toggle="lightbox" href="#preview_featured_image" class="thumbnail">
+					<img src="{{ content.get_featured.image.get_thumbnail_url }}" alt="Click to view the lightbox">
+				</a>
+			</li>
+						<div id="preview_featured_image" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+							<div class='lightbox-header'>
+								<button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+							</div>
+							<div class='lightbox-content'>
+								<img src="{{ content.get_featured.image.get_carousel_url }}">
+								<div class="lightbox-caption"><p>{{ content.get_featured.title }}</p></div>
+							</div>
+						</div>
+						{% else %}<span style="color:red">NO</span>{% endif %}</a>
+                    </li>
+                    <div id="content_featured_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="c" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                x
+                            </button>
+                            <h3 id="aSidebarModal">Featured This Content</h3>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal" aria-hidden="true">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                    <!-- END ARTICLE FLAGS -->
+                </ul>
+                </section>
+                
+            
+				<!-- CONTENT UPDATE SIDEBAR -->
+                <div id="content_update_sidebar_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="content_update_sidebar_modalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            x
+                        </button>
+                        <h3 id="content_update_sidebar_modalLabel">Content Sidebar</h3>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">
+                            Close
+                        </button>
+                        <button id="content_update_sidebar-submit" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+                <script>
+                    $('#content_update_sidebar-submit').on('click', function(e){
+                        $('#content_update_sidebar_form').submit();
+                    });
+                </script>
+                 <!-- END CONTENT UPDATE SIDEBAR -->
+				 
+                <!-- CONTENT UPDATE QUOTE -->
+                <div id="content_update_quote_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="content_update_quote_modalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            x
+                        </button>
+                        <h3 id="content_update_quote_modalLabel">Article Quote</h3>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">
+                            Close
+                        </button>
+                        <button id="content_update_quote-submit" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+                <script>
+                    $('#content_update_quote-submit').on('click', function(e){
+                        $('#content_update_quote_form').submit();
+                    });
+                </script>
+                 <!-- END CONTENT UPDATE QUOTE -->
+				 
+				 <div id="content_update_topics_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="c" aria-hidden="true">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                x
+                            </button>
+                            <h3 id="">Content Topics</h3>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                         <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">
+                            Close
+                        </button>
+                        <button id="content_update_topics-submit" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                    </div>
+					<script>
+                    $('#content_update_topics-submit').on('click', function(e){
+                        $('#content_update_topics_form').submit();
+                    });
+                </script>
+            </div>
+        </div>
+        </div>
+		
+		
+		<script>
+        		$(function(){
+        			$('#content_update_description').wysihtml5({
+							"font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
+	"emphasis": true, //Italics, bold, etc. Default true
+	"lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+	"html": false, //Button which allows you to edit the generated HTML. Default false
+	"link": true, //Button to insert a link. Default true
+	"image": false, //Button to insert an image. Default true,
+	"color": false //Button to change color of font  
+					});
+					$('.textarea').wysihtml5({
+							"font-styles": false, //Font styling, e.g. h1, h2, etc. Default true
+	"emphasis": true, //Italics, bold, etc. Default true
+	"lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+	"html": false, //Button which allows you to edit the generated HTML. Default false
+	"link": true, //Button to insert a link. Default true
+	"image": false, //Button to insert an image. Default true,
+	"color": false //Button to change color of font  
+					});
+		
+        		});
+        	
+</script>
+    </body>
+</html>

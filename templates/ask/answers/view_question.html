@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load answers_filters i18n %}
+{% block title %}{{question}}{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span8">
+        <div class='block_question'>
+            <h1 id="page-title" class="">{{ question.title }}</h1>
+            <p>
+                {{question.body }}
+            </p>
+           
+            <p>
+            {% if not question.ask_anon  %}
+            Started by {{question.user }} on {{question.created }} | 
+						{% endif %}
+						{{question.public_answers.count }} Replies(s)
+						</p>
+    
+        </div>
+        {% for a in answers %}<hr>
+        <div class='block_question'>
+            <p>
+                <span style="padding-right:15px;"><a href="">{{ a.user }}</a></span>{{ a.body }}
+                {% if a.answerlink_set.count > 0 %}
+                <br>
+                <span style="padding-right:15px;"><a href="">{{ a.user }}</a> shared the following link</span>
+                {% for link in a.answerlink_set.all %}
+                
+                    {% if link.post %}<a href="{{ link.post.get_absolute_url }}">{{ link.post }}</a>
+                    {% else %}<a href="{{ link.link }}">{{ link.link }}</a>
+                    {% endif %}
+                
+                {% endfor %}
+                {% endif %}
+            </div>
+            {% endfor %}
+						<hr>
+            <div class='block_question'>
+                {% if user.is_authenticated %}
+                <form class="well" method="post" action="{% url answer_question question.uuid %}">
+                    {% csrf_token %}
+										Answer<br>
+                    <textarea name="{{ form.body.html_name }}" class="span6"></textarea>
+                    <p>
+                        Answer with a Link <a data-toggle="modal" href="#answer-with-a-link-about">Beta</a>
+                    </p>
+                    {{ form.url }}<input class="answer" type="submit" name="responder" value="Answer"/>
+                </form>{% else %}
+                Log In to participate
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="span4">
+    </div>
+</div>
+<div id="answer-with-a-link-about" class="modal hide fade in" style="display: none; ">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">x</a>
+        <h3>Answer With A Link</h3>
+    </div>
+    <div class="modal-body">
+        <h4>Answer With A Link</h4>
+        <p>
+            With all the content already exisiting on the world wide web, we decided it might be useful for people to simply point to content already written as opposed to a) Copying the content verbatum risking copywrite infringement b)Writing an orginal variant of a content piece already written.  Our system will 'crawl' the link submitted and try to bring back an informative snapshot for the viewers.
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+</div>
+{% endblock %}

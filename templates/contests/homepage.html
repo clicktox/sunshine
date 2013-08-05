@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<div class="container">
+    {% include 'common_includes/bootstrap_header.html' %}
+</div><!-- /container -->
+<div class="container">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li>
+                            <a href="http://modernmom.com">Home</a>
+                        </li>
+                        <li>
+                            <a href="http://contests.modernmom.com">Contests</a>
+                        </li>
+                    </ul>
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </div><!-- /.navbar-inner -->
+    </div><!-- /.navbar -->
+</div> <!-- /container -->
+<div class="row">
+        <div class="span8">
+            <div id="content" class="contestlist">
+                <div class="contest-list">
+                	{% for contest in contests %}
+                    <div class="contest" data-contest-id="{{ contest.guid }}">
+                        <div class="content">
+                            <a href="{{ contest.get_absolute_url }}">
+                            	
+								
+                                <div class="avatar img-inset" style="background: url({{ contest.contestimage.get_contest_thumbnail_url }})"></div>
+								
+                                <h2 class="gl-contest-title">
+                                <span rel="contest_name" class="contest-name">{{ contest.name }}</span>
+                                
+                                </h2>
+                            </a>
+							
+                            <p class="description">
+                               {{ contest.contestdescription }}
+                            </p>
+							
+                            <div class="follow-btn-holder">
+                                <a href="{{ contest.get_absolute_url }}" class="btn btn-primary" style="float:right">Enter Contest</a>
+                            </div>
+                        </div>
+                    </div> <!-- /contest -->
+                    {% endfor %}
+                   
+                    
+                </div> <!-- /contest-list -->
+            </div> <!-- /#content -->
+        </div> <!-- /span8 -->
+        <div class="span3">
+        	
+        </div> <!-- /span3 -->
+    </div> <!-- /row -->
+{% endblock %}

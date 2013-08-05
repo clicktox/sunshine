@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block head %}
+<style type="text/css">
+    .social-media-links {
+        margin-top: 0px;
+        width: 300px;
+        height: 66px;
+    }
+    
+    /* FEATURED STRIP */
+    #whats-new {
+        width: 1000px;
+        margin: 0 auto;
+        line-height: 18px;
+    }
+    
+    #whats-new .whats-new-thumb-first {
+        margin: 5px 2px 5px 0px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    #whats-new .whats-new-thumb {
+        margin: 5px 0 5px 10px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    .thumb-title {
+        margin-top: 5px;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .strip-title {
+        text-align: center;
+        margin-bottom: 5px;
+        background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+    }
+    
+    .strip-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: #ed145b;
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        margin: 0px auto;
+    }
+    
+    .bottom-line {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+        width: 940px;
+        clear: both;
+    }
+</style>
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span8">
+        {% for q in featured_question_list %}
+        <div class='block_question'>
+            <h1 class=""><a href="{{q.question.get_absolute_url}}">{{ q.question }}</a></h1>
+            <p>
+                {{ q.question.body }}
+            </p>
+            {% if not q.question.ask_aonon %}
+						
+						{% else %}
+						Started by {{q.question.user }} on {{q.question.created }} | 
+						{% endif %}{{q.question.public_answers.count }} Replies(s)
+            {% if user.is_authenticated %}<span class="answer"><a href="{{q.question.get_absolute_url}}">Answer</a></span>
+            {% else %}
+            You must be logged in to answer.
+            {% endif %}
+        </div>
+     
+        {% endfor %}
+    </div>
+    <div class="span4">
+    </div>
+</div>
+{% endblock %}

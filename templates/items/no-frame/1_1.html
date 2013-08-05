@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load avatar_tags comments %}
+{% block title %}{{ item.title }}{% endblock %}
+		{% block seo_meta %}
+		<meta name='description' content="{{ item.description }}">
+		<meta name='keywords' content="{{ item.tags_comma }}">
+		{% endblock %}
+{% block css_imports %}
+		{{ block.super }}
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/sources/infobar.css" media="all" />
+		<link href="/media/css/box.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="{{ MEDIA_URL }}css/frame-style.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+ 
+{% block js_imports %}
+    {{ block.super }}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+
+
+{% endblock %}
+
+
+    {% block content %}
+{% include 'sources/includes/header_info.html' %}
+
+
+
+	
+	<div id="frame-site">
+{{ item }} 
+<img src="{{ item.image.get_display_url }}">
+
+{% if item.price %}{{ item.price }}{% endif %}
+		
+	</div>
+    {% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block head %}
+<style type="text/css">
+.article-img-container { display:inline-block;}
+.article-img-container a img { width:144px; margin-right:5px; padding:3px;}
+.article-content-wrapper {
+display: inline-block;
+vertical-align: top;
+width:240px;
+}
+h1.article-title a {
+font-size: 16px;
+}
+.article-excerpt {
+display: none;
+}
+.columna { width:250px; float:left;}
+.columnb { width:400px; float:right;}
+</style>
+{% endblock %}
+{% block content %}
+<section class="columna">
+<ul>
+{% for blog in blogs %}
+<li>
+<img src="{{ blog.member.get_profile.get_mugshot_url }}">
+{{ blog.member }}
+<h3>{{ blog.item }}</h3>
+
+</li>
+{% endfor %}
+</ul>
+</section>
+<section class="columnb">
+{% for bi in items %}
+<article class="post short" id="post-2012/12/14/odd-co-worker-gifts">
+    <div class="article-img-container">
+      <a data-turbo-target="post-slider" href="{{bi.item.source}}">
+     <img src="{{ bi.item.image.get_largegrid_url }}">
+      </a>
+    </div>
+    <div class="article-content-wrapper">
+      <div class="article-content">
+        <h1 class="article-title">
+          <a data-turbo-target="post-slider" href="{{bi.item.source }}">{{ bi.item.title }}</a>
+        </h1>
+        {{ bi.item.description }}
+    
+      </div>
+     
+    </div>
+  </article>
+{% endfor %}
+</section>
+{% endblock %}
+						
+						
+						
+{% block sidebar %}
+{% if user.is_authenticated %}
+{% if user.memberblog_set.count == 0 %}
+Welcome {{ user }}!  You have not registered any of your blogs with us!  When you regester your blog with ModernMom, you gain the exposure of thousands of viewers waiting to hear what moms like have to say!
+{% else %}
+{% for blog in user.memberblog_set.all %}
+{{ blog.item }}
+{% endfor %}
+{% endif %}
+<form method="post" action="{% url add_my_voice %}">
+	{% csrf_token %}
+	<p>Add the main url for your blog.  Please make sure this is the homepage for the blog.</p>
+	<input type="text" name="url"><input type="submit" value="submit">
+</form>
+
+{% endif %}
+
+
+{% endblock %}
+
+
+
+

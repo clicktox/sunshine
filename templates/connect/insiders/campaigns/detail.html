@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load subdomainurls %}
+{% block title %}{{ campaign.name }} Insiders Campaign {% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/datepicker.css" />
+
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/style.css" />
+
+{% endblock %}
+
+{% block container %}
+
+<div class="row">
+	<div class="span4">
+<ul class="nav nav-list">
+	<li class="nav-header">About You</li>
+	<li>{{ user.first_name }}</li>
+	<li>{{ user.last_name }}</li>
+
+	
+</ul>
+</div>
+<div class="span8">
+	<h1>{{ campaign.name }}</h1>
+	
+	{% if application.is_selected %}
+	Congratulations on being selected!  Once you have received the product, come back here, click the product you recieved, and submit your review!
+	{% for cp in campaign.insiderproductcampaign_set.all %}
+	<a href="{{ cp.get_absolute_url }}">{{ cp.product.title }}</a>
+	
+	
+	{% endfor %}
+	{% else %}
+	
+	{% if survey_form.questions_left > 0 %}
+	<p>{{ campaign.description }}</p>
+	{{ survey_form.questions_left }} Questions Left
+	<form method="post" action="{{ campaign.get_absolute_url }}">
+		{% csrf_token %}
+	{{ survey_form }}
+	<button type="submit">Finish</button>
+	</form>
+	{% else %}
+	<P>
+	Thanks for taking the survey! You will be notified via email if you were chosen for this campaign.</p>
+	</a>
+<p> If you <a href="{% url 'insider_campaign_voteup' subdomain='connect' uuid=campaign.uuid %}?fb=True">share</a> the Insider survey link with your friends via Facebook or twitter, you'll be automatically entered to win a $25 Target gift card! </p>
+
+<!--p>Contests</p-->
+
+<div class="row">
+	<div class="span4">
+	<div class="section-title">
+            	<div class="bars">
+                	<span class="wht-bg-H1 pink">Explore <span class="black">ModernMom</span></span>
+                </div> <!-- /bars --> 
+               
+ <div class="section-list" id="">
+ 	<ul class="nav nav-list">
+	<li> <a href="http://contests.modernmom.com/">Contests</a></li>
+</ul>
+
+                	
+                   <!-- /section-end -->
+                </div> <!-- /section-list -->
+            </div>
+	</div>
+	<div class="span4">
+	
+	</div>
+	</div>
+	
+
+	{% endif %}
+	{% endif %}
+</div>
+
+{% endblock %}
+{% block lower_js %}
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap-datepicker.js">
+        </script>
+<script>
+		$(function(){
+			$('#dp1').datepicker({
+				format: 'yyyy-mm-dd',
+                todayBtn: 'linked'
+			});
+            
+			          
+		});
+	</script>
+		<script>$('#result').load('/contests/ajax/list/');</script>
+{% endblock %}

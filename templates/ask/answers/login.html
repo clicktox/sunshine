@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans 'Ingresa tus credenciales' %}.</h1>
+
+{% if form.errors %}
+<p>{% trans 'Tu usuario y password no coinciden, intentalo otra vez' %}.</p>
+{% endif %}
+
+<form class="alone" method="post" action="{% url login %}">
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+
+<input type="submit" value="{% trans 'login' %}" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+<div class="help">
+<p>{% url register as reg_url %}{% blocktrans %}Todavia no ten&eacute;s usuario y contraseña? <a href="{{ reg_url }}">hace click aca</a> para registrarte.{% endblocktrans %}</p>
+</div>
+{% endblock %}

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# modernmom: http://ogp.me/ns/fb/modernmom#">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{% block title %}ModernMom{% endblock %}</title>
+		<link rel="image_src" href="http://www.modernmom.com/sites/default/files/logo.jpg" />
+		{% block meta %}
+		<meta property="og:title" content="ModernMom" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://connect.modernmom.com/" />
+		<meta property="og:site_name" content="ModernMom" />
+		<meta property="fb:app_id" content="208027353668" />
+		<meta property="fb:admins" content="622302511" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		{% endblock %}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}connect/css/style.css" />
+<style type="text/css">
+
+
+	.signup_box {
+
+width: 293px;
+float:right;
+position: relative;
+margin:20px;
+
+}
+.signup_box_form {
+background-repeat: no-repeat;
+background-position: top right;
+background-color: white;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+border-radius: 6px 6px 6px 6px;
+-moz-box-shadow: 0 0 12px rgba(0,0,0,.2);
+-webkit-box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+width: 253px;
+padding: 20px;
+
+}
+#header {
+height: 102px;
+}
+
+</style>
+		{% block head %}
+		
+		<style type="text/css">
+
+.signup_wrapper {
+
+	height:800px;
+	background-image:url('/media/YouTube_Takeover.jpg')
+
+
+}
+</style>{% endblock %}
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/4365379/ModernMomRegistrationTop', [300, 250], 'div-gpt-ad-1354832655688-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/4365379/ModernMomRegistration2', [300, 250], 'div-gpt-ad-1354833389740-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9629029-18']);
+  _gaq.push(['_setDomainName', 'modernmom.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+	</head>
+
+<body>
+	<div class="container">
+    	<div class="row">
+            <div class="span8">
+                <div class="logo">
+                    <span class="logo-link">
+                    	<a href="#"></a>
+                    </span>
+                </div>
+            </div>
+           
+        </div>
+
+
+<div class="container">
+	<div class="row  signup_wrapper">
+		<div class="span8" >
+			{% block hero %}
+			<iframe style="padding-top:176px;padding-left:9px;" width="580" height="326" src="http://www.youtube.com/embed/46L-Ukw8Lqg?rel=0" frameborder="0" allowfullscreen></iframe>
+			<!-- <iframe style="padding-top:160px;padding-left:9px;" width="580" height="360" src="http://www.youtube.com/embed/fM0GLe8aQzs?feature=player_detailpage" frameborder="0" allowfullscreen></iframe> -->
+{% endblock %}
+		</div>
+		<div class="span4">
+{% block form %}
+	{% endblock %}
+	{% block content_title %}
+{% endblock %}
+
+
+{% block content %}
+{% endblock %}
+		</div>
+	</div>
+
+</div> <!-- /container -->
+        <div id="fb-root">
+        </div>
+        
+        
+        <script src="http://code.jquery.com/jquery-latest.js">
+        </script>
+        <script src="{{ MEDIA_URL }}bootstrap/js/bootstrap.min.js">
+        </script>
+</body>
+</html>

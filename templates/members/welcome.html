@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load subdomainurls %}
+{% block head %}
+{% endblock %}
+{% block container %}
+<div class="hero-unit">
+    <h1>Welcome to ModernMom!</h1>
+    <p>
+        As you may have noticed, we are making some changes around here to make improve your experience on our website.  If you landed here, you may have been asked to test drive some of our new features, and we really appreciate your patience and cooperation.
+    </p>
+</div>
+<div class="row">
+	<div class="span3">
+		Follow us for all the latest news, contests, and content!
+		</div>
+<div class="span9">
+	<div class="row">
+<iframe src="//www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/pages/ModernMom/197177430011&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=215175268507724" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true">
+            </iframe>
+						<iframe src="//www.facebook.com/plugins/likebox.php?href=https://www.facebook.com/pages/Lisas-Must-Have/203115856407343&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=215175268507724" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true">
+            </iframe>
+		</div>
+		<div class="row">
+			<div class="span3">
+			<h5>On Twitter</h5>
+						<a href="https://twitter.com/modernmom" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @modernmom</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+</div>
+<div class="span5">
+	<a data-pin-do="embedUser" href="http://pinterest.com/modernmomonline/"></a>
+	
+</div>
+
+</div>
+</div>
+<form method="POST" action="." enctype="multipart/form-data">
+    <div class="row">
+    	<h3>Please review the information below</h3>
+        <div class="span5">
+            
+            {% csrf_token %}
+						{{ user_form.as_p }}
+            {{ member_form.as_p }}
+        </div>
+				<div class="span3">
+					<img src="{{ user.member.avatar.get_300X250_url }}">
+					{{ avatar_form.as_p }}
+				</div>
+        <div class="span4">
+        	
+            <h4>ModernMom Insiders</h4>
+            <p>
+                Do you like to test new products?  Do you have a blog to write reviews on?  Become a ModernMom Insider today!
+            </p>
+            <p>
+                <input type="checkbox" name="insider">Yes!  I want to be a ModernMom Insider.
+            </p><h4>ModernMom Newsletter</h4>
+            <p>
+                Stay in the know!  The ModernMom newsletter delivers you everything you need to know right to your inbox.
+            </p>
+            <p>
+                <input type="checkbox" name="insider">Yes!  Send me the ModernMom newsletter..
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span12">
+            <button type="submit" class="btn-large pull-right">
+                Verify Me
+            </button>
+        </div>
+    </div>
+    </div>
+		
+</form>
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/datepicker.css" />
+{% endblock %}
+{% block container %}
+
+<div class="row">
+	<div class="span4">
+<ul class="nav nav-list">
+	<li class="nav-header">Welcome Back</li>
+	<li>{{ user.first_name }} {{ user.last_name }}</li>
+	<li></li>
+
+
+	
+</ul>
+</div>
+<div class="span8">
+	{% for c in campaigns %}
+	<div class="row">
+		<h3>{{ c.name }}</a></h3>
+		<p>{{ c.description }}</p>
+	</div>
+	<div class="row">
+		<a class="btn btn-medium" href="{{ c.get_absolute_url }}">Apply</a>
+	</div>
+
+	{% endfor %}
+</div>
+
+{% endblock %}
+{% block lower_js %}
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap-datepicker.js">
+        </script>
+<script>
+		$(function(){
+			$('#dp1').datepicker({
+				format: 'yyyy-mm-dd',
+                todayBtn: 'linked'
+			});
+            
+			          
+		});
+	</script>
+{% endblock %}

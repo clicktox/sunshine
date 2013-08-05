@@ -1,0 +1,6 @@
+<form method="POST" action="{% url content_update_section content.slug,section.id %}" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }}
+{{ image_form.as_p }}
+<button class="btn btn-success">Save</button>
+</form>

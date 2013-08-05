@@ -1,0 +1,100 @@
+<!doctype html>
+{% load comments avatar_tags %}
+<!--[if lte IE 7]><html class="no-js ie7 oldie" lang=en><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 oldie" lang=en><![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang=en><![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang=en><!--<![endif]-->
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+    <title></title>
+    <meta name=description content="">
+    <meta name=keywords content="">
+    <meta name=author content="">
+    <meta name=viewport content="width=device-width,initial-scale=1">
+                
+        <link rel="stylesheet" type="text/css" href="/media/css/comment_frame.css">
+    
+      
+</head>
+<body>
+
+    <header>
+    <a href="#" class="safariclose close-overlay-btn urlinfo-close" title="Close this box">&times;</a>
+    <!--a class="action" target="_blank" href="">View all comments</a-->
+    <h1>Comments on "{{ item }}"</h1>
+</header>
+{% get_comment_list for item as comment_list %}
+
+<form id="submitcomment-form" method="post" action="{% url add_item_comment item.id %}">
+	 {% csrf_token %}
+    <fieldset class="form-stacked">
+    	
+        <ul class="comments-user">
+        	{% if comment_list %}
+                                      {% for comment in comment_list %}
+                                      <li>                                                                                                                      
+                            {% avatar comment.user 42 %}
+                            <mark class="comment-data">
+                                Commented by {{ comment.user.username }} on {{ comment.submit_date }}
+                            </mark>
+                            <p class="comment-text">
+                                {{ comment.comment }}
+                            </p>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                                <li>                                                                                                                      
+                           
+                            <p class="comment-text">
+                               There are no comments "{{ item }}" yet.  Be the first to post one!
+                            </p>
+                        </li>                                                                                                                                    
+                             {% endif %}
+                                                        </ul>
+     
+        <div class="wrapper-input">
+        	{% if user.is_authenticated %}
+            <label for="comment-your">Your Comment</label>
+            <div class="input">
+                <textarea id="id_comment" name="comment"></textarea>
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="btn primary medium-alt1">Post</button>
+            <a href="#" class="btn close-overlay-btn" data-overlayname="comment-menu">Cancel</a>
+           {% else %}
+            <!--form action="{% url facebook_connect %}?facebook_login=1" method="post" target="_top">
+               <input type="image" src="{{ MEDIA_URL }}images/button_facebook_connect.jpg" />
+                <input type="hidden" value="{{ request.path }}" name="next" />
+                <input type="hidden" name="connect_facebook" value="1">
+            </form-->
+            {% endif %}
+        </div>
+        
+
+<!--div class="inline">
+    <label>Post On</label>
+    <label for="facebook">
+        <input type="checkbox" name="facebook" id="facebook" class="share-option" title="Facebook" data-permission="1">
+        <span class="icon-facebook-medium">&nbsp;</span>
+    </label>
+    <label for="twitter">
+        <input type="checkbox" name="twitter" id="twitter" class="share-option" title="Twitter" data-permission="">
+        <span class="icon-twitter-medium">&nbsp;</span>
+    </label>
+    <label for="linkedin">
+        <input type="checkbox" name="linkedin" id="linkedin" class="share-option" title="LinkedIn" data-permission="">
+        <span class="icon-linkedin-medium">&nbsp;</span>
+    </label>
+</div-->
+
+    </fieldset>
+</form>
+
+    
+            
+        
+
+</body>
+</html>

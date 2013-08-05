@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/datepicker.css" />
+{% endblock %}
+{% block container %}
+{% if form %}
+<div class="row">
+	<div class="span6">
+<form method="post" action="{% url insider_signup %}" class="form well">
+{% csrf_token %}
+<h4>A little about you</h4>
+	
+<fieldset >
+	<label>First Name</label>
+	<input type="text" name="first_name" value="{{ user.first_name }}">
+	<label>Last Name</label>
+	<input type="text" name="last_name" value="{{ user.last_name }}">
+	
+</fieldset>
+<fieldset >
+	<label>Birthdate</label>
+	<div class="input-append date" id="dpYears" data-date="1978-09-28" data-date-format="yyyy-mm-dd" data-date-viewmode="years">
+				<input class="span2" size="16" type="text" value="1978-09-28" readonly="" name="birthdate">
+				<span class="add-on"><i class="icon-calendar"></i></span>
+			  </div>
+			  
+	
+	
+</fieldset>	
+<h4>Address</h4>
+<p>A valid shipping address is required.  If select, the product will be shipped to this address</p>
+<fieldset>
+	{{ address_form.as_p }}
+</fieldset>
+<fieldset>
+	<h4>Are you socially active?</h4>
+	{% for sp in social_profile_type_list %}
+	<label>{{ sp.name }} Url</label>
+	<input type="text" name="social_profile_type_{{ sp.id }}" name="" value="">
+	{% endfor %}
+	
+</fieldset>	
+	<fieldset>
+		<h4>Websites</h4>
+		<p>In the provided boxes below, please add one url per line.  If a website you own is both a blog and store, then add that url in each box.</p>
+	{% for etype in entity_type_list %}
+	<label>Add urls for website type {{ etype.name }}</label>
+	<textarea class="span5" name="website_type_{{etype.id}}" rows="5"></textarea>
+	{% endfor %}
+	</fieldset>
+{{ form }}
+
+<button type="submit">Join the ModernMom Insider Program</button>
+</form>
+</div>
+<div class="span6">
+<h3>Perks of being an insider!</h3>
+<h3>Recent Insider Campaigns</h3>
+</div>
+</div>
+
+{% endif %}
+{% endblock %}
+{% block lower_js %}
+<script src="{{ STATIC_URL }}bootstrap/js/bootstrap-datepicker.js">
+        </script>
+<script>
+		$(function(){
+		
+			$('#dpYears').datepicker();
+            
+			          
+		});
+	</script>
+{% endblock %}

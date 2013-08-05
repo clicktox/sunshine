@@ -1,0 +1,27 @@
+
+		
+		<div class="section-title">
+            	<div class="bars">
+                	<span class="wht-bg-H1 pink">{{ category.name }}</span>
+                </div> <!-- /bars --> 
+				{% if category.categoryimage %}
+                <div><img src="{{ category.categoryimage.get_block_300X_url }}"></div>
+				{% endif %}
+				{% for catcon in contents|slice:'1' %}
+			
+                <div class="feat-title">{{ catcon.content.title }}</div> <!-- /feat-title -->
+                <div class="feat-text">{{ catcon.content.tease }}</div> <!-- /feat-text -->
+				{% endfor %}
+			    <div class="section-list">
+                	<ul>
+                		{% for catcon in contents|slice:'1:' %}
+                    	<li><a href="{{ catcon.content.get_absolute_url }}">{{ catcon.content.get_homepage_alias }}</a></li>
+						{% endfor %}
+                    </ul>
+					<div class="beauty-guide">
+                    	<div class="beauty-title">Beauty Guide</div>
+                        <div class="beauty-excerpt">Calling all curly girls! Manage those tresses with a <a href="#">chic bun</a>, <a href="#">loose waves</a> or <a href="#">twists</a> for a head-turning hairstyle.</div>
+                    </div>
+                    <div class="section-end"><a href="{{ category.get_absolute_url }}">More in {{ category.name }} <i class="icon-caret-right"></i></a></div> <!-- /section-end -->
+                </div> <!-- /section-list -->
+            </div>

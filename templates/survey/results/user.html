@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block container %}
+{% if oUser.get_profile.memberaddress %}
+<h3>{{ oUser.first_name }} {{ oUser.last_name }}</h3>
+<p>
+    {{ oUser.get_profile.memberaddress.street }}{{ oUser.get_profile.memberaddress.additional }}<br>
+    {{ oUser.get_profile.memberaddress.city }},{{ oUser.get_profile.memberaddress.territory }}&nbsp;{{ oUser.get_profile.memberaddress.postal_code }}<br>
+    {{ oUser.get_profile.memberaddress.country }}
+
+{% endif %}
+<table class="table">  
+        <thead>  
+          <tr>  
+            <th>Question</th>  
+            <th>Choice</th>  
+            <th>Text</th>  
+           </tr>  
+        </thead>  
+        <tbody>  
+         
+{% for r in responses %}
+ <tr>  
+            <td>{{ r.question }}</td>  
+            <td>{{ r.response.choice }} </td>  
+  <td>{{ r.response.text }} </td>
+          </tr>  
+{% endfor %}
+</tbody>
+</table>
+
+</tbody>
+</table>
+{% endblock %}

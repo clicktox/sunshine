@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#id_publish_on" ).datepicker();
+  });
+  </script>
+
+<style type="text/css">
+input.text, input.search, textarea.textarea {
+border-top: 1px solid #7C7C7C;
+border-left: 1px solid #C3C3C3;
+border-right: 1px solid #C3C3C3;
+border-bottom: 1px solid #DDD;
+}
+input.text, input.search, input.file, textarea.textarea, select.select {
+font-family: "Lucida Grande", Tahoma, Arial, sans-serif;
+font-size: 100%;
+color: #333;
+margin: 0;
+padding: 2px 0;
+}
+label, legend.desc {
+font-size: 95%;
+font-weight: bold;
+color: #222;
+line-height: 150%;
+margin: 0;
+padding: 0 0 3px 0;
+border: none;
+display: block;
+white-space: normal;
+width: 100%;
+}
+
+.forma { width: 400px; margin:0 auto;}
+
+/* ARTICLE LIST PAGE */
+.article-list {
+	width: 620px;
+	margin: 0px auto;
+	padding: 0px;
+}
+.ArticleListing {
+	margin-bottom: 20px;
+	padding-top: 10px;
+}
+ul.ArticleListing {
+	margin: 5px 0px 5px 0px;
+}
+.ArticleListing .article-item {
+	margin-bottom: 10px;
+	border-bottom: 1px dotted #c2c2c2;
+	padding-bottom: 5px;
+	list-style: none;
+	clear: both;
+}
+.ArticleListing .article-item img {
+	width: 200px;
+	height: 107px;
+	float: left;
+	margin-right: 10px;
+}
+.ArticleListing-Title {
+	font-size: 22px;
+	margin-bottom: 2px;
+}
+
+</style>
+{% endblock %}
+
+{% block container %}
+<div class="span8">
+{% for content in contents %}
+<ul class="ArticleListing" data-module="article-listing">
+                        <li class="article-item">
+                            <a href="{% url content_detail content.slug %}" class="url video">
+                                <img src="{{ content.image.get_display_url }}" width="200" alt="">
+                                <div class="ArticleListing-Title">{{ content.title }}</div>
+                            </a>
+                            <p class="excerpt">{{ content.contentdescription|safe }}</p>
+                        </li>
+						{% endfor %}
+						
+</ul>
+{% for page in paginator %}
+{{ page }}
+{% endfor %}
+{% endblock %}
+</div>

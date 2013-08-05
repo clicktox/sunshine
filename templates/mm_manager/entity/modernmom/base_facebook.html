@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Swigoh</title>
+{% block head %}{% endblock %}
+<script src="http://code.jquery.com/jquery-1.6.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+function login() {
+//this function should be attached to your code's events which will initiate the Facebook login dialog.
+//After user authorises this app, we will get the Access Token, which is returned by Facebook in order
+//to find the current user' Facebook UID
+
+FB.login(function(response) { //Brings up Facebook Login Dialog box
+if (response.session) {
+var userData = response.session;
+getFBuid(userData.access_token);
+} else {
+alert("There was an error  "); //shows error if user does not accept permissions
+}
+});
+}
+function getFBuid(token) {}
+</script>
+</head>
+
+<body>
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=108202865940688&amp;xfbml=1"></script>
+<script type="text/javascript">
+FB.init({
+appId  : '108202865940688',
+status : true, // check login status
+cookie : true, // enable cookies to allow the server to access the session
+xfbml  : true // parse XFBML
+});
+</script>
+{% block content %}
+{% endblock %}
+</body>
+</html>

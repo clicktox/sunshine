@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load subdomainurls %}
+{% block title %}ModernMom{% endblock %}
+
+
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/style.css" />
+<style type="text/css">
+.strip-title {
+text-align: center;
+margin-bottom: 5px;
+background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+line-height: 30px;
+}
+.strip-title {
+text-align: center;
+margin-bottom: 5px;
+background: url(/media/images/BGstripe.jpg) repeat-x center;
+line-height: 30px;
+}
+#whats-new {
+width: 1000px;
+margin: 0 auto;
+line-height: 18px;
+}
+#whats-new {
+width: 1000px;
+margin: 0 auto;
+line-height: 18px;
+}
+#whats-new .whats-new-thumb-first {
+margin: 5px 2px 5px 0px;
+padding: 0;
+float: left;
+display: inline;
+width: 180px;
+}
+</style>
+{% endblock %}
+{% block container %}
+<div class="row">
+	{% for contest in CONTEST_LIST %}
+	<div class="span4">
+		<a href="{{ contest.get_absolute_url }}"><img src="{{ contest.contestimage.get_300X250_url }}" /></a>
+		<a href="{{ contest.get_absolute_url }}">{{ contest.name }}</a></p>
+	</div>
+	{% endfor %}
+	
+</div>
+<div class="row">
+	<div class="span8">
+		 <h1 class=""><a href="{{QUESTION.get_absolute_url}}">{{ QUESTION }}</a></h1>
+            <p>
+                {{ QUESTION.body }}
+            </p>
+            Started by {{QUESTION.user }} on {{QUESTION.created }} | {{QUESTION.public_answers.count }} Replies(s)
+            <span class="answer"><a href="{{QUESTION.get_absolute_url}}">Answer</a></span>
+	</div>
+	<div class="span4">
+		 <!-- MM_Internal_300x250 -->
+            <div id='div-gpt-ad-1367435218945-0' style='width:300px; height:250px;'>
+                <script type='text/javascript'>
+                    googletag.cmd.push(function(){
+                        googletag.display('div-gpt-ad-1367435218945-0');
+                    });
+                </script>
+            </div>
+	</div>
+	
+</div>
+
+<div class="container">
+	<div class="strip-title">
+    	<div class="strip-text"><span class="wht-bg-H1 pink">Product<span class="black">Guide</span></span></div>
+    </div>
+	<div class="row">
+        <div class="span12">
+        	<div id="whats-new">
+        		{% for product in PRODUCT_LIST %}
+            	<div class="whats-new-thumb-first">
+					<a href="#"><img src="{{ product.image.get_180X113_url }}" alt="{{ product }}"></a>
+					<p class="thumb-title"><a href="{{ product.get_absolute_url }}">{{ product }}</a></p>
+				</div>
+				{% endfor %}
+				<div class="clear-both"></div>
+                <div class="bottom-line">&nbsp;</div>
+			</div>
+        </div> <!-- /span12 -->
+    </div> <!-- /row -->
+</div> <!-- /container -->
+
+<div class="row">
+	<div class="span3">
+		<ul class="nav nav-list">
+		<li class="nav-header">Welcome!</li>
+		<li>{{ user.first_name }} {{ user.last_name }}</li>
+		<li>Thank you for participating in this new ModernMom Experience!  This page will become your dashboard for everything new and exciting coming in the next few weeks.</li>
+		<li class="nav-header">Items I have shared</li>
+		{% for vote in request.user.vote_set.all %}
+		<li><a href="{{ vote.object.get_absolute_url }}">{{ vote.object }}</a></li>
+		{% endfor %}
+	</ul>
+	
+	</div>
+    <div class="span9">
+        {% if user.insider %}
+		<div class="span5".
+        <p>
+            <div class="section-title">
+            	<div class="bars">
+                	<span class="wht-bg-H1 pink">Insider <span class="black">Campaigns</span></span>
+                </div> <!-- /bars --> 
+               
+ <div class="section-list">
+                	<ul>
+                		{% for c in insider_campaigns %}
+                    	<li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+						{% endfor %}
+                    </ul>
+                    <div class="section-end"><a href="{% url 'insider_dashboard' subdomain='connect' %}">My Insider Dashboard </a><i class="icon-caret-right"></i></div> <!-- /section-end -->
+                </div> <!-- /section-list -->
+            </div>
+        </p>
+		</div>
+		<div class="span4">
+		
+		</div>
+        {% else %}
+        <div class="hero-unit">
+            <h1>Become a ModernMom Insider!</h1>
+            <p>
+                Do you want to try new products (for free) and review them for the community? Do have a blog or own a website? Are you considered an influencer among your peers? If you answered yes to any of these questions, then ModernMom Insiders is the program for you!
+
+            </p>
+            <a href="{% url 'insider_dashboard' subdomain='connect' %}">Become a ModernMom Insider</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+    
+        {% endblock %}

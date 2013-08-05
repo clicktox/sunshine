@@ -1,0 +1,23 @@
+{% extends "registration/base.html" %}
+
+{% block head %}{% endblock %}
+{% block hero %}
+ <h1>Welcome to ModernMom!</h1>  
+        <p>As you may have noticed, we are making some changes around here to make improve your experience on our website.  If you landed here, you may have been asked to test drive some of our new features, and we really appreciate your patience and cooperation.</p>
+		
+{% endblock %}
+
+
+
+{% block form %}
+{% if form.error %}
+{{ form.error }}
+{% endif %}
+  <form action="{% url 'login' %}" method="post" class="well form-inline">{% csrf_token %}
+    {{ form.as_p }}
+	<p class="submit"><button type="submit" name="submit" value="Login">Log in</button></p>
+    <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+    <p><a href="{% url 'register' %}">Register New Account</a></p>
+	{% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+  </form>
+{% endblock %}

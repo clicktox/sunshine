@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block container %}
+<form method="POST" action="">
+    {% csrf_token %}
+    {% for product in products %}
+    <div class="row">
+        <div class="span1">
+            <input type="checkbox" name="product_id" value="{{ product.uuid }}">
+        </div>
+        <div class="span2">
+            <img src="{{ product.image.get_thumbnail_url }}">
+        </div>
+        <div class="span6">
+            <p>{{ product.description }}</p>
+			<p><a href="{% url product_detail_edit product.uuid %}" target="_blank"><i class='icon-edit'></i>Edit Product</a></p>
+        </div>
+    </div>
+	
+
+    {% endfor %}
+    <button type="submit">
+    Remove Products</a>
+</form>
+{% endblock %}

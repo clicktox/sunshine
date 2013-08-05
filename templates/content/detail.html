@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %} {{ content.title }}{% endblock %}
+        {% block meta %}
+        <meta property="og:title" content="{{ content.title }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ content.get_absolute_url }}" />
+        <meta property="og:site_name" content="ModernMom" />
+        <meta property="fb:app_id" content="208027353668" />
+        <meta property="fb:admins" content="622302511" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        {% endblock %}
+		
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/content.css" media="screen" />
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span8">
+        <section class="article">
+            <article class="blog">
+                <h1>{{ content.title }}</h1>
+				{% if content.subtitle %}
+                <h2>{{ content.subtitle }}</h2>
+				{% endif %}
+				{% if content.contentauthor_set.count > 0 %}
+                <h3>By: {% for content_author in content.contentauthor_set.all %}{{ content_author.author }}{% endfor %}</h3>
+				{% endif %}
+                {% if not content.contentimage %}
+                <figure class="featured-image">
+                    {% else %}<img src="{{ content.contentimage.image.get_article_display_url }}" />
+                    <figcaption class="caption">
+                        {{ content.contentimage.image.caption }}
+                    </figcaption>
+                </figure>
+                {% endif %} 
+                {% if content.contentdescription %} 
+                <p class="article-body">
+                    {{ content.contentdescription.description|safe }}
+                </p>
+                {% endif %} 
+                {% if content.contentquote %}
+                <blockquote class="quote">
+                    <p>
+                        "{{ content.contentquote.text }}"
+                    </p>
+                    <cite class="quote-author">
+                    	{{ content.contentquote.source }}
+                    </cite>
+                </blockquote>
+                {% endif %}
+                {% for p in content.contentsection_set.all %}<h4>{{ p.title }}</h4>
+                <p class="article-body">
+                    {{p.text}}
+                </p>
+                {% if forloop.counter == 2 %}
+                {% if content.contentsidebar %}<!-- BEGIN SIDEBAR -->
+                <div class="sidebar">
+                    <h5>{{ content.contentsidebar.title }}</h5>
+                    <p>
+                        {{ content.contentsidebar.text }}
+                    </p>
+                </div>
+                <!-- END SIDEBAR -->{% endif %} 
+                {% endif %}
+                {% endfor %}
+    
+	{% if content.contentauthor_set.count > 0 %}
+                {% for content_author in content.contentauthor_set.all %}
+				
+				
+				 <div class="author-box">
+                    <div>
+                        <img class="avatar" src="{{ MEDIA_URL}}images/dummy/AuthorImage.jpg" /><strong>{{ content_author.author }}</strong>
+                        <p>
+                           {{ content_author.author.description|safe }}
+                        </p>
+                    </div>
+                </div>
+				{% endfor %}
+				{% endif %}
+				
+               
+            </article>
+        </section>
+    </div>
+</div>
+{% endblock %}

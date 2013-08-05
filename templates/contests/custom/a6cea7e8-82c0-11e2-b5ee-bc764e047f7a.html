@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ contest.name }}{% endblock %}
+        {% block meta %}
+     <meta property="og:title" content="{{ contest.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
+<meta property="og:description" content="{{ contest.contestdescription.content }}" />
+<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_largegrid_url }}" />
+<meta property="og:site_name" content="Modernom Contests" />
+<meta property="fb:app_id" content="208027353668" />
+<meta property="fb:admins" content="622302511" />
+        {% endblock %}
+		{% block head %}
+
+<style type="text/css">
+.login-holder {
+	padding-top: 30px;
+	margin: 0px auto;
+	text-align: center;  
+}
+.welcome-b {
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+}
+.welcome-p {
+	font-size: 16px;
+	color: #ed145b;
+	font-weight: bold;
+}
+a {
+	color: #007fc7;
+	text-decoration: none;
+}
+.container {
+	margin-right: auto;
+	margin-left: auto;
+}
+.content {
+	padding-top: 0px;
+	padding-bottom: 15px;
+}
+.btn-primary {
+	background-color: hsl(336, 100%, 29%) !important;
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f90063", endColorstr="#93003b");
+	background-image: -khtml-gradient(linear, left top, left bottom, from(#f90063), to(#93003b));
+  	background-image: -moz-linear-gradient(top, #f90063, #93003b);
+  	background-image: -ms-linear-gradient(top, #f90063, #93003b);
+  	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f90063), color-stop(100%, #93003b));
+  	background-image: -webkit-linear-gradient(top, #f90063, #93003b);
+  	background-image: -o-linear-gradient(top, #f90063, #93003b);
+  	background-image: linear-gradient(#f90063, #93003b);
+  	border-color: #93003b #93003b hsl(336, 100%, 24%);
+  	color: #fff !important;
+  	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.33);
+  	-webkit-font-smoothing: antialiased;
+}
+.lindt1 {
+	width: 960px;
+	height: 222px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/LindtLayoutV7_01.png) no-repeat;
+}
+.lindt2 {
+	width: 960px;
+	height: 377px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/LindtLayoutV7_02.png) no-repeat;
+}
+.lindt3 {
+	width: 960px;
+	height: 444px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/LindtLayoutV7_03.png) no-repeat;
+}
+.lindt4 {
+	width: 960px;
+	height: 157px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/LindtLayoutV7_04.png) no-repeat;
+}
+.lindt-form {
+	position: relative;
+	top: 160px;
+	left: 405px;
+	height: 0px;
+}
+.disclaimer {
+	font-size: 10px;
+	font-style: italic;
+	line-height: 14px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+</style>
+{% endblock %}
+{% block container %}
+
+
+	<div class="row">
+        <div class="span12 lindt1">
+        	
+        </div> <!-- /span12 lindt1 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 lindt2">
+        	
+        </div> <!-- /span12 lindt2 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 lindt3">
+        	<div class="lindt-form">
+                  <form class="form-horizontal" method="post" action="{% url contest_detail contest.url %}">
+                	{% csrf_token %}
+					 
+						
+				
+                    <div class="control-group">
+                          <!-- Text input-->
+                          <label class="control-label" for="input01"></label>
+                          <div class="controls">
+                            <input type="text" name="{{ contest.guid }}full_name" placeholder="Full Name" class="input-xlarge">
+                            <p class="help-block"></p>
+                          </div>
+                        </div>
+                    <div class="control-group">
+                          <!-- Text input-->
+                          <label class="control-label" for="input01"></label>
+                          <div class="controls">
+                            <input type="text" name='email' placeholder="Email Address" class="input-xlarge">
+                            
+                          </div>
+                        </div>
+                
+                    <div class="control-group">
+                
+                          <!-- Textarea -->
+                          <label class="control-label"></label>
+                          <div class="controls">
+                            <div class="textarea" >
+                                  <textarea type="" class="" name="{{ contest.guid }}tradition"> </textarea>
+                            </div>
+                          </div>
+                        </div>
+                
+                    <div class="control-group">
+                          <label class="control-label"></label>
+                
+                          <!-- Button -->
+                          <div class="controls">
+                            <button class="btn btn-primary">Enter Now</button>
+                          </div>
+                        </div>
+                  </form>
+            </div> <!-- /lindt-form -->
+        	
+        </div> <!-- /span12 lindt3 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 lindt4">
+        	
+        </div> <!-- /span12 lindt4 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 disclaimer">
+        	*By entering the contest, you agree to the <a href="http://www.modernmom.com/contest-rules">Terms & Conditions</a>. This contest will end on March 31, 2013. One (1) winner will be randomly selected and will win a custom Lindt Easter Gift Basket. Winner will be notified by email. Your email address will ONLY be used to contact you in the event that you are the winner of the contest. Prizes are only available to members who live in the United States and are at least 18 years of age. Winners must claim prize within 48 hours of notification, or another winner will be chosen.
+        </div> <!-- /span12 ikea1 -->
+    </div> <!-- /row -->
+
+
+
+{% endblock %}

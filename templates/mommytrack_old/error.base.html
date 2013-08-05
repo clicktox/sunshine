@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% block title %}MommyTrack - Keeping track of what you love. | Find. Follow. Share. | ModernMom{% endblock %}</title>
+{% block css_override %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/beta1.css" type="text/css" />
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/menu.css" type="text/css" />
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/page_header.css">
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/user-column.css" type="text/css" />
+<link href="{{ MEDIA_URL }}css/facebook.css" type="text/css" rel="stylesheet" media="all" />
+
+{% endblock css_override %}
+{% block css_imports %}{% endblock css_imports %}
+
+{% block js_imports %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+<!--script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.infinitescroll.min.js"></script-->
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.elastic.js"></script>
+<!--script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.blockUI.js"></script-->
+<!--script src="{{ MEDIA_URL }}js/sliding.form.js"></script-->
+<!--script type="text/javascript" src="{{ MEDIA_URL }}js/core.js"></script-->
+    <script src="{{ MEDIA_URL }}js/yql.linkpreview.js" type="text/javascript" charset="utf-8"></script>
+    
+{% endblock js_imports %}
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alegreya+SC:400,700,900">
+<script type="text/javascript">
+$(function () {
+$('.dropdown').each(function () {
+$(this).parent().eq(0).hover(function () {
+$('.dropdown:eq(0)', this).show();
+}, function () {
+$('.dropdown:eq(0)', this).hide();
+});
+});
+});
+</script>
+
+{% block head %}{% endblock %}
+<script type='text/javascript'>
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type='text/javascript'>
+googletag.cmd.push(function() {
+googletag.defineSlot('/4365379/MTRACK_728_Head_ROS', [728, 90], 'div-gpt-ad-1339012643499-0').addService(googletag.pubads());
+googletag.pubads().enableSingleRequest();
+googletag.enableServices();
+});
+</script>
+
+ <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-9629029-12']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+<body>
+{% include 'django_facebook/_facebook_js.html' %}
+	  <div id="tb-toolbar" class="tb-user tb-has-notifications tb-mtrack-discoverer">
+    <ul id="tb-toolbar-left">
+         <li id="tb-mtrack" class="" style="float: left;">
+   <a href="/"><img src="{{ MEDIA_URL }}images/mmlogo.png"> </a><span id="tooltip-arrow"></span>
+</li>
+                                    <li id="tb-mtrack" class="tb-btn " style="float: left;">
+    <fb:like-box href="https://www.facebook.com/pages/Mommytrack/191336934267351" width="292" height="200" colorscheme="dark" show_faces="false" stream="false" header="false"></fb:like-box>
+    <span id="tooltip-arrow"></span>
+</li>
+                        </ul>
+
+    <ul id="tb-toolbar-right">
+  {% if user.is_authenticated %}
+ 
+ 
+                            <li id="tb-settings" class="tb-btn tips tb-btn-notext" style="float: right;" data-tooltip="Browse your Likes, adjust your settings and explore more">
+    <a href="{% url edit_user_profile user.username %}">
+        <span class="tb-btn-ico"></span>
+        <span class="tb-btn-text">settings</span>
+    </a>
+</li>
+<li id="tb-login" class="tb-btn " style="float: right;" data-tooltip="">
+    <a href="{% url user_profile user.username %}">
+        <span class="tb-btn-ico"}></span>
+        <span class="tb-btn-text">{{ user.username }}
+        </span>
+    </a>
+    <br><a href="{% url auth_logout %}">logout</a>
+</li>
+ <!--li class="tb-space-solid tb-hide-visitor" style="float: right; width: 1px;">&nbsp;</li>
+                            <li id="tb-notification" class="tb-btn tb-hide-visitor" style="float: right;" data-tooltip="">
+    <a href="javascript:void(0);">
+        <span class="tb-btn-ico"></span>
+        <span class="tb-btn-text">1</span>
+    </a>
+</li-->
+                            <li class="tb-space-solid " style="float: right; width: 1px;">&nbsp;</li>
+                            <li id="tb-explorebox" class="tb-btn tb-hide-visitor tips" style="float: right;">
+    <form id="post_item" action="{% url add_link %}" method="POST"><input class="ac-keyword explore-box ac-placeholder" id="tb-explore-box" type="text" name="link" placeholder="http://" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+    	<input type="submit" value="Post Item"></form>
+</li>
+{% else %}
+<li id="tb-login" class="tb-btn " style="float: right;" data-tooltip="">
+ <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+               <input type="image" src="{{ MEDIA_URL }}images/button_facebook_connect.jpg" />
+                <input type="hidden" value="{{ request.path }}" name="next" />
+                <input type="hidden" name="connect_facebook" value="1">
+            </form>
+
+	</li>	
+
+{% endif %}
+                            <li class="tb-space-solid tb-hide-visitor" style="float: right; width: 1px;">&nbsp;</li>
+                            
+
+
+                            <li class="tb-space-solid tb-hide-user" style="float: right; width: 1px;">&nbsp;</li>
+                        </ul>
+</div>
+  <div id="container" class="centered">
+ 
+	<div id="header" class="center">
+  {% block above_container %}
+  {% if not user.is_authenticated %}
+  
+{% else %}
+{% include 'includes/syncbars.html' %}  
+  {% endif %}
+  {% endblock %}
+ </div>
+  {% block container %}
+    <div id="items" class="centered transitions-enabled">
+    	{% block user_box %}
+ {% if user.is_authenticated %}
+
+
+<!-- USER INFO -->
+<div class="item box-border" style="background-color: whiteSmoke;"><a href="">{% avatar user 210 %}</a>
+        <div class="box-info"><span class="box-title blk"></span>
+          <div class="box-divider"></div>
+          <div class="custom">
+  <ul id="social">
+{% if user.facebookprofile %}<li id="facebook" class="on"><a rel="nofollow" href="" title="Disconnect to Facebook">Facebook</a></li>{% else %}
+<li id="facebook" class="off">
+	 <form action="{% url facebook_connect %}?facebook_login=1" method="post">
+                <a href="javascript:void(0);" onclick="F.connect(this.parentNode);">Connect this account to Facebook</a>
+                <input type="hidden" value="{{ request.path }}" name="next" />
+                <input type="hidden" name="connect_facebook" value="1">
+            </form>
+	
+{% endif %}
+{% if user.twitter %}<li id="twitter" class="on"><a rel="nofollow" href="" title="Manager Twitter">Twitter</a></li>
+{% else %}<li id="twitter" class="off"><a rel="nofollow" href="{% url twitter_signin_associate %}" title="Connect To Twitter">Twitter</a></li>{% endif %}
+<li id="linkedin" class="off"><a rel="nofollow" href="" title="Connect to LinkedIn">LinkedIn</a></li>
+<li id="youtube" class="off"><a rel="nofollow" href="" title="Add your Youtube">Youtube</a></li>
+<li id="rss" class="off"><a rel="nofollow" href="" title="Add your RSS">Add your RSS</a></li>
+</ul>
+</div>
+          <div class="box-divider"></div>
+          {% for fcat in user.categoryfollowing.all %}
+          <div class="box-comment-pic"><a href=""><img src="{{ fcat.category.image.get_thumbnail_url }}" /></a></div>
+          <div class="box-comment-cmnt"><a href="" style="font-family: 'Alegreya SC', serif; font-size: 20px; color: #333;">{{ fcat.category.name }}</a></div>
+          <div class="box-divider"></div>
+          {% endfor %}
+        </div>
+       
+      </div>
+<!-- END USER INFO -->
+{% else %}
+<!-- USER INFO -->
+<div class="item box-border"><a href=""></a>
+        <div class="box-info">
+        	
+            <div class="view-header">
+     <ul>
+  <!--li class="guide-item-container ">
+  	<a class="guide-item header" href="#"       data-feed-name="explore" data-feed-type="chart">
+        <span class="thumb">
+          <img class="system-icon chart explore" src="/media/images/pixel-vfl3z5WfW.gif" alt="">
+        </span>
+      <span class="display-name">
+        Explore
+      </span>
+     
+    </a>
+  	 {% for tcat in top_category_list %}
+  	 {% if not tcat.slug == 'featured-content' %}
+      <a class="guide-item" href="/" data-feed-name="explore" data-feed-type="chart">
+       
+      <span class="thumb" style=""></span>
+      	<span class="display-name" style=" text-align: left;">
+        {{ tcat }}
+      </span>
+      </a>
+      {% endif %}
+     
+      {% endfor %}
+  </li-->
+  <li class="guide-item-container ">
+    <a class="guide-item header" href="/sources/" data-feed-name="channels" data-feed-type="chart">
+        <span class="thumb">
+          <img class="system-icon chart channel" src="/media/images/pixel-vfl3z5WfW.gif" alt="">
+        </span>
+      <span class="display-name">Channels
+      </span>
+    </a>
+    {% for e in top_entity_list %}
+      <a class="guide-item" href="{% url source_detail e.host %}" data-feed-name="today" data-feed-type="chart">
+      <span class="thumb" style=""></span>
+      	<span class="display-name" style=" text-align: left;">
+        {{ e }}
+      </span>
+     </a>
+      {% endfor %}
+  </li>
+  </ul>
+
+       
+      </div>
+<!-- END USER INFO -->
+
+{% endif %}
+{% endblock %}
+    {% block first_box %}
+        <div class="item box-border">
+
+        <div>
+        <form method="post" action="{%url messages_compose %}">
+        {{ ComposeForm }}
+        </form>
+        </div>
+        
+        {% for notice in user.recieved_notices.all %}
+                <div class="box-comment-pic"><a href="{% url user_profile notice.sender %}">{% avatar notice.sender 29 %}</a></div>
+                <div class="box-comment-cmnt"><a href="{% url user_profile notice.sender %}" class="b">{{ notice.sender.first_name }}</a> {{ notice.message }}</div>
+                <div class="box-divider"></div>
+        {% endfor %}
+        {% for follower in my_follow_list %}
+            {% if follower.user.my_items.latest %}
+                <div class="box-comment-pic"><a href="{% url user_profile follower.user %}">{% avatar follower.user 29 %}</a></div>
+                <div class="box-comment-cmnt"><a href="{% url user_profile follower.user %}" class="b"> 
+                {{ follower.user.first_name }} {{ follower.user.last_name }} </a> pinned <a href="{% url post_detail follower.user.my_items.latest.id %}">{{ follower.user.my_items.latest }}</a></div>
+                <div class="box-divider"></div>
+            {% endif %}
+        {% endfor %}
+            
+        </div>
+        
+    {% endblock %}
+     {% if user.is_authenticated %}
+     
+{% endif %}
+      <!--BEGIN BOX-->
+      {% block content %}{% endblock %}
+
+     </div>
+     {% endblock %}
+
+  </div>
+</div>
+<script>
+var $mascon = $('#items');
+
+
+$mascon.imagesLoaded( function(){
+  $mascon.masonry({
+    itemSelector : '.item',
+	columnWidth: 10,
+	isAnimated: true,
+	isFitWidth: true,
+  });
+});
+
+</script>
+</body>
+</html>

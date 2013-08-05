@@ -1,0 +1,10 @@
+<form method="POST" action="{% url content_update_categories content.guid %}" class="well">
+{% csrf_token %}
+{% for category in categories %}
+ <label class="checkbox">  
+ <input type="checkbox" name="categories" value="{{ category.id }}">{{ category }}
+  </label>  
+
+{% endfor %}
+<button class="btn btn-success">Save</button>
+</form>

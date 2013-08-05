@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load avatar_tags comments topic_blocks %}
+
+ {% block head %}
+ <link rel="stylesheet" href="{{ MEDIA_URL }}css/header.css" type="text/css" />
+{% endblock %}
+ {% block first_box %}
+<!-- USER INFO -->
+<div class="item box-border"><a href="">{% avatar user 210 %}</a>
+        <div class="box-info"><span class="box-title blk"></span>
+          <div class="box-divider"></div>
+          <div class="custom">
+  <ul id="social">
+<li id="facebook" class="off"><a rel="nofollow" href="" title="Connect to Facebook">Facebook</a></li>
+{% if user.twitter %}<li id="twitter" class="on"><a rel="nofollow" href="" title="Manager Twitter">Twitter</a></li>
+{% else %}<li id="twitter" class="off"><a rel="nofollow" href="{% url twitter_signin_associate %}" title="Connect To Twitter">Twitter</a></li>{% endif %}
+<li id="linkedin" class="off"><a rel="nofollow" href="" title="Connect to LinkedIn">LinkedIn</a></li>
+<li id="youtube" class="off"><a rel="nofollow" href="" title="Add your Youtube">Youtube</a></li>
+<li id="rss" class="off"><a rel="nofollow" href="" title="Add your RSS">Add your RSS</a></li>
+</ul>
+</div>
+          <div class="box-divider"></div>
+          {% for fcat in user.categoryfollowing.all %}
+          <div class="box-comment-pic"><a href=""><img src="{{ fcat.category.image.get_thumbnail_url }}" /></a></div>
+          <div class="box-comment-cmnt"><a href="" style="font-family: 'Alegreya SC', serif; font-size: 20px; color: #333;">{{ fcat.category.name }}</a></div>
+          <div class="box-divider"></div>
+          {% endfor %}
+          
+          {% for follower in user.following.all %}
+        {% if follower.user.my_items.latest %}
+          <div class="box-comment-pic"><a href=""><a href="{% url user_profile follower.user %}">{% avatar follower.user 45 %}</a></div>
+          <div class="box-comment-cmnt"> <a href="{% url user_profile follower.user %}">{{ follower.user.first_name }} {{ follower.user.last_name }} </a> pinned <a href="{% url post_detail follower.user.my_items.latest.id %}">{{ follower.user.my_items.latest }}</a> </div>
+          <div class="box-divider"></div>
+        {% endif %}
+    {% endfor %}
+    
+       	
+        </div>
+       
+      </div>
+<!-- END USER INFO -->
+ {% endblock %}   
+ 
+ 
+{% block content %}
+
+  
+  
+    {% include 'topics/includes/featured_items.html' %}
+  {% if my_categories.count > 0 %}
+  	{% include 'categories/includes/my_categories_snapshot.html' %}
+  {% else %}
+  	{% include 'categories/includes/choose_categories_to_follow.html' %}
+   {% endif %}
+
+  
+{% endblock %}

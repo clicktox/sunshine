@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load avatar_tags comments topic_blocks %}
+{% block head %}
+<script type="text/javascript">var switchTo5x=true;</script><script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'1d057cac-11c7-4a27-9d1b-c8f8dab15f64'});</script>
+<script type="text/javascript">
+function myCallbackFunction (event,service)
+{
+     alert("event called is:"+event); //the event type. Only "click" is supported.
+     alert("service called is:"+service); //the service shared by user. e.g. facebook
+}
+
+stLight.subscribe("click",myCallbackFunction); //register the callback function with sharethis 
+
+</script>
+<style type="text/css">
+.main-track {
+	padding-top:25px;
+	width:640px;
+	margin:0 auto;
+}
+.pinhead { border-bottom:#999 solid thin; overflow:hidden; padding-bottom:15px; }
+.pinhead img { width:90px; float:left; }
+.pinhead div { float:left; padding:0px 0px 0px 10px; width:540px }
+.pinhead div h1 { font-weight:bold; padding:0; }
+</style>
+{% endblock %}
+{% block container %}
+
+	<!--BEGIN BOX-->
+    <div class="main-track">
+  		<div class="pinhead">
+        {% avatar post.poster 80 %}
+        <div>
+        <h1>{{ post.poster.first_name }} {{ post.poster.last_name }}</h1>
+        <p>Pinned on <a href="{% url topic_detail post.topic.creator.username,post.topic.id %}">{{ post.topic }}</a>{% if post.source %} via <a href="{{ post.source.url }}">{{ post.source.url }}</a>{% endif %}</p>
+        </div>
+        </div>
+        <div style="clear:both"></div>
+		<h1><a href="{{ post.source.url }}" target="_blank">{{ post.title }}</a></h1>
+        <!--BEGIN TRACK INFO-->
+        <div>
+        	<object style="height: 390px; width: 640px">
+            <param name="movie" value="{{ post.youtube_embed_url }}">
+            <param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always">
+            <embed src="{{ post.youtube_embed_url }}" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="360"></object>
+        </div>
+        <p>{{ post.description }}</p>
+            {% get_comment_list for post as comment_list %}
+			<h3>Comments</h3>
+            {% for comment in comment_list %}
+            <div class="comment-tn"><a href="">{% avatar comment.user 80 %}</a></div>
+            <div class="comment-dt"><a href="" class="b">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+                <br>{{ comment.comment }}
+                <span class="light">{% if comment.user == user %}<a href="{% url delete_post_comment post.id,comment.id %}">Delete</a>{% endif %}
+                {% if user.is_staff %}<a href="{% url delete_post_comment post.id,comment.id %}">Delete</a>{% endif %}</span>
+            </div>
+	  	    <div class="clear"></div>
+                {% endfor %}
+                
+       
+            <div class="comment-section">
+            {% if user.is_authenticated %}
+            	{% avatar request.user 29 %}
+            	 <form action="http://mommytrack.com{% url add_post_comment post.id %}" method="POST" class="commentForm" name="commentsForm">
+                    <textarea id="MainTrackComment" name="comment"></textarea>
+            	<p class="add-comment"><a class="button" href="javascript:document.commentsForm.submit();">Add Comment</a></p>
+                
+                </form>
+                {% else %}
+                <p>Please <a href="{% url login %}">Login</a> or <a href="{% url register %}">Register</a> to engage with this post!</p>
+                {% endif %}
+            </div>
+        <!--END TRACK INFO-->
+    </div>
+    <!--END BOX-->
+    
+    
+    
+	
+	
+{% endblock %}
+{% block scripts_footer %}
+<script>
+var $container = $('#container');
+
+$container.imagesLoaded( function(){
+  $container.masonry({
+    itemSelector : '.box',
+	columnWidth: 20,
+	isAnimated: true,
+	isFitWidth: true,
+  });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% if content.is_featured %}
+<div class="row" style="padding-bottom:12px; text-align:center;">
+    <button class="btn btn-danger">
+        Remove as Featured Content
+    </button>
+</div>
+{% endif  %}
+<form method="post" enctype="multipart/form-data" action="{% url content_update_featured content.guid %}">
+    {% csrf_token %}
+    <div class="row">
+        <div class="span3">
+            {{ form.as_p }}
+        </div>
+        <div class="span3">
+            {{ image_form.as_p }}
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-success">
+            Save
+        </button>
+    </div>
+</form>
+<script>
+        		$(function(){
+        			$('#dp1').datepicker({
+        				format: 'mm-dd-yyyy',
+                        todayBtn: 'linked'
+        			});
+                    
+                        
+                 $('#id_{{ form.feature_on.html_name }}').datepicker({
+        				format: 'mm-dd-yyyy',
+                        todayBtn: 'linked'
+        			});
+        		});
+        		 $('#id_{{ form.feature_until.html_name }}').datepicker({
+        				format: 'mm-dd-yyyy',
+                        todayBtn: 'linked'
+        			});
+        		});
+        	
+</script>

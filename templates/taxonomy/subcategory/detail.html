@@ -1,0 +1,314 @@
+{% extends 'base.html' %}
+{% block head %}
+
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/style.css" />
+
+<style type="text/css">
+	/* CATEGORY PAGE STYLES */
+.ContentPreview {
+	position: relative;
+	clear: both;
+}
+.thumb {
+	margin-top: 10px;
+}
+.ContentPreview .TopPick {
+	margin: 10px 0;
+	float: left;
+	width: 300px;
+	height: 199px;
+}
+.ContentPreview .pick-title {
+	display: block;
+	margin: 5px 10px 0px 10px;
+	color: #000;
+	width: 300px;
+	font-size: 21px;
+	line-height: 25px;
+	display: inline;
+	float: left;
+}
+.ContentPreview .excerpt {
+	line-height: 1.4;
+	width: 300px;
+	margin: 5px 10px 5px 10px;
+	display: inline;
+	float: left;
+}
+.ContentPreview .Note {
+	margin-bottom: 5px;
+	width: 300px;
+	margin: 5px 10px 5px 10px;
+	display: inline;
+	float: left;
+	font-size: 14px;
+	color: #a9a9a9;
+	text-transform: uppercase;
+}
+.ContentPreview .PickList {
+	list-style: none;
+	width: 300px;
+	margin: 0px;
+	display: inline;
+}
+.PickList .pick-item {
+	border: none;
+	display: inline;
+	float: left;
+	width: 300px;
+	margin-left: 10px;
+	padding: 3px 0px 3px 0px;
+	border-color: #a9a9a9;
+	border-style: dotted;
+	border-width: 0 0 1px;
+	line-height: 16px;
+}
+.ContentPreview .PickList .pick-title {
+	display: block;
+	padding: 9px 0;
+	font-size: 16px;
+}
+a img {
+	vertical-align: bottom;
+	border: none;
+}
+.FeaturedCategories {
+	width: 620px;
+}
+.top-title {
+	display: block;
+	margin: 5px 0px 5px 0px;
+	color: #000;
+	width: 300px;
+	font-size: 21px;
+	display: inline;
+	float: left;
+}
+.feat-excerpt {
+	line-height: 1.4;
+	width: 300px;
+	margin: 0px 10px 0px 0px;
+	padding-bottom: 5px;
+	display: inline;
+	float: left;
+	border-color: #a9a9a9;
+	border-style: dotted;
+	border-width: 0 0 1px;
+}
+.FeatList {
+	list-style: none;
+	width: 300px;
+	margin: 0px;
+	display: inline;
+}
+.FeatList .feat-item {
+	border: none;
+	display: inline;
+	float: left;
+	width: 300px;
+	padding: 5px 0px 5px 0px;
+	border-color: #a9a9a9;
+	border-style: dotted;
+	border-width: 0 0 1px;
+}
+.read-more {
+	display: block;
+	padding-top: 5px;
+	clear: both;
+	font-style: italic;
+	text-align: right;
+}
+/* SUB-CATEGORY PAGE STYLES */
+.SidebarNav {
+	position: relative;
+	width: 300px;
+	margin: 0px auto 20px auto;
+	padding-bottom: 20px;
+	background-color: #ed145b;
+}
+.SidebarNav .heading {
+	font-size: 22px;
+	padding: 10px 10px 0;
+	margin-bottom: 10px;
+	color: #fff;
+}
+.SidebarNav .listing {
+	list-style: none;
+	font-size: 18px;
+	color: #fff;
+	margin: 0px 0px 0px -30px;
+	padding: 0px 0px 0px 15px;
+	
+}
+.SidebarNav .title {
+	display: block;
+	color: #fff;
+}
+.SidebarNav .more {
+	display: block;
+	color: #fff;
+	margin-top: 20px;
+}
+.SidebarNav a {
+	display: block;
+	padding: 0px;
+	color: #fff;
+	width: 290px;
+	transition: width 2s;
+	-moz-transition: width 2s; /* Firefox 4 */
+	-webkit-transition: width 2s; /* Safari and Chrome */
+	-o-transition: width 2s; /* Opera */
+}
+.SidebarNav a:hover {
+	width: 290px;
+	margin-left: -10px;
+	padding-left: 10px;
+	background-color: #fff;
+	color: #ed145b;
+	font-weight: bold;
+	font-style: italic;
+}
+	
+</style>
+{% endblock %}
+{% block container %}
+	<div class="row">
+    	<div class="span8">
+            <!--  Carousel - consult the Twitter Bootstrap docs at
+            http://twitter.github.com/bootstrap/javascript.html#carousel -->
+            <div id="this-carousel-id" class="carousel slide">
+                <!-- class of slide for animation -->
+                <div class="carousel-inner">
+                	{% for catart in category.contentcategory_set.all|slice:'5' %}
+                    <div class="item {% if forloop.counter == 1 %}active{% endif %}">
+                        <!-- class of active since it's the first item -->
+                        <img src="{{ catart.content.image.get_620X388_url }}" alt="">
+                        <div class="carousel-caption">
+                            <p>
+                                {{ catart.content.title }}
+                            </p>
+                        </div>
+                    </div>
+                   {% endfor %}
+                </div>
+                <!-- /.carousel-inner --><!--  Next and Previous controls below
+                href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">‹</a>
+                <a class="carousel-control right" href="#this-carousel-id" data-slide="next">›</a>
+            </div>
+            <!-- /.carousel -->
+            <div class="bars">
+            	<span class="wht-bg-H1 pink">{{ category.name }} <span class="black">Picks</span></span>
+            </div> <!-- /bars -->
+            <div class="ContentPreview">
+            	{% for catart in category.contentcategory_set.all|slice:'5:6' %}
+            	<a href="{{ catart.content.get_absolute_url }}" class="thumb">
+                    <span class="TopPick">
+                        <img src="{{ catart.content.image.get_300X188_url }}" alt="">
+                    </span>
+                    <span class="pick-title">{{ catart.content.title }}</span>
+            	</a>
+            	{% endfor %}
+            	<p class="excerpt">I simply cannot believe my little preemie is about to enter her last year of preschool. </p>
+            	<div class="Note">Additional Picks</div>
+            	<ul class="PickList">
+            		{% for catart in category.contentcategory_set.all|slice:'6:8' %}
+            		<li class="pick-item"><a href="{{ catart.content.get_absolute_url }}"><i class="icon-facetime-video"></i>&nbsp;{{ catart.content.title }}</a></li>
+            		{% endfor %}
+            	</ul>
+            </div> <!-- /ContentPreview -->
+            <div class="ContentPreview">
+            	{% for catart in category.contentcategory_set.all|slice:'8:9' %}
+            	<a href="{{ catart.content.get_absolute_url }}" class="thumb">
+                    <span class="TopPick">
+                        <img src="{{ catart.content.image.get_300X188_url }}" alt="">
+                    </span>
+                    <span class="pick-title">{{ catart.content.title }}</span>
+            	</a>
+            	{% endfor %}
+            	<p class="excerpt">I simply cannot believe my little preemie is about to enter her last year of preschool. </p>
+            	<div class="Note">Additional Picks</div>
+            	<ul class="PickList">
+            		{% for catart in category.contentcategory_set.all|slice:'9:11' %}
+            		<li class="pick-item"><a href="{{ catart.content.get_absolute_url }}"><i class="icon-facetime-video"></i>&nbsp;{{ catart.content.title }}</a></li>
+            		{% endfor %}
+            	</ul>
+            </div> <!-- /ContentPreview -->
+            
+           {% for catart in category.contentcategory_set.all|slice:'11:' %}
+
+<div class="span8">
+    
+    <div class="row">
+       {% if catart.content.image %}<div class="span3">
+        <a href="{{ catart.content.get_absolute_url }}" class="thumbnail">
+          
+                                <img src="{{ catart.content.image.get_content_200X107_url }}" width="200" alt="">
+								
+        </a>
+		
+      </div>{% endif %}
+      <div class="span5">      
+<strong><a href="{{ catart.content.get_absolute_url }}">{{ catart.content.title }}</a></strong>
+        <p class="span5" style="height:84px; overflow:hidden;">
+         {{ catart.content.contentdescription }}
+        </p>
+		
+      </div>
+    </div>
+    <div class="row">
+      <div class="span8">
+        <p></p>
+        <p>
+        	{% for author in catart.content.contentauthor_set.all|slice:'1' %}
+          <i class="icon-user"></i> by <a href="{{ author.get_absolute_url }}">{{ author.name }}</a> | 
+          {% endfor %}
+		  {% if request.user.is_staff %}
+		  <i class="icon-edit"></i> <a href="{{ catart.content.get_edit_url }} ">Edit</a>
+		  {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+  	{% endfor %}
+  	
+        </div> <!-- /span8 -->
+        <div class="span4">
+            <div class="social-media-links">
+            	<img src="img/SocialMedaPlaceholder.jpg" />
+            </div> <!-- /social-media-links -->
+            <div class="SidebarNav">
+                <h2 class="heading">Explore Categories:</h2>
+                <ul>
+                    <li class="listing title"><a href="#">Newborn/Infant</a></li>
+                    <li class="listing title"><a href="#">Baby</a></li>
+                    <li class="listing title"><a href="#">Kids</a></li>
+                    <li class="listing title"><a href="#">Toddler</a></li>
+                    <li class="listing title"><a href="#">Preschool</a></li>
+                    <li class="listing title"><a href="#">Tweens, Teens and Beyond</a></li>
+                    <li class="listing title"><a href="#">Adoption</a></li>
+                    <li class="listing title"><a href="#">Healthy Kids</a></li>
+                    <li class="listing title"><a href="#">Family</a></li>
+                    <li class="listing title"><a href="#">School</a></li>
+                    <li class="listing title"><a href="#">Safety</a></li>
+                    <li class="listing title"><a href="#">Kids and Sleep</a></li>
+                    <li class="listing title"><a href="#">Allergies</a></li>
+                    <li class="listing title"><a href="#">Doctor Mom</a></li>
+                    <li class="listing title"><a href="#">Potty Training</a></li>
+                    <li class="listing title"><a href="#">Manner and Etiquitte</a></li>
+                    <li class="listing title"><a href="#">Special Needs</a></li>
+                    <li class="listing title"><a href="#">Kids and Friends</a></li>
+                    <li class="listing title more"><a href="#">View More Categories</a></li>
+                </ul>
+            </div>
+        	<div class="ad300x250">
+            	<img src="img/MLPTwitterParty300x250.jpg" />
+            </div> <!-- /300x250ad -->
+            <div class="ad300x250">
+            	<img src="img/MLPTwitterParty300x250.jpg" />
+            </div> <!-- /300x250ad -->
+            <div class="ad300x250">
+            	<img src="img/MLPTwitterParty300x250.jpg" />
+            </div> <!-- /300x250ad -->
+        </div> <!-- /span4 -->
+    </div> <!-- /row -->
+{% endblock %}

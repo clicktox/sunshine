@@ -1,0 +1,7 @@
+<form>
+{{ form.as_p }}
+	{% if content.is_sponsored %}
+		<button class="btn btn-danger">Remove as Sponsored Content</button>
+	{% endif  %}
+	<button type="submit" class="btn btn-success">Save</button>
+</form>

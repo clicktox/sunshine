@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load subdomainurls %}
+{% block container %}
+<div class="row">
+    <div class="span8">
+        {% if user.is_authenticated %}<a data-target="#modal-add-blog" href="{% url 'blogfollow_add_blog' subdomain='mommytrack' %}" role="button" class="btn" data-toggle="modal">Add blog to Mommytrack</a>
+        <div class="modal hide" id="modal-add-blog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                x
+            </button>
+            <h3>Add blog to Mommytrack</h3>
+        </div>
+        <div class="modal-body">
+            Loading content...
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Nevermind</a>
+        </div>
+        </form>
+    </div>
+    {% endif %}
+    {% if notfollowing %} 
+    You are not following anyone, 
+    {% endif %}
+</div>
+</div>
+<div class="row">
+	{% for bi in posts %}
+    <div class="span4">
+        <!-- /main-btn-toolbar -->
+        <div id="content" class="popular">
+            
+            <div class="post" data-post-id="{{ bi.id }}" data-blog-id="{{ bi.id }}">
+                <div class="content" style="overflow:hidden;">
+                    
+                        <!--a href="{{ bi.blog.get_absolute_url }}" class="blog-link">
+                        	<img class="avatar" src="{{ bi.blog.image.get_boardthumb_url }}"></a>
+													<span rel="blog_name">{{ bi.blog.title }}</span>
+                        <div class="follow-btn-holder">
+                        	
+                            <a href="{{ bi.blog.get_follow_url }}" class="btn btn-primary" style="float:right">Follow</a>
+                        </div-->
+                   
+                    <a class="post-link" href="{{ bi.get_absolute_url }}" target="_blank"><img class="post-media" src="{{ bi.image.get_article_display_url }}"></a>
+										<a style="white-space:nowrap;" href="{{ bi.get_absolute_url }}">{{ bi.title }}</a>
+                    <p style="height:120px; overflow:hidden;">
+                        {{ bi.introduction }}
+                    </p>
+                   
+                    <div class="actions">
+                    	<a href="{{ bi.get_absolute_url }}">Read More</a>
+                    </div>
+                </div>
+                <!--/.content-->
+            </div>
+            <!--/.post-->
+        </div>
+        <!-- /#content -->
+    </div>
+    <!-- /span8 -->
+		{% endfor %}
+</div>
+{% endblock %}
+{% block no %}
+<div class="span2">
+Featured Items
+{% for item in featured %}
+{{ item }}
+{% endfor %}</span>
+<div class="span3">
+    {% if user.is_authenticated %}<a data-target="#modal-add-blog" href="{% url 'blogfollow_add_blog' subdomain='mommytrack' %}" role="button" class="btn" data-toggle="modal">Add blog to OneVoice</a>
+    <div class="modal hide" id="modal-add-blog">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+            x
+        </button>
+        <h3>Add blog to OneVoice</h3>
+    </div>
+    <div class="modal-body">
+        Loading content...
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Nevermind</a>
+    </div>
+    </form>
+</div>
+{% endif %}
+<ul class='nav nav-list'>
+    <li class="nav-header">
+        Mom Blogs
+    </li>
+    <li>
+        <a href="{% url 'blogfollow_home' subdomain='mommytrack' %}">Blog Roll</a>
+    </li>
+    <li class="nav-header">
+        Blogs you Follow
+    </li>
+    {% for bf in user.blogfollow_set.all %}
+    <li>
+        <a href="{{ bf.blog.get_absolute_url }}">{{ bf.blog }}</a>
+    </li>
+    {% endfor %}
+</ul>
+</div>
+<!-- /span3 -->
+</div>
+<!-- /row -->
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ product }}
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/giftguide.css" />
+{% endblock %}
+{% block container %}
+<div class="row">
+        <div class="span8">
+        	<div class="gift-intro">
+        		<div class="row">
+        			<div class="span2">
+        				<img src="{{ product.producer.image.get_thumbnail_url }}">
+					</div>
+					<div class="span6">
+					<h4>{{ product.producer }}</h4><p>{{ product.producer.description }}</p>
+					</div>
+					<div>
+						<div class="span6">
+							<a href="{{ product.producer.get_absolute_url }}">View All Products</a>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+            <div id="content" class="popular">
+				<div class="post">
+                    <div class="content">
+                       
+                            <img class="post-media" src="{{ product.image.get_620X388_url }}">
+                            <h2>{{ product }}</h2>
+                            <p>{{ product.description }}</p>
+                            {% for link in product.productlink_set.all %}
+							<p><a target="_blank" href="{{ link.url }}">{{ link.label }} <i class="icon-angle-right"></i></a></p>
+							{% endfor %}
+							
+							
+							{% for review in product.productreview_set.all %}
+							<span>{{ review.score_to_stars|safe }}</span>
+							<p>{{ review.review }}</p>
+							{% endfor %}
+							
+							<h2>Add Your Review</h2>
+							<form method="post" action="{% url 'product_detail' product.uuid %}">
+								{% csrf_token %}
+								{{ product_review_form.as_p }}
+								<button type="submit">Submit Review</button>
+							</form>
+					</div><!--/.content-->
+				</div><!--/.post-->
+            </div> <!-- /#content -->
+        </div> <!-- /span8 -->
+        <div class="span4">
+        	<div class="social">
+            		<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FModernMom%2F197177430011&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=215175268507724" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+		</div> <!-- /social -->
+        	<div>
+        		
+				<ul class="nav">
+					{% if product.productretailer_set.count > 0 %}
+					<li class="nav-header">Retailers</li>
+					{% for retailer in product.productretailer_set.all %}
+					<li>{{ retailer }}</li>
+					{% endfor %}
+					{% endif %}
+					{% if product.giftguideproduct_set.count > 0 %}
+					<li class="nav-header">Gift Guides</li>
+					{% for g in product.giftguideproduct_set.all %}
+					<li><a href="{{ g.giftguide.get_absolute_url }}">{{ g.giftguide }}</a></li>
+					{% endfor %}
+					{% endif %}
+					
+				</ul>
+			
+			</div>
+        </div> <!-- /span4 -->
+    </div> <!-- /row -->
+{% endblock %}

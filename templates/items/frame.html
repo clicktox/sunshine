@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load avatar_tags comments %}
+
+
+{% block css_imports %}
+		{{ block.super }}
+		<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/sources/infobar.css" media="all" />
+		<link href="/media/css/box.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="{{ MEDIA_URL }}css/frame-style.css" media="screen" rel="stylesheet" type="text/css" />
+{% endblock %}
+ 
+{% block js_imports %}
+    {{ block.super }}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+
+
+{% endblock %}
+
+
+    {% block content %}
+{% include 'sources/includes/header_info.html' %}
+
+
+
+	
+	<div id="frame-site">
+		<iframe frameborder="0" src="{{ item.source }}">
+			iframes not supported
+		</iframe>
+	</div>
+    {% endblock %}

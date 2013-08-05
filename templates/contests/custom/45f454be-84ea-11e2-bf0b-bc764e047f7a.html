@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% block title %}{{ contest.name }}{% endblock %}
+{% block meta %}
+<meta property="og:title" content="{{ contest.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
+<meta property="og:description" content="{{ contest.contestdescription.content }}" />
+<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_largegrid_url }}" />
+<meta property="og:site_name" content="Modernom" />
+<meta property="fb:app_id" content="208027353668" />
+<meta property="fb:admins" content="622302511" />
+<!--5c16a29a-84e7-11e2-ae07-bc764e047f7a --> {% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/style.css">
+<style type="text/css">
+	
+.gw1 {
+	width: 960px;
+	height: 212px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/GreenWorksLayout-Phase2v3_01.jpg) no-repeat;
+}
+.gw2 {
+	width: 960px;
+	height: 326px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/GreenWorksLayout-Phase2v3_02.jpg) no-repeat;
+}
+.gw3 {
+	width: 960px;
+	height: 523px;
+}
+.gw4 {
+	width: 960px;
+	height: 489px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/GreenWorksLayout-Phase2v3_04.jpg) no-repeat;
+}
+.gw5 {
+	width: 960px;
+	height: 488px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/GreenWorksLayout-Phase2v3_05.jpg) no-repeat;
+}
+.gw6 {
+	width: 960px;
+	height: 352px;
+	background: url({{ MEDIA_URL }}contests/custom/{{ contest.guid }}/GreenWorksLayout-Phase2v3_06.jpg) no-repeat;
+}
+.gw7 {
+	width: 960px;
+	height: 108px;
+}
+</style>
+{% endblock %}
+{% block container %}
+
+
+<div class="container">
+	<div class="row">
+        <div class="span12 gw1">
+        	<div class="facebook-holder">
+            	<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fgreenworks&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=215175268507724" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
+            </div> <!-- /facebook-holder -->
+        </div> <!-- /span12 gw1 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 gw2">
+        	
+        </div> <!-- /span12 gw2 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 gw3">
+        	<img src="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/GreenWorksLayout-Phase2v3_03.jpg" usemap="#Map2" />
+            <map name="Map2">
+              <area shape="rect" coords="480,143,941,491" href="http://www.multivu.com/assets/60042/documents/60042-infographic-original.pdf" target="_blank" alt="Click to see more results from the survey!">
+            </map>
+        </div> 
+        <!-- /span12 gw3 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 gw4">
+        	<div class="yt-holder">
+            	<iframe width="626" height="352" src="http://www.youtube.com/embed/dDtzpcatwIs?list=PLKFX2cBYAZzIJb-BGhIoQ7wVU0MlqX_XJ" frameborder="0" allowfullscreen></iframe>
+            </div> <!-- /yt-holder -->
+        </div> <!-- /span12 gw4 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 gw5">
+        
+        </div> <!-- /span12 gw5 -->
+    </div> <!-- /row -->
+    <div class="row">
+        <div class="span12 gw6">
+        	<div class="greenworks-form">
+
+				 <form class="form-horizontal" method="post" action="{{ contest.get_absolute_url }}">
+                    {% csrf_token %}
+                    {% if 'reached_total_max' in request.GET  %}
+                    <div class="control-group">
+                        <div class="controls span3">
+                            <p class="help-block">
+                                You have reached your maximum entries for this contest.
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if 'reached_daily_max' in request.GET  %}
+                    <div class="control-group">
+                        <div class="controls span3">
+                            <p class="help-block">
+                                You have reached your maximum entires for this contest today.
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if 'entry_success' in request.GET %}
+                    <div class="control-group">
+                        <div class="controls span3">
+                            <p class="help-block">
+                                Your entry was successfully entered.
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01">
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="{{ contest.guid }}full_name" placeholder="Full Name" class="input-xlarge">
+                            <p class="help-block">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01">
+                        </label>
+                        <div class="controls">
+                            <input type="text" name='email' placeholder="Email Address" class="input-xlarge">
+                        </div>
+                    </div>
+					<div class="control-group">
+                <!-- Textarea -->
+                <label class="control-label">Answer</label>
+                <div class="controls">
+                <div class="textarea">
+                <textarea name="{{ contest.guid }}being-green" class=""> </textarea>
+                </div>
+                </div>
+                </div>
+				
+                    <div class="control-group">
+                        <label class="control-label">
+                        </label>
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-primary">
+                                Enter Now
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            
+			
+            </div> <!-- /pure-form -->
+        </div> <!-- /span12 gw6 -->
+        </div> <!-- /row -->
+        <div class="row">
+        	<div class="span12 gw7">
+        		<img src="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/GreenWorksLayout-Phase2v3_07.jpg" alt="Visit the campaign website!" usemap="#Map" />
+                <map name="Map">
+                  <area shape="rect" coords="268,22,602,51" href="http://www.facebook.com/greenworks" target="_blank" alt="Join us on Facebook!">
+                  <area shape="rect" coords="622,22,940,53" href="http://www.twitter.com/greenworks" target="_blank" alt="Join us on Twitter!">
+                  <area shape="rect" coords="486,57,799,88" href="http://www.greenworkscleaners.com" target="_blank" alt="Visit the campaign website!">
+                </map>
+        	</div> 
+        	<!-- /span12 gw7 -->
+    	</div> <!-- /row -->
+        <div class="row">
+        	<div class="span12">
+            	<div class="disclaimer">*By entering the contest, you agree to the <a href="http://www.modernmom.com/contest-rules">Terms & Conditions</a>. This contest will end on April 6, 2013. Two (2) winners will be randomly selected and will win a $500 gift card. Winners will be notified by email. Your email address will ONLY be used to contact you in the event that you are the winner of the contest. Prizes are only available to members who live in the United States and are at least 18 years of age. Winners must claim prize within 48 hours of notification, or another winner will be chosen.</div>
+            </div> <!-- /span12 -->
+        </div> <!-- /row -->
+</div> <!-- /container -->
+               
+{% endblock %}

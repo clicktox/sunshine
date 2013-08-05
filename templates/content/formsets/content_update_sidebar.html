@@ -1,0 +1,4 @@
+<form method="POST" action="{% url content_update_sidebar content.guid %}" id="content_update_sidebar_form">
+{% csrf_token %}
+{{ form.as_p }}
+</form>

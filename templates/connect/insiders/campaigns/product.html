@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load subdomainurls %}
+{% block title %}{{ campaign.name }} Insiders Campaign {% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/style.css" />
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span4">
+        <ul class="nav nav-list">
+            <li class="nav-header">
+                About You
+            </li>
+            <li>
+                {{ user.first_name }}
+            </li>
+            <li>
+                {{ user.last_name }}
+            </li>
+        </ul>
+    </div>
+    <div class="span8">
+        <h3>Product Review for {{ product.title }}</h3>
+        <h4>Part of the {{ campaign.name }} Insider Campaign</h4>
+        <div class="row">
+            <div class="span4">
+            	
+				{% if review %}
+				I gave it {{ review.rating }} Stars<br>
+				<b>{{ review.review_title }}</b>
+				<p>{{ review.review }}</p>
+				-{{ review.inider.user.username }}
+				{% else %}
+				{{ product.title }}
+                {{ product.description }}
+                <!--{{  product.image }}-->
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">
+                        Post Review
+                    </button>
+                </form>
+				{% endif %}
+            </div>
+            
+        </div>
+    </div>
+    {% endblock %}
+    {% block lower_js %}
+    {% endblock %}

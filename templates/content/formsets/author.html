@@ -1,0 +1,21 @@
+<div class="row"><div class="span2">
+	Existing Author
+<form method="POST" action="{% url content_edit_author content.guid %}">
+{% csrf_token %}
+{% for author in authors %}
+<input type="checkbox" name="authors" value="{{ author.guid }}">{{ author }}<br>
+{% endfor %}
+<button class="btn btn-success" name="existing_author">Save</button>
+</form>
+</div>
+
+
+<div class="span4">
+	New Author
+<form method="POST" action="{% url content_edit_author content.guid %}">
+{% csrf_token %}
+{{ author_form.as_p }}
+<button class="btn btn-success" name="new_author">Save</button>
+</form>
+</div>
+</div>

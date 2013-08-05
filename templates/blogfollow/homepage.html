@@ -1,0 +1,49 @@
+{% extends 'base.html' %}  
+{% load blogfollow_tags %}
+		{% block container %} 
+
+        <div class="row-fluid marketing">
+            <div class="span8">
+            	{% if notfollowing %}
+				You are not following anyone, 
+				{% endif %}
+                {% for blog in blogs %} 
+
+                <div class="post">
+                    <div class="row">
+                        {% if blog.image %} 
+
+                        <div class="feat-img span2">
+                            <img src=
+                            "{{ blog.image.get_thumbnail_url }}"
+                             title="featured image" alt="">
+                        </div>
+                        <!-- end featured image -->
+                        {% endif %} 
+
+                        <div class="details">
+                            <h4><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h4>
+                            {% if blog.introduction %}
+
+                            <p>{{ blog.introduction }}</p>
+                            {% endif %}
+                        </div>
+                        <!-- end details -->
+						{% if blog|is_following:user %}
+						 <a class="btn pull-right" href="{% url blogfollow_blog_unfollow blog.uuid %}">Unfollow</a>
+						{% else %}
+                        <a class="btn pull-right" href=
+                        "{% url blogfollow_blog_follow blog.uuid %}">Follow</a>
+						{% endif %}
+                    </div>
+										<div class="row">
+											<p>Pulling from {{ blog.blogfeed_set.count }} feeds</p>
+										</div>
+                    <!-- end post row -->
+                </div>
+				<hr>
+                {% endfor %}
+            </div>
+        </div>
+        {% endblock %}
+

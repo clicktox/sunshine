@@ -1,0 +1,5 @@
+<ul class="nav nav-list">
+	{% for contest in contests %}
+	<li> <a href="{{ contest.get_absolute_url }}">{{ contest.name }}</a></li>
+	{% endfor %}
+</ul>

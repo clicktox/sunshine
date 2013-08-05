@@ -1,0 +1,10 @@
+{% extends "registration/base_registration.html" %}
+
+
+
+{% block form %}
+  <form action="." method="post" class="well form-inline">{% csrf_token %}
+    {{ form.as_p }}
+    <p class="submit"><button type="submit">Submit</button></p>
+  </form>
+{% endblock %}
