@@ -78,4 +78,21 @@ class Scoop(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.name
-    
+
+class ScoopItem(models.Model):
+    """
+    Holds the relationship between a tag and the item being tagged.
+    """
+    scoop = models.ForeignKey(Scoop, verbose_name=_('scoop'), related_name='items')
+    content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
+    object_id    = models.PositiveIntegerField(_('object id'), db_index=True)
+    object       = generic.GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        # Enforce unique tag association per object
+        unique_together = (('scoop', 'content_type', 'object_id'),)
+        verbose_name = _('scoop item')
+        verbose_name_plural = _('scoop items')
+
+    def __unicode__(self):
+        return u'%s' % (self.object)

@@ -8,22 +8,16 @@
         <meta property="og:image" content="">
 {% endblock %}
 {% block content %}
-<div class="row admin">
-{% if ADMIN_FORMS %}
-<table>
-{% for topic in SCOOP_TOPICS %}
-<tr><td>{{ topic.name }}</td><td>{{ 
+
+
+{% for scoop in scoop_list %}
+{{ scoop }} {% if user.is_staff %}<a href="{% url 'scoop_add_item' scoop.slug %}">Add Item</a>{% endif %}
+<ul>
+{% for scoopitem in scoop.items.all %}
+
+	<li><a href="{{ scoopitem.object.get_absolute_url }}">{{ scoopitem }}</a></li>
+
 {% endfor %}
 </ul>
-
-<form method="post" aciton="." class="form-horizontal">
-	{% csrf_token %}
-{{ ADMIN_FORMS.add_topic }}
-<button type="submit">Add New Topic</button>
-</form>
-</div>
-{% endif %}
-{% for topic in SCOOP_TOPICS %}
-{{ topic }}
 {% endfor %}
 {% endblock %}

@@ -3,6 +3,7 @@ from models import *
 
 
 admin.site.register(Topic)
+admin.site.register(Scoop)
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
