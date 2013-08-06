@@ -14,7 +14,7 @@
     }
     
     #whats-new .whats-new-thumb-first {
-        margin: 5px 2px 5px 0px;
+        margin: 5px 10px 5px 9px;
         padding: 0;
         float: left;
         display: inline;
@@ -22,7 +22,7 @@
     }
     
     #whats-new .whats-new-thumb {
-        margin: 5px 0 5px 10px;
+        margin: 5px 10px;
         padding: 0;
         float: left;
         display: inline;
@@ -127,3 +127,78 @@
         width: 940px;
         clear: both;
     }
+    
+/* SECTION TITLES */
+
+.wht-bg-H1 {
+ color: #000;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size: 26px;
+	background-color: #fff;
+	padding: 10px 10px 10px 0px;
+	margin-right: -10px;
+	line-height: 24px;
+}
+.pink {
+	color: #ed145b;
+	font-weight: bold;
+}
+.black {
+	color: #000;
+	font-family: 'Myriad Pro', Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style: normal;
+}
+.bars {
+	background: url('../img/GrayBars.png') repeat-x 0 0;
+	height: 30px;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+.feat-title {
+	font-size: 20px;
+	margin-top: 5px;
+}
+.feat-text {
+	margin-top: 3px;
+	padding-bottom: 5px;
+	border-bottom: 1px dotted #F06;
+}
+.section-title {
+	margin-bottom: 50px;
+}
+.section-list {
+	margin: 0px;
+	color: #0081c7;
+}
+.section-end {
+	margin: 5px 0px;
+	float: right;
+	border-bottom: 1px dotted #fff;
+}
+.section-list ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	display: block;
+}
+.section-list ul li {
+	list-style-type: none;
+	display: block;
+	padding: 5px 0px 5px 0px;
+	font-size: 16px;
+	border-bottom: 1px dotted #F06;
+}
+.at-home {
+	background: url(../img/AtHomeBG.png) no-repeat bottom left;
+	height: 215px;
+}
+.spacer1 {
+	padding-right: 100px;
+}
+.clear2 {
+	clear: both;
+	margin-bottom: 20px;
+}
