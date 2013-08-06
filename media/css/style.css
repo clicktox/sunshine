@@ -502,7 +502,7 @@ footer {
   text-shadow:rgba(255, 255, 255, 0.4) 1px 1px 1px;
 }
 
-#footer-container  {
+#mm-footer {
   background-color:#F9F9F9;
   background-position:initial initial;
   background-repeat:initial initial;
@@ -525,6 +525,24 @@ footer {
     height: 40px;
     background: url('images/dm_attribution.png') 0 0 no-repeat;
 }
+
+.social-links {
+  margin-bottom:10px;
+}
+
+.social-links li {
+  float:left;
+  margin-right:20px;
+}
+
+.social-links a {
+  text-decoration:none;
+}
+
+#mm-footer .footer-menu {
+  margin-bottom:15px;
+}
+
 
 .google .label {
     font-size: 12px;
