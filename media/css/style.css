@@ -338,7 +338,7 @@ h3.content-aside {
     padding-left: 40px;
 }
 
-#subnav .item-1 a {
+#subnav {
     display: block;
     background: #bac53c;
     padding: 10px 10px;
@@ -349,24 +349,40 @@ h3.content-aside {
     padding-left: 40px;
 }
 
-#subnav .item-2 a {
-    background: #15d5dd;
+#subnav li a.item1 {
+    background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -5px;
+	width: 170px;
+	height: 41px;
 }
 
-#subnav .item-3 a {
-    background: #639ace;
+#subnav li a.item2 {
+	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -52px;
+	width: 170px;
+	height: 41px;
 }
 
-#subnav .item-4 a {
-    background: #ab67bd;
+#subnav li a.item3 {
+	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -99px;
+	width: 170px;
+	height: 42px;
 }
 
-#subnav .item-5 a {
-    background: #db6228;
+#subnav li a.item4 {
+	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -147px;
+	width: 170px;
+	height: 41px;
 }
 
-#subnav .item-6 a {
-    background: #eea200;
+#subnav li a.item5 {
+	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -194px;
+	width: 170px;
+	height: 42px;
+}
+
+#subnav li a.item6 {
+	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -242px;
+	width: 170px;
+	height: 41px;
 }
 
 #featured, #editors .article {
