@@ -347,37 +347,37 @@ h3.content-aside {
     padding-left: 40px;
 }
 
-#subnav li.item1 a {
+#subnav li.item-1 a {
     background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -5px;
 	width: 170px;
 	height: 41px;
 }
 
-#subnav li.item2 a {
+#subnav li.item-2 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -52px;
 	width: 170px;
 	height: 41px;
 }
 
-#subnav li.item3 a {
+#subnav li.item-3 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -99px;
 	width: 170px;
 	height: 42px;
 }
 
-#subnav li.item4 a {
+#subnav li.item-4 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -147px;
 	width: 170px;
 	height: 41px;
 }
 
-#subnav li.item5 a {
+#subnav li.item-5 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -194px;
 	width: 170px;
 	height: 42px;
 }
 
-#subnav li.item6 a {
+#subnav li.item-6 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -242px;
 	width: 170px;
 	height: 41px;
