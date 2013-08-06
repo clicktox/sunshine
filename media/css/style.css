@@ -95,9 +95,9 @@ h3, h4, h5, h6 {
 }
 
 .col-width {
-    margin: 0 auto;
-    padding: 0 20px;
-    max-width: 1180px;
+   margin: 0 auto;
+   padding: 0 0px;
+   max-width: 100%;
 }
 
 #skipLink {
@@ -511,6 +511,15 @@ footer {
   border-top-width:1px;
   font-size:12px;
   padding:15px 0;
+}
+
+#mm-footer .footer-menu li {
+  border-right-color:#CCCCCC;
+  border-right-style:solid;
+  border-right-width:1px;
+  float:left;
+  margin-right:8px;
+  padding-right:8px;
 }
 
 #demand-footer {
