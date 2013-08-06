@@ -1,0 +1,204 @@
+/* CSS for Hompage.html */
+
+ .social-media-links {
+        margin-top: 0px;
+        width: 300px;
+        height: 66px;
+    }
+    
+    /* FEATURED STRIP */
+    #whats-new {
+        width: 1200px;
+        margin: 0 auto;
+        line-height: 18px;
+    }
+    
+    #whats-new .whats-new-thumb-first {
+        margin: 5px 10px 5px 9px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    #whats-new .whats-new-thumb {
+        margin: 5px 10px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    .thumb-title {
+        margin-top: 5px;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .strip-title {
+        text-align: center;
+        margin-bottom: 5px;
+        background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+    }
+    
+    .strip-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: #ed145b;
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        margin: 0px auto;
+    }
+    
+    .bottom-line {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+        width: 940px;
+        clear: both;
+    }
+    
+    /* SITES WE LOVE STRIP */
+    #swl-new {
+        width: 1200px;
+        margin: 0 auto;
+        line-height: 18px;
+    }
+    
+    #swl-new .first {
+        margin: 5px 0;
+    }
+    
+    #swl-new .swl-thumb {
+        margin: 5px 0 5px 8px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    ul.swl-links-list {
+        margin-top: 10px;
+        font-size: 14px;
+        text-align: left;
+        list-style-type: none;
+    }
+    
+    li.swl-links {
+        list-style-type: none;
+        margin-left: -20px;
+        border-bottom: 1px dotted #F06;
+    }
+    
+    .swl-thumb-title {
+        margin-top: 5px;
+        font-size: 18px;
+        text-align: center;
+        list-style-type: none;
+    }
+    
+    .swl-strip-title {
+        text-align: center;
+        margin-bottom: 5px;
+        background: url(../img/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+    }
+    
+    .swl-strip-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: #ed145b;
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        margin: 0px auto;
+    }
+    
+    .swl-bottom-line {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        background: url(../img/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+        width: 940px;
+        clear: both;
+    }
+    
+/* SECTION TITLES */
+
+.wht-bg-H1 {
+ color: #000;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size: 26px;
+	background-color: #fff;
+	padding: 10px 10px 10px 0px;
+	margin-right: -10px;
+	line-height: 24px;
+}
+.pink {
+	color: #ed145b;
+	font-weight: bold;
+}
+.black {
+	color: #000;
+	font-family: 'Myriad Pro', Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-style: normal;
+}
+.bars {
+	background: url('../img/GrayBars.png') repeat-x 0 0;
+	height: 30px;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+.feat-title {
+	font-size: 20px;
+	margin-top: 5px;
+}
+.feat-text {
+	margin-top: 3px;
+	padding-bottom: 5px;
+	border-bottom: 1px dotted #F06;
+}
+.section-title {
+	margin-bottom: 50px;
+}
+.section-list {
+	margin: 0px;
+	color: #0081c7;
+}
+.section-end {
+	margin: 5px 0px;
+	float: right;
+	border-bottom: 1px dotted #fff;
+}
+.section-list ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	display: block;
+}
+.section-list ul li {
+	list-style-type: none;
+	display: block;
+	padding: 5px 0px 5px 0px;
+	font-size: 16px;
+	border-bottom: 1px dotted #F06;
+}
+.at-home {
+	background: url(../img/AtHomeBG.png) no-repeat bottom left;
+	height: 215px;
+}
+.spacer1 {
+	padding-right: 100px;
+}
+.clear2 {
+	clear: both;
+	margin-bottom: 20px;
+}
