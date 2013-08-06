@@ -495,20 +495,28 @@ h3.content-aside {
     margin-bottom: 15px;
 }
 
+
+/* Footer */
 footer {
-    clear: both;
-    text-align: center;
-    border-top: 1px solid #ccc;
-    background: #eee;
-    padding: 15px 0;
+  clear:both;
+  text-shadow:rgba(255, 255, 255, 0.4) 1px 1px 1px;
 }
 
-#footer-container {
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, .4);
-    font-size: 12px;
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 15px;
+#footer-container  {
+  background-color:#F9F9F9;
+  background-position:initial initial;
+  background-repeat:initial initial;
+  border-top-color:#CCCCCC;
+  border-top-style:solid;
+  border-top-width:1px;
+  font-size:12px;
+  padding:15px 0;
+}
+
+#demand-footer {
+  font-size:12px;
+  margin-bottom:15px;
+  text-align:center;
 }
 
 #footer-logo {
