@@ -21,13 +21,13 @@
         <title>{% block title %}ModernMom{% endblock %}</title>
         <meta name="description" content="ModernMom is a community for moms, mothers, and the woman behind the mom. Find smart advice and practical tips for moms by moms on parenting, finances, careers, fitness, beauty, babies, children and much more.">
         <meta name="pagetype" scheme="DMINSTR2" content="Home">
-				{% block meta_og %}
+        {% block meta_og %}
         <meta property="og:url" content="">
         <meta property="og:description" content="ModernMom is a community for moms, mothers, and the woman behind the mom. Find smart advice and practical tips for moms by moms on parenting, finances, careers, fitness, beauty, babies, children and much more.">
         <meta property="og:type" content="website">
         <meta property="og:title" content="ModernMom">
         <meta property="og:image" content="">
-{% endblock %}
+        {% endblock %}
         <link rel="canonical" href="">
         <!--[if lt IE 9]>
             <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -77,17 +77,17 @@
                         <li>
                             <a href="http://musthave.modernmom.com/recalls">Recalls</a>
                         </li>
-												{% if not request.user.is_authenticated %}
-												<li>
+                        {% if not request.user.is_authenticated %}
+                        <li>
                             <a href="{% url 'login' %}">LogIn</a>
                         </li>
-												{% endif %}
+                        {% endif %}
                     </ul>
-                </div><!--end col-width-->
+                </div>
+                <!--end col-width-->
             </nav>
             <div class="container">
-            	{% block container %}
-            
+                {% block container %}
                 <div class="row">
                     <div class="span2">
                         <div class="widget">
@@ -112,63 +112,105 @@
                                     <a href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/relationships-family/">Relationships</a>
                                 </li>
                             </ul>
-                        </div><!--end widget-->
-                    </div><!--end span2-->
+                        </div>
+                        <!--end widget-->
+                    </div>
+                    <!--end span2-->
                     <div class="span7">
-                    	{% block content %}{% endblock %}
+                        {% block content %}{% endblock %}
                     </div>
                     <!-- Start Sidebar -->
                     <aside class="span3">
-                       <img src="http://placehold.it/300x250">
+                        <img src="http://placehold.it/300x250">
                     </aside>
-                </div>
-                <!--end row--><!-- End Sidebar -->
-								{% endblock %}
+                </div><!--end row--><!-- End Sidebar -->{% endblock %}
             </div><!--end container-->
-       
         </div><!--end page-->
-       
-       <footer>
-            		<div id="demand-footer">
-				<a id="footer-logo" href="http://demandmedia.com" class="ir">Driven by Demand Media</a>
-				<a href="http://motherhood.modernmom.com/sitemap.html" title="Motherhood Sitemap">Motherhood Index</a>
-			</div><!--end demand-footer-->
-               		<div id="mm-footer">
-                	<div class="col-width clearfix">
-                	
-                	<h3>ModernMom</h3>
-                
-                		<ul class="social-links clearfix">
-					<li class="facebook"><a href="http://www.facebook.com/pages/ModernMom/197177430011"><span>Facebook</span></a></li>
-					<li class="twitter"><a href="http://twitter.com/modernmom"><span>Twitter</span></a></li>
-					<li class="gplus"><a href="http://plus.google.com/u/0/+ModernMom/posts"><span>Google+</span></a></li>
-					<li class="pinterest"><a href="http://pinterest.com/ModernMomOnline/"><span>Pinterest</span></a></li>
-					<li class="youtube"><a href="http://www.youtube.com/user/modernmom"><span>YouTube</span></a></li>
-				</ul>
-				<ul class="footer-menu clearfix">
-					<li><a href="http://www.modernmom.com/brooke-burke">Brooke Burke</a></li>
-					<li><a href="http://musthave.modernmom.com">Must-Haves</a></li>
-					<li><a href="http://www.modernmom.com/contests">Contests</a></li>
-					<li><a href="http://www.modernmom.com/videos/">Videos (Youtube)</a></li>
-					<li><a href="http://babooshbaby.com">Shop</a></li>
-					<li><a href="http://www.mommytracked.com">Mommytracked</a></li>
-					<li><a href="http://www.modernmom.com/recalls">Recalls</a></li>
-				</ul>
-				<ul class="footer-menu clearfix">
-					<li><a href="http://www.modernmom.com/about-us">About Us</a></li>
-					<li><a href="http://www.modernmom.com/user/register">Register</a></li>
-					<li><a href="http://www.modernmom.com/advertising">Advertising</a></li>
-					<li><a href="http://www.modernmom.com/press">Press</a></li>
-					<li><a href="http://www.modernmom.com/privacy-policy">Privacy Policy</a></li>
-					<li><a href="http://www.modernmom.com/privacy-policy">Terms of Use</a></li>
-					<li><a href="http://www.modernmom.com/contact">Contact Us</a></li>
-				</ul>
-                	<p class="copyright">
-                    		&copy; Copyright 2013 Modern Mom. All Rights Reserved.
-                	</p>
-                	<p class="notice">Reproduction of any portion of this website only at the express permission of Mom, Inc.  <br>The information provided on ModernMom is for educational use only. It should not be used as a substitute for professional medical advice, diagnosis or treatment.</p>
-                	</div><!--end col-width clearfix -->
-                </div><!--end mm-footer-->
-            </footer>
+        <footer>
+            <div id="demand-footer">
+                <a id="footer-logo" href="http://demandmedia.com" class="ir">Driven by Demand Media</a>
+                <a href="http://motherhood.modernmom.com/sitemap.html" title="Motherhood Sitemap">Motherhood Index</a>
+            </div>
+            <!--end demand-footer-->
+            <div id="mm-footer">
+                <div class="col-width clearfix">
+                    <h3>ModernMom</h3>
+                    <ul class="social-links clearfix">
+                        <li class="facebook">
+                            <a href="http://www.facebook.com/pages/ModernMom/197177430011"><span>Facebook</span></a>
+                        </li>
+                        <li class="twitter">
+                            <a href="http://twitter.com/modernmom"><span>Twitter</span></a>
+                        </li>
+                        <li class="gplus">
+                            <a href="http://plus.google.com/u/0/+ModernMom/posts"><span>Google+</span></a>
+                        </li>
+                        <li class="pinterest">
+                            <a href="http://pinterest.com/ModernMomOnline/"><span>Pinterest</span></a>
+                        </li>
+                        <li class="youtube">
+                            <a href="http://www.youtube.com/user/modernmom"><span>YouTube</span></a>
+                        </li>
+                    </ul>
+                    <ul class="footer-menu clearfix">
+                        <li>
+                            <a href="http://www.modernmom.com/brooke-burke">Brooke Burke</a>
+                        </li>
+                        <li>
+                            <a href="http://musthave.modernmom.com">Must-Haves</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/contests">Contests</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/videos/">Videos (Youtube)</a>
+                        </li>
+                        <li>
+                            <a href="http://babooshbaby.com">Shop</a>
+                        </li>
+                        <li>
+                            <a href="http://www.mommytracked.com">Mommytracked</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/recalls">Recalls</a>
+                        </li>
+                    </ul>
+                    <ul class="footer-menu clearfix">
+                        <li>
+                            <a href="http://www.modernmom.com/about-us">About Us</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/user/register">Register</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/advertising">Advertising</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/press">Press</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/privacy-policy">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/privacy-policy">Terms of Use</a>
+                        </li>
+                        <li>
+                            <a href="http://www.modernmom.com/contact">Contact Us</a>
+                        </li>
+                    </ul>
+                    <p class="copyright">
+                        &copy; Copyright 2013 Modern Mom. All Rights Reserved.
+                    </p>
+                    <p class="notice">
+                        Reproduction of any portion of this website only at the express permission of Mom, Inc. 
+                        <br>
+                        The information provided on ModernMom is for educational use only. It should not be used as a substitute for professional medical advice, diagnosis or treatment.
+                    </p>
+                </div>
+                <!--end col-width clearfix -->
+            </div>
+            <!--end mm-footer-->
+        </footer>
     </body>
-</html><!-- Rendered: 2013-06-25 08:52:23.305277 -->
+</html>
+<!-- Rendered: 2013-06-25 08:52:23.305277 -->
