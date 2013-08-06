@@ -68,15 +68,14 @@
     <div class="row">
         <div class="span12">
             <div id="whats-new">
-            	{% for article in latest %}
+                {% for article in latest %}
                 <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
                     <a href="{{ article.get_absolute_url }}"><img src="http://placehold.it/180x113" alt="{{ article }}"></a>
                     <p class="thumb-title">
                         <a href="{{ article.get_absolute_url }}">{{ article }}</a>
                     </p>
                 </div>
-							{% endfor %}
-              
+                {% endfor %}
                 <div class="clear-both">
                 </div>
                 <div class="bottom-line">
@@ -119,5 +118,7 @@
             </div>
             <!-- /row -->
         </div>
-        <!-- /container -->
-        {% endblock %}
+    </div>
+</div>
+<!-- /container -->
+{% endblock %}
