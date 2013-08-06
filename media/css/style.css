@@ -340,7 +340,6 @@ h3.content-aside {
 
 #subnav {
     display: block;
-    background: #bac53c;
     padding: 10px 10px;
     margin-bottom: 6px;
     color: #fff;
@@ -349,37 +348,37 @@ h3.content-aside {
     padding-left: 40px;
 }
 
-#subnav li a.item1 {
+#subnav li.item1 a {
     background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -5px;
 	width: 170px;
 	height: 41px;
 }
 
-#subnav li a.item2 {
+#subnav li.item2 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -52px;
 	width: 170px;
 	height: 41px;
 }
 
-#subnav li a.item3 {
+#subnav li.item3 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -99px;
 	width: 170px;
 	height: 42px;
 }
 
-#subnav li a.item4 {
+#subnav li.item4 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -147px;
 	width: 170px;
 	height: 41px;
 }
 
-#subnav li a.item5 {
+#subnav li.item5 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -194px;
 	width: 170px;
 	height: 42px;
 }
 
-#subnav li a.item6 {
+#subnav li.item6 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat -5px -242px;
 	width: 170px;
 	height: 41px;
