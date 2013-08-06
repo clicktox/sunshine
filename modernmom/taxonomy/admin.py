@@ -4,7 +4,12 @@ from models import *
 
 admin.site.register(Topic)
 admin.site.register(Scoop)
+admin.site.register(ScoopItem)
 
+class CategoryItemAdmin(admin.ModelAdmin):
+    list_display = ('object','category')
+    list_filter = ('category',)
+admin.site.register(CategoryItem,CategoryItemAdmin)
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     list_display = ('name','parent')
