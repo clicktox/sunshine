@@ -96,8 +96,8 @@ h3, h4, h5, h6 {
 
 .col-width {
    margin: 0 auto;
-   padding: 0 0px;
-   max-width: 100%;
+   padding: 0 20px;
+   max-width: 1180px;
 }
 
 #skipLink {
