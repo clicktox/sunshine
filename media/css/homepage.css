@@ -53,7 +53,7 @@
     .strip-title {
         text-align: center;
         margin-bottom: 5px;
-        background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+        background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
         line-height: 30px;
     }
     
@@ -71,7 +71,7 @@
     .bottom-line {
         margin-top: 0px;
         margin-bottom: 10px;
-        background: url({{ MEDIA_URL }}images/BGstripe.jpg) repeat-x center;
+        border-bottom: #f36388 solid repeat;
         line-height: 30px;
         width: 940px;
         clear: both;
@@ -119,7 +119,7 @@
     .swl-strip-title {
         text-align: center;
         margin-bottom: 5px;
-        background: url(../img/BGstripe.jpg) repeat-x center;
+        background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
         line-height: 30px;
     }
     
@@ -137,7 +137,7 @@
     .swl-bottom-line {
         margin-top: 0px;
         margin-bottom: 10px;
-        background: url(../img/BGstripe.jpg) repeat-x center;
+        background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
         line-height: 30px;
         width: 940px;
         clear: both;
@@ -171,7 +171,7 @@
 	font-style: normal;
 }
 .bars {
-	background: url('http://sunshine.modernmom.com/media/images/pinkbars.png') repeat-x 0 0;
+	background: none repeat scroll 0 0 #F36388;
 	height: 30px;
 	margin: 0px;
 	padding: 0px;
