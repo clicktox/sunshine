@@ -107,11 +107,11 @@
                             <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
                         </div>
                         <!-- /bars -->
-                        <div class="section-list">
+                        <div class="section-list" style="overflow:hidden;">
                             <ul>
                                 {% for ci in category.items.all %}
                                 <li>
-                                    <a href="{{ ci.object.get_absolute_url }}">{{ ci }}</a>
+                                    <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
                                 </li>
                                 {% endfor %}
                             </ul>
