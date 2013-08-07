@@ -5,13 +5,7 @@
         width: 300px;
         height: 66px;
     }
-    .bars {
-	background: url('http://sunshine.modernmom.com/media/images/pinkbars.png') repeat-x 0 0;
-	height: 30px;
-	margin: 0px;
-	padding: 0px;
-	border: none;
-}
+
     
     /* FEATURED ROW */
     .span5 .home{
@@ -177,7 +171,7 @@
 	font-style: normal;
 }
 .bars {
-	background: url('../img/GrayBars.png') repeat-x 0 0;
+	background: url('http://sunshine.modernmom.com/media/images/pinkbars.png') repeat-x 0 0;
 	height: 30px;
 	margin: 0px;
 	padding: 0px;
