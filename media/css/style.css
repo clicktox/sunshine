@@ -351,18 +351,24 @@ h3.content-aside {
     background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat 0px -5px;
 	width: 145px;
 	height: 23px;
+	padding-left: 50px;
+    	padding-top: 10px;
 }
 
 #subnav li.item-2 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat 0px -52px;
 	width: 145px;
 	height: 23px;
+	padding-left: 50px;
+    	padding-top: 10px;
 }
 
 #subnav li.item-3 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat 0px -99px;
 	width: 145px;
 	height: 23px;
+	padding-left: 50px;
+    	padding-top: 10px;
 }
 
 #subnav li.item-4 a {
@@ -375,12 +381,16 @@ h3.content-aside {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat 0px -194px;
 	width: 145px;
 	height: 23px;
+	padding-left: 50px;
+    	padding-top: 10px;
 }
 
 #subnav li.item-6 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat 0px -242px;
 	width: 145px;
 	height: 23px;
+	padding-left: 50px;
+    	padding-top: 10px;
 }
 
 #featured, #editors .article {
