@@ -375,6 +375,8 @@ h3.content-aside {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat 0px -147px;
 	width: 145px;
 	height: 23px;
+	padding-left: 50px;
+    	padding-top: 10px;
 }
 
 #subnav li.item-5 a {
