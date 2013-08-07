@@ -6,6 +6,11 @@
         height: 66px;
     }
     
+    /* FEATURED ROW */
+    .span5 home{
+ 	padding: 0 10px 10px;
+    }
+    
     /* FEATURED STRIP */
     #whats-new {
         width: 1200px;
