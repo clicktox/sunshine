@@ -24,7 +24,7 @@
             <div class="carousel-inner">
                 {% for fc in FEATURED_ITEMS %}
                 <div class="item {% if forloop.counter == 1 %}active{% endif %}">
-                    <!-- class of active since it's the first item --><img src="{{ fc.image.get_500X400VH_url }}" alt="" />
+                    <!-- class of active since it's the first item --><img src="http://placehold.it/500x400" alt="" />
                     <div class="carousel-caption">
                         <p>
                             {{ fc.name }}
