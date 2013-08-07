@@ -1,6 +1,6 @@
 /* CSS for Hompage.html */
 
- .social-media-links {
+.social-media-links {
         margin-top: 0px;
         width: 300px;
         height: 66px;
@@ -10,6 +10,14 @@
     .span5 home{
  	padding: 0 10px 10px;
     }
+    
+    /* SOCIAL MEDIA */
+	.social-media-links {
+	margin-top: 0px;
+	margin-bottom: 10px;
+	width: 300px;
+	height: 66px;
+}
     
     /* FEATURED STRIP */
     #whats-new {
@@ -132,6 +140,11 @@
         width: 940px;
         clear: both;
     }
+    
+/* SLIDER THUMBNAILS */
+	.slider-thumbs {
+	margin-top: -20px;
+	}
     
 /* SECTION TITLES */
 
