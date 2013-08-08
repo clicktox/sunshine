@@ -19,153 +19,143 @@
         </div>
     </div>
     <div class="span5 home">
-    <h3 class='content-aside'>Featured Stories</h3>
-        <!--  Carousel -->
-      <!--  consult Bootstrap docs at 
-            http://twitter.github.com/bootstrap/javascript.html#carousel -->
-      <div id="this-carousel-id" class="carousel slide">
-        <div class="carousel-inner">
-          <div class="item active">
-            <a href="#">  <img src="http://placehold.it/470x233" alt="ModernMom" />
-            </a>
-            <div class="carousel-caption">
-              <p>ModernMom</p>
-              <p><a href="#">ModernMom.com</a></p>
+        <h3 class='content-aside'>Featured Stories</h3>
+        <!-- Carousel --><!-- consult Bootstrap docs at
+http://twitter.github.com/bootstrap/javascript.html#carousel -->
+        <div id="this-carousel-id" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="#"><img src="http://placehold.it/470x233" alt="ModernMom" /></a>
+                    <div class="carousel-caption">
+                        <p>
+                            ModernMom
+                        </p>
+                        <p>
+                            <a href="#">ModernMom.com</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="http://placehold.it/470x233" alt="ModernMom" /></a>
+                    <div class="carousel-caption">
+                        <p>
+                            ModernMom
+                        </p>
+                        <p>
+                            <a href="#">ModernMom.com</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="item">
-            <a href="#">
-              <img src="http://placehold.it/470x233" alt="ModernMom" />
-            </a>
-            <div class="carousel-caption">
-              <p>ModernMom</p>
-              <p><a href="#">ModernMom.com</a></p>
-            </div>
-          </div>
-        </div><!-- .carousel-inner -->
-        <!--  next and previous controls here
-              href values must reference the id for this carousel -->
-          <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-          <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-      </div><!-- .carousel -->
-     
-     <div class="slider-thumbs">
-      	<img src="http://placehold.it/114x63" />
-      	<img src="http://placehold.it/114x63" />
-      	<img src="http://placehold.it/114x63" />
-      	<img src="http://placehold.it/114x63" />	
-     </div><!--end slider-thumbs-->
-     
-    </div> <!-- end carousel -->
-    <div class="span5">
-    
-        <div class="row">
-            <!-- Start Sidebar -->
-                        
- 		<div class="row">
-
- 		<aside class="span2">
-                	<img src="http://placehold.it/198x60" alt="ModernMom" />
-            	</aside>
-            	
-		</div>
-	
-	<div class="row">
-
-            	<div class="span3">
-            	<div class="social-media-links">
-            
-                <div class="row">
-                
-                    	<div class="span3">
-                    
-                   		<a href="#"><i class="icon-facebook icon-3x"></i></a>
-   
-                  		<a href="#"><i class="icon-twitter icon-3x"></i></a>
-
-                    		<a href="#"><i class="icon-google-plus icon-3x"></i></a>
-
-                    		<a href="#"><i class="icon-flickr icon-3x"></i></a>
-
-                    		<a href="#"><i class="icon-youtube-sign icon-3x"></i></a>
-   		
-   			
-   			</div><!--end span2 -->
-                             
-                </div><!--end row -->    
-
-            </div><!--end social-media-links -->
-               		<img src="http://placehold.it/300x250">
-            	</div>
-           </div><!--end row-->
+            <!-- .carousel-inner --><!-- next and previous controls here
+href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
         </div>
+        <!-- .carousel -->
+        <div class="slider-thumbs">
+            <img src="http://placehold.it/114x63" /><img src="http://placehold.it/114x63" /><img src="http://placehold.it/114x63" /><img src="http://placehold.it/114x63" />
+        </div><!--end slider-thumbs-->
+    </div><!-- end carousel -->
+    <div class="span5">
+        <div class="row">
+     
+            
+             <div class="span2">
+             A bit of rock n roll here
+</div>
 
+                <div class="span3">
+                    <div class="social-media-links">
+                        <div class="row">
+                            <div class="span3">
+                                <a href="#"><i class="icon-facebook icon-3x"></i></a>
+                                <a href="#"><i class="icon-twitter icon-3x"></i></a>
+                                <a href="#"><i class="icon-google-plus icon-3x"></i></a>
+                                <a href="#"><i class="icon-flickr icon-3x"></i></a>
+                                <a href="#"><i class="icon-youtube-sign icon-3x"></i></a>
+                            </div>
+                            <!--end span2 -->
+                        </div>
+                        <!--end row -->
+                    </div>
+                    <!--end social-media-links -->
+<!-- ad container -->
+<div class="row"><img src="http://placehold.it/300x250"></div>
+<!--end ad container -->
+<!-- message box -->
+<div class="row"><img src="http://placehold.it/300x60" alt="ModernMom" /></div>
+<!-- end message box -->
+                </div>
+       
+        </div>
     </div><!--end span5-->
 </div><!--end row-->
 <div class="container">
     <div class="strip-title">
         <div class="strip-text">
-            </div><span class="wht-bg-H1 pink">What's <span class="black">New</span></span>
         </div>
+        <span class="wht-bg-H1 pink">What's <span class="black">New</span></span>
     </div>
-    <div class="row">
-        <div class="span12">
-            <div id="whats-new">
-                {% for article in latest %}
-                <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
-                    <a href="{{ article.get_absolute_url }}"><img src="http://placehold.it/180x113" alt="{{ article }}"></a>
-                    <p class="thumb-title">
-                        <a href="{{ article.get_absolute_url }}">{{ article }}</a>
-                    </p>
-                </div>
-                {% endfor %}
-                <div class="clear-both">
-                </div>
-                <div class="bottom-line">
-                    &nbsp;
-                </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <div id="whats-new">
+            {% for article in latest %}
+            <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
+                <a href="{{ article.get_absolute_url }}"><img src="http://placehold.it/180x113" alt="{{ article }}"></a>
+                <p class="thumb-title">
+                    <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                </p>
+            </div>
+            {% endfor %}
+            <div class="clear-both">
+            </div>
+            <div class="bottom-line">
+                &nbsp;
             </div>
         </div>
-        <!-- /span12 -->
     </div>
-    <!-- /row -->
-    <div class="row">
-        <div class="span8">
-            <div class="row">
-                {% for category in CHANNELS %}
-                <div class="span4">
-                    <div class="section-title">
-                        <div class="bars">
-                            <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
-                        </div>
-                        <!-- /bars -->
-                        <div class="section-list" style="overflow:hidden;">
-                            <ul>
-                                {% for ci in category.items.all|slice:'5' %}
-                                <li>
-                                    <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                            <div class="section-end">
-                                More in {{ category }} <i class="icon-caret-right"></i>
-                            </div>
-                            <!-- /section-end -->
-                        </div>
-                        <!-- /section-list -->
+    <!-- /span12 -->
+</div>
+<!-- /row -->
+<div class="row">
+    <div class="span8">
+        <div class="row">
+            {% for category in CHANNELS %}
+            <div class="span4">
+                <div class="section-title">
+                    <div class="bars">
+                        <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
                     </div>
-                    <!-- /section-title -->
-									</div><!-- I ADD THIS RIGHT HERE, THIS ONE, NOT THAT ONE-->
-                    {% endfor %}
+                    <!-- /bars -->
+                    <div class="section-list" style="overflow:hidden;">
+                        <ul>
+                            {% for ci in category.items.all|slice:'5' %}
+                            <li>
+                                <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="section-end">
+                            More in {{ category }} <i class="icon-caret-right"></i>
+                        </div>
+                        <!-- /section-end -->
+                    </div>
+                    <!-- /section-list -->
                 </div>
-             
+                <!-- /section-title -->
             </div>
-						<div class="span4"><!-- right rail-->
-							
-						</div><!-- /right rail-->
-            <!-- /row -->
+            <!-- I ADD THIS RIGHT HERE, THIS ONE, NOT THAT ONE-->
+            {% endfor %}
         </div>
     </div>
+    <div class="span4">
+        <!-- right rail-->
+    </div>
+    <!-- /right rail-->
+    <!-- /row -->
+</div>
+</div>
 </div>
 <!-- /container -->
 {% endblock %}
