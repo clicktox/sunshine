@@ -7,6 +7,7 @@
 {% block container %}
 <div class="row">
     <div class="span2">
+<<<<<<< HEAD
     		<div class="social-media-links">
                         <div class="row">
                             <div class="span3">
@@ -27,6 +28,19 @@
 			<!-- end message box -->
     </div>
     
+=======
+        <div class="widget">
+            <h3 class='content-aside'>Motherhood</h3>
+            <ul id="subnav" class="demand-icon-list">
+                {% for category in CHANNELS %}
+                <li class="item-{{ category.id }}">
+                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+>>>>>>> parent of 278a512... header updates
     <div class="span5 home">
     <h3 class='content-aside'>Featured Stories</h3>
         <!--  Carousel -->
@@ -85,6 +99,7 @@
             	<div class="social-media-links">
             
 <<<<<<< HEAD
+<<<<<<< HEAD
             		<div class="span2">
             			A bit of rock n roll here
 								</div>
@@ -98,6 +113,8 @@
                 </div>
        
 =======
+=======
+>>>>>>> parent of 278a512... header updates
                 <div class="row">
                 
                     	<div class="span3">
@@ -121,6 +138,9 @@
                		<img src="http://placehold.it/300x250">
             	</div>
            </div><!--end row-->
+<<<<<<< HEAD
+>>>>>>> parent of 278a512... header updates
+=======
 >>>>>>> parent of 278a512... header updates
         </div>
 
@@ -161,6 +181,7 @@
                     <div class="section-title">
                         <div class="bars">
                             <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
+<<<<<<< HEAD
                         </div>
                         <!-- /bars -->
                         <div class="section-list" style="overflow:hidden;">
@@ -176,6 +197,23 @@
                             </div>
                             <!-- /section-end -->
                         </div>
+=======
+                        </div>
+                        <!-- /bars -->
+                        <div class="section-list" style="overflow:hidden;">
+                            <ul>
+                                {% for ci in category.items.all|slice:'5' %}
+                                <li>
+                                    <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="section-end">
+                                More in {{ category }} <i class="icon-caret-right"></i>
+                            </div>
+                            <!-- /section-end -->
+                        </div>
+>>>>>>> parent of 278a512... header updates
                         <!-- /section-list -->
                     </div>
                     <!-- /section-title -->
