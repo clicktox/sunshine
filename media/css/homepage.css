@@ -53,6 +53,7 @@
     .strip-title {
         text-align: center;
         margin-bottom: 5px;
+        margin-top: 25px;
         background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
         line-height: 30px;
     }
