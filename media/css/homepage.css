@@ -26,11 +26,11 @@
     padding-bottom: 2px;
     }
     
-    a .h4a{
+    a.h4a{
     	color: #000000;
    	text-decoration: none;
     }
-    a .h4a :hover{
+    a.h4a:hover{
     	color: #ED145B;
    	text-decoration: none;
     }
