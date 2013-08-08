@@ -52,6 +52,10 @@
     	text-align: center;
     }
     
+    .thumb-title a{
+   	color: #F36388 !important;
+    }
+    
     .strip-title {
         text-align: center;
         margin-bottom: 5px;
