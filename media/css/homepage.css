@@ -67,6 +67,10 @@
     }
     
     .thumb-title a{
+   	color: #000000 !important;
+    }
+    
+    .thumb-title a:hover{
    	color: #F36388 !important;
     }
     
