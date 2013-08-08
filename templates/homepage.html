@@ -7,17 +7,26 @@
 {% block container %}
 <div class="row">
     <div class="span2">
-        <div class="widget">
-            <h3 class='content-aside'>Motherhood</h3>
-            <ul id="subnav" class="demand-icon-list">
-                {% for category in CHANNELS %}
-                <li class="item-{{ category.id }}">
-                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+    		<div class="social-media-links">
+                        <div class="row">
+                            <div class="span3">
+                                <a href="#"><i class="icon-facebook icon-3x"></i></a>
+                                <a href="#"><i class="icon-twitter icon-3x"></i></a>
+                                <a href="#"><i class="icon-google-plus icon-3x"></i></a>
+                                <a href="#"><i class="icon-flickr icon-3x"></i></a>
+                                <a href="#"><i class="icon-youtube-sign icon-3x"></i></a>
+                            </div>
+                            <!--end span2 -->
+                        </div>
+                        <!--end row -->
+                 </div>
+                    <!--end social-media-links -->  
+                    
+                    <!-- message box -->
+			<div class="row"><img src="http://placehold.it/300x120" alt="ModernMom" /></div>
+			<!-- end message box -->
     </div>
+    
     <div class="span5 home">
         <h3 class='content-aside'>Featured Stories</h3>
         <!--  Carousel --><!--  consult Bootstrap docs at
@@ -72,26 +81,11 @@
 								</div>
 								
                 <div class="span3">
-                    <div class="social-media-links">
-                        <div class="row">
-                            <div class="span3">
-                                <a href="#"><i class="icon-facebook icon-3x"></i></a>
-                                <a href="#"><i class="icon-twitter icon-3x"></i></a>
-                                <a href="#"><i class="icon-google-plus icon-3x"></i></a>
-                                <a href="#"><i class="icon-flickr icon-3x"></i></a>
-                                <a href="#"><i class="icon-youtube-sign icon-3x"></i></a>
-                            </div>
-                            <!--end span2 -->
-                        </div>
-                        <!--end row -->
-                    </div>
-                    <!--end social-media-links -->
+                    
 										<!-- ad container -->
 										<div class="row"><img src="http://placehold.it/300x250"></div>
 										<!--end ad container -->
-										<!-- message box -->
-										<div class="row"><img src="http://placehold.it/300x60" alt="ModernMom" /></div>
-										<!-- end message box -->
+										
                 </div>
        
         </div>
