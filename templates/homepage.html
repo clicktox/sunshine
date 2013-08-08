@@ -137,7 +137,7 @@
                         <!-- /bars -->
                         <div class="section-list" style="overflow:hidden;">
                             <ul>
-                                {% for ci in category.items.all %}
+                                {% for ci in category.items.all|slice:'5' %}
                                 <li>
                                     <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
                                 </li>
