@@ -45,9 +45,11 @@
     }
     
     .thumb-title {
-        margin-top: 5px;
-        font-size: 18px;
-        text-align: center;
+        font-family: oswald;
+    	font-size: 18px;
+    	line-height: 22px;
+    	margin-top: 5px;
+    	text-align: center;
     }
     
     .strip-title {
