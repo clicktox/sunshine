@@ -71,7 +71,7 @@
     .bottom-line {
         margin-top: 0px;
         margin-bottom: 10px;
-        border-bottom: #f36388 solid repeat;
+        background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
         line-height: 30px;
         width: 940px;
         clear: both;
