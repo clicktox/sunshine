@@ -74,7 +74,7 @@
         margin-bottom: 10px;
         background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
         line-height: 30px;
-        width: 940px;
+        width: 100%;
         clear: both;
     }
     
@@ -153,11 +153,11 @@
 
 .wht-bg-H1 {
  	color: #000;
-	font-family: "Alex Brush", cursive;
+	font-family: "Euphoria Script", cursive;
 	font-style: italic;
 	font-size: 26px;
 	background-color: #fff;
-	padding: 0 10px 10px 10px;
+	padding: 10px 10px 0 0;
 	margin-right: -10px;
 	line-height: 24px;
 }
