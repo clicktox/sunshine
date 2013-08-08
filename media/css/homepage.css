@@ -152,12 +152,12 @@
 /* SECTION TITLES */
 
 .wht-bg-H1 {
- color: #000;
+ 	color: #000;
 	font-family: "Times New Roman", Times, serif;
 	font-style: italic;
 	font-size: 26px;
 	background-color: #fff;
-	padding: 0 10px 10px 0;
+	padding: 0 10px 10px 10px;
 	margin-right: -10px;
 	line-height: 24px;
 }
