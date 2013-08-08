@@ -20,7 +20,7 @@
 	width: 300px;
 	height: 66px;
 }
-	.social-media-links{
+	.social-media-links a{
 		padding-right:10px;
 	}
 
@@ -188,10 +188,21 @@
 
 .wht-bg-H1-whats-new{
 	font-size: 36px;
+	color: #000;
+	font-family: "Euphoria Script", cursive;
+	font-style: italic;
+	background-color: #fff;
+	padding: 10px 10px 0 0;
+	margin-right: -10px;
+	line-height: 24px;
 }
 
 .black-whats-new{
 	font-size:26px;
+	color: #000;
+	font-family: "Oswald", sans-serif;
+	font-weight: bold;
+	font-style: normal;
 }
 
 .black {
