@@ -1,11 +1,4 @@
 /* CSS for Hompage.html */
-
-.social-media-links {
-        margin-top: 0px;
-        width: 300px;
-        height: 66px;
-    }
-
     
     /* FEATURED ROW */
     .span5 .home{
@@ -15,10 +8,10 @@
     
     /* SOCIAL MEDIA */
 	.social-media-links {
-	margin-top: 0px;
-	margin-bottom: 10px;
-	width: 300px;
 	height: 66px;
+   	margin-bottom: 0;
+    	margin-top: 20px;
+    	width: 300px;
 }
 	.social-media-links a{
 		padding-right:10px;
@@ -191,22 +184,22 @@
 }
 
 .wht-bg-H1-whats-new{
-	font-size: 36px;
-	color: #000;
-	font-family: "Euphoria Script", cursive;
-	font-style: italic;
-	background-color: #fff;
-	padding: 10px 10px 0 0;
-	margin-right: -10px;
-	line-height: 24px;
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: "Oswald", sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    line-height: 24px;
+    margin-right: -10px;
+    padding: 10px 10px 0 0;
 }
 
 .black-whats-new{
-	font-size:26px;
-	color: #000;
-	font-family: "Oswald", sans-serif;
-	font-weight: bold;
-	font-style: normal;
+    color: #ED145B;
+    font-family: "Euphoria Script", cursive;
+    font-size: 42px;
+    font-style: italic;
+    font-weight: bold;
 }
 
 .black {
