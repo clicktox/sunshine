@@ -277,13 +277,19 @@
 
 	/*PAGES*/
 .gcontent-box{
-	background:#eee;
-	width:100%;
-	padding: 10px;
+	background: none repeat scroll 0 0 #EEEEEE;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    max-width: 741px;
+    min-height: 200px;
+    padding: 15px;
+    width: 100%;
 }
+
 .gcontent-thumb{
 	float:left;
 	position: relative;
+	padding-right:15px;
 }
 
 .gcontent-box p{
