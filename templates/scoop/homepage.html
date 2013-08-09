@@ -78,29 +78,30 @@
 <!-- /row -->
 <div class="row">
     <div class="span8">
-        
+        {% for scoop in scoop_list %}
+						
 	<div class="bars">
-           <span class="wht-bg-H1 pink"><span class="black">Hot Topics</span></span>
+           <span class="wht-bg-H1 pink"><span class="black">{{ scoop }}</span></span>
         </div>
-        
+        {% for scoopitem in scoop.items.all|slice:'2' %}
         <div class="gcontent-box">
         	<div class="gcontent-thumb">
         		<a href="#"><img src="http://placehold.it/180x180" class="img-circle"/></a>	
         	</div>
         	
-        		<h4 class="gtitle"><a href="#">Fast Food is Shrinking</a></h4>
+        		<h4 class="gtitle"><a href="#">{{ scoopitem }}</a></h4>
         		
         		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
         		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.	
         	
         		<div class="button-align">
-        			<a href="#"><button type="button" class="btn btn-info btn-xs">Read More...</button></a>	
+        			<a href="{{ scoopitem.object.get_absolute_url }}"><button type="button" class="btn btn-info btn-xs">Read More...</button></a>	
         		</div>
         	
         		</p>
         	        	
         </div><!--end gcontent-box-->
-        
+        {% endfor %}{% endfor %}
     </div><!--end span 8-->
     <div class="span4">
         <!-- right rail-->
