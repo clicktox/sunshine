@@ -5,7 +5,7 @@ from fields import UUIDField
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
-
+from datetime import datetime
 
 try:
     __import__('subdomains')
@@ -46,12 +46,15 @@ class CategoryItem(models.Model):
     content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
     object_id    = models.PositiveIntegerField(_('object id'), db_index=True)
     object       = generic.GenericForeignKey('content_type', 'object_id')
-
+    publish_date = models.DateTimeField(default=datetime.now, help_text=_('The date and time this article shall appear online.'))
+   
     class Meta:
         # Enforce unique tag association per object
         unique_together = (('category', 'content_type', 'object_id'),)
         verbose_name = _('category item')
         verbose_name_plural = _('category items')
+        ordering = ('-publish_date',)
+        get_latest_by = 'publish_date'
 
     def __unicode__(self):
         return u'%s' % (self.object)
@@ -87,12 +90,15 @@ class ScoopItem(models.Model):
     content_type = models.ForeignKey(ContentType, verbose_name=_('content type'))
     object_id    = models.PositiveIntegerField(_('object id'), db_index=True)
     object       = generic.GenericForeignKey('content_type', 'object_id')
-
+    publish_date = models.DateTimeField(default=datetime.now, help_text=_('The date and time this article shall appear online.'))
+   
     class Meta:
         # Enforce unique tag association per object
         unique_together = (('scoop', 'content_type', 'object_id'),)
         verbose_name = _('scoop item')
         verbose_name_plural = _('scoop items')
+        ordering = ('-publish_date',)
+        get_latest_by = 'publish_date'
 
     def __unicode__(self):
         return u'%s' % (self.object)
