@@ -224,7 +224,7 @@
 .bars {
 	background: none repeat scroll 0 0 #F36388;
 	height: 30px;
-	margin: 0px;
+	margin: 0 0 10px;
 	padding: 0px;
 	border: none;
 }
