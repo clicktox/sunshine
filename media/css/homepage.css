@@ -296,3 +296,9 @@
 	text-align:left;
 }
 
+.button-align{
+	float:right;
+	position:relative;
+	padding:5px;
+}
+
