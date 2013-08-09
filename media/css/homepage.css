@@ -273,3 +273,20 @@
 	clear: both;
 	margin-bottom: 20px;
 }
+
+
+	/*PAGES*/
+.gcontent-box{
+	background:#eee;
+	width:100%;
+	padding: 10px;
+}
+.gcontent-thumb{
+	float:left;
+	position: relative;
+}
+
+.gcontent-box p{
+	text-align:left;
+}
+
