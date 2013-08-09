@@ -1,23 +1,137 @@
 {% extends 'base.html'%}
 {% block title %}ModernMom Scoop{% endblock %}
-{% block meta_og %}
-        <meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
-        <meta property="og:description" content="">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="ModernMom Scoop">
-        <meta property="og:image" content="">
+
+{% block head %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" type="text/css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
-{% block content %}
+{% block container %}
+<div class="row">
+    
+    <div class="span6 home">
+        <h3 class='content-aside'>Featured Stories</h3>
+        <!-- Carousel --><!-- consult Bootstrap docs at
+        http://twitter.github.com/bootstrap/javascript.html#carousel -->
+        <div id="this-carousel-id" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="#"><img src="http://placehold.it/470x233" alt="ModernMom" /></a>
+                    <div class="carousel-caption">
+                        <p>
+                            ModernMom
+                        </p>
+                        <p>
+                            <a href="#">ModernMom.com</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="http://placehold.it/470x233" alt="ModernMom" /></a>
+                    <div class="carousel-caption">
+                        <p>
+                            ModernMom
+                        </p>
+                        <p>
+                            <a href="#">ModernMom.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- .carousel-inner --><!-- next and previous controls here
+            href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+        </div>
+        <!-- .carousel -->
+        <div class="slider-thumbs">
+            <img src="http://placehold.it/117x63" /><img src="http://placehold.it/117x63" /><img src="http://placehold.it/117x63" /><img src="http://placehold.it/117x63" />
+        </div><!--end slider-thumbs-->
+    </div><!-- end carousel -->
+    <div class="span6">
+        <div class="row">
+            <div class="span3">
+                <h3 class='content-aside'>POPULINKS</h3>
+                <h4 class='content-aside'><a href="#" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
+                <p class="popu">
+                    The latest up to the minute news about what's happening with ModernMom Celebs in Hollywood.
+                </p>
+                <h4 class='content-aside'><a href="#" class="h4a">BROOKE <span class="pink">BURKE</span></a></h4>
+                <p class="popu">
+                    Catch up with Brooke Burke and read her amazing daily blog.
+                <p class="popu">
+                <h4 class='content-aside'><a href="#" class="h4a">SHOP OUR <span class="pink">STORE</span></a></h4>
+                <p class="popu">
+                    Shop Brooke Burke's exclusive store for pregnant moms.
+                </p>
+            </div>
+					<div class="span3">
+            <!-- ad container -->
+            <div class="row">
+                <img src="http://placehold.it/300x250">
+            </div><!--end ad container --><!-- message box -->
+            <div class="row">
+                <div class="message-box-head">
+                
+               		<img src="http://placehold.it/300x120" alt="ModernMom" />
+                	
+                </div>
+            </div><!-- end message box -->
+					</div>
+        </div>
+    </div><!--end span5-->
+</div><!--end row-->
 
-
+<div class="container">
+    <div class="strip-title">
+        <div class="strip-text">
+        </div>
+        <span class="wht-bg-H1-whats-new pink">What's <span class="black-whats-new">New</span></span>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <div id="whats-new">
+            {% for scoop in scoop_list|slice:'1' %}
+						{% for scoopitem in scoop.items.all|slice:'6' %}
+            <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
+                <a href="{{ article.get_absolute_url }}"><img src="http://placehold.it/180x113" alt="{{ article }}"></a>
+                <p class="thumb-title">
+                    <a href="{{ article.get_absolute_url }}">{{ scoopitem }}</a>
+                </p>
+            </div>
+            {% endfor %}{% endfor %}
+            <div class="clear-both">
+            </div>
+            <div class="bottom-line">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+    <!-- /span12 -->
+</div>
+<!-- /row -->
+<div class="row">
+    <div class="span8">
+        
 {% for scoop in scoop_list %}
 {{ scoop }} {% if user.is_staff %}<a href="{% url 'scoop_add_item' scoop.slug %}">Add Item</a>{% endif %}
 <ul>
-{% for scoopitem in scoop.items.all %}
+{% for scoopitem in scoop.items.all|slice:'2' %}
+<!-- liz, everything here is bound to span8, so design the whole box how you want! -->
+	<!--  <a href="{{ scoopitem.object.get_absolute_url }}"> {{ scoopitem }} </a> -->
 
-	<li><a href="{{ scoopitem.object.get_absolute_url }}">{{ scoopitem }}</a></li>
 
 {% endfor %}
 </ul>
 {% endfor %}
+    </div>
+    <div class="span4">
+        <!-- right rail-->
+    </div>
+    <!-- /right rail-->
+    <!-- /row -->
+</div>
+</div>
+</div>
+<!-- /container -->
 {% endblock %}
