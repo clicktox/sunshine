@@ -16,14 +16,34 @@
 {% block container %}
 
 <div class="row">
-        <div class="span8">
+ <div class="span2">
+        <div class="widget">
+            <div class="social-media-links">
+                <a href="#"><i class="icon-facebook icon-2x"></i></a>
+                <a href="#"><i class="icon-twitter icon-2x"></i></a>
+                <a href="#"><i class="icon-google-plus icon-2x"></i></a>
+                <a href="#"><i class="icon-flickr icon-2x"></i></a>
+                <a href="#"><i class="icon-youtube-sign icon-2x"></i></a>
+            </div>
+            <!--end social-media-links -->
+            <ul id="subnav" class="demand-icon-list">
+                {% for category in CHANNELS %}
+                <li class="item-{{ category.id }}">
+                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+ </div>
+
+        <div class="span6">
 
         <!-- Carousel --><!-- consult Bootstrap docs at
         http://twitter.github.com/bootstrap/javascript.html#carousel -->
         <div id="this-carousel-id" class="carousel slide">
             <div class="carousel-inner">
                 <div class="item active">
-                    <a href="#"><img src="http://placehold.it/870x300" alt="ModernMom" /></a>
+                    <a href="#"><img src="http://placehold.it/870x400" alt="ModernMom" /></a>
                     <div class="carousel-caption">
                         <p>
                             Download EX. 1
@@ -34,7 +54,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <a href="#"><img src="http://placehold.it/870x300" alt="ModernMom" /></a>
+                    <a href="#"><img src="http://placehold.it/870x400" alt="ModernMom" /></a>
                     <div class="carousel-caption">
                         <p>
                             Download EX. 1
