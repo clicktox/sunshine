@@ -1,0 +1,312 @@
+/* CSS for subpages */
+    
+    /* FEATURED ROW */
+    .span5 .home{
+   padding: 0 10px 10px;
+ 	width: 460px;
+    }
+    
+    /* SOCIAL MEDIA */
+	.social-media-links {
+	height: 66px;
+   	margin-bottom: 0;
+    	margin-top: 20px;
+    	width: 300px;
+}
+	.social-media-links a{
+		padding-right:10px;
+	}
+
+
+    /*POPULINKS*/
+    p.popu {
+     font-size: 11px;
+    line-height: 18px;
+    margin-top: -10px;
+    padding-bottom: 2px;
+    }
+    
+    a.h4a{
+    	color: #000000;
+   	text-decoration: none;
+    }
+    a.h4a:hover{
+    	color: #ED145B;
+   	text-decoration: none;
+    }
+    
+    /*MESSAGE BOX */
+    .message-box-head{
+    	margin-top:5px;
+    }
+    
+    /* FEATURED STRIP */
+    #whats-new {
+        width: 1200px;
+        margin: 0 auto;
+        line-height: 18px;
+    }
+    
+    #whats-new .whats-new-thumb-first {
+        margin: 5px 10px 5px 9px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    #whats-new .whats-new-thumb {
+        margin: 5px 10px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    .thumb-title {
+        font-family: oswald;
+    	font-size: 18px;
+    	line-height: 22px;
+    	margin-top: 5px;
+    	text-align: center;
+    }
+    
+    .thumb-title a{
+   	color: #000000 !important;
+   	text-decoration: none !important;
+    }
+    
+    .thumb-title a:hover{
+   	color: #F36388 !important;
+    }
+    
+    .strip-title {
+        text-align: center;
+        margin-bottom: 5px;
+        margin-top: 25px;
+        background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+    }
+    
+    .strip-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: #ed145b;
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        margin: 0px auto;
+    }
+    
+    .bottom-line {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+        width: 100%;
+        clear: both;
+    }
+    
+    /* SITES WE LOVE STRIP */
+    #swl-new {
+        width: 1200px;
+        margin: 0 auto;
+        line-height: 18px;
+    }
+    
+    #swl-new .first {
+        margin: 5px 0;
+    }
+    
+    #swl-new .swl-thumb {
+        margin: 5px 0 5px 8px;
+        padding: 0;
+        float: left;
+        display: inline;
+        width: 180px;
+    }
+    
+    ul.swl-links-list {
+        margin-top: 10px;
+        font-size: 14px;
+        text-align: left;
+        list-style-type: none;
+    }
+    
+    li.swl-links {
+        list-style-type: none;
+        margin-left: -20px;
+        border-bottom: 1px dotted #F06;
+    }
+    
+    .swl-thumb-title {
+        margin-top: 5px;
+        font-size: 18px;
+        text-align: center;
+        list-style-type: none;
+    }
+    
+    .swl-strip-title {
+        text-align: center;
+        margin-bottom: 5px;
+        background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+    }
+    
+    .swl-strip-text {
+        font-size: 26px;
+        font-weight: bold;
+        color: #ed145b;
+        line-height: 30px;
+        width: 200px;
+        text-align: center;
+        background-color: #fff;
+        margin: 0px auto;
+    }
+    
+    .swl-bottom-line {
+        margin-top: 0px;
+        margin-bottom: 10px;
+        background: url(http://sunshine.modernmom.com/media/images/BGstripe.jpg) repeat-x center;
+        line-height: 30px;
+        width: 940px;
+        clear: both;
+    }
+    
+/* SLIDER THUMBNAILS */
+	.slider-thumbs {
+	margin-top: -20px;
+	}
+    
+/* SECTION TITLES */
+
+.wht-bg-H1 {
+ 	color: #000;
+	font-family: "Euphoria Script", cursive;
+	font-style: italic;
+	font-size: 26px;
+	background-color: #fff;
+	padding: 10px 10px 0 0;
+	margin-right: -10px;
+	line-height: 24px;
+}
+.pink {
+	color: #ed145b;
+	font-weight: bold;
+}
+
+.wht-bg-H1-whats-new{
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: "Oswald", sans-serif;
+    font-size: 26px;
+    font-style: normal;
+    line-height: 24px;
+    margin-right: -10px;
+    padding: 10px 10px 0 0;
+}
+
+.black-whats-new{
+    color: #ED145B;
+    font-family: "Euphoria Script", cursive;
+    font-size: 42px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.black {
+	color: #000;
+	font-family: "Oswald", sans-serif;
+	font-weight: bold;
+	font-style: normal;
+}
+.bars {
+	background: none repeat scroll 0 0 #F36388;
+	height: 30px;
+	margin: 0 0 10px;
+	padding: 0px;
+	border: none;
+}
+.feat-title {
+	font-size: 20px;
+	margin-top: 5px;
+}
+.feat-text {
+	margin-top: 3px;
+	padding-bottom: 5px;
+	border-bottom: 1px dotted #F06;
+}
+.section-title {
+	margin-bottom: 50px;
+}
+.section-list {
+	margin: 0px;
+	color: #0081c7;
+}
+.section-end {
+	margin: 5px 0px;
+	float: right;
+	border-bottom: 1px dotted #fff;
+}
+.section-list ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	display: block;
+}
+.section-list ul li {
+	list-style-type: none;
+	display: block;
+	padding: 5px 0px 5px 0px;
+	font-size: 16px;
+	border-bottom: 1px dotted #F06;
+}
+.at-home {
+	background: url(../img/AtHomeBG.png) no-repeat bottom left;
+	height: 215px;
+}
+.spacer1 {
+	padding-right: 100px;
+}
+.clear2 {
+	clear: both;
+	margin-bottom: 20px;
+}
+
+
+	/*PAGES*/
+.gcontent-box{
+	background: none repeat scroll 0 0 #EEEEEE;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    max-width: 741px;
+    min-height: 210px;
+    padding: 15px;
+    width: 100%;
+}
+
+.gcontent-thumb{
+ 	float: left;
+    	margin: 10px;
+    	padding-right: 20px;
+    	position: relative;
+}
+
+.gcontent-box p{
+	text-align:left;
+}
+
+.button-align{
+	float:right;
+	position:relative;
+}
+
+h4.gtitle a{
+	color:#F36388;
+}
+
+h4.gtitle a:hover{
+	color:#000000;
+}
+
