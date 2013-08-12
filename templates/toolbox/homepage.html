@@ -1,4 +1,9 @@
 {% extends 'base.html'%}
+{% block head %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/pages.css" type="text/css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+{% endblock %}
 {% block title %}ModernMom Toolbox{% endblock %}
 {% block meta_og %}
         <meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
@@ -6,4 +11,47 @@
         <meta property="og:type" content="website">
         <meta property="og:title" content="ModernMom Tolbox">
         <meta property="og:image" content="">
+{% endblock %}
+
+{% block container %}
+
+<div class="row">
+        <div class="span8">
+
+        <!-- Carousel --><!-- consult Bootstrap docs at
+        http://twitter.github.com/bootstrap/javascript.html#carousel -->
+        <div id="this-carousel-id" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="#"><img src="http://placehold.it/470x233" alt="ModernMom" /></a>
+                    <div class="carousel-caption">
+                        <p>
+                            Download EX. 1
+                        </p>
+                        <p>
+                            <a href="#">ModernMom.com</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="http://placehold.it/470x233" alt="ModernMom" /></a>
+                    <div class="carousel-caption">
+                        <p>
+                            Download EX. 1
+                        </p>
+                        <p>
+                            <a href="#">ModernMom.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- .carousel-inner --><!-- next and previous controls here
+            href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+        </div>
+        <!-- .carousel -->
+        
+        </div> 
+</div>
+
 {% endblock %}
