@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans article.title %}{% endblock %}
+{% block meta-keywords %}{{ article.keywords|escape }}{% endblock %}
+{% block meta-description %}{{ article.description|escape }}{% endblock %}
+{% block extra-head %}
+{{ block.super }}
+{% for tag in article.tags.all %}
+<link rel="alternate" type="application/rss+xml" title="Blog Articles Tagged '{{ tag.name }}' RSS Feed" href="{% url articles_rss_feed_tag tag.rss_name %}" />
+<link rel="alternate" type="application/atom+xml" title="Blog Articles Tagged '{{ tag.name }}' Atom Feed" href="{% url articles_atom_feed_tag tag.rss_name %}" />{% endfor %}
+{% endblock %}
+
+{% block content %}
+
+{% include 'articles/_article_content.html' %}
+{% include 'articles/_meta.html' %}
+{% include 'articles/_comments.html' %}
+
+{% endblock %}
+
+{% block footer %}
+{{ block.super }}
+
+<script type="application/javascript">
+{% if disqus_forum %}
+    //<![CDATA[
+    (function() {
+        var links = document.getElementsByTagName('a');
+        var query = '?';
+        for(var i = 0; i < links.length; i++) {
+        if(links[i].href.indexOf('#disqus_thread') >= 0) {
+            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+        }
+        }
+        document.write('<script charset="utf-8" type="application/javascript" src="http://disqus.com/forums/{{ disqus_forum }}/get_num_replies.js' + query + '"></' + 'script>');
+    })();
+    //]]>
+    </script>
+{% endif %}
+{% endblock %}
