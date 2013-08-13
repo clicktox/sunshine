@@ -15,10 +15,7 @@
         <link href='http://fonts.googleapis.com/css?family=Oswald:700|Open+Sans|Euphoria+Script' rel='stylesheet' type='text/css'>
         <link rel="icon" href="">
         <link rel="alternate" type="application/rss+xml" title="" href="">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
-        </script>
-        <script src="/media/js/bootstrap.js">
-        </script>
+        
         <title>{% block title %}ModernMom{% endblock %}</title>
         <meta name="description" content="ModernMom is a community for moms, mothers, and the woman behind the mom. Find smart advice and practical tips for moms by moms on parenting, finances, careers, fitness, beauty, babies, children and much more.">
         <meta name="pagetype" scheme="DMINSTR2" content="Home">
@@ -206,6 +203,11 @@
             </div>
             <!--end mm-footer-->
         </footer>
+				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
+        </script>
+        <script src="/media/js/bootstrap.js">
+        </script>
+				{% block js_lower %}{% endblock %}
     </body>
 </html>
 <!-- Rendered: 2013-06-25 08:52:23.305277 -->

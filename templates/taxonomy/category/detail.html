@@ -1,336 +1,57 @@
 {% extends 'base.html' %}
+{% block title %}ModernMom Scoop{% endblock %}
+
 {% block head %}
-
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/style.css" />
-
-<style type="text/css">
-	/* CATEGORY PAGE STYLES */
-.ContentPreview {
-	position: relative;
-	clear: both;
-}
-.thumb {
-	margin-top: 10px;
-}
-.ContentPreview .TopPick {
-	margin: 10px 0;
-	float: left;
-	width: 300px;
-	height: 199px;
-}
-.ContentPreview .pick-title {
-	display: block;
-	margin: 5px 10px 0px 10px;
-	color: #000;
-	width: 300px;
-	font-size: 21px;
-	line-height: 25px;
-	display: inline;
-	float: left;
-}
-.ContentPreview .excerpt {
-	line-height: 1.4;
-	width: 300px;
-	margin: 5px 10px 5px 10px;
-	display: inline;
-	float: left;
-}
-.ContentPreview .Note {
-	margin-bottom: 5px;
-	width: 300px;
-	margin: 5px 10px 5px 10px;
-	display: inline;
-	float: left;
-	font-size: 14px;
-	color: #a9a9a9;
-	text-transform: uppercase;
-}
-.ContentPreview .PickList {
-	list-style: none;
-	width: 300px;
-	margin: 0px;
-	display: inline;
-}
-.PickList .pick-item {
-	border: none;
-	display: inline;
-	float: left;
-	width: 300px;
-	margin-left: 10px;
-	padding: 3px 0px 3px 0px;
-	border-color: #a9a9a9;
-	border-style: dotted;
-	border-width: 0 0 1px;
-	line-height: 16px;
-}
-.ContentPreview .PickList .pick-title {
-	display: block;
-	padding: 9px 0;
-	font-size: 16px;
-}
-a img {
-	vertical-align: bottom;
-	border: none;
-}
-.FeaturedCategories {
-	width: 620px;
-}
-.top-title {
-	display: block;
-	margin: 5px 0px 5px 0px;
-	color: #000;
-	width: 300px;
-	font-size: 21px;
-	display: inline;
-	float: left;
-}
-.feat-excerpt {
-	line-height: 1.4;
-	width: 300px;
-	margin: 0px 10px 0px 0px;
-	padding-bottom: 5px;
-	display: inline;
-	float: left;
-	border-color: #a9a9a9;
-	border-style: dotted;
-	border-width: 0 0 1px;
-}
-.FeatList {
-	list-style: none;
-	width: 300px;
-	margin: 0px;
-	display: inline;
-}
-.FeatList .feat-item {
-	border: none;
-	display: inline;
-	float: left;
-	width: 300px;
-	padding: 5px 0px 5px 0px;
-	border-color: #a9a9a9;
-	border-style: dotted;
-	border-width: 0 0 1px;
-}
-.read-more {
-	display: block;
-	padding-top: 5px;
-	clear: both;
-	font-style: italic;
-	text-align: right;
-}
-/* SUB-CATEGORY PAGE STYLES */
-.SidebarNav {
-	position: relative;
-	width: 300px;
-	margin: 0px auto 20px auto;
-	padding-bottom: 20px;
-	background-color: #ed145b;
-}
-.SidebarNav .heading {
-	font-size: 22px;
-	padding: 10px 10px 0;
-	margin-bottom: 10px;
-	color: #fff;
-}
-.SidebarNav .listing {
-	list-style: none;
-	font-size: 18px;
-	color: #fff;
-	margin: 0px 0px 0px -30px;
-	padding: 0px 0px 0px 15px;
-	
-}
-.SidebarNav .title {
-	display: block;
-	color: #fff;
-}
-.SidebarNav .more {
-	display: block;
-	color: #fff;
-	margin-top: 20px;
-}
-.SidebarNav a {
-	display: block;
-	padding: 0px;
-	color: #fff;
-	width: 290px;
-	transition: width 2s;
-	-moz-transition: width 2s; /* Firefox 4 */
-	-webkit-transition: width 2s; /* Safari and Chrome */
-	-o-transition: width 2s; /* Opera */
-}
-.SidebarNav a:hover {
-	width: 290px;
-	margin-left: -10px;
-	padding-left: 10px;
-	background-color: #fff;
-	color: #ed145b;
-	font-weight: bold;
-	font-style: italic;
-}
-	
-</style>
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" type="text/css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
 {% block container %}
-	<div class="row">
-    	<div class="span8">
-            <!--  Carousel - consult the Twitter Bootstrap docs at
-            http://twitter.github.com/bootstrap/javascript.html#carousel -->
-            <div id="this-carousel-id" class="carousel slide">
-                <!-- class of slide for animation -->
-                <div class="carousel-inner">
-                	{% for catart in category.contentcategory_set.all|slice:'5' %}
-                    <div class="item {% if forloop.counter == 1 %}active{% endif %}">
-                        <!-- class of active since it's the first item -->
-                        <img src="{{ catart.content.image.get_620X388_url }}" alt="">
-                        <div class="carousel-caption">
-                            <p>
-                                {{ catart.content.title }}
-                            </p>
-                        </div>
-                    </div>
-                   {% endfor %}
-                </div>
-                <!-- /.carousel-inner --><!--  Next and Previous controls below
-                href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">‹</a>
-                <a class="carousel-control right" href="#this-carousel-id" data-slide="next">›</a>
-            </div>
-            <!-- /.carousel -->
-            <div class="bars">
-            	<span class="wht-bg-H1 pink">{{ category.name }} <span class="black">Picks</span></span>
-            </div> <!-- /bars -->
-            <div class="ContentPreview">
-            	{% for catart in category.contentcategory_set.all|slice:'5:6' %}
-            	<a href="{{ catart.content.get_absolute_url }}" class="thumb">
-                    <span class="TopPick">
-                        <img src="{{ catart.content.image.get_300X188_url }}" alt="">
-                    </span>
-                    <span class="pick-title">{{ catart.content.title }}</span>
-            	</a>
-            	{% endfor %}
-            	<p class="excerpt">I simply cannot believe my little preemie is about to enter her last year of preschool. </p>
-            	<div class="Note">Additional Picks</div>
-            	<ul class="PickList">
-            		{% for catart in category.contentcategory_set.all|slice:'6:8' %}
-            		<li class="pick-item"><a href="{{ catart.content.get_absolute_url }}"><i class="icon-facetime-video"></i>&nbsp;{{ catart.content.title }}</a></li>
-            		{% endfor %}
-            	</ul>
-            </div> <!-- /ContentPreview -->
-            <div class="ContentPreview">
-            	{% for catart in category.contentcategory_set.all|slice:'8:9' %}
-            	<a href="{{ catart.content.get_absolute_url }}" class="thumb">
-                    <span class="TopPick">
-                        <img src="{{ catart.content.image.get_300X188_url }}" alt="">
-                    </span>
-                    <span class="pick-title">{{ catart.content.title }}</span>
-            	</a>
-            	{% endfor %}
-            	<p class="excerpt">I simply cannot believe my little preemie is about to enter her last year of preschool. </p>
-            	<div class="Note">Additional Picks</div>
-            	<ul class="PickList">
-            		{% for catart in category.contentcategory_set.all|slice:'9:11' %}
-            		<li class="pick-item"><a href="{{ catart.content.get_absolute_url }}"><i class="icon-facetime-video"></i>&nbsp;{{ catart.content.title }}</a></li>
-            		{% endfor %}
-            	</ul>
-            </div> <!-- /ContentPreview -->
-            <div class="clear2"></div>
-            <div class="row">
-                <div class="span4">
-                    <div class="bars">
-                        <span class="wht-bg-H1 pink">Behavior</span>
-                    </div> <!-- /bars -->
-                    <div class="ContentPreview">
-                        <a href="#">
-                            <img class="thumb" src="http://placehold.it/300x188" alt="">
-                            <span class="top-title">Practical Tips for Raising Kind Children</span>
-                        </a>
-                        <p class="feat-excerpt">My 3-year old son is crazy for cars. Tiny cars that fit in the palm of his hand.</p>
-                    </div>
-                    <ul class="FeatList">
-                        <li class="feat-item"><a href="#" class="title"><i class="icon-facetime-video"></i>&nbsp;Behavior Management for ADHD</a></li>
-                        <li class="feat-item"><a href="#" class="title">Fish Oil as an Alternative Treatment for ADHD</a></li>
-                    </ul>
-                    <a href="http://www.ehow.com/garden-care/" class="read-more">More in Behavior <i class="icon-caret-right"></i></a>
-                </div> <!-- /span4 -->
-            	<div class="span4">
-                    <div class="bars">
-                        <span class="wht-bg-H1 pink">Healthy <span class="black">Kids</span></span>
-                    </div> <!-- /bars -->
-                    <div class="ContentPreview">
-                        <a href="#">
-                            <img class="thumb" src="http://placehold.it/300x188" alt="">
-                            <span class="top-title">Practical Tips for Raising Kind Children</span>
-                        </a>
-                        <p class="feat-excerpt">My 3-year old son is crazy for cars. Tiny cars that fit in the palm of his hand.</p>
-                    </div>
-                    <ul class="FeatList">
-                        <li class="feat-item"><a href="#" class="title">Behavior Management for ADHD</a></li>
-                        <li class="feat-item"><a href="#" class="title"><i class="icon-camera"></i>&nbsp;Fish Oil as an Alternative Treatment for ADHD</a></li>
-                    </ul>
-                    <a href="http://www.ehow.com/garden-care/" class="read-more">More in Healthy Kids <i class="icon-caret-right"></i></a>
-                </div> <!-- /span4 -->
-            </div> <!-- /row -->
-            <div class="clear2"></div>
-            <div class="row">
-                <div class="span4">
-                    <div class="bars">
-                        <span class="wht-bg-H1 pink">Baby</span>
-                    </div> <!-- /bars -->
-                    <div class="ContentPreview">
-                        <a href="#">
-                            <img class="thumb" src="http://placehold.it/300x188" alt="">
-                            <span class="top-title">Practical Tips for Raising Kind Children</span>
-                        </a>
-                        <p class="feat-excerpt">My 3-year old son is crazy for cars. Tiny cars that fit in the palm of his hand.</p>
-                    </div>
-                    <ul class="FeatList">
-                        <li class="feat-item"><a href="#" class="title"><i class="icon-facetime-video"></i>&nbsp;Behavior Management for ADHD</a></li>
-                        <li class="feat-item"><a href="#" class="title">Fish Oil as an Alternative Treatment for ADHD</a></li>
-                    </ul>
-                    <a href="http://www.ehow.com/garden-care/" class="read-more">More in Baby <i class="icon-caret-right"></i></a>
-                </div> <!-- /span4 -->
-            	<div class="span4">
-                    <div class="bars">
-                        <span class="wht-bg-H1 pink">Adoption</span>
-                    </div> <!-- /bars -->
-                    <div class="ContentPreview">
-                        <a href="#">
-                            <img class="thumb" src="http://placehold.it/300x188" alt="">
-                            <span class="top-title">Practical Tips for Raising Kind Children</span>
-                        </a>
-                        <p class="feat-excerpt">My 3-year old son is crazy for cars. Tiny cars that fit in the palm of his hand.</p>
-                    </div>
-                    <ul class="FeatList">
-                        <li class="feat-item"><a href="#" class="title">Behavior Management for ADHD</a></li>
-                        <li class="feat-item"><a href="#" class="title"><i class="icon-camera"></i>&nbsp;Fish Oil as an Alternative Treatment for ADHD</a></li>
-                    </ul>
-                    <a href="http://www.ehow.com/garden-care/" class="read-more">More in Adoption <i class="icon-caret-right"></i></a>
-                </div> <!-- /span4 -->
-            </div> <!-- /row -->
-            <div class="clear2"></div>
-        </div> <!-- /span8 -->
-        <div class="span4">
-            <div class="social-media-links">
-            	<img src="img/SocialMedaPlaceholder.jpg" />
-            </div> <!-- /social-media-links -->
-            <div class="SidebarNav">
-                <h2 class="heading">Explore Categories:</h2>
-                <ul>
-                	{% for sub in category.children.all %}
-                    <li class="listing title"><a href="{{ sub.get_absolute_url }}">{{ sub }}</a></li>
-                    {% endfor %}
-                    
-                </ul>
-            </div>
-        	<div class="ad300x250">
-            	<img src="img/MLPTwitterParty300x250.jpg" />
-            </div> <!-- /300x250ad -->
-            <div class="ad300x250">
-            	<img src="img/MLPTwitterParty300x250.jpg" />
-            </div> <!-- /300x250ad -->
-            <div class="ad300x250">
-            	<img src="img/MLPTwitterParty300x250.jpg" />
-            </div> <!-- /300x250ad -->
-        </div> <!-- /span4 -->
-    </div> <!-- /row -->
+
+<div class="row">
+    <div class="span8">
+  
+						
+	<div class="bars">
+           <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
+        </div>
+        {% for ci in category.items.all %}
+        <div class="gcontent-box">
+        	<div class="gcontent-thumb">
+        		<a href="#"><img src="http://placehold.it/180x180" class="img-circle"/></a>	
+        	</div>
+        	
+        		<h4 class="gtitle"><a href="#">{{ ci.object}}</a></h4>
+        		
+        		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.	
+        	
+        		<div class="button-align">
+        			<a href="{{ scoopitem.object.get_absolute_url }}"><button type="button" class="btn btn-info btn-xs">Read More...</button></a>	
+        		</div>
+        	
+        		</p>
+        	        	
+        </div><!--end gcontent-box-->
+        {% endfor %}
+    </div><!--end span 8-->
+    <div class="span4">
+        <!-- right rail-->
+        <div align="center">
+        	<img src="http://placehold.it/300x250"/>	
+	</div>
+	
+        <div class="pics-of-day">
+        	<div class="bars">
+          	 	<span class="wht-bg-H1 pink"><span class="black">Pics of The Day</span></span>
+        	</div>
+        	<a href="#"><img src="http://placehold.it/370x250" class="img-rounded"/></a>	
+        </div>
+    </div>
+    <!-- /right rail-->
+    <!-- /row -->
+</div>
+</div>
+</div>
+<!-- /container -->
 {% endblock %}

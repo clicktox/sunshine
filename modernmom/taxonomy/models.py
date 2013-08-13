@@ -6,16 +6,7 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 from datetime import datetime
-
-try:
-    __import__('subdomains')
-    from subdomains.utils import reverse as _reverse
-except ImportError:
-    from django.core.urlresolvers import reverse as _reverse
-#by doing this, we can still preserve the code struction ( reverse ) but override with desired subdomain...
-def reverse(viewname, subdomain=None, scheme=None, args=None, kwargs=None,current_app=None):
-    return _reverse(viewname, subdomain=None, scheme=scheme, args=args, kwargs=kwargs,current_app=current_app)
-
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class Category(models.Model):

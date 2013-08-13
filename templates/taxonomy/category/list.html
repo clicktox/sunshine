@@ -14,7 +14,7 @@
 	                                </li>
 									{% else %}
 									 <li>
-	                                    <a href="">{{ n }}</a>
+	                                    <a href="{{ n.get_absolute_url }}">{{ n }}</a>
 	                                </li>
 									{% endif %}
 									{% endfor %}
