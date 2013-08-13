@@ -9,6 +9,10 @@
         <meta name="msvalidate.01" content="">
         <meta property="og:site_name" content="ModernMom">
         <meta property="fb:admins" content="">
+				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
+        </script>
+				{% block css %}{%endblock %}
+				
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/bootstrap.css" type="text/css">
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
         <link rel="shortcut icon" href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/favicon.ico">
@@ -203,8 +207,7 @@
             </div>
             <!--end mm-footer-->
         </footer>
-				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
-        </script>
+				
         <script src="/media/js/bootstrap.js">
         </script>
 				{% block js_lower %}{% endblock %}
