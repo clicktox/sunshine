@@ -7,45 +7,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
 {% block container %}
-<div class="row">
-    
-    <div class="span9 home">
-        <!-- Carousel --><!-- consult Bootstrap docs at
-        http://twitter.github.com/bootstrap/javascript.html#carousel -->
-        <div id="this-carousel-id" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="item active">
-                    <a href="#"><img src="http://placehold.it/870x374" alt="ModernMom" /></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="http://placehold.it/870x374" alt="ModernMom" /></a>
-                    
-                </div>
-            </div>
-            <!-- .carousel-inner --><!-- next and previous controls here
-            href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-        </div>
-        <!-- .carousel -->
-    </div><!-- end carousel -->
-    <div class="span3">
-        
-            <div class="span3">
-            	<!-- ad container -->
-           	<div class="row">
-                	<img src="http://placehold.it/300x250">
-            	</div><!--end ad container -->
-            	
-            	<!-- message box -->
-            	<div class="row">
-                	<div class="message-box-head">
-               			<img src="http://placehold.it/300x120" alt="ModernMom" />                	
-                	</div>
-            	</div><!--end message box -->
-	     </div><!--end span3-->
-        
-    </div><!--end span5-->
-</div><!--end row-->
+
 
 <div class="container">
     <div class="strip-title">
@@ -60,7 +22,7 @@
             {% for scoop in scoop_list|slice:'1' %}
 						{% for scoopitem in scoop.items.all|slice:'6' %}
             <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
-                <a href="{{ article.get_absolute_url }}"><img src="http://placehold.it/180x113" alt="{{ article }}"></a>
+                <a href="{{ article.get_absolute_url }}"></a>
                 <p class="thumb-title">
                     <a href="{{ article.get_absolute_url }}">{{ scoopitem }}</a>
                 </p>
@@ -81,18 +43,20 @@
         {% for scoop in scoop_list %}
 						
 	<div class="bars">
-           <span class="wht-bg-H1 pink"><span class="black">{{ scoop }}</span></span>
+           <span class="wht-bg-H1 pink"><span class="black"><a href="{{ scoop.get_absolute_url }}">{{ scoop }}</a></span></span>
         </div>
         {% for scoopitem in scoop.items.all|slice:'2' %}
         <div class="gcontent-box">
-        	<div class="gcontent-thumb">
-        		<a href="#"><img src="http://placehold.it/180x180" class="img-circle"/></a>	
+        	{% if scoopitem.object.image %}
+					<div class="gcontent-thumb">
+        		<a href="{{ scoopitem.object.get_absolute_url }}">
+        			<img src="{{ scoopitem.object.image.get_180X180_url }}" class="img-circle"/></a>
         	</div>
+					{% endif %}	
         	
-        		<h4 class="gtitle"><a href="#">{{ scoopitem }}</a></h4>
+        		<h4 class="gtitle"><a href="{{ scoopitem.object.get_absolute_url }}">{{ scoopitem }}</a></h4>
         		
-        		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        		Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.	
+        		<p>{{ scoopitem.object.description|safe }}</p>
         	
         		<div class="button-align">
         			<a href="{{ scoopitem.object.get_absolute_url }}"><button type="button" class="btn btn-info btn-xs">Read More...</button></a>	

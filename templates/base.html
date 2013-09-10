@@ -52,8 +52,9 @@
             <nav id="navigation">
                 <div class="col-width">
                     <ul class="clearfix">
+                    	<li><a href="/"><i class="icon-home icon-2x"></i></a></li>
                         <li>
-                            <a href="http://brookeburke.modernmom.com/brookeburke.com">Brooke Burke</a>
+                            <a href="http://brookeburke.modernmom.com/">Brooke Burke</a>
                         </li>
                         <li>
                             <a href="{% url 'scoop_home' %}">Scoop</a>
@@ -62,13 +63,13 @@
                             <a href="{% url 'contests_home' %}">Contests</a>
                         </li>
                         <li>
-                            <a href="http://modernmom.com/contributors/">Contributors</a>
+                            <a href="{% url 'contributors' %}">Contributors</a>
                         </li>
                         <li>
                             <a href="{% url 'toolbox_home' %}">Tool Box</a>
                         </li>
                         <li>
-                            <a href="http://modernmom.com/videos/">Videos (Youtube)</a>
+                            <a href="http://modernmom.com/videos/">Videos</a>
                         </li>
                         <li>
                             <a href="http://babooshbaby.com">Shop</a>
@@ -81,7 +82,7 @@
                         </li>
                         {% if not request.user.is_authenticated %}
                         <li>
-                            <a href="{% url 'login' %}">LogIn</a>
+                            <a href="{% url 'login' %}">Log In</a>
                         </li>
                         {% endif %}
                     </ul>

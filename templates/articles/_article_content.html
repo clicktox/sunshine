@@ -1,6 +1,11 @@
 {% load i18n %}
 <div id="article-content" class="article">
     <h2 class="title">{% trans article.title %}</h2>
+		{% for ar in article.articlereference_set.all %}
+			{% if ar.reference.embed_code %}
+			{{ ar.reference.embed_code|safe }}
+			{% endif %}
+		{% endfor %}
 
     {{ article.rendered_introduction|safe }}
 </div>

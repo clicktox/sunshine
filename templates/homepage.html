@@ -31,37 +31,31 @@
         http://twitter.github.com/bootstrap/javascript.html#carousel -->
         <div id="this-carousel-id" class="carousel slide">
             <div class="carousel-inner">
-                <div class="item active">
-                    <a href="#"><img src="http://placehold.it/470x233" alt="ModernMom" /></a>
+            	{% for item in featured_items|slice:'4' %}
+                <div class="item{% if forloop.counter0 == 0 %} active{% endif %}">
+                    <a href="#"><img src="{{ item.image.get_470X233_url }}" alt="{{ item.title }}" /></a>
                     <div class="carousel-caption">
                         <p>
-                            ModernMom
+                            {{ item.name|safe }}
                         </p>
-                        <p>
-                            <a href="#">ModernMom.com</a>
-                        </p>
+                      
                     </div>
                 </div>
-                <div class="item">
-                    <a href="#"><img src="http://placehold.it/470x233" alt="ModernMom" /></a>
-                    <div class="carousel-caption">
-                        <p>
-                            ModernMom
-                        </p>
-                        <p>
-                            <a href="#">ModernMom.com</a>
-                        </p>
-                    </div>
-                </div>
+								{% endfor %}
+               
             </div>
             <!-- .carousel-inner --><!-- next and previous controls here
             href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
             <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
         </div>
         <!-- .carousel -->
+				{% comment %}
         <div class="slider-thumbs">
-            <img src="http://placehold.it/117x63" /><img src="http://placehold.it/117x63" /><img src="http://placehold.it/117x63" /><img src="http://placehold.it/117x63" />
+        	{% for item in featured_items|slice:'4' %}
+            <img src="{{ item.image.get_117X63_url }}" />
+						{% endfor %}
         </div><!--end slider-thumbs-->
+			{% endcomment %}
     </div><!-- end carousel -->
     <div class="span5">
         <div class="row">
@@ -69,15 +63,15 @@
             <div class="span2">
              
                 <h3 class='content-aside'>POPULINKS</h3>
-                <h4 class='content-aside'><a href="#" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
+                <h4 class='content-aside'><a href="/scoop/mommywood/" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
                 <p class="popu">
                     The latest up to the minute news about what's happening with ModernMom Celebs in Hollywood.
                 </p>
-                <h4 class='content-aside'><a href="#" class="h4a">BROOKE <span class="pink">BURKE</span></a></h4>
+                <h4 class='content-aside'><a href="http://brookeburke.modernmom.com/" class="h4a">BROOKE <span class="pink">BURKE</span></a></h4>
                 <p class="popu">
                     Catch up with Brooke Burke and read her amazing daily blog.
                 <p class="popu">
-                <h4 class='content-aside'><a href="#" class="h4a">SHOP OUR <span class="pink">STORE</span></a></h4>
+                <h4 class='content-aside'><a href="http://babooshbaby.com/" class="h4a">SHOP OUR <span class="pink">STORE</span></a></h4>
                 <p class="popu">
                     Shop Brooke Burke's exclusive store for pregnant moms.
                 </p>
@@ -113,9 +107,9 @@
         <div id="whats-new">
             {% for article in latest %}
             <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
-                <a href="{{ article.get_absolute_url }}"><img src="http://placehold.it/180x113" alt="{{ article }}"></a>
+                <a href="{{ article.get_absolute_url }}"><img src="{{ article.image.get_180X113_url }}" alt="{{ article }}"></a>
                 <p class="thumb-title">
-                    <a href="{{ article.get_absolute_url }}">{{ article }}</a>
+                    <a href="{{ article.get_absolute_url }}">{{ article|safe }}</a>
                 </p>
             </div>
             {% endfor %}
