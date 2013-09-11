@@ -80,9 +80,14 @@
                         <li>
                             <a href="http://musthave.modernmom.com/recalls">Recalls</a>
                         </li>
-                        {% if not request.user.is_authenticated %}
+												
+                        {% if not user.is_authenticated %}
                         <li>
                             <a href="{% url 'login' %}">Log In</a>
+                        </li>
+												{% else %}
+												 <li>
+                            <a href="{% url 'logout' %}">Log Out</a>
                         </li>
                         {% endif %}
                     </ul>
