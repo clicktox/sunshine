@@ -69,14 +69,25 @@
                             </p>
                         </div>
                     </div>
-                    <!-- Textarea -->
+                    <!-- Text input-->
                     <div class="control-group">
                         <label class="control-label">
-                            Answer
+                            Zip Code
                         </label>
                         <div class="controls">
                             <div id="response" name="response" class="textarea">
-                                <textarea name="{{ contest.guid }}keep-healthy" class="input-xlarge"></textarea>
+                                <input name="{{ contest.guid }}postal-code" class="input-xlarge" required="" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Textarea -->
+                    <div class="control-group">
+                        <label class="control-label">
+                            What is your favorite sore throat relief brand?
+                        </label>
+                        <div class="controls">
+                            <div id="response" name="response" class="textarea">
+                                <textarea name="{{ contest.guid }}favorite-sore-throat-relief-brand" class="input-xlarge"></textarea>
                             </div>
                         </div>
                     </div>
