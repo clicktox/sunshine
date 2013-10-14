@@ -1,54 +1,48 @@
 {% extends 'base.html'%}
-{% block title %}Create New Content ModernMom{% endblock %}
+{% block title %}ModernMom Scoop{% endblock %}
 {% block meta_og %}
+<meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
+<meta property="og:description" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ModernMom Scoop">
+<meta property="og:image" content="">
 {% endblock %}
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bootstrap-wysihtml5.css">
 </link>
 {%endblock %}
-{% block content %}
-<form class="form-horizontal" name="" id="" method="post" action=".">
-    <div class="row">
-        <div class="span8">
-            {% csrf_token %}
-            <div class="span5">
-                <fieldset>
-                    {{ article_form.as_p }}
-                </fieldset>
-            </div>
-            <div class="span3">
-                <fieldset>
-                    {{ article_image_form.as_p }}
-                </fieldset>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="span8">
-            <h2>Content</h2>
-            <hr>
-            <div class="span5">
-                <fieldset>
-                    {{ content_form.as_p }}
-                </fieldset>
-            </div>
-            <div class="span3">
-                <fieldset>
-                    {{ article_image_form.as_p }}
-                </fieldset>
-            </div>
-        </div>
-    </div>
+{% block container %}
+<div class="row">
+	<form  method="post" action="{% url 'create_article' %}">
+    <div class="span6">
+    	{{ form.errors }}
+        
+        	{% csrf_token %}
+					{{ form.display_type }}
+					<h2>Content Title</h2>
+					<input class="input-xxlarge" type="text" name="{{ form.title.html_name }}" id="id_{{ form.title.html_name }}" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+					<textarea class="input-xxlarge" rows="15" id="id_{{ form.introduction.html_name }}" name="{{ form.introduction.html_name }}">
+						{% if form.introduction.value %}{{ form.introduction.value }}{% endif %}</textarea>
+					{{ form.followup_for }}
+					{{ form.related_articles }}
 
-    <div class="row">
-        <div class="span8">
-            <button type="submit">
-                Save
-            </button>
-        </div>
-    </div>
+					<br>
+					{{ form.publish_date }}
+					{{ form.login_required }}{{ form.expiration_date }}{{ form.status }}
 
-</form>
+    </div>
+	<div class="span3">
+		{{ form.authors }}
+		{{ form.category }}
+		{{ form.scoop }}
+		{{ form.topic }}
+	</div>
+	<button type="submit">Save</button>
+	</form>
+</div>
+<script type="text/javascript">
+
+</script>
 {% endblock %}
 {% block js_lower %}
 <script src="{{ MEDIA_URL }}js/wysihtml5-0.3.0.js">
@@ -57,6 +51,6 @@
 </script>
 <script type="text/javascript">
     $('#id_introduction').wysihtml5();
-    $('#id_content').wysihtml5();
+
 </script>
 {% endblock %}

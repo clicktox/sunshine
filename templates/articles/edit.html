@@ -7,17 +7,49 @@
 <meta property="og:title" content="ModernMom Scoop">
 <meta property="og:image" content="">
 {% endblock %}
-{% block content %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bootstrap-wysihtml5.css">
+</link>
+{%endblock %}
+{% block container %}
 <div class="row">
-    <div class="span8">
-        <form class="form-horizontal" name="scoop_add_item_form" id="id_scoop_add_item_form" method="post" action=".">
+	<form  method="post" action="{% url 'articles_edit_article' article.uuid %}">
+    <div class="span6">
+        
         	{% csrf_token %}
-					{{ form.as_p }}
-					<button type="submit">Save</button>
-				</form>
+					<input class="input-xxlarge" type="text" name="{{ form.title.html_name }}" id="id_{{ form.title.html_name }}" value="{{ form.title.value }}">
+					{{ form.introduction }}
+					{{ form.followup_for }}
+					{{ form.related_articles }}
+
+					<br>
+					{{ form.publish_date }}
+					{{ form.login_required }}{{ form.expiration_date }}{{ form.status }}
+
     </div>
+	<div class="span3">
+		{{ article_image_form }}
+		{{ form.authors }}
+
+		{{ form.display_type }}
+		{{ form.category }}
+		{{ form.scoop }}
+		{{ form.topic }}
+	</div>
+	<button type="submit">Save</button>
+	</form>
 </div>
 <script type="text/javascript">
+
+</script>
+{% endblock %}
+{% block js_lower %}
+<script src="{{ MEDIA_URL }}js/wysihtml5-0.3.0.js">
+</script>
+<script src="{{ MEDIA_URL }}js/bootstrap-wysihtml5.js">
+</script>
+<script type="text/javascript">
+    $('#id_introduction').wysihtml5();
 
 </script>
 {% endblock %}

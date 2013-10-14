@@ -1,156 +1,63 @@
 {% extends 'base.html' %}
-
-
 {% block title %}
 {{ member.name }}
 {% endblock %}
 {% block container %}
-        <div class="row">
-            <div class="span8">
-                <div class="row">
-                    <div class="span5">
-                       <h1>{{ member.user.first_name }} {{ member.user.last_name }}</h1>
-					   <h2>{{ member.user.username }}</h2>
-                    </div>
-                    <div class="span3">
-                        <ul class="nav nav-tabs nav-stacked">
-                            <li class="">
-                                <a href="http://www.modernmom.com/user/{{member.id}}" target="_blank">ModernMom /user/{{ member.id }}</a>
-                            </li>
-							{% if member.memberslug %}
-							 <li class="">
-                                <a href="http://www.modernmom.com/users/{{member.memberslug}}" target="_blank">ModernMom /users/{{ member.memberslug  }}</a>
-                            </li>
-							{% endif %}
-                           
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="span5">
-                        <ul class="nav nav-tabs nav-stacked">
-                            <li class="active">
-                                <a href="#">Home</a>
-                            </li>
-                            <li>
-                                <a href="#">Tutorials</a>
-                            </li>
-                            <li>
-                                <a href="#">Practice Editor </a>
-                            </li>
-                            <li>
-                                <a href="#">Gallery</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="span3">
-                        <ul class="nav nav-tabs nav-stacked">
-                            <li class="active">
-                                <a href="#">Home</a>
-                            </li>
-                            <li>
-                                <a href="#">Tutorials</a>
-                            </li>
-                            <li>
-                                <a href="#">Practice Editor </a>
-                            </li>
-                            <li>
-                                <a href="#">Gallery</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="span8">
-                        <ul class="nav nav-tabs nav-stacked">
-                            <li class="active">
-                                <a href="#">Home</a>
-                            </li>
-                            <li>
-                                <a href="#">Tutorials</a>
-                            </li>
-                            <li>
-                                <a href="#">Practice Editor </a>
-                            </li>
-                            <li>
-                                <a href="#">Gallery</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-				<div class="row">
-                    <div class="span4">
-                        <ul class="nav nav-tabs nav-stacked">
-                            <li class="active">
-                                <a href="#">Home</a>
-                            </li>
-                            <li>
-                                <a href="#">Tutorials</a>
-                            </li>
-                            <li>
-                                <a href="#">Practice Editor </a>
-                            </li>
-                            <li>
-                                <a href="#">Gallery</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-					<div class="span4">
-                        <ul class="nav nav-tabs nav-stacked">
-                            <li class="active">
-                                <a href="#">Home</a>
-                            </li>
-                            <li>
-                                <a href="#">Tutorials</a>
-                            </li>
-                            <li>
-                                <a href="#">Practice Editor </a>
-                            </li>
-                            <li>
-                                <a href="#">Gallery</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="span3">
-                <ul class="nav nav-tabs nav-stacked">
-                    <li class="active">
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#">Tutorials</a>
-                    </li>
-                    <li>
-                        <a href="#">Practice Editor </a>
-                    </li>
-                    <li>
-                        <a href="#">Gallery</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
+<div class="row">
+	<div class="span12">
+	<div class="gcontent-box">
+        	
+					<div class="gcontent-thumb">
+        		
+        			<img src="{{ member.avatar.get_180X180_url }}" class="img-circle">
+        	</div>
+						
+        	
+        		<h4 class="gtitle">{{ member.first_name }} <em> a.k.a {{ member.username }}</em></a></h4>
+        		
+        		<p>{{ member.membersignature.signature|safe }}</p>
+        	
+        		
+        	        	
         </div>
-
-{% endblock %}
-
-
-
-
+				</div>
+				</div>
+<div class="row">
+	<div class="span4">
+		<ul class="nav">
+			<li class="nav-header">Contibuting author alias</li>
+			{% for author in member.author_set.all %}
+			<li><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></li>
+			{% endfor %}
+			<li class="nav-header">My Recent Posts ( {{ member.article_set.count }} )</li>
+			{% for article in member.article_set.all %}
+<li><a href="{{ article.get_absolute_url }}">{{ article }}</a></li>
+{% endfor %}
+		</ul>
+	</div>
+    <div class="span8">
+       	<h2>{{ member.username }} Author Alias</h2>
+				
+				{% for article in member.article_set.all %}
+				<div class="gcontent-box">
+        	
+					<div class="gcontent-thumb">
+        		<a href="{{ article.get_absolute_url }}">
+        			<img src="{{ article.image.get_180X180_url }}" class="img-circle"></a>
+        	</div>
+						
+        	
+        		<h4 class="gtitle"><a href="{{ article.get_absolute_url }}">{{ article }}</a></h4>
+        		
+        		<p>{{ article.description|striptags }}</p>
+        	
+        		
+        	        	
+        </div>
+				
+			
+				{% endfor %}
+				
+    </div>
+    
+            {% endblock %}

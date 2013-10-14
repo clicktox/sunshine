@@ -1,166 +1,45 @@
 {% extends 'base.html' %}
-{% block head %}
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" type="text/css">
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-{% endblock %}
-{% block container %}
-<div class="row">
-    <div class="span2">
-        <div class="widget">
-            <div class="social-media-links">
-                <a href="#"><i class="icon-facebook icon-2x"></i></a>
-                <a href="#"><i class="icon-twitter icon-2x"></i></a>
-                <a href="#"><i class="icon-google-plus icon-2x"></i></a>
-                <a href="#"><i class="icon-flickr icon-2x"></i></a>
-                <a href="#"><i class="icon-youtube-sign icon-2x"></i></a>
-            </div>
-            <!--end social-media-links -->
-            <ul id="subnav" class="demand-icon-list">
-                {% for category in CHANNELS %}
-                <li class="item-{{ category.id }}">
-                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+{% block content %}
+<div class="big-title">
+    <div id="title">
+        <h1>Featured Today</h1>
     </div>
-    <div class="span5 home">
-        <h3 class='content-aside'>Featured Stories</h3>
-        <!-- Carousel --><!-- consult Bootstrap docs at
-        http://twitter.github.com/bootstrap/javascript.html#carousel -->
-        <div id="this-carousel-id" class="carousel slide">
-            <div class="carousel-inner">
-            	{% for item in featured_items|slice:'4' %}
-                <div class="item{% if forloop.counter0 == 0 %} active{% endif %}">
-                    <a href="#"><img src="{{ item.image.get_470X233_url }}" alt="{{ item.title }}" /></a>
-                    <div class="carousel-caption">
-                        <p>
-                            {{ item.name|safe }}
-                        </p>
-                      
-                    </div>
-                </div>
-								{% endfor %}
-               
-            </div>
-            <!-- .carousel-inner --><!-- next and previous controls here
-            href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-        </div>
-        <!-- .carousel -->
-				{% comment %}
-        <div class="slider-thumbs">
-        	{% for item in featured_items|slice:'4' %}
-            <img src="{{ item.image.get_117X63_url }}" />
-						{% endfor %}
-        </div><!--end slider-thumbs-->
-			{% endcomment %}
-    </div><!-- end carousel -->
-    <div class="span5">
-        <div class="row">
+</div>
+{% for item in featured_items|slice:'1' %}
 
-            <div class="span2">
-             
-                <h3 class='content-aside'>POPULINKS</h3>
-                <h4 class='content-aside'><a href="/scoop/mommywood/" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
-                <p class="popu">
-                    The latest up to the minute news about what's happening with ModernMom Celebs in Hollywood.
-                </p>
-                <h4 class='content-aside'><a href="http://brookeburke.modernmom.com/" class="h4a">BROOKE <span class="pink">BURKE</span></a></h4>
-                <p class="popu">
-                    Catch up with Brooke Burke and read her amazing daily blog.
-                <p class="popu">
-                <h4 class='content-aside'><a href="http://babooshbaby.com/" class="h4a">SHOP OUR <span class="pink">STORE</span></a></h4>
-                <p class="popu">
-                    Shop Brooke Burke's exclusive store for pregnant moms.
-                </p>
-                
-            </div>
-            
-					<div class="span3">
-            <!-- ad container -->
-            <div class="row">
-                <img src="http://placehold.it/300x250">
-            </div><!--end ad container --><!-- message box -->
-            <div class="row">
-                <div class="message-box-head">
-                
-               		<img src="http://placehold.it/300x120" alt="ModernMom" />
-                	
-                </div>
-            </div><!-- end message box -->
-					</div>
-        </div>
-    </div><!--end span5-->
-</div><!--end row-->
+<!-- Start Featured Article -->
+<div id="featured" data-cme-module="featured_home" data-cme-module-min="1" data-cme-module-max="1">
+    <div id="article-1" class="article">
+        <a href="{{ item.get_absolute_url }}"><img src="{{ item.image.get_470X380_url }}" alt="" width="638" height="318"></a><h3>
+        	<a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h3>
+        <p>
+           {{ item.description|striptags|safe }}
+        </p>
+    </div>
+</div>
+{% endfor %}
+<div id="editors" class="clearfix">
+	{% for item in featured_items|slice:'1:10' %}
+	<div id="article-{{ item.id }}" class="article clearfix">
+<a href="{{ item.url }}"><img src="{{ item.image.get_180X180_url }}" data-src="/" alt="" width="170" height="113"></a><h3>
+	<a href="{{ item.url }}">{{ item.name }}</a></h3>
+        <p>
+            {{ item.description|striptags }}
+        </p>
+</div>
+{% endfor %}
 
-<div class="container">
-    <div class="strip-title">
-        <div class="strip-text">
-        </div>
-        <span class="wht-bg-H1-whats-new pink">What's <span class="black-whats-new">New</span></span>
+<!-- End Section -->
+
+    {% for category in CHANNELS %}<!-- Other Home Page Articles -->
+    <div id="article-1" class="article clearfix">
+        <h2 class="article-meta">{{ category }}</h2>
+        {% for ci in category.items.all|slice:'1' %}<a href="{{ ci.object.get_absolute_url }}"><img src="{{ ci.object.image.get_180X180_url }}" data-src="/" alt="" width="170" height="113"></a><h3><a href="{{ ci.object.get_absolute_url }}">{{ ci.object }}</a></h3>
+        <p>
+            {{ ci.object.description|striptags }}
+        </p>
+        {% endfor %}
     </div>
+    {% endfor %}
 </div>
-<div class="row">
-    <div class="span12">
-        <div id="whats-new">
-            {% for article in latest %}
-            <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
-                <a href="{{ article.get_absolute_url }}"><img src="{{ article.image.get_180X113_url }}" alt="{{ article }}"></a>
-                <p class="thumb-title">
-                    <a href="{{ article.get_absolute_url }}">{{ article|safe }}</a>
-                </p>
-            </div>
-            {% endfor %}
-            <div class="clear-both">
-            </div>
-            <div class="bottom-line">
-                &nbsp;
-            </div>
-        </div>
-    </div>
-    <!-- /span12 -->
-</div>
-<!-- /row -->
-<div class="row">
-    <div class="span8">
-        <div class="row">
-            {% for category in CHANNELS %}
-            <div class="span4">
-                <div class="section-title">
-                    <div class="bars">
-                        <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
-                    </div>
-                    <!-- /bars -->
-                    <div class="section-list" style="overflow:hidden;">
-                        <ul>
-                            {% for ci in category.items.all|slice:'5' %}
-                            <li>
-                                <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <div class="section-end">
-                            More in {{ category }} <i class="icon-caret-right"></i>
-                        </div>
-                        <!-- /section-end -->
-                    </div>
-                    <!-- /section-list -->
-                </div>
-                <!-- /section-title -->
-            </div>
-            <!-- I ADD THIS RIGHT HERE, THIS ONE, NOT THAT ONE-->
-            {% endfor %}
-        </div>
-    </div>
-    <div class="span4">
-        <!-- right rail-->
-    </div>
-    <!-- /right rail-->
-    <!-- /row -->
-</div>
-</div>
-</div>
-<!-- /container -->
 {% endblock %}

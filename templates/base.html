@@ -1,66 +1,160 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
     <head>
+    		<base href="{{ SITE_BASEURL }}" target="_self">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="google-site-verification" content="">
-        <meta name="msvalidate.01" content="">
-        <meta property="og:site_name" content="ModernMom">
-        <meta property="fb:admins" content="">
-				<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
-        </script>
-				{% block css %}{%endblock %}
+        <meta property="og:site_name" content="{{ SITE_DISPLAY }}">
+        <meta property="fb:admins" content="693192819">
 				
-        <link rel="stylesheet" href="{{ MEDIA_URL }}css/bootstrap.css" type="text/css">
-        <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css">
-        <link rel="shortcut icon" href="http://motherhood.modernmom.com.stagingapi.demandmedia.com/favicon.ico">
-        <link href='http://fonts.googleapis.com/css?family=Oswald:700|Open+Sans|Euphoria+Script' rel='stylesheet' type='text/css'>
-        <link rel="icon" href="">
-        <link rel="alternate" type="application/rss+xml" title="" href="">
-        
+        <link rel="stylesheet" href="http://motherhood.modernmom.com/style.css" type="text/css">
+        <link rel="shortcut icon" href="http://www.modernmom.com/favicon.ico">
+        <link rel="icon" href="http://www.modernmom.com/favicon.ico">
+        <link rel="alternate" type="application/rss+xml" title="" href="http://motherhood.modernmom.com/rss/root.xml">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
+        </script>
         <title>{% block title %}ModernMom{% endblock %}</title>
-        <meta name="description" content="ModernMom is a community for moms, mothers, and the woman behind the mom. Find smart advice and practical tips for moms by moms on parenting, finances, careers, fitness, beauty, babies, children and much more.">
-        <meta name="pagetype" scheme="DMINSTR2" content="Home">
-        {% block meta_og %}
-        <meta property="og:url" content="">
-        <meta property="og:description" content="ModernMom is a community for moms, mothers, and the woman behind the mom. Find smart advice and practical tips for moms by moms on parenting, finances, careers, fitness, beauty, babies, children and much more.">
+        <meta name="description" content="">
+        {% block head_og %}
+        <meta property="og:url" content="{{ SITE_BASEURL }}">
         <meta property="og:type" content="website">
-        <meta property="og:title" content="ModernMom">
-        <meta property="og:image" content="">
+        <meta property="og:title" content="{{ SITE_DISPLAY }}">
         {% endblock %}
-        <link rel="canonical" href="">
+        {% block head_canonical %}
+        {% endblock %}
         <!--[if lt IE 9]>
             <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->{% block head %}{% endblock %}
+        <![endif]-->
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="http://motherhood.modernmom.com/fonts/modern-icon-font.css" type="text/css">
+        <![endif]-->
     </head>
-    <body id="taxo-level-0" class="home">
+    <body id="{% block body_id %}home-template{% endblock %}" class="{%block body_class %}home{% endblock %}">
+    	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=208027353668";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
         <div id="page">
             <a href="#main" id="skipLink">Skip to main content.</a>
             <header>
                 <div class="col-width clearfix">
                     <div id="google-mobile-leaderboard">
                     </div>
-                    <div class="banner-ad">
+                    <div id="ad-leaderboard" class="banner-ad">
+                        <!--
+                        ## IndieClick Ad Tag
+                        ## publisher[ModernMom]  zone[Run of site]  size[728x90]  v[2]
+                        -->
+                        <script language="JavaScript" type="text/javascript">
+                            
+                            //<![CDATA[
+                            
+                            (function(){
+                                var config = {
+                                
+                                    ic_domain: "dmd.ind.modernmom",
+                                    ic_size: "728x90",
+                                    ic_zone: "",
+                                    ic_campaign: "",
+                                    ic_version: "2"
+                                
+                                };
+                                var ic_config = (typeof window.top.ic_config == "undefined") ? window.top.ic_config = {} : window.top.ic_config;
+                                var in_iframe = (window != window.top) ? true : false;
+                                config.iframe = (in_iframe) ? true : false;
+                                config.ord = (ic_config.ord) ? ic_config.ord : ic_config.ord = Math.floor(Math.random() * 10000000000000000);
+                                config.tile = (ic_config.tile) ? ++ic_config.tile : ic_config.tile = 1;
+                                for (var key in ic_config) {
+                                    config[key] = ic_config[key]
+                                }
+                                var key_value = [];
+                                key_value[key_value.length] = "sz=" + config.ic_size;
+                                key_value[key_value.length] = "tile=" + config.tile;
+                                key_value[key_value.length] = "ver=" + config.ic_version;
+                                key_value[key_value.length] = "frame=" + config.iframe;
+                                key_value[key_value.length] = "cm=" + config.ic_campaign;
+                                for (var key in config.ic_keyValue) {
+                                    key_value[key_value.length] = key + "=" + config.ic_keyValue[key]
+                                }
+                                if (!in_iframe && !ic_config.dcopt) {
+                                    ic_config.dcopt = true;
+                                    key_value[key_value.length] = "dcopt=ist"
+                                }
+                                document.write('<span id="ic_' + config.ord + config.tile + '"></span>');
+                                var element = document.getElementById("ic_" + config.ord + config.tile);
+                                if (ic_config.asyncInit) {
+                                    ic_config.asyncInit(key_value, element)
+                                }
+                                var key_value = key_value.join(";");
+                                window.ic_ad_complete = function(){
+                                    if (in_iframe) {
+                                        window.onload = function(){
+                                            var elem = document.getElementById("icAdUnit");
+                                            elem.style.position = "absolute";
+                                            window.frameElement.style.width = elem.offsetWidth + "px";
+                                            window.frameElement.style.height = elem.offsetHeight + "px";
+                                            window.frameElement.style.overflow = "hidden";
+                                            window.frameElement.style.border = "0"
+                                        }
+                                    }
+                                };
+                                document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/' + config.ic_domain + "/" + config.ic_zone + ";" + key_value + ";ord=" + config.ord + '?" type="text/javascript"><\/script>');
+                                document.write('<script type="text/javascript">window.ic_ad_complete();<\/script>')
+                            })();
+                            
+                            (function(){
+                                var u = "dmd.ind.modernmom//5/ns/728x90/script_dfp.js";
+                                var e = document.createElement('script');
+                                e.src = 'http://pixel.indieclick.com/annonymous/dfp/' + u;
+                                e.type = "text/javascript";
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(e, s);
+                            })();
+                            
+                            //]]>
+                            
+                        </script>
+                        <noscript>
+                            <a href="http://ad.doubleclick.net/jump/dmd.ind.modernmom/;sz=728x90;ord=123456789?" target="_blank"><img src="http://ad.doubleclick.net/ad/dmd.ind.modernmom/;sz=728x90;ord=123456789?" border="0" alt="" /></a>
+                        </noscript><!-- End IndieClick Ad Tag -->
                     </div>
                     <div id="header-group" class="clearfix">
-                        <a id="logo" class="ir" href="http://www.modernmom.com" rel="home">Modern Mom</a>
+                        <a id="logo" href="http://www.modernmom.com" rel="home"><img src="http://motherhood.modernmom.com/images/logo.gif" alt="ModernMom"></a>
                     </div>
                 </div>
             </header>
             <nav id="navigation">
                 <div class="col-width">
-                    <ul class="clearfix">
-                    	<li><a href="/"><i class="icon-home icon-2x"></i></a></li>
+                    <h3 class="assistive-text menu-toggle-text" data-toggle=".main-links"><a href="#"><i class="icon-menu"></i>Menu</a></h3>
+                    <ul class="main-links clearfix">
                         <li>
-                            <a href="http://brookeburke.modernmom.com/">Brooke Burke</a>
+                            <a href="/brooke-burke/">Brooke Burke</a>
                         </li>
-                        <li>
-                            <a href="{% url 'scoop_home' %}">Scoop</a>
-                        </li>
+                       
                         <li>
                             <a href="{% url 'contests_home' %}">Contests</a>
+                        </li>
+												 <li>
+                            <a href="{% url 'scoop_home' %}">Scoop</a>
+                        </li>
+												 <li>
+                            <a href="/scoop/must-haves/">Must-Haves</a>
+                        </li>
+												
+                        <li>
+                            <a href="/scoop/recalls/">Recalls</a>
+                        </li>
+												 <li>
+                            <a href="/scoop/hottopic/">Hot Topics</a>
+                        </li>
+                        <li>
+                            <a href="/scoop/mommywood/">Mommywood</a>
                         </li>
                         <li>
                             <a href="{% url 'contributors' %}">Contributors</a>
@@ -69,17 +163,12 @@
                             <a href="{% url 'toolbox_home' %}">Tool Box</a>
                         </li>
                         <li>
-                            <a href="http://modernmom.com/videos/">Videos</a>
+                            <a href="http://www.youtube.com/user/modernmom">Videos</a>
                         </li>
                         <li>
                             <a href="http://babooshbaby.com">Shop</a>
                         </li>
-                        <li>
-                            <a href="http://musthave.modernmom.com">Must-Haves</a>
-                        </li>
-                        <li>
-                            <a href="http://musthave.modernmom.com/recalls">Recalls</a>
-                        </li>
+                       
 												
                         {% if not user.is_authenticated %}
                         <li>
@@ -92,131 +181,237 @@
                         {% endif %}
                     </ul>
                 </div>
-                <!--end col-width-->
             </nav>
-            <div class="container">
-                {% block container %}
-                <div class="row">
-                    <div class="span2">
-                        <div class="widget">
-                        <div class="social-media-links">
-                <a href="#"><i class="icon-facebook icon-2x"></i></a>
-                <a href="#"><i class="icon-twitter icon-2x"></i></a>
-                <a href="#"><i class="icon-google-plus icon-2x"></i></a>
-                <a href="#"><i class="icon-flickr icon-2x"></i></a>
-                <a href="#"><i class="icon-youtube-sign icon-2x"></i></a>
-            </div>
-            <!--end social-media-links -->
-                            <h3 class='content-aside'>Motherhood</h3>
-                            <ul id="subnav" class="demand-icon-list">
-                {% for category in CHANNELS %}
-                <li class="item-{{ category.id }}">
-                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
-                </li>
-                {% endfor %}
-            </ul>
+            <div id="content" class="col-width clearfix">
+                <div id="main">
+                    {% block container %}
+                    <div id="content-aside">
+                        <div class="subnav-widget widget">
+                            <h3>Explore</h3>
+                            <ul id="subnav" class="menu-list">
+                                <li class="item-1">
+                                    <a href="http://motherhood.modernmom.com/around-the-house/"><span>Around the House</span></a>
+                                </li>
+                                <li class="item-2">
+                                    <a href="http://motherhood.modernmom.com/beauty-style/"><span>Beauty &amp; Style</span></a>
+                                </li>
+                                <li class="item-3">
+                                    <a href="http://motherhood.modernmom.com/food-drink/"><span>Food &amp; Drink</span></a>
+                                </li>
+                                <li class="item-4">
+                                    <a href="http://motherhood.modernmom.com/living-healthy/"><span>Living Healthy</span></a>
+                                </li>
+                                <li class="item-5">
+                                    <a href="http://motherhood.modernmom.com/parenting-pregnancy/"><span>Parenting</span></a>
+                                </li>
+                                <li class="item-6">
+                                    <a href="http://motherhood.modernmom.com/relationships-family/"><span>Relationships</span></a>
+                                </li>
+                            </ul>
                         </div>
-                        <!--end widget-->
+												{% block left_rail %}
+                      
+												{% endblock %}
                     </div>
-                    <!--end span2-->
-                    <div class="span7">
-                        {% block content %}{% endblock %}
+                    <div id="content-section">
+                        {% block content %}
+                       {% endblock %}
                     </div>
-                    <!-- Start Sidebar -->
-                    <aside class="span3">
-                        <img src="http://placehold.it/300x250">
-                    </aside>
-                </div><!--end row--><!-- End Sidebar -->{% endblock %}
-            </div><!--end container-->
-        </div><!--end page-->
-        <footer>            
-            <!--end demand-footer-->
-            <div id="mm-footer">
-                <div class="col-width clearfix">
-                    <h3>ModernMom</h3>
-                    <ul class="social-links clearfix">
-                        <li class="facebook">
-                            <a href="http://www.facebook.com/pages/ModernMom/197177430011"><span>Facebook</span></a>
-                        </li>
-                        <li class="twitter">
-                            <a href="http://twitter.com/modernmom"><span>Twitter</span></a>
-                        </li>
-                        <li class="gplus">
-                            <a href="http://plus.google.com/u/0/+ModernMom/posts"><span>Google+</span></a>
-                        </li>
-                        <li class="pinterest">
-                            <a href="http://pinterest.com/ModernMomOnline/"><span>Pinterest</span></a>
-                        </li>
-                        <li class="youtube">
-                            <a href="http://www.youtube.com/user/modernmom"><span>YouTube</span></a>
-                        </li>
-                    </ul>
-                    <ul class="footer-menu clearfix">
-                        <li>
-                            <a href="http://www.modernmom.com/brooke-burke">Brooke Burke</a>
-                        </li>
-                        <li>
-                            <a href="http://musthave.modernmom.com">Must-Haves</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/contests">Contests</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/videos/">Videos (Youtube)</a>
-                        </li>
-                        <li>
-                            <a href="http://babooshbaby.com">Shop</a>
-                        </li>
-                        <li>
-                            <a href="http://www.mommytracked.com">Mommytracked</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/recalls">Recalls</a>
-                        </li>
-                    </ul>
-                    <ul class="footer-menu clearfix">
-                        <li>
-                            <a href="http://www.modernmom.com/about-us">About Us</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/user/register">Register</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/advertising">Advertising</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/press">Press</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/privacy-policy">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/privacy-policy">Terms of Use</a>
-                        </li>
-                        <li>
-                            <a href="http://www.modernmom.com/contact">Contact Us</a>
-                        </li>
-                    </ul>
-                    <p class="copyright">
-                        &copy; Copyright 2013 Modern Mom. All Rights Reserved.
-                    </p>
-                    <p class="notice">
-                        Reproduction of any portion of this website only at the express permission of Mom, Inc. 
-                        <br>
-                        The information provided on ModernMom is for educational use only. It should not be used as a substitute for professional medical advice, diagnosis or treatment.
-                    </p>
-                    
-                    <a href="http://motherhood.modernmom.com/sitemap.html" title="Motherhood Sitemap">Motherhood Index</a>
-
+										{% endblock %}
                 </div>
-                <!--end col-width clearfix -->
+                <!-- /#main --><!-- Start Sidebar -->
+                <aside id="sidebar">
+                	<div id="more-read" class="thumbnails widget clearfix" data-cme-module="popular_articles" data-cme-module-min="1" data-cme-module-max="4">
+    <h3>Contests</h3>
+    <ul>
+        <li class="clearfix">
+            <a href="http://motherhood.modernmom.com/put-buttons-fabric-headboard-6426.html"><img src="http://motherhood.modernmom.com/images/pixel.gif" data-src="/DM-Resize/photos.demandstudios.com/getty/article/26/243/200258030-001.jpg?w=130&amp;h=87&amp;crop_min=1" alt="How to Put Buttons on a Fabric Headboard" width="130" height="87"><span class="clearfix">How to Put Buttons on a Fabric Headboard</span></a>
+        </li>
+    </ul>
+   
+</div>
+                    <div id="ad-300" class="ad widget">
+                        <!--
+                        ## IndieClick Ad Tag
+                        ## publisher[ModernMom]  zone[Run of site]  size[300x250]  v[2]
+                        -->
+                        <script language="JavaScript" type="text/javascript">
+                            
+                            //<![CDATA[
+                            
+                            (function(){
+                                var config = {
+                                
+                                    ic_domain: "dmd.ind.modernmom",
+                                    ic_size: "300x250",
+                                    ic_zone: "",
+                                    ic_campaign: "",
+                                    ic_version: "2"
+                                
+                                };
+                                var ic_config = (typeof window.top.ic_config == "undefined") ? window.top.ic_config = {} : window.top.ic_config;
+                                var in_iframe = (window != window.top) ? true : false;
+                                config.iframe = (in_iframe) ? true : false;
+                                config.ord = (ic_config.ord) ? ic_config.ord : ic_config.ord = Math.floor(Math.random() * 10000000000000000);
+                                config.tile = (ic_config.tile) ? ++ic_config.tile : ic_config.tile = 1;
+                                for (var key in ic_config) {
+                                    config[key] = ic_config[key]
+                                }
+                                var key_value = [];
+                                key_value[key_value.length] = "sz=" + config.ic_size;
+                                key_value[key_value.length] = "tile=" + config.tile;
+                                key_value[key_value.length] = "ver=" + config.ic_version;
+                                key_value[key_value.length] = "frame=" + config.iframe;
+                                key_value[key_value.length] = "cm=" + config.ic_campaign;
+                                for (var key in config.ic_keyValue) {
+                                    key_value[key_value.length] = key + "=" + config.ic_keyValue[key]
+                                }
+                                if (!in_iframe && !ic_config.dcopt) {
+                                    ic_config.dcopt = true;
+                                    key_value[key_value.length] = "dcopt=ist"
+                                }
+                                document.write('<span id="ic_' + config.ord + config.tile + '"></span>');
+                                var element = document.getElementById("ic_" + config.ord + config.tile);
+                                if (ic_config.asyncInit) {
+                                    ic_config.asyncInit(key_value, element)
+                                }
+                                var key_value = key_value.join(";");
+                                window.ic_ad_complete = function(){
+                                    if (in_iframe) {
+                                        window.onload = function(){
+                                            var elem = document.getElementById("icAdUnit");
+                                            elem.style.position = "absolute";
+                                            window.frameElement.style.width = elem.offsetWidth + "px";
+                                            window.frameElement.style.height = elem.offsetHeight + "px";
+                                            window.frameElement.style.overflow = "hidden";
+                                            window.frameElement.style.border = "0"
+                                        }
+                                    }
+                                };
+                                document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/' + config.ic_domain + "/" + config.ic_zone + ";" + key_value + ";ord=" + config.ord + '?" type="text/javascript"><\/script>');
+                                document.write('<script type="text/javascript">window.ic_ad_complete();<\/script>')
+                            })();
+                            
+                            (function(){
+                                var u = "dmd.ind.modernmom//3/ns/300x250/script_dfp.js";
+                                var e = document.createElement('script');
+                                e.src = 'http://pixel.indieclick.com/annonymous/dfp/' + u;
+                                e.type = "text/javascript";
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(e, s);
+                            })();
+                            
+                            //]]>
+                            
+                        </script>
+                        <noscript>
+                            <a href="http://ad.doubleclick.net/jump/dmd.ind.modernmom/;sz=300x250;ord=123456789?" target="_blank"><img src="http://ad.doubleclick.net/ad/dmd.ind.modernmom/;sz=300x250;ord=123456789?" border="0" alt="" /></a>
+                        </noscript><!-- End IndieClick Ad Tag -->
+                    </div>
+                    <div class="widget">
+                        <script>
+                            (function(){
+                                var cx = '001335843976199048504:l7b834cqb00';
+                                var gcse = document.createElement('script');
+                                gcse.type = 'text/javascript';
+                                gcse.async = true;
+                                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                '//www.google.com/cse/cse.js?cx=' +
+                                cx;
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(gcse, s);
+                            })();
+                        </script>
+                        <gcse:search>
+                        </gcse:search>
+                    </div>
+                    {% block right_rail %}
+                    
+                    {% endblock %}
+                </aside>
+                <!-- End Sidebar -->
             </div>
-            <!--end mm-footer-->
-        </footer>
-				
-        <script src="/media/js/bootstrap.js">
-        </script>
-				{% block js_lower %}{% endblock %}
+            <footer>
+                <div id="demand-footer">
+                </div>
+                <div id="mm-footer">
+                    <div class="col-width clearfix">
+                        <h3>ModernMom</h3>
+                        <ul class="social-links clearfix">
+                            <li class="facebook">
+                                <a href="http://www.facebook.com/pages/ModernMom/197177430011"><span>Facebook</span></a>
+                            </li>
+                            <li class="twitter">
+                                <a href="http://twitter.com/modernmom"><span>Twitter</span></a>
+                            </li>
+                            <li class="gplus">
+                                <a href="http://plus.google.com/u/0/+ModernMom/posts"><span>Google+</span></a>
+                            </li>
+                            <li class="pinterest">
+                                <a href="http://pinterest.com/ModernMomOnline/"><span>Pinterest</span></a>
+                            </li>
+                            <li class="youtube">
+                                <a href="http://www.youtube.com/user/modernmom"><span>YouTube</span></a>
+                            </li>
+                        </ul>
+                        <ul class="footer-menu clearfix">
+                            <li>
+                                <a href="http://www.modernmom.com/brooke-burke">Brooke Burke</a>
+                            </li>
+                            <li>
+                                <a href="http://musthave.modernmom.com">Must-Haves</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/contests">Contests</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/videos/">Videos (Youtube)</a>
+                            </li>
+                            <li>
+                                <a href="http://babooshbaby.com">Shop</a>
+                            </li>
+                            <li>
+                                <a href="http://www.mommytracked.com">Mommytracked</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/recalls">Recalls</a>
+                            </li>
+                        </ul>
+                        <ul class="footer-menu clearfix">
+                            <li>
+                                <a href="http://www.modernmom.com/about-us">About Us</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/user/register">Register</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/advertising">Advertising</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/press">Press</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/privacy-policy">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/privacy-policy">Terms of Use</a>
+                            </li>
+                            <li>
+                                <a href="http://www.modernmom.com/contact">Contact Us</a>
+                            </li>
+                        </ul>
+                        <p>
+                            (c) Copyright 2013 Mom, Inc. All Rights Reserved.
+                        </p>
+                        <p class="notice">
+                            Reproduction of any portion of this website only at the express permission of Mom, Inc. 
+                            <br>
+                            The information provided on ModernMom is for educational use only. It should not be used as a substitute for professional medical advice, diagnosis or treatment.
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
     </body>
 </html>
-<!-- Rendered: 2013-06-25 08:52:23.305277 -->
+<!-- Rendered: 2013-10-09 07:29:13.552454 -->

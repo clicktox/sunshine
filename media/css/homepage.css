@@ -285,7 +285,14 @@
     padding: 15px;
     width: 100%;
 }
-
+.gcontent-box-sm{
+	background: none repeat scroll 0 0 #EEEEEE;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    max-width: 741px;
+    padding: 15px;
+    width: 100%;
+}
 .gcontent-thumb{
  	float: left;
     	margin: 10px;
@@ -295,6 +302,8 @@
 
 .gcontent-box p{
 	text-align:left;
+	max-height:123px;
+	overflow:hidden;
 }
 
 .button-align{
@@ -308,5 +317,26 @@ h4.gtitle a{
 
 h4.gtitle a:hover{
 	color:#000000;
+}
+h3.content-aside {
+	font-size:15px;
+}
+.article { 
+margin-bottom: 30px;
+-webkit-box-shadow: rgba(42,43,44,0.05) 2px -2px 6px;
+-moz-box-shadow: rgba(42,43,44,0.05) 2px -2px 6px;
+box-shadow: rgba(42,43,44,0.05) 2px -2px 6px;
+border: 1px solid #DADCE0;
+}
+h2.title {
+	font-family: Georgia,serif;
+	font-weight: normal;
+font-size: 38px;
+line-height: 42px;
+color: #222;
+padding-bottom: 10px;
+}
+#main-article-photo {
+background: #f9f9f9;
 }
 

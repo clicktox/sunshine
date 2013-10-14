@@ -9,6 +9,9 @@ urlpatterns = patterns('',
     url(r'^scoop/$', 'taxonomy.views.scoop_home',name='scoop_home'),
     url(r'^scoop/(?P<slug>[\w\d-]+)/$', 'taxonomy.views.scoop_detail',name='scoop_detail'),
     url(r'^scoop/(?P<slug>[\w\d-]+)/add/$', 'taxonomy.views.scoop_add_item',name='scoop_add_item'),
+    url(r'^scoop/(?P<slug>[\w\d-]+)/add/post/$', 'taxonomy.views.scoop_add_post',name='scoop_add_post'),
+    url(r'^scoop/(?P<slug>[\w\d-]+)/add/slideshow/$', 'taxonomy.views.scoop_add_slideshow',name='scoop_add_slideshow'),
+    
     
     url(r'^topics/$', 'taxonomy.views.topic_list',name='topic_list'),
     url(r'^topics/(?P<uuid>[\w\d-]+)/$', 'taxonomy.views.topic_detail',name='topic_detail'),

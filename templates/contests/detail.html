@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bootstrapbase.html' %}
 {% block title %}{{ contest.name }}{% endblock %}
 {% block meta %}
 <meta property="og:title" content="{{ contest.name }}" />
@@ -19,7 +19,7 @@
     	<h1>{{ contest.name }}</h1>
 		<p>{{ contest.contestdescription }}</p>
 
-                <form name="form_{{contest.guid }}" id="form_{{contest.guid }}" class="form-horizontal" method="post" action="{% url contest_detail contest.url %}">
+                <form name="form_{{contest.guid }}" id="form_{{contest.guid }}" class="form-horizontal" method="post" action="{% url 'contest_detail' contest.url %}">
                     {% csrf_token %}
                     {% if 'reached_total_max' in request.GET  %}
                     <div class="control-group">

@@ -1,89 +1,29 @@
-{% extends 'base.html'%}
-{% block title %}ModernMom Scoop{% endblock %}
+{% extends 'base.html' %}
+{% block body_id %}article-template{% endblock %}
+{% block body_class %}Article Topic-View{% endblock %}
 
-{% block head %}
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" type="text/css">
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+{% block content %}
+<div class="big-title">
+    <div id="title">
+        <h1>ModernMom Scoop</h1>
+    </div>
+</div>
+
+
+<!-- End Section -->
+<div id="editors" class="clearfix">
+    {% for scoop in scoop_list %}
+    <div id="article-1" class="article clearfix">
+        <h2 class="article-meta"><a href="{{ scoop.get_absolute_url }}">{{ scoop }}</a></h2>
+        {% for ci in scoop.items.all|slice:'1' %}
+            <a href="{{ ci.object.get_absolute_url }}"><img src="{{ ci.object.image.get_180X180_url }}" data-src="/" alt="" width="170" height="113"></a><h3><a href="{{ ci.object.get_absolute_url }}">{{ ci.object }}</a></h3>
+        <p>
+            {{ ci.object.description|striptags }}
+        </p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
-{% block container %}
 
 
-<div class="container">
-    <div class="strip-title">
-        <div class="strip-text">
-        </div>
-        <span class="wht-bg-H1-whats-new pink">Recent <span class="black-whats-new">News</span></span>
-    </div>
-</div>
-<div class="row">
-    <div class="span12">
-        <div id="whats-new">
-            {% for scoop in scoop_list|slice:'1' %}
-						{% for scoopitem in scoop.items.all|slice:'6' %}
-            <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
-                <a href="{{ article.get_absolute_url }}"></a>
-                <p class="thumb-title">
-                    <a href="{{ article.get_absolute_url }}">{{ scoopitem }}</a>
-                </p>
-            </div>
-            {% endfor %}{% endfor %}
-            <div class="clear-both">
-            </div>
-            <div class="bottom-line">
-                &nbsp;
-            </div>
-        </div>
-    </div>
-    <!-- /span12 -->
-</div>
-<!-- /row -->
-<div class="row">
-    <div class="span8">
-        {% for scoop in scoop_list %}
-						
-	<div class="bars">
-           <span class="wht-bg-H1 pink"><span class="black"><a href="{{ scoop.get_absolute_url }}">{{ scoop }}</a></span></span>
-        </div>
-        {% for scoopitem in scoop.items.all|slice:'2' %}
-        <div class="gcontent-box">
-        	{% if scoopitem.object.image %}
-					<div class="gcontent-thumb">
-        		<a href="{{ scoopitem.object.get_absolute_url }}">
-        			<img src="{{ scoopitem.object.image.get_180X180_url }}" class="img-circle"/></a>
-        	</div>
-					{% endif %}	
-        	
-        		<h4 class="gtitle"><a href="{{ scoopitem.object.get_absolute_url }}">{{ scoopitem }}</a></h4>
-        		
-        		<p>{{ scoopitem.object.description|safe }}</p>
-        	
-        		<div class="button-align">
-        			<a href="{{ scoopitem.object.get_absolute_url }}"><button type="button" class="btn btn-info btn-xs">Read More...</button></a>	
-        		</div>
-        	
-        		</p>
-        	        	
-        </div><!--end gcontent-box-->
-        {% endfor %}{% endfor %}
-    </div><!--end span 8-->
-    <div class="span4">
-        <!-- right rail-->
-        <div align="center">
-        	<img src="http://placehold.it/300x250"/>	
-	</div>
-	
-        <div class="pics-of-day">
-        	<div class="bars">
-          	 	<span class="wht-bg-H1 pink"><span class="black">#BB365 Pics of The Day</span></span>
-        	</div>
-        	<a href="#"><img src="http://placehold.it/370x250" class="img-rounded"/></a>	
-        </div>
-    </div>
-    <!-- /right rail-->
-    <!-- /row -->
-</div>
-</div>
-</div>
-<!-- /container -->
-{% endblock %}

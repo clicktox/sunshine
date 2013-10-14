@@ -1,8 +1,7 @@
 {% extends 'base.html'%}
 {% block title %}ModernMom Scoop{% endblock %}
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bootstrap-wysihtml5.css">
-</link>
+        <link href="{{ STATIC_URL }}django_bootstrap_wysiwyg/css/bootstrap-wysiwyg.css" rel="stylesheet" />
 {%endblock %}
 {% block meta_og %}
 <meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
@@ -11,76 +10,14 @@
 <meta property="og:title" content="ModernMom Scoop">
 <meta property="og:image" content="">
 {% endblock %}
-{% block content %}
+{% block container %}
 <div class="row">
-    <div class="span7">
-    	<div id="reference_container">
-			<form id="reference_form" class="well form-search" name="reference_form" method="post" action="{% url 'scoop_add_item' scoop.slug %}">
-    		{% csrf_token %}
-    		<div class="input-append">
-            <input type="text" class="span5" name="reference_url" placeholder="Seed url here...">
-            <button type="submit" class="btn">
-              
-                Add Reference
-            </button>
-        </div>
-			
-			</form>
-			</div>
-			{{ form.errors }}
-        <form class="form-horizontal well" name="scoop_add_item_form" id="id_scoop_add_item_form" method="post" action=".">
-        	{% csrf_token %}
-					<label>Post Title</label>
-					<input type="text" class="span6" name="{{ form.title.html_name }}" placeholder="Post Title...">
-          
-					<textarea class="span6" rows="10" name="{{ form.introduction.html_name }}" id="id_{{ form.introduction.html_name }}"></textarea>
-					
-					<label>Post Status</label>
-					{{ form.status }}
-					<label>Publish Date</label>
-					<input type="text" class="span6" name="{{ form.publish_date.html_name }}" value="{% now "Y-m-d H:i" %}">
-					
-					<!--hidden-->
-					<input type="text" name="reference_id" id="reference_id" value="">
-					<input type="hidden" name="{{ form.login_required.html_name }}" value="False">
-					<input type="hidden" name="{{ form.display_type.html_name }}" value="article">
-					
-					<button type="submit">Add Item</button>
-				</form>
-    </div>
-</div>
-<script type="text/javascript">
-$(document).ready( function() {
-  var frm = $('#reference_form');
-
-	frm.submit(function () {
-					console.log(frm.serialize());
-	        $.ajax({
-	            type: frm.attr('method'),
-	            url: frm.attr('action'),
-	            data: frm.serialize(),
-	            success: function (data) {
-	                console.log(data);
-									$('#reference_container').html(data['html']);
-									$("#reference_id").val(data["id"]);
-	            }
-	        });
-	
-	        event.preventDefault();
-	    });
-
-} );
-
-</script>
+	<div class="span12">
+		<a class="btn" href="{% url 'scoop_add_post' %}">Create Post</a><a class="btn" href="{% url 'scoop_add_slideshow' %}">Create Slideshow</a>
+	</div>
+</div>    	
 {% endblock %}
 
 {% block js_lower %}
-<script src="{{ MEDIA_URL }}js/wysihtml5-0.3.0.js">
-</script>
-<script src="{{ MEDIA_URL }}js/bootstrap-wysihtml5.js">
-</script>
-<script type="text/javascript">
-    $('#id_introduction').wysihtml5();
-    
-</script>
+
 {% endblock %}

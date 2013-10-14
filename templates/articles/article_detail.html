@@ -1,41 +1,155 @@
 {% extends 'base.html' %}
-{% load i18n %}
-
-{% block title %}{% trans article.title %}{% endblock %}
-{% block meta-keywords %}{{ article.keywords|escape }}{% endblock %}
-{% block meta-description %}{{ article.description|escape }}{% endblock %}
-{% block extra-head %}
-{{ block.super }}
-{% for tag in article.tags.all %}
-<link rel="alternate" type="application/rss+xml" title="Blog Articles Tagged '{{ tag.name }}' RSS Feed" href="{% url articles_rss_feed_tag tag.rss_name %}" />
-<link rel="alternate" type="application/atom+xml" title="Blog Articles Tagged '{{ tag.name }}' Atom Feed" href="{% url articles_atom_feed_tag tag.rss_name %}" />{% endfor %}
-{% endblock %}
-
+{% load i18n humanize %}
+{% block body_id %}article-template{% endblock %}
+{% block body_class %}Article Topic-View{% endblock %}
 {% block content %}
-
-{% include 'articles/_article_content.html' %}
-{% include 'articles/_meta.html' %}
-{% include 'articles/_comments.html' %}
-
+<article id="article-section">
+    <div id="title">
+        <h1>{{ article }}</h1>
+				{% if article.authors.count > 0 %}
+        <cite>
+            by {% for author in article.authors.all %}<a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a>{% endfor %}
+        </cite>
+				{% endif %}
+    </div>
+    {% if article.image %}
+    <div id="top-section" class="portrait clearfix">
+        <figure id="main-article-photo" class="article-image">
+            <img src="{{ article.image.get_290X_url }}" alt="{{ article.image.title }}" title="{{ article.image.source }}">
+            <figcaption class="article-image-credits">
+                <p class="photo-cap">
+                    {{ article.image.title }}
+                </p>
+            </figcaption>
+        </figure>
+        <div id="related-articles">
+            <h3>Related Articles</h3>
+            <ul>
+            	     {% for fu in article.followup_for.live %}
+                <li>
+                    <a href="{{ fu.get_absolute_url }}" title="{% trans 'Read this article' %}">{{ fu.title }}</a>, {% trans 'posted' %} {{ fu.publish_date|naturalday }}
+                </li>
+                {% endfor %}
+                {% for ra in article.related_articles.live %}
+                <li>
+                    <a href="{{ ra.get_absolute_url }}" title="{% trans 'Read this related article' %}">{{ ra.title }}</a>, {% trans 'posted' %}  {{ ra.publish_date|naturalday }}
+                </li>
+             
+                {% endfor %}
+								
+								{% if article.get_more_by_authors %}
+                {% for a in article.get_more_by_authors|slice:'4' %}
+                <li>
+                    <a href="{{ a.get_absolute_url }}">{{ a }}</a>
+                </li>
+                {% endfor %}
+								{% else %}
+           		 {% for a in FEATURED_ITEMS|slice:'4' %}
+                <li>
+                    <a href="{{ a.get_absolute_url }}">{{ a }}</a>
+                </li>
+                {% endfor %}
+								{% endif %}
+            </ul>
+        </div>
+        <!-- more related -->
+    </div>
+    {% endif %}
+    <div class="p402_premium">
+        <div id="section-{{ section.id }}" class="section">
+            <div id="section-{{ section.id }}" class="section">
+                <p>
+                    {{ article.rendered_introduction|safe }}
+                </p>
+            </div>
+        </div>
+        {% for section in article.content.all %}
+        <div id="section-{{ section.id }}" class="section">
+            <div id="section-{{ section.id }}" class="section">
+                <p>
+                    {{ section.rendered_content|safe }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="references" class="section">
+        <h4>References</h4>
+        <ul>
+            {% for url,title in article.links %}
+            {% if forloop.first %}<h4>{% trans 'Article Links' %}</h4>
+            <ol>
+                {% endif %}
+                <li>
+                    <a href="{{ url }}" title="{{ title }}">{{ title|safe|truncatewords:10 }}</a>
+                </li>
+                {% if forloop.last %}
+            </ol>{% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="author" class="section">
+        {% for author in article.authors.all %}<h4>About {{ author.first_name }} {{ author.last_name }}</h4>
+        <p>
+            {{ author.about_me|safe }}
+        </p>
+    </div>
+    {% endfor %}
+    <div id="photo-credits" class="section">
+        <h4>Photo Credits</h4>
+        <ul>
+            <li>
+                Jupiterimages/Photos.com/Getty Images
+            </li>
+        </ul>
+    </div>
+    <!--nav id="breadcrumbs">
+    <ol class="clearfix">
+    <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="http://motherhood.modernmom.com/" itemprop="url">
+    <span itemprop="title">Motherhood</span>
+    </a><span class="sep">&raquo;</span></li>
+    <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="http://motherhood.modernmom.com/parenting-pregnancy/" itemprop="url">
+    <span itemprop="title">Parenting &amp; Pregnancy</span>
+    </a><span class="sep">&raquo;</span></li>
+    <li class="last" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+    <a href="http://motherhood.modernmom.com/general-parenting/" itemprop="url">
+    <span itemprop="title">General Parenting</span>
+    </a></li>
+    </ol>
+    </nav-->
+</article>
+<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-colorscheme="" data-numposts="5" data-width="">
+</div>
 {% endblock %}
-
-{% block footer %}
-{{ block.super }}
-
-<script type="application/javascript">
-{% if disqus_forum %}
-    //<![CDATA[
-    (function() {
-        var links = document.getElementsByTagName('a');
-        var query = '?';
-        for(var i = 0; i < links.length; i++) {
-        if(links[i].href.indexOf('#disqus_thread') >= 0) {
-            query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-        }
-        }
-        document.write('<script charset="utf-8" type="application/javascript" src="http://disqus.com/forums/{{ disqus_forum }}/get_num_replies.js' + query + '"></' + 'script>');
-    })();
-    //]]>
-    </script>
-{% endif %}
+{% block left_rail %}
+<div class="social-widget widget">
+    <h3>Share This</h3>
+    <ul id="social-bar" class="menu-list">
+        <li>
+        <li class="facebook">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" title="Facebook"><span>Facebook</span></a>
+        </li>
+        <li class="twitter">
+            <a href="http://twitter.com/share?text={{ article }}" title="Twitter"><span>Twitter</span></a>
+        </li>
+        <li class="pinterest">
+            <a href="http://pinterest.com/pin/create/button/?url={{ request.build_absolute_uri|urlencode }}&amp;media={{ SITE_BASEURL }}{{ article.image.get_290X_url|urlencode }}&amp;description={{ article.introduction|striptags|urlencode }}."><span>Pinterest</span></a>
+        </li>
+    </ul>
+</div>
+<div id="google-left-rail">
+</div>
+{% endblock %}
+{% block right_rail %}
+<div id="more-read" class="thumbnails widget clearfix" data-cme-module="popular_articles" data-cme-module-min="1" data-cme-module-max="4">
+    
+    <h3>Contirbutors</h3>
+    <ul>
+        <li class="clearfix">
+            <a href="http://motherhood.modernmom.com/put-buttons-fabric-headboard-6426.html"><img src="http://motherhood.modernmom.com/images/pixel.gif" data-src="/DM-Resize/photos.demandstudios.com/getty/article/26/243/200258030-001.jpg?w=130&amp;h=87&amp;crop_min=1" alt="How to Put Buttons on a Fabric Headboard" width="130" height="87"><span class="clearfix">How to Put Buttons on a Fabric Headboard</span></a>
+        </li>
+    </ul>
+</div>
 {% endblock %}

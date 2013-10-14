@@ -1,62 +1,29 @@
 {% extends 'base.html' %}
-
-{% block container %}
-<div class="container">
-    {% include 'common_includes/bootstrap_header.html' %}
-</div><!-- /container -->
-<div class="container">
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="container">
-                <div class="nav-collapse">
-                    <ul class="nav">
-                        <li>
-                            <a href="http://modernmom.com">Home</a>
-                        </li>
-                        <li>
-                            <a href="http://contests.modernmom.com">Contests</a>
-                        </li>
-                    </ul>
-                </div><!-- /.nav-collapse -->
-            </div><!-- /.container -->
-        </div><!-- /.navbar-inner -->
-    </div><!-- /.navbar -->
-</div> <!-- /container -->
-<div class="row">
-        <div class="span8">
-            <div id="content" class="contestlist">
-                <div class="contest-list">
-                	{% for contest in contests %}
-                    <div class="contest" data-contest-id="{{ contest.guid }}">
-                        <div class="content">
-                            <a href="{{ contest.get_absolute_url }}">
-                            	
-								
-                                <div class="avatar img-inset" style="background: url({{ contest.contestimage.get_contest_thumbnail_url }})"></div>
-								
-                                <h2 class="gl-contest-title">
-                                <span rel="contest_name" class="contest-name">{{ contest.name }}</span>
-                                
-                                </h2>
-                            </a>
-							
-                            <p class="description">
-                               {{ contest.contestdescription }}
-                            </p>
-							
-                            <div class="follow-btn-holder">
-                                <a href="{{ contest.get_absolute_url }}" class="btn btn-primary" style="float:right">Enter Contest</a>
-                            </div>
-                        </div>
-                    </div> <!-- /contest -->
-                    {% endfor %}
-                   
-                    
-                </div> <!-- /contest-list -->
-            </div> <!-- /#content -->
-        </div> <!-- /span8 -->
-        <div class="span3">
-        	
-        </div> <!-- /span3 -->
-    </div> <!-- /row -->
+{% block body_id %}article-template{% endblock %}
+{% block body_class %}Article Topic-View{% endblock %}
+{% block title %}Online Contests{% endblock %}
+{% block head_canonical %}
+<link rel="canonical" href="{% url 'contests_home' %}">
 {% endblock %}
+{% block content %}
+<div class="big-title">
+    <div id="title">
+        <h1>Contests</h1>
+    </div>
+</div>
+<div id="editors" class="clearfix">
+    {% for contest in contests %}
+    <div id="article-1" class="article clearfix">
+        {% if contest.contestimage %}
+				<a href="{{ contest.get_absolute_url }}">
+					<img src="{{ contest.contestimage.get_180X180_url }}" data-src="/" alt="" width="170" height="113">
+					</a> {% endif %}
+					<h3><a href="{{ contest.get_absolute_url }}">{{ contest }}</a></h3>
+        <p>
+            {{ contest.contestdescription|striptags }}
+        </p>
+    </div>
+    {% endfor %}
+
+</div>
+    {% endblock %}

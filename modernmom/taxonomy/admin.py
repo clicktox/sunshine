@@ -5,6 +5,8 @@ from models import *
 admin.site.register(Topic)
 admin.site.register(TopicContent)
 admin.site.register(TopicImage)
+admin.site.register(TopicParticipant)
+admin.site.register(TopicParticipantItem)
 admin.site.register(Scoop)
 admin.site.register(ScoopItem)
 

@@ -1,79 +1,17 @@
 {% extends 'base.html'%}
-{% block head %}
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/pages.css" type="text/css">
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-{% endblock %}
 {% block title %}ModernMom Toolbox{% endblock %}
-{% block meta_og %}
-        <meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
-        <meta property="og:description" content="">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="ModernMom Tolbox">
-        <meta property="og:image" content="">
-{% endblock %}
-
-{% block container %}
-
-<div class="row">
- <div class="span2">
-        <div class="widget">
-            <div class="social-media-links">
-                <a href="#"><i class="icon-facebook icon-2x"></i></a>
-                <a href="#"><i class="icon-twitter icon-2x"></i></a>
-                <a href="#"><i class="icon-google-plus icon-2x"></i></a>
-                <a href="#"><i class="icon-flickr icon-2x"></i></a>
-                <a href="#"><i class="icon-youtube-sign icon-2x"></i></a>
-            </div>
-            <!--end social-media-links -->
-            <ul id="subnav" class="demand-icon-list">
-                {% for category in CHANNELS %}
-                <li class="item-{{ category.id }}">
-                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
- </div>
-
-        <div class="span9">
-                <div class="page-header">
-                         <h1>Mom's Little Helpers <small>Download Center</small></h1>
-                 </div>
-                 <p>Use the slider below to browse and download the latest mommy must-have downloads!</p>
-        <!-- Carousel --><!-- consult Bootstrap docs at
-        http://twitter.github.com/bootstrap/javascript.html#carousel -->
-        <div id="this-carousel-id" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="item active">
-                    <a href="#"><img src="http://placehold.it/870x400" alt="ModernMom" /></a>
-                    <div class="carousel-caption">
-                        <p>
-                            Download EX. 1
-                        </p>
-                        <p>
-                            <a href="#">ModernMom.com</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="http://placehold.it/870x400" alt="ModernMom" /></a>
-                    <div class="carousel-caption">
-                        <p>
-                            Download EX. 1
-                        </p>
-                        <p>
-                            <a href="#">ModernMom.com</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <!-- .carousel-inner --><!-- next and previous controls here
-            href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-        </div>
-        <!-- .carousel -->
-        </div> 
+{% block content %}
+<div class="big-title">
+    <div id="title">
+        <h1>Downloads</h1>
+    </div>
 </div>
+{% for download in downloads %}
+<div id="featured" data-cme-module="featured_home" data-cme-module-min="1" data-cme-module-max="1">
+    <div id="article-1" class="article">
+        <a href="{{ MEDIA_URL }}{{ download.file }}"><img src="{{ download.image.get_470X380_url }}" alt="" width="638" height="318"></a><h3><a href="{{ MEDIA_URL }}{{ download.file }}">{{ download.name }}</a></h3>
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}

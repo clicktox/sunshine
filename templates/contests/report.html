@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'bootstrapbase.html' %}
 {% block title %}{{ contest.name }}{% endblock %}
 {% block meta %}
 {% endblock %}
@@ -20,12 +20,26 @@
     <div class="span12">
     {{ contest.name }}<br>
     {{ contest.guid }}<br>
-    {{ contest.url}}<br>
+		 {{ contest.url}}<br>
     {{ contest.get_status_value }}<br>
     {{ contest.starts_on}}<br>
     {{ contest.ends_on}}<br>
     {{ contest.entries_per_day }}<br>
     {{ contest.total_entry_count}}<br>
+		
+		<a target="_blank" href="{% url 'admin:contests_contest_change' contest.id %}">Edit Contest</a>
+		<br><br>
+		Media Assets: {{ MEDIA_URL }}contests/custom/{{ contest.guid }}/<br>
+		Custom Template: <a target="_blank" href="https://github.com/modernmom/sunshine/blob/master/templates/contests/custom/{{ contest.guid }}.html">/templates/contests/custom/{{ contest.guid }}.html</a>
+		<br><em>NOTE: If this link returns a 404, there is not currently a template in place for this contest.  For this, you would need to <a  target="_blank" href="https://github.com/modernmom/sunshine/new/master/templates/contests/custom/">create a new file</a> named <b>{{ contest.guid }}.html</b></em>
+		<br>
+		Custom Rules Template: <a target="_blank" href="https://github.com/modernmom/sunshine/blob/master/templates/contests/custom/{{ contest.guid }}-rules.html">/templates/contests/custom/{{ contest.guid }}.html</a>
+		<br><em>NOTE: If this link returns a 404, there is not currently a template in place for this contest.  For this, you would need to <a  target="_blank" href="https://github.com/modernmom/sunshine/new/master/templates/contests/custom/">create a new file</a> named <b>{{ contest.guid }}-rules.html</b></em>
+		<br>
+		Custom Thank You Template: <a target="_blank" href="https://github.com/modernmom/sunshine/blob/master/templates/contests/custom/{{ contest.guid }}.html">/templates/contests/custom/{{ contest.guid }}-thankyou.html</a>
+		<br><em>NOTE: If this link returns a 404, there is not currently a template in place for this contest.  For this, you would need to <a  target="_blank" href="https://github.com/modernmom/sunshine/new/master/templates/contests/custom/">create a new file</a> named <b>{{ contest.guid }}-thankyou.html</b></em>
+		<br>
+
 <hr>	
 <h4>Current Winners</h4>
 <table class="table">

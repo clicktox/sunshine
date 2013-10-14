@@ -62,13 +62,17 @@ def scoop_detail(request,slug=None,template="scoop/detail.html",extra_context=No
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         items = paginator.page(paginator.num_pages)
-    context['scoop_items'] = items
-    context['scoop'] = scoop
+    
+    context.update({'paginator': paginator,
+                    'page_number': page,
+                    'page_obj': items,
+                    'scoop': scoop })
+    
     return render_to_response(templates,context,context_instance=RequestContext(request))# Create your views here.
 
 from articles.utils import ProcessReference
 @staff_member_required
-def scoop_add_item(request,slug=None,template='scoop/scoopitem/add.html',extra_context=None):
+def scoop_add_item(request,slug=None,template='scoop/scoopitem/add/home.html',extra_context=None):
     context={}
     context['scoop'] = scoop = get_object_or_404(Scoop,slug=slug)
     if request.is_ajax():
@@ -79,21 +83,138 @@ def scoop_add_item(request,slug=None,template='scoop/scoopitem/add.html',extra_c
     
     if extra_context is not None:
         context.update(extra_context)
-    form = ScoopItemForm(request.POST)
+    
+    form = ScoopItemForm()
+    imageform = ScoopItemImageForm(prefix='image')
+    
     if request.method == 'POST':
+        hasErrors = False
+        form = ScoopItemForm(request.POST)
+        imageform = ScoopItemImageForm(request.POST,request.FILES,prefix='image')
+        image = None
+        if imageform.is_valid():
+            image = imageform.save()
+        else:
+            if 'image' in imageform.errors:
+                image = None
+                pass #they were not trying to upload an image
+            else:
+                context['form'] = form
+                context['imageform'] = imageform
+                return render_to_response(template,context,context_instance=RequestContext(request))
+                
+        
         if form.is_valid():
             article = form.save(commit=False)
             article.creator = request.user
+            article.image = image    
             article.save()
             scoop_item,c = ScoopItem.objects.get_or_create( scoop=scoop,
                                                             content_type = ContentType.objects.get_for_model(article),
                                                             object_id=article.pk)
             if 'reference_id' in request.POST:
-                reference = Reference.objects.get(id=request.POST['reference_id'])
-                article_reference,c = ArticleReference.objects.get_or_create(article=article,reference=reference)
+                try:
+                    reference = Reference.objects.get(id=request.POST['reference_id'])
+                    article_reference,c = ArticleReference.objects.get_or_create(article=article,reference=reference)
+                except:
+                    pass
             return HttpResponseRedirect(article.get_absolute_url())
         
     context['form'] = form
+    context['imageform'] = imageform
+    return render_to_response(template,context,context_instance=RequestContext(request))
+
+@staff_member_required
+def scoop_add_post(request,slug=None,template='scoop/scoopitem/add/post.html',extra_context=None):
+    context={}
+    context['scoop'] = scoop = get_object_or_404(Scoop,slug=slug)
+    if request.is_ajax():
+        if 'reference_url' in request.POST:
+            oReference = ProcessReference(request.POST['reference_url'])
+            json_response = json.dumps(oReference)
+            return HttpResponse(json_response,mimetype='application/json')
+    
+    if extra_context is not None:
+        context.update(extra_context)
+    
+    form = ScoopItemForm()
+    imageform = ScoopItemImageForm(prefix='image')
+    
+    if request.method == 'POST':
+        hasErrors = False
+        form = ScoopItemForm(request.POST)
+        imageform = ScoopItemImageForm(request.POST,request.FILES,prefix='image')
+        image = None
+        if imageform.is_valid():
+            image = imageform.save()
+        else:
+            if 'image' in imageform.errors:
+                pass #they were not trying to upload an image
+                image = None
+            else:
+                return render_to_response(template,context,context_instance=RequestContext(request))
+                
+        
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.creator = request.user
+            article.image = image    
+            article.save()
+            scoop_item,c = ScoopItem.objects.get_or_create( scoop=scoop,
+                                                            content_type = ContentType.objects.get_for_model(article),
+                                                            object_id=article.pk)
+            if 'reference_id' in request.POST:
+                try:
+                    reference = Reference.objects.get(id=request.POST['reference_id'])
+                    article_reference,c = ArticleReference.objects.get_or_create(article=article,reference=reference)
+                except:
+                    pass
+            return HttpResponseRedirect(article.get_absolute_url())
+        
+    context['form'] = form
+    context['imageform'] = imageform
+    return render_to_response(template,context,context_instance=RequestContext(request))
+
+@staff_member_required
+def scoop_add_slideshow(request,slug=None,template='scoop/scoopitem/add/slideshow/step1.html',extra_context=None):
+    context={}
+    context['scoop'] = scoop = get_object_or_404(Scoop,slug=slug)
+    
+    if extra_context is not None:
+        context.update(extra_context)
+    
+    form = ScoopItemSlideshowForm()
+    imageform = ScoopItemImageForm(prefix='image')
+    
+    if request.method == 'POST':
+        hasErrors = False
+        form = ScoopItemSlideshowForm(request.POST)
+        imageform = ScoopItemImageForm(request.POST,request.FILES,prefix='image')
+        image = None
+        if imageform.is_valid():
+            image = imageform.save()
+        else:
+            if 'image' in imageform.errors:
+                pass #they were not trying to upload an image
+                image = None
+            else:
+                return render_to_response(template,context,context_instance=RequestContext(request))
+                
+        
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.creator = request.user
+            article.image = image    
+            article.display_type = 'slideshow'
+            article.save()
+            scoop_item,c = ScoopItem.objects.get_or_create( scoop=scoop,
+                                                            content_type = ContentType.objects.get_for_model(article),
+                                                            object_id=article.pk)
+            
+            return HttpResponseRedirect(reverse('articles_edit_article_content',args=[article.uuid]))
+        
+    context['form'] = form
+    context['imageform'] = imageform
     return render_to_response(template,context,context_instance=RequestContext(request))
 
 @staff_member_required
