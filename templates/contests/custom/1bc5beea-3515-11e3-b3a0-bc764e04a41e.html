@@ -1,1 +1,95 @@
-{% extends 'base.html' %}
+{% extends 'bootstrapbase.html' %}
+{% block title %}{{ contest.name }}{% endblock %}
+        {% block meta %}
+     <meta property="og:title" content="{{ contest.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
+<meta property="og:description" content="{{ contest.contestdescription.content }}" />
+<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_300X_url }}" />
+<meta property="og:site_name" content="Modernom Contests" />
+<meta property="fb:app_id" content="208027353668" />
+<meta property="fb:admins" content="622302511" />
+        {% endblock %}
+		{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/style.css">
+<style type="text/css">
+
+</style>
+{% endblock %}
+{% block container %}
+<div class="row">
+
+                           <form class="form-horizontal" method="post" action="{% url contest_detail contest.url %}">
+                    {% csrf_token %}
+                    {% if 'reached_total_max' in request.GET  %}
+                    <div class="control-group">
+                        <div class="controls span3">
+                            <p class="help-block">
+                                You have reached your maximum entries for this contest.
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if 'reached_daily_max' in request.GET  %}
+                    <div class="control-group">
+                        <div class="controls span3">
+                            <p class="help-block">
+                                You have reached your maximum entires for this contest today.
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if 'entry_success' in request.GET %}
+                    <div class="control-group">
+                        <div class="controls span3">
+                            <p class="help-block">
+                                Your entry was successfully entered.
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="control-group">
+                        <label class="control-label">
+                            Full Name
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="{{ contest.guid }}full_name" placeholder="Full Name" class="input-xlarge">
+                            <p class="help-block">
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Text input-->
+                    <div class="control-group">
+                        <label class="control-label">
+                            Email
+                        </label>
+                        <div class="controls">
+                            <input type="text" name='email' placeholder="Email Address" class="input-xlarge">
+                            <p class="help-block">
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Textarea -->
+                    <div class="control-group">
+                        <label class="control-label">
+                            Answer
+                        </label>
+                        <div class="controls">
+                            <div id="response" name="response" class="textarea">
+                                <textarea name="{{ contest.guid }}keep-healthy" class="input-xlarge"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Button -->
+                    <div class="control-group">
+                        <label class="control-label">
+                        </label>
+                        <div class="controls">
+                            <button id="submit" name="submit" class="btn btn-primary">
+                                Enter Contest
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            
+{% endblock %}
