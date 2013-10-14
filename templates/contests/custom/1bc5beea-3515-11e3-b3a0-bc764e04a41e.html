@@ -19,7 +19,7 @@
 {% block container %}
 <div class="row">
 
-                           <form class="form-horizontal" method="post" action="{% url contest_detail contest.url %}">
+                           <form class="form-horizontal" method="post" action="{% url 'contest_detail' contest.url %}">
                     {% csrf_token %}
                     {% if 'reached_total_max' in request.GET  %}
                     <div class="control-group">
