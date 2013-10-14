@@ -1,0 +1,148 @@
+.logo {
+	background-image: url(/static/images/sprite_section_titles.png);
+	background-repeat: no-repeat;
+	background-position: 0px -1850px;
+	margin-top: 10px;
+	height: 100px;
+	width: auto;
+	position: relative;
+}
+.logo-link {
+	padding: 17px 0 0;
+	margin: 0;
+	width: 364px;
+}
+.login-holder {
+	padding-top: 30px;
+	margin: 0px auto;
+	text-align: center;  
+}
+.welcome-b {
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+}
+.welcome-p {
+	font-size: 16px;
+	color: #ed145b;
+	font-weight: bold;
+}
+a {
+	color: #ed145b;
+	text-decoration: none;
+}
+.container {
+	margin-right: auto;
+	margin-left: auto;
+}
+.content {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.content .main-btn-toolbar {
+	margin: 0;
+	padding-bottom: 12px;
+	position: relative;display: block;
+}
+.btn-group {
+	margin: 10px 0px 10px 0px;
+	position: relative;
+	display: inline-block;
+	font-size: 0;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.btn-group .btn {
+	margin-right: 8px;
+}
+.post {
+	position: relative;
+	padding: 0 0 20px 0;
+}
+.post .content {
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	padding: 16px 20px 20px;
+	-webkit-transition: all 0.15s ease;
+	-moz-transition: all 0.15s ease;
+	-o-transition: all 0.15s ease;
+	transition: all 0.15s ease;
+}
+.post .blog-link {
+	color: #999999;
+	font-size: 14px;
+	padding-left: 70px;
+}
+.post .avatar {
+	top: 10px;
+	width: 60px;
+	height: 45px;
+}
+.avatar {
+	position: absolute;
+	top: 30px;
+	left: 20px;
+	width: 80px;
+	height: 60px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+img {
+	max-width: 100%;
+	width: auto	9;
+	height: auto;
+	vertical-align: middle;
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+.follow-btn-holder {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 300px;
+	padding-top: 18px;
+	padding-right: 20px;
+	height: 40px;
+}
+.post .post-media {
+	margin: 25px 12px 12px 0;
+}
+.post h2 {
+	font-weight: 700;
+	line-height: 26px;
+	margin-top: 13px;
+	margin-bottom: 7px;
+	font-size: 20px;
+}
+.post a h2 {
+	color: #333;
+}
+.post .post-link:hover h2 {
+	text-decoration: underline;
+}
+.post p {
+	font-size: 14px;
+	color: #333333;
+	line-height: 24px;
+	margin-bottom: 10px;
+}
+.post .actions {
+	float: left;
+	width: 100%;
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-size: 13px;
+}
+.who-likes {
+	margin-left: 10px;
+}
+.hide {
+	display: none;
+}
