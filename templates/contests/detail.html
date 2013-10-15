@@ -16,10 +16,14 @@
 {% block container %}
 <div class="container">
     <div class="row">
+    <div class="span6">
     	<h1>{{ contest.name }}</h1>
 		<p>{{ contest.contestdescription }}</p>
 		<img src="{{ contest.contestimage.get_470X380_url }}" />
 
+    </div>
+    <div class="span4">
+    	
                 
                 <form name="form_{{contest.guid }}" id="form_{{contest.guid }}" class="form-horizontal" method="post" action="{% url 'contest_detail' contest.url %}">
                     {% csrf_token %}
@@ -90,7 +94,7 @@
                         </div>
                     </div>
                 </form>
-
+</div>
     </div>
     <!-- /row -->
 </div>
