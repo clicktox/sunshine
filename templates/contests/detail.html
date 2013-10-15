@@ -18,7 +18,7 @@
     <div class="row">
     	<h1>{{ contest.name }}</h1>
 		<p>{{ contest.contestdescription }}</p>
-		<img src="{{ contest.contestimage.get_300X350_url }}" />
+		<img src="{{ contest.contestimage.get_470X380_url }}" />
 
                 
                 <form name="form_{{contest.guid }}" id="form_{{contest.guid }}" class="form-horizontal" method="post" action="{% url 'contest_detail' contest.url %}">
