@@ -12,6 +12,14 @@
         </cite>
 				{% endif %}
     </div>
+
+		{% if article.articlereference_set.count > 0 %}
+{% for ar in article.articlereference_set.all %}
+{% if ar.reference.embed_code %}
+{{ ar.reference.embed_code|safe }}
+{% endif %}
+{% endfor %}
+		{% else %}
     {% if article.image %}
     <div id="top-section" class="portrait clearfix">
         <figure id="main-article-photo" class="article-image">
@@ -55,6 +63,7 @@
         <!-- more related -->
     </div>
     {% endif %}
+		{% endif %}
     <div class="p402_premium">
         <div id="section-{{ section.id }}" class="section">
             <div id="section-{{ section.id }}" class="section">
@@ -73,6 +82,7 @@
         </div>
         {% endfor %}
     </div>
+		{% comment %}
     <div id="references" class="section">
         <h4>References</h4>
         <ul>
@@ -88,13 +98,19 @@
             {% endfor %}
         </ul>
     </div>
+		{% endcomment %}
+		{% if article.authors.count > 0 %}
     <div id="author" class="section">
-        {% for author in article.authors.all %}<h4>About {{ author.first_name }} {{ author.last_name }}</h4>
+        {% for author in article.authors.all %}
+				<h4>About {{ author.first_name }} {{ author.last_name }}</h4>
         <p>
             {{ author.about_me|safe }}
         </p>
+				{% endfor %}
     </div>
-    {% endfor %}
+		{% endif %}
+    
+		{% comment %}
     <div id="photo-credits" class="section">
         <h4>Photo Credits</h4>
         <ul>
@@ -103,6 +119,7 @@
             </li>
         </ul>
     </div>
+		{% endcomment %}
     <!--nav id="breadcrumbs">
     <ol class="clearfix">
     <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">

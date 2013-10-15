@@ -116,8 +116,8 @@ def scoop_add_item(request,slug=None,template='scoop/scoopitem/add/home.html',ex
                 try:
                     reference = Reference.objects.get(id=request.POST['reference_id'])
                     article_reference,c = ArticleReference.objects.get_or_create(article=article,reference=reference)
-                except:
-                    pass
+                except Exception as e:
+                    return HttpResponse(e)
             return HttpResponseRedirect(article.get_absolute_url())
         
     context['form'] = form
