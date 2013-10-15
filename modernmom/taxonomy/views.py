@@ -139,7 +139,7 @@ def scoop_add_post(request,slug=None,template='scoop/scoopitem/add/post.html',ex
     
     form = ScoopItemForm()
     imageform = ScoopItemImageForm(prefix='image')
-    
+    has_errors = False
     if request.method == 'POST':
         hasErrors = False
         form = ScoopItemForm(request.POST)
@@ -152,10 +152,11 @@ def scoop_add_post(request,slug=None,template='scoop/scoopitem/add/post.html',ex
                 pass #they were not trying to upload an image
                 image = None
             else:
-                return render_to_response(template,context,context_instance=RequestContext(request))
+                has_errors = True
+                
                 
         
-        if form.is_valid():
+        if form.is_valid() and (not has_errors ):
             article = form.save(commit=False)
             article.creator = request.user
             article.image = image    
