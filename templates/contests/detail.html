@@ -5,7 +5,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
 <meta property="og:description" content="{{ contest.contestdescription.content }}" />
-<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_largegrid_url }}" />
+<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_470X233_url }}" />
 <meta property="og:site_name" content="Modernom" />
 <meta property="fb:app_id" content="208027353668" />
 <meta property="fb:admins" content="622302511" />
@@ -18,7 +18,9 @@
     <div class="row">
     	<h1>{{ contest.name }}</h1>
 		<p>{{ contest.contestdescription }}</p>
+		<img src="{{ contest.contestimage.get_300X350_url }}" />
 
+                
                 <form name="form_{{contest.guid }}" id="form_{{contest.guid }}" class="form-horizontal" method="post" action="{% url 'contest_detail' contest.url %}">
                     {% csrf_token %}
                     {% if 'reached_total_max' in request.GET  %}
@@ -58,6 +60,17 @@
                             </p>
                         </div>
                     </div>
+                     <div class="control-group">
+                        <!-- Text input-->
+                        <label class="control-label" for="input01">
+                        </label>
+                        <div class="controls">
+                            <input type="text" name="{{ contest.guid }}user-height-parameter" placeholder="Full Name" class="input-xlarge">
+                            <p class="help-block">
+                            </p>
+                        </div>
+                    </div>
+                    
                     <div class="control-group">
                         <!-- Text input-->
                         <label class="control-label" for="input01">
