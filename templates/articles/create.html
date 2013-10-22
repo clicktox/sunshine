@@ -1,5 +1,6 @@
-{% extends 'base.html'%}
-{% block title %}ModernMom Scoop{% endblock %}
+{% extends 'bootstrapbase.html'%}
+
+{% block title %}Create Content on ModernMom{% endblock %}
 {% block meta_og %}
 <meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
 <meta property="og:description" content="">
@@ -10,6 +11,11 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bootstrap-wysihtml5.css">
 </link>
+<style type="text/css">
+#id_introduction {
+	width: 530px;
+	}
+</style>
 {%endblock %}
 {% block container %}
 <div class="row">
@@ -19,10 +25,9 @@
         
         	{% csrf_token %}
 					{{ form.display_type }}
-					<h2>Content Title</h2>
-					<input class="input-xxlarge" type="text" name="{{ form.title.html_name }}" id="id_{{ form.title.html_name }}" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
-					<textarea class="input-xxlarge" rows="15" id="id_{{ form.introduction.html_name }}" name="{{ form.introduction.html_name }}">
-						{% if form.introduction.value %}{{ form.introduction.value }}{% endif %}</textarea>
+
+					<input class="input-xxlarge" type="text" name="{{ form.title.html_name }}" placeholder="Post Title" id="id_{{ form.title.html_name }}" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+					{{ form.introduction }}
 					{{ form.followup_for }}
 					{{ form.related_articles }}
 
@@ -49,8 +54,5 @@
 </script>
 <script src="{{ MEDIA_URL }}js/bootstrap-wysihtml5.js">
 </script>
-<script type="text/javascript">
-    $('#id_introduction').wysihtml5();
 
-</script>
 {% endblock %}
