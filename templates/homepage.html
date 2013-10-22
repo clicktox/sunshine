@@ -126,34 +126,6 @@
     </div><!--end span5-->
 </div><!--end row-->
 
-
-<div class="row">
-    <div class="span12">
-    
-	 <div class="strip-title">
-        	<div class="strip-text"></div>
-        	<span class="wht-bg-H1-whats-new pink">What's <span class="black-whats-new">New</span></span>
-    	</div>
-
-        <div id="whats-new">
-            {% for article in latest %}
-            <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
-                
-                <p class="thumb-title">
-                    <a href="{{ article.get_absolute_url }}">{{ article|safe }}</a>
-                </p>
-            </div>
-            {% endfor %}
-            <div class="clear-both">
-            </div>
-            <div class="bottom-line">
-                &nbsp;
-            </div>
-        </div>
-    </div>
-    <!-- /span12 -->
-</div>
-<!-- /row -->
 <div class="row">
     <div class="span8">
         <div class="row">
