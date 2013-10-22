@@ -17,6 +17,14 @@
 		padding-right:10px;
 	}
 
+	/*Border content*/
+	.border-content{
+		border: 1px solid #ddd;
+		padding: 10px;
+	}
+	
+
+
 
     /*POPULINKS*/
     p.popu {
