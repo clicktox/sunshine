@@ -9,18 +9,12 @@
 <meta property="og:image" content="">
 {% endblock %}
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bootstrap-wysihtml5.css">
-</link>
-<style type="text/css">
-#id_introduction {
-	width: 530px;
-	}
-</style>
+        <link href="{{ STATIC_URL }}django_bootstrap_wysiwyg/css/bootstrap-wysiwyg.css" rel="stylesheet" />
 {%endblock %}
 {% block container %}
 <div class="row">
 	<form  method="post" action="{% url 'create_article' %}">
-    <div class="span6">
+    <div class="span7">
     	{{ form.errors }}
         
         	{% csrf_token %}
@@ -28,21 +22,18 @@
 
 					<input class="input-xxlarge" type="text" name="{{ form.title.html_name }}" placeholder="Post Title" id="id_{{ form.title.html_name }}" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
 					{{ form.introduction }}
-					{{ form.followup_for }}
-					{{ form.related_articles }}
-
 					<br>
 					{{ form.publish_date }}
 					{{ form.login_required }}{{ form.expiration_date }}{{ form.status }}
 
     </div>
-	<div class="span3">
+	<div class="span5">
 		{{ form.authors }}
 		{{ form.category }}
 		{{ form.scoop }}
 		{{ form.topic }}
 	</div>
-	<button type="submit">Save</button>
+
 	</form>
 </div>
 <script type="text/javascript">
@@ -50,9 +41,7 @@
 </script>
 {% endblock %}
 {% block js_lower %}
-<script src="{{ MEDIA_URL }}js/wysihtml5-0.3.0.js">
-</script>
-<script src="{{ MEDIA_URL }}js/bootstrap-wysihtml5.js">
-</script>
 
+        <script src="https://mindmup.s3.amazonaws.com/lib/jquery.hotkeys.js"></script>
+        <script src="{{ STATIC_URL }}django_bootstrap_wysiwyg/js/bootstrap-wysiwyg.js"></script>
 {% endblock %}

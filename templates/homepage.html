@@ -1,143 +1,163 @@
 {% extends 'bootstrapbase.html' %}
 {% block head %}
 <link rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" type="text/css">
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {% endblock %}
 {% block container %}
 <div class="row">
     <div class="span2">
         <div class="widget">
-            
-            <!--end social-media-links -->
-						<h3 class='content-aside'>Explore</h3>
+            <!--end social-media-links --><h3 class="content-aside">Explore</h3>
             <ul id="subnav" class="demand-icon-list">
-                {% for category in CHANNELS %}
-                <li class="item-{{ category.id }}">
-                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
+                <li class="item-1">
+                    <a href="http://motherhood.modernmom.com/around-the-house/">Around The House</a>
                 </li>
-                {% endfor %}
+                <li class="item-2">
+                    <a href="http://motherhood.modernmom.com/beauty-style/">Beauty &amp; Style</a>
+                </li>
+                <li class="item-3">
+                    <a href="http://motherhood.modernmom.com/food-drink/">Food &amp; Drink</a>
+                </li>
+                <li class="item-4">
+                    <a href="http://motherhood.modernmom.com/living-healthy/">Living Healthy</a>
+                </li>
+                <li class="item-5">
+                    <a href="http://motherhood.modernmom.com/parenting-pregnancy/">Parenting</a>
+                </li>
+                <li class="item-6">
+                    <a href="http://motherhood.modernmom.com/relationships-family/">Relationships</a>
+                </li>
             </ul>
-        </div><!--end widget-->
-    </div><!--end span2-->
-    <div class="span5 home">
-        <h3 class='content-aside'>Featured Stories</h3>
-        <!-- Carousel --><!-- consult Bootstrap docs at
-        http://twitter.github.com/bootstrap/javascript.html#carousel -->
-        <div id="this-carousel-id" class="carousel slide">
-            <div class="carousel-inner">
-            	{% for item in featured_items|slice:'4' %}
-                <div class="item{% if forloop.counter0 == 0 %} active{% endif %}">
-                    <a href="#"><img src="{{ item.image.get_470X380_url }}" alt="{{ item.title }}" /></a>
-                    <div class="carousel-caption">
-                        <p>
-                            <a href="{{ item.url }}">{{ item.name|safe }}</a>
-                        </p>
-                      
-                    </div><!--end carousel caption-->
-                </div><!--end item-->
-								{% endfor %}
-               
-            </div><!--end inner-->
-            <!-- .carousel-inner --><!-- next and previous controls here
-            href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-        </div><!--end this-carousel-id-->
-        <!-- .carousel -->
-				{% comment %}
-        <div class="slider-thumbs">
-        	{% for item in featured_items|slice:'4' %}
-            <img src="{{ item.image.get_117X63_url }}" />
-						{% endfor %}
-        </div><!--end slider-thumbs-->
-			{% endcomment %}
-    </div><!-- end span5 -->
-    <div class="span5">
-        <div class="row">
-
-            <div class="span2">
-             
-                <h3 class='content-aside'>POPULINKS</h3>
-                <h4 class='content-aside'><a href="/scoop/mommywood/" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
-                <p class="popu">
-                    The latest up to the minute news about what's happening with ModernMom Celebs in Hollywood.
-                </p>
-                <h4 class='content-aside'><a href="http://brookeburke.modernmom.com/" class="h4a">BROOKE <span class="pink">BURKE</span></a></h4>
-                <p class="popu">
-                    Catch up with Brooke Burke and read her amazing daily blog.
-                <p class="popu">
-                <h4 class='content-aside'><a href="http://babooshbaby.com/" class="h4a">SHOP OUR <span class="pink">STORE</span></a></h4>
-                <p class="popu">
-                    Shop Brooke Burke's exclusive store for pregnant moms.
-                </p>
-                
-            </div><!--end span2-->
-          
-       
-		<div class="span3">
-		
-            <!-- ad container -->
-            
-                <!--
-
-  ## IndieClick Ad Tag
-
-  ## publisher[ModernMom]  zone[Run of site]  size[300x250]  v[2]
-
-  -->
-
-<script language="JavaScript" type="text/javascript">
-
-//<![CDATA[
-
-(function(){var config={
-
- ic_domain  :"dmd.ind.modernmom"
-
-,ic_size    :"300x250"
-
-,ic_zone    :""
-
-,ic_campaign:""
-
-,ic_version :"2"
-
-};var ic_config=(typeof window.top.ic_config=="undefined")?window.top.ic_config={}:window.top.ic_config;var in_iframe=(window!=window.top)?true:false;config.iframe=(in_iframe)?true:false;config.ord=(ic_config.ord)?ic_config.ord:ic_config.ord=Math.floor(Math.random()*10000000000000000);config.tile=(ic_config.tile)?++ic_config.tile:ic_config.tile=1;for(var key in ic_config){config[key]=ic_config[key]}var key_value=[];key_value[key_value.length]="sz="+config.ic_size;key_value[key_value.length]="tile="+config.tile;key_value[key_value.length]="ver="+config.ic_version;key_value[key_value.length]="frame="+config.iframe;key_value[key_value.length]="cm="+config.ic_campaign;for(var key in config.ic_keyValue){key_value[key_value.length]=key+"="+config.ic_keyValue[key]}if(!in_iframe&&!ic_config.dcopt){ic_config.dcopt=true;key_value[key_value.length]="dcopt=ist"}document.write('<span id="ic_'+config.ord+config.tile+'"></span>');var element=document.getElementById("ic_"+config.ord+config.tile);if(ic_config.asyncInit){ic_config.asyncInit(key_value,element)}var key_value=key_value.join(";");window.ic_ad_complete=function(){if(in_iframe){window.onload=function(){var elem=document.getElementById("icAdUnit");elem.style.position="absolute";window.frameElement.style.width=elem.offsetWidth+"px";window.frameElement.style.height=elem.offsetHeight+"px";window.frameElement.style.overflow="hidden";window.frameElement.style.border="0"}}};document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/'+config.ic_domain+"/"+config.ic_zone+";"+key_value+";ord="+config.ord+'?" type="text/javascript"><\/script>');document.write('<script type="text/javascript">window.ic_ad_complete();<\/script>')})();
-
-(function(){var u="dmd.ind.modernmom//3/ns/300x250/script_dfp.js";var e=document.createElement('script');e.src='http://pixel.indieclick.com/annonymous/dfp/'+u;e.type="text/javascript";var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(e,s);})();
-
-//]]>
-
-</script><noscript><a href="http://ad.doubleclick.net/jump/dmd.ind.modernmom/;sz=300x250;ord=123456789?" target="_blank" ><img src="http://ad.doubleclick.net/ad/dmd.ind.modernmom/;sz=300x250;ord=123456789?" border="0" alt="" /></a></noscript>
-
-<!-- End IndieClick Ad Tag -->
-		
-                <div class="message-box-head">
-                
-               		<img src="http://placehold.it/300x120" alt="ModernMom" />
-                	
+        </div>
+        <!--end widget-->
+    </div>
+    <!--end span2-->
+    <div class="span7 top-border-content">
+        <h3>Featured Stories</h3>
+        <div class="bars">
+        </div>
+        <div class="span4">
+            <img src="http://placehold.it/350x250" alt="ModernMom"><!-- Carousel --><!-- consult Bootstrap docs at
+            http://twitter.github.com/bootstrap/javascript.html#carousel -->
+            <div id="this-carousel-id" class="carousel slide">
+                <div class="carousel-inner">
                 </div>
-            	
-
-            </div><!--end span3-->  
-            </div><!--end row-->  
+                <!--end inner--><!-- .carousel-inner --><!-- next and previous controls here
+                href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">‹</a>
+                <a class="carousel-control right" href="#this-carousel-id" data-slide="next">›</a>
+            </div>
+            <!--end this-carousel-id--><!-- .carousel -->
+        </div>
+        <!--end span4-->
+        <div class="span2">
+            <h4 class="content-aside"><a href="http://sunshine.modernmom.com/scoop/mommywood/" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
+            <p class="popu">
+                The latest up to the minute news about what's happening with ModernMom Celebs in Hollywood.
+            </p>
+            <h4 class="content-aside"><a href="http://brookeburke.modernmom.com/" class="h4a">BROOKE <span class="pink">BURKE</span></a></h4>
+            <p class="popu">
+                Catch up with Brooke Burke and read her amazing daily blog.
+            </p>
+            <p class="popu">
+            </p>
+            <h4 class="content-aside"><a href="http://babooshbaby.com/" class="h4a">SHOP OUR <span class="pink">STORE</span></a></h4>
+            <p class="popu">
+                Shop Brooke Burke's exclusive store for pregnant moms.
+            </p>
+        </div>
+        <!--end span2-->
+    </div>
+    <!-- end span7 -->
+    <div class="span3">
+        <!-- ## IndieClick Ad Tag
+        ## publisher[ModernMom]  zone[Run of site]  size[300x250]  v[2]
+        -->
+        <script language="JavaScript" type="text/javascript">
             
-			
-    </div><!--end span5-->
+            //<![CDATA[
+            
+            (function(){
+                var config = {
+                
+                    ic_domain: "dmd.ind.modernmom",
+                    ic_size: "300x250",
+                    ic_zone: "",
+                    ic_campaign: "",
+                    ic_version: "2"
+                
+                };
+                var ic_config = (typeof window.top.ic_config == "undefined") ? window.top.ic_config = {} : window.top.ic_config;
+                var in_iframe = (window != window.top) ? true : false;
+                config.iframe = (in_iframe) ? true : false;
+                config.ord = (ic_config.ord) ? ic_config.ord : ic_config.ord = Math.floor(Math.random() * 10000000000000000);
+                config.tile = (ic_config.tile) ? ++ic_config.tile : ic_config.tile = 1;
+                for (var key in ic_config) {
+                    config[key] = ic_config[key]
+                }
+                var key_value = [];
+                key_value[key_value.length] = "sz=" + config.ic_size;
+                key_value[key_value.length] = "tile=" + config.tile;
+                key_value[key_value.length] = "ver=" + config.ic_version;
+                key_value[key_value.length] = "frame=" + config.iframe;
+                key_value[key_value.length] = "cm=" + config.ic_campaign;
+                for (var key in config.ic_keyValue) {
+                    key_value[key_value.length] = key + "=" + config.ic_keyValue[key]
+                }
+                if (!in_iframe && !ic_config.dcopt) {
+                    ic_config.dcopt = true;
+                    key_value[key_value.length] = "dcopt=ist"
+                }
+                document.write('<span id="ic_' + config.ord + config.tile + '"></span>');
+                var element = document.getElementById("ic_" + config.ord + config.tile);
+                if (ic_config.asyncInit) {
+                    ic_config.asyncInit(key_value, element)
+                }
+                var key_value = key_value.join(";");
+                window.ic_ad_complete = function(){
+                    if (in_iframe) {
+                        window.onload = function(){
+                            var elem = document.getElementById("icAdUnit");
+                            elem.style.position = "absolute";
+                            window.frameElement.style.width = elem.offsetWidth + "px";
+                            window.frameElement.style.height = elem.offsetHeight + "px";
+                            window.frameElement.style.overflow = "hidden";
+                            window.frameElement.style.border = "0"
+                        }
+                    }
+                };
+                document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/' + config.ic_domain + "/" + config.ic_zone + ";" + key_value + ";ord=" + config.ord + '?" type="text/javascript"><\/script>');
+                document.write('<script type="text/javascript">window.ic_ad_complete();<\/script>')
+            })();
+            
+            (function(){
+                var u = "dmd.ind.modernmom//3/ns/300x250/script_dfp.js";
+                var e = document.createElement('script');
+                e.src = 'http://pixel.indieclick.com/annonymous/dfp/' + u;
+                e.type = "text/javascript";
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(e, s);
+            })();
+            
+            //]]>
+            
+        </script>
+        <noscript>
+            <a href="http://ad.doubleclick.net/jump/dmd.ind.modernmom/;sz=300x250;ord=123456789?" target="_blank"><img src="http://ad.doubleclick.net/ad/dmd.ind.modernmom/;sz=300x250;ord=123456789?" border="0" alt="" /></a>
+        </noscript><!-- End IndieClick Ad Tag -->
+        <div class="message-box-head">
+            <img src="http://placehold.it/300X120" alt="ModernMom">
+        </div>
+    </div><!--end span3-->
 </div><!--end row-->
-
-
 <div class="row">
     <div class="span12">
         <div id="whats-new">
-            
-         <div class="strip-title">
-                <div class="strip-text"></div>
+            <div class="strip-title">
+                <div class="strip-text">
+                </div>
                 <span class="wht-bg-H1-whats-new pink">What's <span class="black-whats-new">New</span></span>
             </div>
             {% for article in latest %}
             <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
-                
                 <p class="thumb-title">
                     <a href="{{ article.get_absolute_url }}">{{ article|safe }}</a>
                 </p>
@@ -153,51 +173,379 @@
     <!-- /span12 -->
 </div>
 <!-- /row -->
-
-
 <div class="row">
-<div class="span2">
-       <img src="http://placehold.it/120x720" alt="ModernMom" />
-    </div>
-    
-    	 <div class="span8">
-            {% for category in CHANNELS %}
-            <div class="span7">
-                <div class="section-title">
-                    <div class="bars">
-                        <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
-                    </div>
-                    <!-- /bars -->
-                    <div class="section-list" style="overflow:hidden;">
-                        <ul>
-                            {% for ci in category.items.all|slice:'5' %}
-                            <li>
-                                <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <div class="section-end">
-                            More in {{ category }} <i class="icon-caret-right"></i>
-                        </div>
-                        <!-- /section-end -->
-                    </div>
-                    <!-- /section-list -->
-                </div>
-                <!-- /section-title -->
-            </div>
-            <!-- I ADD THIS RIGHT HERE, THIS ONE, NOT THAT ONE-->
-            {% endfor %}
-      
-    </div>
-    
     <div class="span2">
-        	<img src="http://placehold.it/120x720" alt="ModernMom" />
-
+        <div class="bottom-line">
+            &nbsp;
+        </div>
+        <!--end social-media-links --><h3 class="content-aside">Share This</h3>
+        <ul id="subnav2" class="demand-icon-list">
+            <li class="item-1">
+                <a href="http://motherhood.modernmom.com/around-the-house/">Facebook</a>
+            </li>
+            <li class="item-2">
+                <a href="http://motherhood.modernmom.com/beauty-style/">Twitter</a>
+            </li>
+            <li class="item-3">
+                <a href="http://motherhood.modernmom.com/food-drink/">Pintrest</a>
+            </li>
+        </ul>
     </div>
-    <!-- /right rail-->
-    <!-- /row -->
+    <div class="span7 border-content">
+        <div class="span6">
+            {% for category in CHANNELS %}
+            <div class="section-title">
+                <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
+                <div class="bars">
+                </div>
+                <!-- /bars -->
+                <div class="section-list" style="overflow:hidden;">
+                    <ul>
+                        {% for ci in category.items.all|slice:'5' %}
+                        <li>
+                            <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <div class="section-end">
+                        More in {{ category }} <i class="icon-caret-right"></i>
+                    </div>
+                    <!-- /section-end -->
+                </div>
+                <!-- /section-list -->
+            </div>
+            <!-- /section-title -->{% endfor %}
+        </div>
+        <!-- I ADD THIS RIGHT HERE, THIS ONE, NOT THAT ONE-->
+    </div>
+    <!-- I ADD THIS RIGHT HERE, THIS ONE, NOT THAT ONE-->
+
+<div class="span3">
+    <div class="bottom-line">
+        &nbsp;
+    </div>
+    <!-- ## IndieClick Ad Tag
+    ## publisher[ModernMom]  zone[Run of site]  size[300x250]  v[2]
+    -->
+    <script language="JavaScript" type="text/javascript">
+        
+        //<![CDATA[
+        
+        (function(){
+            var config = {
+            
+                ic_domain: "dmd.ind.modernmom",
+                ic_size: "300x250",
+                ic_zone: "",
+                ic_campaign: "",
+                ic_version: "2"
+            
+            };
+            var ic_config = (typeof window.top.ic_config == "undefined") ? window.top.ic_config = {} : window.top.ic_config;
+            var in_iframe = (window != window.top) ? true : false;
+            config.iframe = (in_iframe) ? true : false;
+            config.ord = (ic_config.ord) ? ic_config.ord : ic_config.ord = Math.floor(Math.random() * 10000000000000000);
+            config.tile = (ic_config.tile) ? ++ic_config.tile : ic_config.tile = 1;
+            for (var key in ic_config) {
+                config[key] = ic_config[key]
+            }
+            var key_value = [];
+            key_value[key_value.length] = "sz=" + config.ic_size;
+            key_value[key_value.length] = "tile=" + config.tile;
+            key_value[key_value.length] = "ver=" + config.ic_version;
+            key_value[key_value.length] = "frame=" + config.iframe;
+            key_value[key_value.length] = "cm=" + config.ic_campaign;
+            for (var key in config.ic_keyValue) {
+                key_value[key_value.length] = key + "=" + config.ic_keyValue[key]
+            }
+            if (!in_iframe && !ic_config.dcopt) {
+                ic_config.dcopt = true;
+                key_value[key_value.length] = "dcopt=ist"
+            }
+            document.write('<span id="ic_' + config.ord + config.tile + '"></span>');
+            var element = document.getElementById("ic_" + config.ord + config.tile);
+            if (ic_config.asyncInit) {
+                ic_config.asyncInit(key_value, element)
+            }
+            var key_value = key_value.join(";");
+            window.ic_ad_complete = function(){
+                if (in_iframe) {
+                    window.onload = function(){
+                        var elem = document.getElementById("icAdUnit");
+                        elem.style.position = "absolute";
+                        window.frameElement.style.width = elem.offsetWidth + "px";
+                        window.frameElement.style.height = elem.offsetHeight + "px";
+                        window.frameElement.style.overflow = "hidden";
+                        window.frameElement.style.border = "0"
+                    }
+                }
+            };
+            document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/' + config.ic_domain + "/" + config.ic_zone + ";" + key_value + ";ord=" + config.ord + '?" type="text/javascript"><\/script>');
+            document.write('<script type="text/javascript">window.ic_ad_complete();<\/script>')
+        })();
+        
+        (function(){
+            var u = "dmd.ind.modernmom//3/ns/300x250/script_dfp.js";
+            var e = document.createElement('script');
+            e.src = 'http://pixel.indieclick.com/annonymous/dfp/' + u;
+            e.type = "text/javascript";
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(e, s);
+        })();
+        
+        //]]>
+        
+    </script>
+    <noscript>
+        <a href="http://ad.doubleclick.net/jump/dmd.ind.modernmom/;sz=300x250;ord=123456789?" target="_blank"><img src="http://ad.doubleclick.net/ad/dmd.ind.modernmom/;sz=300x250;ord=123456789?" border="0" alt="" /></a>
+    </noscript><!-- End IndieClick Ad Tag -->
+</div><!-- /right rail--><!-- /row -->
 </div>
-</div>
-</div>
-<!-- /container -->
+</div>{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% block containerold %}
+<div class="row">
+    <div class="span2">
+        <div class="widget">
+            <!--end social-media-links --><h3 class='content-aside'>Explore</h3>
+            <ul id="subnav" class="demand-icon-list">
+                {% for category in CHANNELS %}
+                <li class="item-{{ category.id }}">
+                    <a href="http://motherhood.modernmom.com/{{ category.slug }}/">{{ category }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!--end widget-->
+    </div>
+    <!--end span2-->
+    <div class="span5 home">
+        <h3 class='content-aside'>Featured Stories</h3>
+        <!-- Carousel --><!-- consult Bootstrap docs at
+        http://twitter.github.com/bootstrap/javascript.html#carousel -->
+        <div id="this-carousel-id" class="carousel slide">
+            <div class="carousel-inner">
+                {% for item in featured_items|slice:'4' %}
+                <div class="item{% if forloop.counter0 == 0 %} active{% endif %}">
+                    <a href="#"><img src="{{ item.image.get_470X380_url }}" alt="{{ item.title }}" /></a>
+                    <div class="carousel-caption">
+                        <p>
+                            <a href="{{ item.url }}">{{ item.name|safe }}</a>
+                        </p>
+                    </div>
+                    <!--end carousel caption-->
+                </div>
+                <!--end item-->{% endfor %}
+            </div>
+            <!--end inner--><!-- .carousel-inner --><!-- next and previous controls here
+            href values must reference the id for this carousel --><a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+        </div>
+        <!--end this-carousel-id--><!-- .carousel -->{% comment %}
+        <div class="slider-thumbs">
+            {% for item in featured_items|slice:'4' %}<img src="{{ item.image.get_117X63_url }}" />{% endfor %}
+        </div><!--end slider-thumbs-->{% endcomment %}
+    </div><!-- end span5 -->
+    <div class="span5">
+        <div class="row">
+            <div class="span2">
+                <h3 class='content-aside'>POPULINKS</h3>
+                <h4 class='content-aside'><a href="/scoop/mommywood/" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
+                <p class="popu">
+                    The latest up to the minute news about what's happening with ModernMom Celebs in Hollywood.
+                </p>
+                <h4 class='content-aside'><a href="http://brookeburke.modernmom.com/" class="h4a">BROOKE <span class="pink">BURKE</span></a></h4>
+                <p class="popu">
+                    Catch up with Brooke Burke and read her amazing daily blog.
+                    <p class="popu">
+                    <h4 class='content-aside'><a href="http://babooshbaby.com/" class="h4a">SHOP OUR <span class="pink">STORE</span></a></h4>
+                    <p class="popu">
+                        Shop Brooke Burke's exclusive store for pregnant moms.
+                    </p>
+                    </div>
+                    <!--end span2-->
+                    <div class="span3">
+                        <!-- ad container --><!--
+                        ## IndieClick Ad Tag
+                        ## publisher[ModernMom]  zone[Run of site]  size[300x250]  v[2]
+                        -->
+                        <script language="JavaScript" type="text/javascript">
+                            
+                            //<![CDATA[
+                            
+                            (function(){
+                                var config = {
+                                
+                                    ic_domain: "dmd.ind.modernmom",
+                                    ic_size: "300x250",
+                                    ic_zone: "",
+                                    ic_campaign: "",
+                                    ic_version: "2"
+                                
+                                };
+                                var ic_config = (typeof window.top.ic_config == "undefined") ? window.top.ic_config = {} : window.top.ic_config;
+                                var in_iframe = (window != window.top) ? true : false;
+                                config.iframe = (in_iframe) ? true : false;
+                                config.ord = (ic_config.ord) ? ic_config.ord : ic_config.ord = Math.floor(Math.random() * 10000000000000000);
+                                config.tile = (ic_config.tile) ? ++ic_config.tile : ic_config.tile = 1;
+                                for (var key in ic_config) {
+                                    config[key] = ic_config[key]
+                                }
+                                var key_value = [];
+                                key_value[key_value.length] = "sz=" + config.ic_size;
+                                key_value[key_value.length] = "tile=" + config.tile;
+                                key_value[key_value.length] = "ver=" + config.ic_version;
+                                key_value[key_value.length] = "frame=" + config.iframe;
+                                key_value[key_value.length] = "cm=" + config.ic_campaign;
+                                for (var key in config.ic_keyValue) {
+                                    key_value[key_value.length] = key + "=" + config.ic_keyValue[key]
+                                }
+                                if (!in_iframe && !ic_config.dcopt) {
+                                    ic_config.dcopt = true;
+                                    key_value[key_value.length] = "dcopt=ist"
+                                }
+                                document.write('<span id="ic_' + config.ord + config.tile + '"></span>');
+                                var element = document.getElementById("ic_" + config.ord + config.tile);
+                                if (ic_config.asyncInit) {
+                                    ic_config.asyncInit(key_value, element)
+                                }
+                                var key_value = key_value.join(";");
+                                window.ic_ad_complete = function(){
+                                    if (in_iframe) {
+                                        window.onload = function(){
+                                            var elem = document.getElementById("icAdUnit");
+                                            elem.style.position = "absolute";
+                                            window.frameElement.style.width = elem.offsetWidth + "px";
+                                            window.frameElement.style.height = elem.offsetHeight + "px";
+                                            window.frameElement.style.overflow = "hidden";
+                                            window.frameElement.style.border = "0"
+                                        }
+                                    }
+                                };
+                                document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/' + config.ic_domain + "/" + config.ic_zone + ";" + key_value + ";ord=" + config.ord + '?" type="text/javascript"><\/script>');
+                                document.write('<script type="text/javascript">window.ic_ad_complete();<\/script>')
+                            })();
+                            
+                            (function(){
+                                var u = "dmd.ind.modernmom//3/ns/300x250/script_dfp.js";
+                                var e = document.createElement('script');
+                                e.src = 'http://pixel.indieclick.com/annonymous/dfp/' + u;
+                                e.type = "text/javascript";
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(e, s);
+                            })();
+                            
+                            //]]>
+                            
+                        </script>
+                        <noscript>
+                            <a href="http://ad.doubleclick.net/jump/dmd.ind.modernmom/;sz=300x250;ord=123456789?" target="_blank"><img src="http://ad.doubleclick.net/ad/dmd.ind.modernmom/;sz=300x250;ord=123456789?" border="0" alt="" /></a>
+                        </noscript><!-- End IndieClick Ad Tag -->
+                        <div class="message-box-head">
+                            <img src="http://placehold.it/300x120" alt="ModernMom" />
+                        </div>
+                    </div><!--end span3-->
+                </div><!--end row-->
+            </div><!--end span5-->
+        </div><!--end row-->
+        <div class="row">
+            <div class="span12">
+                <div id="whats-new">
+                    <div class="strip-title">
+                        <div class="strip-text">
+                        </div>
+                        <span class="wht-bg-H1-whats-new pink">What's <span class="black-whats-new">New</span></span>
+                    </div>
+                    {% for article in latest %}
+                    <div class="whats-new-thumb{% if forloop.counter0 == 0%}-first{% endif %}">
+                        <p class="thumb-title">
+                            <a href="{{ article.get_absolute_url }}">{{ article|safe }}</a>
+                        </p>
+                    </div>
+                    {% endfor %}
+                    <div class="clear-both">
+                    </div>
+                    <div class="bottom-line">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+            <!-- /span12 -->
+        </div>
+        <!-- /row -->
+        <div class="row">
+            <div class="span2">
+                <img src="http://placehold.it/120x720" alt="ModernMom" />
+            </div>
+            <div class="span8">
+                {% for category in CHANNELS %}
+                <div class="span7">
+                    <div class="section-title">
+                        <div class="bars">
+                            <span class="wht-bg-H1 pink"><span class="black">{{ category }}</span></span>
+                        </div>
+                        <!-- /bars -->
+                        <div class="section-list" style="overflow:hidden;">
+                            <ul>
+                                {% for ci in category.items.all|slice:'5' %}
+                                <li>
+                                    <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="section-end">
+                                More in {{ category }} <i class="icon-caret-right"></i>
+                            </div>
+                            <!-- /section-end -->
+                        </div>
+                        <!-- /section-list -->
+                    </div>
+                    <!-- /section-title -->
+                </div>
+                <!-- I ADD THIS RIGHT HERE, THIS ONE, NOT THAT ONE-->
+                {% endfor %}
+            </div>
+            <div class="span2">
+                <img src="http://placehold.it/120x720" alt="ModernMom" />
+            </div><!-- /right rail-->
+            <!-- /row -->
+        </div>
+    </div>
+</div><!-- /container -->
 {% endblock %}

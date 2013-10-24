@@ -113,6 +113,7 @@ header {
 .banner-ad {
     width: 728px;
     height: 90px;
+    margin-right: 20px;
     background: #fff;
     border: 1px solid #aaa;
     float: right;
@@ -389,6 +390,41 @@ h3.content-aside {
 
 #subnav li.item-6 a {
 	background: url('http://sunshine.modernmom.com/media/images/left-nav.png') no-repeat 0px -242px;
+	width: 119px;
+	height: 23px;
+	padding-left: 41px;
+    	padding-top: 10px;
+}
+
+
+#subnav2 {
+    display: block;
+    padding: 0 10px 10px;
+    margin:0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 0px;
+}
+
+#subnav2 li.item-1 a {
+    background: none repeat scroll 0 0 #F36388;
+	width: 119px;
+	height: 23px;
+	padding-left: 41px;
+    	padding-top: 10px;
+}
+
+#subnav2 li.item-2 a {
+    background: none repeat scroll 0 0 #F36388;
+	width: 119px;
+	height: 23px;
+	padding-left: 41px;
+    	padding-top: 10px;
+}
+
+#subnav2 li.item-3 a {
+    background: none repeat scroll 0 0 #F36388;
 	width: 119px;
 	height: 23px;
 	padding-left: 41px;
