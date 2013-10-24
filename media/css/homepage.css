@@ -6,6 +6,10 @@
  	width: 460px;
     }
     
+    .clear-space{
+    margin-top:15px;
+    }
+    
     /* SOCIAL MEDIA */
 	.social-media-links {
 	height: 66px;
