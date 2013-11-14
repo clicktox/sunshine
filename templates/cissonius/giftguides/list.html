@@ -1,60 +1,35 @@
-{% extends 'base.html' %}
+{% extends 'bootstrapbase.html' %}
 {% block title %}Gift Ideas and Suggestions{% endblock %}
 {% block head %}
-	<style type="text/css">
-	/* MEDIA GRID */
-	.thumbnails li {
-	    position: relative;
-	    overflow: hidden;
-	}
-	.text {
-	            background-color: #000;
-		color: #fff;
-		bottom: 4px;
-		display: block;
-		left: 5px;
-		line-height: 1.6em;
-		position: absolute;
-		padding: 5px 10px;
-		width: 270px;
-		opacity: .70;
-		-moz-opacity: .70;
-		filter: alpha(opacity=70);
-	}
-	.item-title {
-		margin: 10px 0px 5px 0px;
-		font-size: 20px;
-		font-weight: bold;
-	}
-	.item-desc {
-		margin-bottom: 5px;
-	}
-	</style>
+<link href="{{ MEDIA_URL }}css/giftguide.css" media="all" rel="stylesheet" type="text/css" />
 {% endblock %}
 {% block container %}
-    <ul class="media-grid thumbnails">
-        {% for gg in giftguides %}
-        {% if gg.giftguidetitlebanner_set.count == 0 %}
-        <li class="span4">
-            <div class="thumbnail">
-                <a href="{{ gg.get_absolute_url }}">
-                <div><img src="http://www.placehold.it/300x250" /></div> <!-- /image -->
-                <div class="text">{{ gg }}</div> <!-- /text -->
-                </a>
-            </div> <!-- /thumbnail -->
-        </li> <!-- /span4 -->
-        {% else %}
-    	{% for image in gg.giftguidetitlebanner_set.all|slice:'1' %}
-        <li class="span4">
-            <div class="thumbnail">
-                <a href="{{ gg.get_absolute_url }}">
-                <div><img src="{{ image.get_300X250_url }}"></div> <!-- /image -->
-                <div class="text">{{ gg }}</div> <!-- /text -->
-                </a>
-            </div> <!-- /thumbnail -->
-        </li> <!-- /span4 -->
-        {% endfor %}
-        {% endif %}
-        {% endfor %}
-    </ul> <!-- /media-grid thumbnails -->
+<div class="row center">
+    <div class="span12">
+        <div class="projects">
+            {% for gg in giftguides %}
+            <div class="project-container">
+                <div class="project-shot">
+                    <a href="{{ gg.get_absolute_url }}"><img src="{{ gg.image.get_232X202_url }}" /></a>
+                </div>
+                <div class="project-description">
+                    <div class="name">
+                        {{ gg }}
+                    </div>
+                    <!--div class="desc">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean neque nulla, ultricies id eleifend non, dignissim vitae nunc. Morbi fringilla blandit urna nec blandit. 
+                    </div-->
+                    <div class="actions">
+                        <a class="btn btn-mini btn-inverse" href="{{ gg.get_absolute_url }}">{{ gg }}</a>
+                    </div>
+                </div>
+                <!--div class="project-stats">
+                    <span class="views"><a href="#" rel="tooltip" title="Project views" class="tip"><i class="icon-eye-open"></i></a>15</span>
+                    <span class="likes"><a href="#" rel="tooltip" title="Project likes" class="tip"><i class="icon-heart"></i></a>14</span>
+                </div-->
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

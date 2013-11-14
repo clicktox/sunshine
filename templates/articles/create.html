@@ -8,33 +8,86 @@
 <meta property="og:title" content="ModernMom Scoop">
 <meta property="og:image" content="">
 {% endblock %}
-{% block css %}
+{% block head %}
         <link href="{{ STATIC_URL }}django_bootstrap_wysiwyg/css/bootstrap-wysiwyg.css" rel="stylesheet" />
 {%endblock %}
 {% block container %}
 <div class="row">
-	<form  method="post" action="{% url 'create_article' %}">
-    <div class="span7">
+	<form  method="post" action="{% url 'create_article' %}" enctype="multipart/form-data">
+    <div class="span12">
     	{{ form.errors }}
         
         	{% csrf_token %}
-					{{ form.display_type }}
-
-					<input class="input-xxlarge" type="text" name="{{ form.title.html_name }}" placeholder="Post Title" id="id_{{ form.title.html_name }}" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
-					{{ form.introduction }}
-					<br>
-					{{ form.publish_date }}
-					{{ form.login_required }}{{ form.expiration_date }}{{ form.status }}
-
-    </div>
-	<div class="span5">
-		{{ form.authors }}
-		{{ form.category }}
-		{{ form.scoop }}
-		{{ form.topic }}
-	</div>
-
-	</form>
+					<fieldset class="well">
+                <h2>Primary Post Image</h2>
+								
+								<p class="">This is the primary image for the post. NOTE:  If a reference is assigned to this post, then this image will ONLY display on previews and listing pages, not on the actual post.  The assigned reference will take its' place.</p>
+                <div class="row">
+                    <div class="span4">
+                        {{ article_image_form.image }}
+                        {{ article_image_form.crop_from }}
+                        <label>
+                            Title of Image
+                        </label>
+                        {{ article_image_form.title }}
+												<p class="note">You MUST submit an Image Title <b>if and only if</b> you are going to use a primary image.</p>
+                    </div>
+                    <div class="span4">
+                        <label>
+                            Caption of Image ( optional )
+                        </label>
+												{{ article_image_form.caption }}
+                     
+												<label>
+                            Image Source ( optional )
+                        </label>
+                       
+												{{ article_image_form.source }}
+                    </div>
+                </div>
+		
+            </fieldset>
+            <fieldset class="well">
+            	<div class="row">
+                
+								<div class="span7">
+									<h2>Create your Post</h2>
+									{{ form.display_type }}
+								{{ form.title }}
+								{{ form.introduction }}
+								<label>Publish On</label>
+								{{ form.publish_date }}
+								<label>Expires On ( if left blank, post never expires )</label>
+								{{ form.expiration_date }}
+								<label>If checked, users MUST be logged in to view article</label>
+								{{ form.login_required }}
+								</div>
+								<div class="span2">
+									<label>
+                            Author ( required )
+                        </label>
+									{{ form.authors }}
+									<hr>
+									<label>Category</label>
+									{{ form.category }}
+									<hr>
+									<label>Scoop</label>
+									{{ form.scoop }}
+									</div>
+									<div class="span2">
+										<label>Topics</label>
+										{{ form.topic }}
+										</div>
+              </div>
+            </fieldset>
+						
+            <div class="row">
+            	Current Status: {{ article.status }}<br />
+								{% for value, text in form.status.field.choices %}
+						    <button class="btn btn-large" name="{{ form.status.html_name }}" value="{{ value }}">Save as {{ text }}</button>
+								{% endfor %}
+						</div>
+        </form>
 </div>
 <script type="text/javascript">
 

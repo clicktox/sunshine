@@ -8,12 +8,87 @@
 <meta property="og:title" content="ModernMom Scoop">
 <meta property="og:image" content="">
 {% endblock %}
-{% block css %}
-        <link href="{{ STATIC_URL }}django_bootstrap_wysiwyg/css/bootstrap-wysiwyg.css" rel="stylesheet" />
-{%endblock %}
+{% block head %}
+  <link href="{{ STATIC_URL }}django_bootstrap_wysiwyg/css/bootstrap-wysiwyg.css" rel="stylesheet" />
+{% endblock %}
+
 {% block container %}
 <div class="row">
+
+<form class="form-horizontal" name="scoop_add_item_form" id="id_scoop_add_item_form" method="post" action="{% url 'articles_edit_article' article.uuid %}" enctype="multipart/form-data">
+            {% csrf_token %}
+						<input type="hidden" name="reference_id" id="reference_id" value="">
+						
+							
+            <fieldset class="well">
+                <h2>Primary Post Image</h2>
+								<div class="span3">
+									{% if article.image %}
+									<img src="{{ article.image.get_290X_url }}">
+									{% else %}
+									<img src="http://placehold.it/290X400">
+									{% endif %}
+							</div>
+							<div class="span8">
+								<p class="">This is the primary image for the post. NOTE:  If a reference is assigned to this post, then this image will ONLY display on previews and listing pages, not on the actual post.  The assigned reference will take its' place.</p>
+                <div class="row">
+                    <div class="span4">
+                        {{ article_image_form.image }}
+                        {{ article_image_form.crop_from }}
+                        <label>
+                            Title of Image
+                        </label>
+                        {{ article_image_form.title }}
+												<p class="note">You MUST submit an Image Title <b>if and only if</b> you are going to use a primary image.</p>
+                    </div>
+                    <div class="span4">
+                        <label>
+                            Caption of Image ( optional )
+                        </label>
+												{{ article_image_form.caption }}
+                     
+												<label>
+                            Image Source ( optional )
+                        </label>
+                       
+												{{ article_image_form.source }}
+                    </div>
+                </div>
+						</div>
+            </fieldset>
+            <fieldset class="well">
+                <h2>Edit your post!</h2>
+								<div class="span6">
+									{{ form.display_type }}
+								{{ form.title }}
+								{{ form.introduction }}
+								{{ form.publish_date }}
+								{{ form.expiration_date }}
+								{{ form.login_required }}
+								</div>
+								<div class="span3">
+									{{ form.authors }}
+									<hr>
+									{{ form.category }}
+									<hr>
+									{{ form.topic }}
+									<hr>
+									{{ form.scoop }}
+									</div>
+              
+            </fieldset>
+            <div class="row">
+            	Current Status: {{ article.status }}<br />
+								{% for value, text in form.status.field.choices %}
+						    <button class="btn btn-large" name="{{ form.status.html_name }}" value="{{ value }}">Save as {{ text }}</button>
+								{% endfor %}
+						</div>
+        </form>
+				
+				<!--
 	<form  method="post" action="{% url 'create_article' %}">
+		<input type="hidden" name="reference_id" id="reference_id" value="">
+            
     <div class="span7">
     	{{ form.errors }}
         
@@ -37,14 +112,15 @@
 		{{ form.topic }}
 	</div>
 	<button type="submit">Save</button>
-	</form>
+	</form> -->
 </div>
 <script type="text/javascript">
 
 </script>
 {% endblock %}
 {% block js_lower %}
-
-        <script src="https://mindmup.s3.amazonaws.com/lib/jquery.hotkeys.js"></script>
-        <script src="{{ STATIC_URL }}django_bootstrap_wysiwyg/js/bootstrap-wysiwyg.js"></script>
+<script src="https://mindmup.s3.amazonaws.com/lib/jquery.hotkeys.js">
+</script>
+<script src="{{ STATIC_URL }}django_bootstrap_wysiwyg/js/bootstrap-wysiwyg.js">
+</script>
 {% endblock %}

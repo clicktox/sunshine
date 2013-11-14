@@ -43,6 +43,32 @@
 				<link href='http://fonts.googleapis.com/css?family=Oswald:700|Open+Sans|Euphoria+Script' rel='stylesheet' type='text/css'>
         
         {% block head %}{% endblock %}
+				<style type="text/css">
+	@media (max-width: 320px){
+
+    .span2 {
+        display: none;
+    }
+
+    .span6 {
+        float: none;
+        width: 300px;
+    }
+
+}
+</style>
+<script type="text/javascript">
+function trackOutboundLink(link, category, action) { 
+ 
+try { 
+_gaq.push(['_trackEvent', category , action]); 
+} catch(err){}
+ 
+setTimeout(function() {
+document.location.href = link.href;
+}, 100);
+}
+</script>
     </head>
     <body id="taxo-level-0" class="home">
         <div id="page">
@@ -136,40 +162,49 @@
             </header>
             <nav id="navigation">
                 <div class="col-width">
-                    <ul class="clearfix">
+                    <ul class="clearfix visible-desktop">
                         <li>
-                            <a href="http://sunshine.modernmom.com/"><i class="icon-home icon"></i></a>
+                            <a href="/brooke-burke/">Brooke Burke</a>
+                        </li>
+                       
+                        <li>
+                            <!--a href="{% url 'contests_home' %}">Contests</a-->
+														<a href="http://contests.modernmom.com/">Contests</a>
+                        </li>
+												 <li>
+                            <a href="{% url 'scoop_home' %}">Scoop</a>
+                        </li>
+												 
+												
+                        <li>
+                            <a href="/scoop/recalls/">Recalls</a>
+                        </li>
+												 <!--li><a href="{% url 'giftguide_list' %}">Gift Guides</a></li-->
+                        <li>
+                            <a href="{% url 'contributors' %}">Contributors</a>
                         </li>
                         <li>
-                            <a href="http://sunshine.modernmom.com/brooke-burke/">Brooke Burke</a>
+                            <a href="{% url 'toolbox_home' %}">Tool Box</a>
                         </li>
                         <li>
-                            <a href="http://sunshine.modernmom.com/scoop/">Scoop</a>
+                            <a href="http://www.youtube.com/user/modernmom">Videos</a>
                         </li>
                         <li>
-                            <a href="http://sunshine.modernmom.com/contests/">Contests</a>
+                            <a href="http://babooshbaby.com">Shop</a>
                         </li>
+                       
+												<!--
+                        {% if not user.is_authenticated %}
                         <li>
-                            <a href="http://sunshine.modernmom.com/contributors/">Contributors</a>
+                            <a href="{% url 'login' %}">Log In</a>
                         </li>
-                        <li>
-                            <a href="http://sunshine.modernmom.com/toolbox/">Tool Box</a>
+												{% else %}
+												 <li>
+                            <a href="{% url 'logout' %}">Log Out</a>
                         </li>
-                        <li>
-                            <a href="http://sunshine.modernmom.com/videos/">Videos</a>
-                        </li>
-                        <li>
-                            <a href="http://babooshbaby.com/">Shop</a>
-                        </li>
-                        <li>
-                            <a href="http://sunshine.modernmom.com/scoop/must-haves/">Must-Haves</a>
-                        </li>
-                        <li>
-                            <a href="http://sunshine.modernmom.com/scoop/recalls">Recalls</a>
-                        </li>
-                        <li>
-                            <a href="http://sunshine.modernmom.com/login/">Log In</a>
-                        </li>
+                        {% endif %}
+												-->
+                   
                     </ul>
                 </div>
                 <!--end col-width-->
@@ -209,7 +244,16 @@
                     </div>
                     <!-- Start Sidebar -->
                     <aside class="span3">
-                        {% block right_rail %}<!--
+                        {% block right_rail %}
+												<h3>Contests</h3>
+    <ul>
+    	{% for contest in ACTIVE_CONTEST_LIST %}
+        <li class="clearfix">
+            <a href="{{ contest.get_absolute_url }}"><img src="{{ contest.contestimage.get_130X87_url }}"  alt="{{ contest }}" width="130" height="87"><span class="clearfix">{{ contest }}</span></a>
+        </li>
+				{% endfor %}
+    </ul>
+												<!--
                         ## IndieClick Ad Tag
                         ## publisher[ModernMom]  zone[Run of site]  size[300x250]  v[2]
                         -->
@@ -330,9 +374,9 @@
                         <li>
                             <a href="{% url 'flatpage-terms-of-use' %}">Terms of Use</a>
                         </li>
-                        <li>
+                        <!--li>
                             <a href="#">Contact Us</a>
-                        </li>
+                        </li-->
                     </ul>
                     <p class="copyright">
                         &copy; Copyright 2013 Modern Mom. All Rights Reserved.
@@ -347,8 +391,7 @@
             </div>
             <!--end mm-footer-->
         </footer>
-        <script src="/media/js/bootstrap.js">
-        </script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
         {% block js_lower %}{% endblock %}
     </body>
 </html>

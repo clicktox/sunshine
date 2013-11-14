@@ -1,106 +1,134 @@
 {% extends 'bootstrapbase.html' %}
 {% block title %}{{ contest.name }}{% endblock %}
-        {% block meta %}
-     <meta property="og:title" content="{{ contest.name }}" />
+{% block meta %}
+<meta property="og:title" content="{{ contest.name }}" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
 <meta property="og:description" content="{{ contest.contestdescription.content }}" />
-<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_300X_url }}" />
+<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_300X250_url }}" />
 <meta property="og:site_name" content="Modernom Contests" />
 <meta property="fb:app_id" content="208027353668" />
 <meta property="fb:admins" content="622302511" />
-        {% endblock %}
-		{% block head %}
+{% endblock %}
+{% block head %}
 <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/style.css">
 <style type="text/css">
-
+	.chloraseptic {
+		height:1320px;
+		background: url(/media/contests/custom/{{ contest.guid }}/Chloraseptic-Page.jpg) no-repeat;
+	}
+	form { 
+	position:relative;
+	text-align:center;
+	top:1000px;
+	left:530px;}
+	
+	.reviews-wrap { background-color:#e0f1f9; }
+	.reviews-wrap .span8 h3{ color:#2267b4; }
+	.reviews { background-color:#2267b4; padding:20px; }
+	.reviews b { color:#f6ff00;}
+	.reviews p { color:white;}
 </style>
 {% endblock %}
 {% block container %}
-<div class="row">
-
-                           <form class="form-horizontal" method="post" action="{% url 'contest_detail' contest.url %}">
-                    {% csrf_token %}
-                    {% if 'reached_total_max' in request.GET  %}
-                    <div class="control-group">
-                        <div class="controls span3">
-                            <p class="help-block">
-                                You have reached your maximum entries for this contest.
-                            </p>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% if 'reached_daily_max' in request.GET  %}
-                    <div class="control-group">
-                        <div class="controls span3">
-                            <p class="help-block">
-                                You have reached your maximum entires for this contest today.
-                            </p>
-                        </div>
-                    </div>
-                    {% endif %}
-                    {% if 'entry_success' in request.GET %}
-                    <div class="control-group">
-                        <div class="controls span3">
-                            <p class="help-block">
-                                Your entry was successfully entered.
-                            </p>
-                        </div>
-                    </div>
-                    {% endif %}
-                    <div class="control-group">
-                        <label class="control-label">
-                            Full Name
-                        </label>
-                        <div class="controls">
-                            <input type="text" name="{{ contest.guid }}full_name" placeholder="Full Name" class="input-xlarge">
-                            <p class="help-block">
-                            </p>
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="span12 chloraseptic">
+            <form name="entryForm" id="entryForm" class="form-vertical span4" method="post" action="{% url 'contest_detail' contest.url %}">
+                {% csrf_token %}
+                <div class="control-group">
                     <!-- Text input-->
-                    <div class="control-group">
-                        <label class="control-label">
-                            Email
-                        </label>
-                        <div class="controls">
-                            <input type="text" name='email' placeholder="Email Address" class="input-xlarge">
-                            <p class="help-block">
-                            </p>
-                        </div>
+                    <label class="control-label" for="input01">
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="{{ contest.guid }}full_name" placeholder="Full Name" class="input-large">
+                        <p class="help-block">
+                        </p>
                     </div>
+                </div>
+                <div class="control-group">
                     <!-- Text input-->
-                    <div class="control-group">
-                        <label class="control-label">
-                            Zip Code
-                        </label>
-                        <div class="controls">
-                            <div id="response" name="response" class="textarea">
-                                <input name="{{ contest.guid }}postal-code" class="input-xlarge" required="" type="text">
-                            </div>
-                        </div>
+                    <label class="control-label" for="input01">
+                    	 
+                    </label>
+                    <div class="controls">
+                    	<div class="input-prepend">
+                <label class="add-on"><input type="checkbox" name="{{ contest.guid }}choraseptic-subscribe" id="terms" value=""></label>
+                
+                        <input type="text" name='email' placeholder="Email Address" class="input-large">
+												</div>
+												<p class="help-block"> Check the box to opt in for more information from Chloraseptic.</p>
+												
                     </div>
-                    <!-- Textarea -->
-                    <div class="control-group">
-                        <label class="control-label">
-                            What is your favorite sore throat relief brand?
-                        </label>
-                        <div class="controls">
-                            <div id="response" name="response" class="textarea">
-                                <textarea name="{{ contest.guid }}favorite-sore-throat-relief-brand" class="input-xlarge"></textarea>
-                            </div>
-                        </div>
+                </div>
+                
+								 <div class="control-group">
+                    <!-- Text input-->
+                    <label class="control-label" for="{{ contest.guid }}postalcode">
+                    
+                    </label>
+                    <div class="controls">
+                        <input type="text" name="{{ contest.guid }}postalcode" placeholder="Zip Code" class="input-large">
+                        <p class="help-block">
+                        </p>
                     </div>
+                </div>
+								 <div class="control-group">
+                    <!-- Text input-->
+                    <label class="control-label" for="{{ contest.guid }}favorite-sore-throat-relief">
+                    What's your favorite sore throat relief brand?
+										</label>
+                    <div class="controls">
+                        <input type="text" name="{{ contest.guid }}favorite-sore-throat-relief" placeholder="Brand Name" class="input-xlarge">
+                        <p class="help-block">
+                        </p>
+                    </div>
+                </div>
+								 
+                <div class="control-group">
+                    <label class="control-label">
+                    </label>
                     <!-- Button -->
-                    <div class="control-group">
-                        <label class="control-label">
-                        </label>
-                        <div class="controls">
-                            <button id="submit" name="submit" class="btn btn-primary">
-                                Enter Contest
-                            </button>
-                        </div>
+                    <div class="controls">
+                        <button type="submit" id="btSubmit" name='btSubmit' class="btn btn-primary">
+                            Enter
+                        </button>
                     </div>
-                </form>
-            
-{% endblock %}
+                </div>
+            </form>
+        </div>
+    </div>
+		<div class="row reviews-wrap">
+			<div class="span8">
+				<h3>ModernMom Insiders Say:</h3>
+			</div>
+			<div class="span4">
+			</div>
+			<div class="span8">
+				<div class="reviews">
+				
+				<p><b>Jorge</b><br>My son woke me up in the night with a bad cough - I gave him the spray and he went back to sleep. I gave him the cough drops and put it next to his bed and when he woke up he took one and it did the job! So happy - Chloraseptic is the best!! </p>
+								
+				<p><b>Malory</b><br>Unfortunately the flu hit early this year for my family. My daughter loved the citrus lozenges, my husband and I are fans of the spray. It's tough being sick for anyone, but for us moms, you can't just lay and get well, you have to take care of everyone else and let me tell you. Chloraseptic really helped take the pain in my throat away so I could function!</p>
+				
+				<p><b>Carmen </b><br>My household had a chance to try your medicine, unfortunately, we were all sick. I have to say that the liquid was pretty good, taste and worked up fast. The lozenges were not as good, the taste is not as expected, and it leaves you a heartburn.</p>
+				
+				<p><b>Kelly W</b><br>I had never used a spray before for sore throats and wow - it really worked. It took the pain away - I can't believe I didn't buy this sooner! Once I used the spray, I didn't need the lozenge.</p>
+				
+				<p><b>Gigi</b><br>I'm always a bit weary of cough drops because of the medicine taste but I actually really liked the citrus. They really worked and I recommended them to my child's teacher who has been sick all week!</p>
+				
+				<p><b>Margaret </b><br>Chloraseptic spray means that when I get a sore throat, my whole day doesn't have to stop. I can throw it in my bag and it gives me relief while I go on with my life.</p>
+				<p><b>Caron D</b><br>Oh thank you for sending the goodies. Last week I was experiencing post nasal drip and my throat was sore. I looked in the medicine cabinet for relief. I popped one of the lozenges in and it started to work immediately. I really didn't care for the medicine-taste, but my throat liked it. I was glad to have received the goodies. I wasn't about to go out to the store at 10pm. Thanks!</p>
+				<p><b>Liza L</b><br>Sore throats are so annoying - it's hard to eat, talk, anything. But with Chloraseptic spray I got pain relief FAST.</p>
+				<p><b>NY Crys</b><br>My daughter and I both came down with a nasty sore throat/cold right after I received the package of chloraseptic products to try from modernmom!! The spray was great for instant relief (my daughter seemed to prefer the spray) but I really liked the lozenges as they were very soothing . Thank you soo much for giving us the opportunity to try these and I will definately buy them in the future.</p>
+				<p><b>arlinda</b><br>I received the products and i did have to use them right away because the weather her ein Houston TX has been kind of erratic. one or two days, it's cold weather in the morni ng and then the afternoon is 80 degrees and my throat has been giving me the blues on top of having a bit of tonsillitis. The products worked great to calm and soothe my sore throat, especially at night. i brought one of the boxes of cough drops to work with me so i would have them nearby. they have helped tremendously because the office i work in is cold most of the time. I also used the throat spray and it worked wonders.</p>
+				<p><b>Cathy R</b><br>I ended coming down with a very bad sore throat and a slight cough, so needless to say, I had lots of Chloraseptic goodies to try out! I really love the Chloraseptic Sore Throat Lozenges in Cherry (my favorite) and think the liquid center is very soothing on my throat. The other lozenges were really good too, I just favor the Cherry flavor when I’m not feeling good (I think that’s from when I was a child and we always got Cherry flavored remedies)! The Chloraseptic Sore Throat spray also helped relieve my sore throat and it was nice to be able to spray a little squirt for fast relief. The Chloraseptic Max Sore Throat plus Coating Protection was nice as it has a sprayer on it that sprays the back of the throat and hits the spot every time. Overall, I think the Chloraseptic Throat Pain + Cough remedies worked great and I’m glad I will have them for the next cold…or two to come! http://www.supersavinmomma.com/2013/10/review-chloraseptic-throat-pain-cough-remedies.html</p>
+				</div>
+
+				
+			</div>
+			<div class="span4">
+			</div>
+			</div>
+   
+
+    {% endblock %}

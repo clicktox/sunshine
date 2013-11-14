@@ -30,6 +30,18 @@
         <!--[if lt IE 9]>
             <link rel="stylesheet" href="http://motherhood.modernmom.com/fonts/modern-icon-font.css" type="text/css">
         <![endif]-->
+				<script type="text/javascript">
+function trackOutboundLink(link, category, action) { 
+ 
+try { 
+_gaq.push(['_trackEvent', category , action]); 
+} catch(err){}
+ 
+setTimeout(function() {
+document.location.href = link.href;
+}, 100);
+}
+</script>
     </head>
     <body id="{% block body_id %}home-template{% endblock %}" class="{%block body_class %}home{% endblock %}">
     	<div id="fb-root"></div>
@@ -143,19 +155,12 @@
 												 <li>
                             <a href="{% url 'scoop_home' %}">Scoop</a>
                         </li>
-												 <li>
-                            <a href="/scoop/must-haves/">Must-Haves</a>
-                        </li>
+												 
 												
                         <li>
                             <a href="/scoop/recalls/">Recalls</a>
                         </li>
-												 <li>
-                            <a href="/scoop/hottopic/">Hot Topics</a>
-                        </li>
-                        <li>
-                            <a href="/scoop/mommywood/">Mommywood</a>
-                        </li>
+												 <!--li><a href="{% url 'giftguide_list' %}">Gift Guides</a></li-->
                         <li>
                             <a href="{% url 'contributors' %}">Contributors</a>
                         </li>
@@ -225,9 +230,11 @@
                 	<div id="more-read" class="thumbnails widget clearfix" data-cme-module="popular_articles" data-cme-module-min="1" data-cme-module-max="4">
     <h3>Contests</h3>
     <ul>
+    	{% for contest in ACTIVE_CONTEST_LIST %}
         <li class="clearfix">
-            <a href="http://motherhood.modernmom.com/put-buttons-fabric-headboard-6426.html"><img src="http://motherhood.modernmom.com/images/pixel.gif" data-src="/DM-Resize/photos.demandstudios.com/getty/article/26/243/200258030-001.jpg?w=130&amp;h=87&amp;crop_min=1" alt="How to Put Buttons on a Fabric Headboard" width="130" height="87"><span class="clearfix">How to Put Buttons on a Fabric Headboard</span></a>
+            <a href="{{ contest.get_absolute_url }}"><img src="{{ contest.contestimage.get_130X87_url }}"  alt="{{ contest }}" width="130" height="87"><span class="clearfix">{{ contest }}</span></a>
         </li>
+				{% endfor %}
     </ul>
    
 </div>
@@ -355,29 +362,7 @@
                                 <a href="http://www.youtube.com/user/modernmom"><span>YouTube</span></a>
                             </li>
                         </ul>
-                        <ul class="footer-menu clearfix">
-                            <li>
-                                <a href="http://www.modernmom.com/brooke-burke">Brooke Burke</a>
-                            </li>
-                            <li>
-                                <a href="http://musthave.modernmom.com">Must-Haves</a>
-                            </li>
-                            <li>
-                                <a href="http://www.modernmom.com/contests">Contests</a>
-                            </li>
-                            <li>
-                                <a href="http://www.modernmom.com/videos/">Videos (Youtube)</a>
-                            </li>
-                            <li>
-                                <a href="http://babooshbaby.com">Shop</a>
-                            </li>
-                            <li>
-                                <a href="http://www.mommytracked.com">Mommytracked</a>
-                            </li>
-                            <li>
-                                <a href="http://www.modernmom.com/recalls">Recalls</a>
-                            </li>
-                        </ul>
+                        
                         <ul class="footer-menu clearfix">
                             <li>
                                 <a href="http://www.modernmom.com/about-us">About Us</a>
@@ -397,9 +382,9 @@
                             <li>
                                 <a href="http://www.modernmom.com/privacy-policy">Terms of Use</a>
                             </li>
-                            <li>
+                            <!--li>
                                 <a href="http://www.modernmom.com/contact">Contact Us</a>
-                            </li>
+                            </li-->
                         </ul>
                         <p>
                             (c) Copyright 2013 Mom, Inc. All Rights Reserved.

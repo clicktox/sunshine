@@ -20,7 +20,8 @@
 {% endif %}
 {% endfor %}
 		{% else %}
-    {% if article.image %}
+
+		{% if article.image %}
     <div id="top-section" class="portrait clearfix">
         <figure id="main-article-photo" class="article-image">
             <img src="{{ article.image.get_290X_url }}" alt="{{ article.image.title }}" title="{{ article.image.source }}">
@@ -60,10 +61,11 @@
 								{% endif %}
             </ul>
         </div>
-        <!-- more related -->
+       
     </div>
     {% endif %}
 		{% endif %}
+
     <div class="p402_premium">
         <div id="section-{{ section.id }}" class="section">
             <div id="section-{{ section.id }}" class="section">
@@ -141,6 +143,29 @@
 </div>
 {% endblock %}
 {% block left_rail %}
+ <div class="subnav-widget widget">
+                            <h3>Explore</h3>
+                            <ul id="subnav" class="menu-list">
+                                <li class="item-1">
+                                    <a href="http://motherhood.modernmom.com/around-the-house/"><span>Around the House</span></a>
+                                </li>
+                                <li class="item-2">
+                                    <a href="http://motherhood.modernmom.com/beauty-style/"><span>Beauty &amp; Style</span></a>
+                                </li>
+                                <li class="item-3">
+                                    <a href="http://motherhood.modernmom.com/food-drink/"><span>Food &amp; Drink</span></a>
+                                </li>
+                                <li class="item-4">
+                                    <a href="http://motherhood.modernmom.com/living-healthy/"><span>Living Healthy</span></a>
+                                </li>
+                                <li class="item-5">
+                                    <a href="http://motherhood.modernmom.com/parenting-pregnancy/"><span>Parenting</span></a>
+                                </li>
+                                <li class="item-6">
+                                    <a href="http://motherhood.modernmom.com/relationships-family/"><span>Relationships</span></a>
+                                </li>
+                            </ul>
+                        </div>
 <div class="social-widget widget">
     <h3>Share This</h3>
     <ul id="social-bar" class="menu-list">
@@ -162,11 +187,14 @@
 {% block right_rail %}
 <div id="more-read" class="thumbnails widget clearfix" data-cme-module="popular_articles" data-cme-module-min="1" data-cme-module-max="4">
     
-    <h3>Contirbutors</h3>
+    <h3>Featured Authors</h3>
     <ul>
+    	{% for author in FEATURED_AUTHOR_LIST|slice:'5' %}
         <li class="clearfix">
-            <a href="http://motherhood.modernmom.com/put-buttons-fabric-headboard-6426.html"><img src="http://motherhood.modernmom.com/images/pixel.gif" data-src="/DM-Resize/photos.demandstudios.com/getty/article/26/243/200258030-001.jpg?w=130&amp;h=87&amp;crop_min=1" alt="How to Put Buttons on a Fabric Headboard" width="130" height="87"><span class="clearfix">How to Put Buttons on a Fabric Headboard</span></a>
+            <a href="{{ author.get_absolute_url }}"><img src="{{ author.image.get_130X87_url }}" alt="{{ author }}" width="130" height="87"><span class="clearfix">{{ author }}</span></a>
+						
         </li>
+			{% endfor %}
     </ul>
 </div>
 {% endblock %}
