@@ -173,6 +173,7 @@ WYSIWYH_DEFAULT_TOOLBAR_ITEMS = [
 ]
 
 #Photologue
+PHOTOLOGUE_MAXBLOCK =  1024 * 2 ** 10
 """ Got to be a better way to do this."""
 import photologue, os, datetime
 PHOTOLOGUE_DIR = 'uploads/'
@@ -212,13 +213,24 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        # Log to a text file that can be rotated by logrotate
+        'logfile': {
+            'class': 'logging.handlers.WatchedFileHandler',
+            'filename': '/var/log/django/django3_modernmom.log'
+        },
     },
     'loggers': {
         'django.request': {
             'handlers': ['mail_admins'],
             'level': 'ERROR',
             'propagate': True,
+        },
+        # Might as well log any errors anywhere else in Django
+        'django': {
+            'handlers': ['logfile'],
+            'level': 'ERROR',
+            'propagate': False,
         },
     }
 }
