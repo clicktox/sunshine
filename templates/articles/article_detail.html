@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
 {% load i18n humanize %}
+{% block title %}{{ article }}{% endblock %}
+{% block head_og %}
+        <meta property="og:url" content="http:{{ SITE_BASEURL }}{{ article.get_absolute_url }}">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{{ article.title }}">
+				<meta property="og:description" content="{{ article.description|striptags }}">
+	{% if article.image %}<meta property="og:image" content="http:{{ SITE_BASEURL }}{{ article.image.get_870X_url }}">{% endif %}
+        {% endblock %}
+				
+				
 {% block body_id %}article-template{% endblock %}
 {% block body_class %}Article Topic-View{% endblock %}
 {% block content %}
+{% if user.is_staff %}{{ article.status }} and Active is {{ article.is_active }}{% endif %}
 <article id="article-section">
     <div id="title">
         <h1>{{ article }}</h1>
