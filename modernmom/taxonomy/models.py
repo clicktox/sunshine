@@ -36,6 +36,19 @@ class Category(models.Model):
 class CategoryImage(ImageModel):
     category = models.OneToOneField(Category)
 
+class CateogryItemManager(models.Manager):
+    
+    def active(self):
+        """
+        Retrieves all active articles which have been published and have not
+        yet expired.
+        """
+        now = datetime.now()
+        return self.get_query_set().filter(
+                publish_date__lte=now,
+                is_active=True)
+
+    
 class CategoryItem(models.Model):
     """
     Holds the relationship between a tag and the item being tagged.
@@ -45,6 +58,8 @@ class CategoryItem(models.Model):
     object_id    = models.PositiveIntegerField(_('object id'), db_index=True)
     object       = generic.GenericForeignKey('content_type', 'object_id')
     publish_date = models.DateTimeField(default=datetime.now, help_text=_('The date and time this article shall appear online.'))
+    is_active = models.BooleanField(default=True)
+    objects = CateogryItemManager()
    
     class Meta:
         # Enforce unique tag association per object
