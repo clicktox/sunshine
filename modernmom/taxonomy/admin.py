@@ -11,7 +11,7 @@ admin.site.register(Scoop)
 admin.site.register(ScoopItem)
 
 class CategoryItemAdmin(admin.ModelAdmin):
-    list_display = ('object','category')
+    list_display = ('object','category','publish_date')
     list_filter = ('category',)
 admin.site.register(CategoryItem,CategoryItemAdmin)
 class CategoryAdmin(admin.ModelAdmin):

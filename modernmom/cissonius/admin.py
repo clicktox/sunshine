@@ -9,6 +9,11 @@ class ProductRetailerInline(admin.TabularInline):
     model = ProductRetailer
     extra = 3
 
+class ProductLinkInline(admin.TabularInline):
+    model = ProductLink
+    extra = 1
+    
+    
 class GiftGuideProductInline(admin.TabularInline):
     model = GiftGuideProduct
     exclude = ('added_by',)
@@ -20,8 +25,9 @@ class GiftGuideTitleBannerInline(admin.TabularInline):
     extra = 1
     
 class ProductAdmin(admin.ModelAdmin):
-    inlines = (ProductCategoryInline,ProductRetailerInline,)
-    list_display = ('name','producer','image')
+    inlines = (ProductCategoryInline,ProductRetailerInline,ProductLinkInline)
+    list_display = ('id','name','producer','image')
+    search_fields = ('name',)
 
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Category)
@@ -50,7 +56,15 @@ class GiftGuideAdmin(admin.ModelAdmin):
     
 admin.site.register(GiftGuide,GiftGuideAdmin)
 admin.site.register(GiftGuideImage)
+
+
+class GiftGuideProductFilterInline(admin.TabularInline):
+    model=GiftGuideProductFilter
+    extra=2
+    
 class GiftGuideProductAdmin(admin.ModelAdmin):
+    inlines = [GiftGuideProductFilterInline,]
+    raw_id_fields = ('product',)
     exclude = ('added_by',)
     
     fieldsets = (
@@ -86,3 +100,9 @@ class GroupMustHaveAdmin(admin.ModelAdmin):
 admin.site.register(GroupMustHaveImage)
 admin.site.register(GroupMustHave,GroupMustHaveAdmin)
 admin.site.register(GroupMustHaveProduct)
+admin.site.register(GiftGuideProductFilter)
+
+class GiftGuideFilterAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug':('name',),}
+    
+admin.site.register(GiftGuideFilter,GiftGuideFilterAdmin)

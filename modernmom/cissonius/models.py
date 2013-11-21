@@ -19,6 +19,9 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     descirption = models.TextField()
     parent = models.ForeignKey('self',blank=True,null=True)
+    
+    def __unicode__(self):
+        return u'%s' % self.name
 
 class ProducerImage(ImageModel):
     title = models.CharField(max_length=255)

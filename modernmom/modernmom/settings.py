@@ -162,14 +162,16 @@ INSTALLED_APPS = (
 )
 LOGIN_URL = '/login/'
 WYSIWYH_DEFAULT_TOOLBAR_ITEMS = [
+    'fonts',
     'font_size', 
     'font_weights', 
     'lists',
     'alignments', 
     'hyperlink', 
-    'image','video',
+    'image','video'
     'speech',
-    'source'  # only available for chrome
+    'source',
+    'removeFormat',  # only available for chrome
 ]
 
 #Photologue

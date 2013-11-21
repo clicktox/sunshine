@@ -118,7 +118,7 @@ def rules(request,url,template="contests/rules.html",reached_daily_max=False,rea
         context.update(extra_context)
     
     context['contest'] = contest = get_object_or_404(Contest,url=url)
-    myTemplate = u'custom/%s-rules.html' % contest.guid
+    myTemplate = u'contests/custom/%s-rules.html' % contest.guid
     templates = [myTemplate,template]
     return render_to_response(templates,context,context_instance=RequestContext(request))
 

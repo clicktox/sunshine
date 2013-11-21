@@ -71,7 +71,7 @@
             <p class="popu">
                 Want to get personal with Brooke? Check out her blog and exclusive pics!
             </p>
-            <h4 class="content-aside"><a href="http://www.modernmom.com/scoop/mommywood/" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
+            <h4 class="content-aside"><a href="http://www.modernmom.com/scoop/" class="h4a">MOMMY<span class="pink">WOOD</span></a></h4>
             <p class="popu">
                 All the latest parenting news, hot topics, celebrity gossip and more!
             </p>
@@ -258,14 +258,14 @@
                 <!-- /bars -->
                 <div class="section-list" style="overflow:hidden;">
                     <ul>
-                        {% for ci in category.items.all|slice:'5' %}
+                        {% for ci in category.items.active|slice:'5' %}
                         <li>
                             <a href="{{ ci.object.get_absolute_url }}" style="white-space:nowrap;">{{ ci }}</a>
                         </li>
                         {% endfor %}
                     </ul>
                     <div class="section-end">
-                        More in {{ category }} <i class="icon-caret-right"></i>
+                        <!--More in {{ category }} <i class="icon-caret-right"></i>-->
                     </div>
                     <!-- /section-end -->
                 </div>
@@ -363,6 +363,23 @@
         <noscript>
             <a href="http://ad.doubleclick.net/jump/dmd.ind.modernmom/;sz=300x250;ord=123456789?" target="_blank"><img src="http://ad.doubleclick.net/ad/dmd.ind.modernmom/;sz=300x250;ord=123456789?" border="0" alt="" /></a>
         </noscript><!-- End IndieClick Ad Tag -->
+				<div class="widget">
+                        <script>
+                            (function(){
+                                var cx = '001335843976199048504:l7b834cqb00';
+                                var gcse = document.createElement('script');
+                                gcse.type = 'text/javascript';
+                                gcse.async = true;
+                                gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                                '//www.google.com/cse/cse.js?cx=' +
+                                cx;
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(gcse, s);
+                            })();
+                        </script>
+                        <gcse:search>
+                        </gcse:search>
+                    </div>
     </div><!-- /right rail--><!-- /row -->
 </div>
 </div>{% endblock %}
