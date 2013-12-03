@@ -33,7 +33,14 @@
 		{% else %}
 
 		{% if article.image %}
-    <div id="top-section" class="portrait clearfix">
+		<div id="top-section" class="landscape clearfix">
+		    <figure id="main-article-photo" class="article-image">
+	            <img src="{{ article.image.get_700X_url }}" alt="{{ article }}" title="{{ article }}"><figcaption class="article-image-credits">
+						<p class="photo-cap">{{ article.image.title }}</p>
+					</figcaption></figure>
+			</div>
+			
+    <!--div id="top-section" class="portrait clearfix">
         <figure id="main-article-photo" class="article-image">
             <img src="{{ article.image.get_290X_url }}" alt="{{ article.image.title }}" title="{{ article.image.source }}">
             <figcaption class="article-image-credits">
@@ -44,9 +51,12 @@
         </figure>
         <div id="related-articles">
             <h3>Related Articles</h3>
+						
             <ul>
+						
             	     {% for fu in article.followup_for.live %}
                 <li>
+							
                     <a href="{{ fu.get_absolute_url }}" title="{% trans 'Read this article' %}">{{ fu.title }}</a>, {% trans 'posted' %} {{ fu.publish_date|naturalday }}
                 </li>
                 {% endfor %}
@@ -73,7 +83,7 @@
             </ul>
         </div>
        
-    </div>
+    </div-->
     {% endif %}
 		{% endif %}
 
@@ -115,10 +125,12 @@
 		{% if article.authors.count > 0 %}
     <div id="author" class="section">
         {% for author in article.authors.all %}
+				{% if author.about_me %}
 				<h4>About {{ author.first_name }} {{ author.last_name }}</h4>
         <p>
             {{ author.about_me|safe }}
         </p>
+				{% endif %}
 				{% endfor %}
     </div>
 		{% endif %}

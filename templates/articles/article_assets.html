@@ -1,0 +1,41 @@
+{% extends 'bootstrapbase.html' %}
+{% block container %}
+<div class="row">
+    <div class="tabbable">
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#pane1" data-toggle="tab">Overview</a>
+            </li>
+            <li>
+                <a href="#pane2" data-toggle="tab">Images</a>
+            </li>
+            <li>
+                <a href="#pane3" data-toggle="tab">Pinterest</a>
+            </li>
+            <li>
+                <a href="#pane4" data-toggle="tab">LinkedIn</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div id="pane1" class="tab-pane active">
+                <h4>The Markup</h4>
+                <pre>Code here ...</pre>
+            </div>
+            <div id="pane2" class="tab-pane">
+                <h4>Images</h4>
+                <p>
+                    <img src="{{ article.image.get_700X_url }}" />http://www.modernmom.com{{ article.image.get_700X_url }}<img src="{{ article.image.get_375X_url }}" />http://www.modernmom.com{{ article.image.get_375X_url }}<img src="{{ article.image.get_200X_url }}" />http://www.modernmom.com{{ article.image.get_200X_url }}
+                </p>
+            </div>
+            <div id="pane3" class="tab-pane">
+                <h4>Pinterest</h4>
+            </div>
+            <div id="pane4" class="tab-pane">
+                <h4>LinkedIn</h4>
+            </div>
+        </div>
+        <!-- /.tab-content -->
+    </div>
+    <!-- /.tabbable -->
+</div>
+{% endblock %}

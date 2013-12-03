@@ -1,0 +1,72 @@
+{% extends 'bootstrapbase.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" type="text/css">
+
+{% endblock %}
+{% load article_tags %}
+{% block title %}{{ flatpage.title }}{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span4">
+        <img src="/media/flatpages/brooke-burke/brooke_door.jpg">
+    </div>
+		<div class="span8">
+    <div class="section-title">
+        <div class="bars">
+            <span class="wht-bg-H1 pink">Brooke Burke's <span class="black">Blog</span></span>
+        </div>
+        <!-- /bars -->
+        <div class="section-list" style="overflow:hidden;">
+            <ul>
+            	{% get_articles_by_author 3 for 06f10e7a-4af5-11e3-8eab-bc764e04a41e as posts %}
+						{% for post in posts %}
+							<div class="gcontent-box">
+        	
+					<div class="gcontent-thumb">
+        		<a href="{{ post.get_absolute_url }}">
+        			<img src="{{ post.image.get_180X180_url }}" class="img-circle"></a>
+        	</div>
+						
+        	
+        		<h4 class="gtitle"><a href="{{ post.get_absolute_url }}">{{ post }}</a></h4>
+        		
+        		<p>{{ post.introduction|striptags|safe }}</p>
+        	
+        		
+        	        	
+        </div>
+				{% endfor %}
+						
+            </ul>
+            <div class="section-end">
+                <a href="/contributors/06f10e7a-4af5-11e3-8eab-bc764e04a41e/">More posts from Brooke Burke <i class="icon-caret-right"></i></a>
+            </div>
+            <!-- /section-end -->
+        </div>
+        <!-- /section-list -->
+    </div>
+    <!-- /section-title -->
+		<div class="row">
+			<div class="span4">
+		<div class="section-title">
+        <div class="bars">
+            <span class="wht-bg-H1 pink">Brooke Burke <span class="black">BB365</span></span>
+        </div>
+        <!-- /bars -->
+        <div class="section-list" style="overflow:hidden;">
+           	<h4 class="gtitle"><a href="http://brookeburke.modernmom.com/bb365">A look through Brooke's camera - a pic a day every day of the year!</a></h4><p class="thumb-title">
+                    <a href="http://brookeburke.modernmom.com/bb365">Get A Sneak Peek</a>
+                </p>
+           
+            <!-- /section-end -->
+        </div>
+        <!-- /section-list -->
+    </div>
+    <!-- /section-title -->
+		</div>
+		
+		
+</div>
+</div>
+
+{% endblock %}

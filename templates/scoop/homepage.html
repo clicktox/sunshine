@@ -18,7 +18,7 @@
         {% for ci in scoop.items.all|slice:'1' %}
             <a href="{{ ci.object.get_absolute_url }}"><img src="{{ ci.object.image.get_180X180_url }}" data-src="/" alt="" width="170" height="113"></a><h3><a href="{{ ci.object.get_absolute_url }}">{{ ci.object }}</a></h3>
         <p>
-            {{ ci.object.description|striptags }}
+            {{ ci.object.description|striptags|safe }}
         </p>
         {% endfor %}
     </div>

@@ -1,0 +1,81 @@
+{% extends 'bootstrapbase.html' %}
+{% block title %}{{ contest.name }}{% endblock %}
+{% block meta %}
+<meta property="og:title" content="{{ contest.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.modernmom.com{% url 'contest_detail' contest.url %}" />
+<meta property="og:description" content="{{ contest.contestdescription.content }}" />
+<meta property="og:image" content="http://www.modernmom.com{{ contest.contestimage.get_290X_url }}" />
+<meta property="og:site_name" content="Modernom Contests" />
+<meta property="fb:app_id" content="208027353668" />
+<meta property="fb:admins" content="622302511" />
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/style.css">
+<style type="text/css">
+    .container {
+        background-color: #e4f3fa;
+    }
+    
+    .row {
+        overflow: hidden;
+    }
+    
+    .oralb2 {
+        background-image: url('{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/images/oralb_04.jpg');
+
+    }
+    
+    .oralb3 {
+        background-image: url('{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/images/oralb_09.jpg');
+
+    }
+</style>
+{% endblock %}
+{% block container %}
+<div class="row" style="vertical-align:bottom;">
+    <div class="span3 hidden-phone" style="vertical-align:bottom; height:100%">
+        <img src="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/images/Oral-B-Twitter-Party-Pagev2_01.png"  style="vertical-align:bottom;">
+    </div>
+		<div class="span9 text-center">
+			<h3>Join us for a #OralBWOW</h3>
+			<img src="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/images/transparent_03.png">
+			<p><h3>'Tis the season for holiday shopping!</h3>
+You're invited to a very special Twitter Party with ModernMom and Oral-B, where we'll share great tips and tricks for braving the crowds on Black Friday and gift ideas for everyone on your list!</p>
+<p><h3>Twitter Party Info</h3>
+Join us on Tuesday, November 26, 2013 at 10am PST/1pm EST. 
+We'll be giving away SIX Oral-B Deep Sweep 1000 power brushes, valued at $64.99.
+To join the conversation, just <a href="https://twitter.com/ModernMom" class="twitter-follow-button" data-show-count="false" data-lang="en">@ModernMom</a> and <a href="https://twitter.com/OralB" class="twitter-follow-button" data-show-count="false" data-lang="en">@OralB</a> on Twitter and tweet using the hashtag #OralBWOW (because the Oral-B Deep Sweep 1000 makes you say “WOW!”)</p>
+<p><h3>Tweet Now to Win!</h3>
+You can win an Oral-B Deep Sweep 1000 power brush before the party even starts! Tweet the news about the Twitter party and you'll be automatically entered to win a pre-party prize. Just make sure you use the hashtag #OralBWOW!</p>
+<p><h3>Special $7-Off Coupon</h3>
+But wait, there's more! From now until December 31, you can save $7 on the Oral-B Deep Sweep 1000 at <a href="http://www.amazon.com/exec/obidos/ASIN/B00ARTK9FA/ref=nosim/pg-pampers-20?s=merchant&m=ATVPDKIKX0DER" target="_blank">Amazon.com</a>
+<br>
+For more information on the Oral-B Deep Sweep 1000 and other Oral-B Professional series brushes, go to OralB.com</p>
+			</div>
+</div>
+<div class="container oralb2">
+<div class="row "">
+    <div class="span3 hidden-phone">
+        <img src="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/images/Oral-B-Twitter-Party-Pagev2_03.png"  style="vertical-align:bottom;">
+    </div>
+		<div class="span7 text-center" style="vertical-align:bottom;">
+			<h3>Tuesday, November 26 10am PST/1pm EST</h3>
+    </div>
+    <div class="span2">
+    	<img src="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/images/transparent_10.png">
+    </div>
+    
+</div>
+</div>
+<div class="container oralb3">
+<div class="row ">
+    <div class="span3 hidden-phone">
+        <img src="{{ MEDIA_URL }}contests/custom/{{ contest.guid }}/images/Oral-B-Twitter-Party-Pagev2_04.png" style="vertical-align:middle;">
+    </div>
+    <div class="span9">
+    </div>
+</div>
+</div>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{% endblock %}

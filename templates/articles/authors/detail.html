@@ -1,0 +1,47 @@
+{% extends 'base.html'%}
+{% block title %}{{ author.first_name }} {{ author.last_name }} at ModernMom{% endblock %}
+{% block head_canonical %}
+
+<style type="text/css">
+	#featured a, #editors a {
+	color: #2F84DA;
+	}
+</style>
+{% endblock %}
+{% block content %}
+				<div id="editors" class="clearfix">
+
+<div id="article-1" class="article clearfix">
+<h2 class="article-meta">{{ author.first_name }} {{ author.last_name }}</h2>
+{% if author.image %}
+        <div class="gcontent-thumb">
+            <a href="{{ author.get_absolute_url }}"><img src="{{ author.image.get_180X180_url }}" class="img-circle"/></a>
+        </div>{% endif %} 
+	      <p>
+            {{ author.about_me|safe }}  
+        </p>
+</div>
+
+
+				<div id="editors" class="clearfix">
+	{% for article in articles %}
+<div id="article-1" class="article clearfix">
+
+{% if article.image %}
+        <div class="gcontent-thumb">
+            <a href="{{ author.get_absolute_url }}"><img src="{{ article.image.get_180X180_url }}" class="img-circle"/></a>
+        </div>{% endif %} 
+	<h3><a href="{{ article.get_absolute_url }}">{{article }}</a></h3>
+        <p>
+            {{ article.description|striptags|safe }}  <a href="{{ article.get_absolute_url }}">
+               Read Post...
+            </a>
+        </p>
+</div>
+
+
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

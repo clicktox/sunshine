@@ -1,0 +1,48 @@
+{% extends 'base.html'%}
+{% block title %}ModernMom Scoop{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bootstrap-wysihtml5.css">
+</link>
+{%endblock %}
+{% block meta_og %}
+<meta property="og:url" content="http://www.modernmom.com">
+<meta property="og:description" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ModernMom Scoop">
+<meta property="og:image" content="">
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="span7">
+    	<div id="reference_container">
+    		{{ form.errors }}
+			<form id="reference_form" class="well form-search" name="reference_form" method="post" action="{% url 'topic_add' %}">
+    		{% csrf_token %}
+				<label>Parent Topic</label>
+						{{ form.parent }}
+    		<div class="input-append">
+            <input type="text" class="span5" name="{{ form.name.html_name }}" placeholder="Topic Name...">
+						
+            <button type="submit" class="btn">
+              Add Topic
+            </button>
+        </div>
+			
+			</form>
+			</div>
+			
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js_lower %}
+<script src="{{ MEDIA_URL }}js/wysihtml5-0.3.0.js">
+</script>
+<script src="{{ MEDIA_URL }}js/bootstrap-wysihtml5.js">
+</script>
+<script type="text/javascript">
+    $('#id_introduction').wysihtml5();
+    
+</script>
+{% endblock %}

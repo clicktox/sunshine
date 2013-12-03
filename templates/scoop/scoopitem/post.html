@@ -1,0 +1,67 @@
+{% extends 'base.html'%}
+{% block title %}ModernMom Scoop{% endblock %}
+{% block css %}
+        <link href="{{ STATIC_URL }}django_bootstrap_wysiwyg/css/bootstrap-wysiwyg.css" rel="stylesheet" />
+{%endblock %}
+{% block meta_og %}
+<meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
+<meta property="og:description" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ModernMom Scoop">
+<meta property="og:image" content="">
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span12">
+    	<div id="reference_container">
+			<form id="reference_form" class="well form-search" name="reference_form" method="post" action="{% url 'scoop_add_item' scoop.slug %}">
+				<input type="file" data-edit="insertImage">
+    		{% csrf_token %}
+    		<div class="input-append">
+            <input type="text" class="span5" name="reference_url" placeholder="Seed url here...">
+            <button type="submit" class="btn">
+              
+                Add Reference
+            </button>
+        </div>
+			
+			</form>
+			</div>
+			{{ form.errors }}
+        <form class="form-horizontal well" name="scoop_add_item_form" id="id_scoop_add_item_form" method="post" action="." enctype="multipart/form-data">
+        	{% csrf_token %}
+{{ form }}
+<button type="submit">Add Post</button>
+				</form>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready( function() {
+  var frm = $('#reference_form');
+
+	frm.submit(function () {
+					console.log(frm.serialize());
+	        $.ajax({
+	            type: frm.attr('method'),
+	            url: frm.attr('action'),
+	            data: frm.serialize(),
+	            success: function (data) {
+	                console.log(data);
+									$('#reference_container').html(data['html']);
+									$("#reference_id").val(data["id"]);
+	            }
+	        });
+	
+	        event.preventDefault();
+	    });
+
+} );
+
+</script>
+{% endblock %}
+
+{% block js_lower %}
+
+        <script src="https://mindmup.s3.amazonaws.com/lib/jquery.hotkeys.js"></script>
+        <script src="{{ STATIC_URL }}django_bootstrap_wysiwyg/js/bootstrap-wysiwyg.js"></script>
+{% endblock %}

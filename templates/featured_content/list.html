@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" type="text/css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span8">
+        {% for item in items %}
+
+        <div class="gcontent-box">
+        	<div class="gcontent-thumb">
+        		<a href="#"><img src="{{ item.image.get_180X180_url }}" class="img-circle"/></a>	
+        	</div>
+        	
+        		<h4 class="gtitle"><a href="#">{{ item.name }}</a></h4>
+        		
+        		<p>{{ item.description|safe }}</p>
+        	
+        		<div class="button-align">
+        			<a href="{{ item.url }}"><button type="button" class="btn btn-info btn-xs">Read More...</button></a>	
+        		</div>
+        	
+        		</p>
+        	        	
+        </div><!--end gcontent-box-->
+        {% endfor %}
+				</div>
+</div>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if items.has_previous %}
+            <a href="?page={{ items.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ items.number }} of {{ items.paginator.num_pages }}.
+        </span>
+
+        {% if items.has_next %}
+            <a href="?page={{ items.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

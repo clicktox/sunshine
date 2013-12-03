@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% block title %}ModernMom Scoop{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" type="text/css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+        {% for author in authors %}
+				
+				<div id="editors" class="clearfix">
+	{% for author in authors %}
+<div id="article-1" class="article clearfix">
+
+{% if author.image %}
+        <div class="gcontent-thumb">
+            <a href="{{ author.get_absolute_url }}"><img src="{{ author.image.get_180X180_url }}" class="img-circle"/></a>
+        </div>{% endif %} 
+	<h3><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></h3>
+        <p>
+            {{ author.about_me|striptags }}  <a href="{{ author.get_absolute_url }}">
+               Read Posts...
+            </a>
+        </p>
+</div>
+{% endif %}
+
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,6 +1,58 @@
 {% extends 'bootstrapbase.html' %}
 {% block container %}
-{% if user.is_staff %}
-
-{% endif %}
 {% endblock %}
+
+{% comment %}
+<script type="text/javascript" src="/static/js/jquery.ba-hashchange.js">
+</script>
+<script>
+    $(function(){
+        $(window).hashchange(hashchanged);
+        hashchanged();
+    });
+    
+    function hashchanged(){
+        console.log(location.hash);
+        
+        var url = document.location.toString();
+        if (url.match('#')) {
+            // Clear active item
+            $('.carousel-inner div').removeClass('active');
+            
+            // Activate item number #hash
+            var index = url.split('#')[1];
+            $('.carousel-inner div:nth-child(' + index + ')').addClass('active');
+            $('#myCarousel').carousel(index - 1);
+            $('#myCarouselText').carousel(index - 1);
+            
+            $('#giftguide_home').hide()
+            $('#giftguide_item_show').show()
+        }
+    }
+    
+    if (window.location.hash) {
+        $('#giftguide_home').hide()
+        $('#giftguide_item_show').show()
+    }
+    else {
+        $('#giftguide_home').show()
+        $('#giftguide_item_show').hide()
+    }
+    var url = document.location.toString();
+    if (url.match('#')) {
+        // Clear active item
+        $('.carousel-inner div').removeClass('active');
+        
+        // Activate item number #hash
+        var index = url.split('#')[1];
+        $('.carousel-inner div:nth-child(' + index + ')').addClass('active');
+    }
+    
+    $('#myCarousel').bind('slid', function(e){
+        // Update location based on slide (index is 0-based)
+        var item = $('#myCarousel .carousel-inner .item.active');
+        window.location.hash = "#" + parseInt(item.index() + 1);
+    })
+</script>
+{% endcomment %}
+

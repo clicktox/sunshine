@@ -16,7 +16,7 @@ def taxonomy(request):
 def featured(request):
     context = {}
     context['FEATURED_ITEMS'] = FeaturedItem.objects.filter(feature_date=datetime.date.today())
-    context['ACTIVE_CONTEST_LIST'] = Contest.objects.all() #.filter(feature_date=datetime.date.today())
+    context['ACTIVE_CONTEST_LIST'] = Contest.objects.active() #.filter(feature_date=datetime.date.today())
     context['FEATURED_AUTHOR_LIST'] = Author.objects.exclude(featuredauthor=None).order_by('-featuredauthor__priority') #.filter(feature_date=datetime.date.today())
     
 

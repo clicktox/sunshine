@@ -2,16 +2,11 @@
 {% block title %}{{ giftguide }}{% endblock %}
 {% block meta %}
 <meta property="og:title" content="{{ giftguide }}" />
-{% if not giftguide.image %}
-<meta property="og:image" content="http://musthave.modernmom.com{{ MEDIA_URL }}images/MH_GiftGuides_300x250.jpg" />
-{% else %}
-<meta property="og:image" content="http://musthave.modernmom.com{{ giftguide.image.get_300X250_url }}" />
-{% endif %}
+<meta property="og:image" content="http://www.modernmom.com{{ giftguide.image.get_375X_url }}" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://musthave.modernmom.com{{ giftguide.get_absolute_url }}" />
-<meta property="og:site_name" content="Must Have" />
-<meta property="fb:app_id" content="208027353668" />
-<meta property="fb:admins" content="622302511" />
+<meta property="og:url" content="http://www.modernmom.com{{ giftguide.get_absolute_url }}" />
+<meta property="og:site_name" content="ModernMom" />
+<meta property="fb:app_id" content="191747667578507" />
 <meta name="description" content="{{ giftguide.description }}" />
 <meta name="keywords" content="" />
 {% endblock %}
@@ -31,46 +26,59 @@
     #giftguide_item_show {
         padding: 20px 0px;
     }
-</style>{% endblock %}
-{% block container %} {{ block.super }}
-	{% if giftguide.giftguidetitlebanner_set.count > 0 %}
-<div class="row">
-	
-    <div class="span12">
     
-			{% for ggtb in giftguide.giftguidetitlebanner_set.all|slice:'1' %}
-        <img src="{{ ggtb.get_1200X_url }}">
-				{% endfor %}
-			
-		
+    .desc {
+        max-height: 110px;
+        overflow: hidden;
+    }
+</style>{% endblock %} 
+{% block container %} 
+<div id="fb-root">
+</div>
+<script>
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) 
+            return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=191747667578507";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+{{ block.super }}
+{% if giftguide.giftguidetitlebanner_set.count > 0 %}
+<div class="row">
+    <div class="span12">
+        {% for ggtb in giftguide.giftguidetitlebanner_set.all|slice:'1' %}<img src="{{ ggtb.get_1200X_url }}">{% endfor %}
     </div>
-</div>
-	{% endif %}
+</div> {% endif %}
 <nav id="navigation">
-<div class="col-width">
-    <ul class="clearfix visible-desktop">
-        <!--li>
-            <a href="#">Men</a>
-        </li>
-				<li>
-            <a href="#">Women</a>
-        </li>
-				<li>
-            <a href="#">Boys</a>
-        </li>
-				<li>
-            <a href="#">Girls</a>
-        </li-->
-    </ul>
-</div>
+    <div class="col-width">
+        <ul class="clearfix visible-desktop">
+            <li>
+                <div class="fb-share-button" data-href="http://www.modernmom.com/giftguides/modernmom-2013-holiday-gift-guide/" data-type="button_count">
+                </div>
+            </li>
+            <li>
+                <a href="{{ giftguide.get_absolute_url }}">All</a>
+            </li>
+            {% for filter in filters %}
+            <li>
+                <a href="{{ giftguide.get_absolute_url }}?for={{ filter.slug }}">{{ filter|capfirst }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </nav>
 <div class="row center" id="giftguide_home">
     <div class="span12">
         <div class="projects">
-            {% for ggp in giftguide.giftguideproduct_set.all %}
+            {% for ggp in giftguideproducts %}
+					
             <div class="project-container">
                 <div class="project-shot">
-                    <a href="{{ ggp.get_slideshow_url }}"><img src="{{ ggp.product.image.get_232X202_url }}" /></a>
+                    <!--a href="{{ ggp.get_slideshow_url }}"><img src="{{ ggp.product.image.get_232X202_url }}" /></a--><a href="{% url 'giftguide_product_detail' giftguide.slug ggp.id %}"><img src="{{ ggp.product.image.get_232X202_url }}" /></a>
                 </div>
                 <div class="project-description">
                     <div class="name">
@@ -80,15 +88,42 @@
                         {{ ggp.product.description }}
                     </div>
                     <div class="actions">
-                        <a class="btn btn-mini btn-inverse" href="{{ ggp.get_slideshow_url }}">View</a>
+                        <!--a class="btn btn-mini btn-inverse" href="{{ ggp.get_slideshow_url }}">View</a--><!--a class="btn btn-mini btn-inverse" href="{{ ggp.get_absolute_url }}">View</a--><a class="btn btn-mini btn-inverse" data-toggle="modal" href="#product{{ggp.product.uuid}}">View</a>
                     </div>
                 </div>
-                <div class="project-stats">
-                    <span class="views"><a href="#" rel="tooltip" title="Project views" class="tip"><i class="icon-eye-open"></i></a>15</span>
-                    <span class="likes"><a href="#" rel="tooltip" title="Project likes" class="tip"><i class="icon-heart"></i></a>14</span>
+                <!--div class="project-stats">
+                <span class="views"><a href="#" rel="tooltip" title="Project views" class="tip"><i class="icon-eye-open"></i></a>15</span>
+                <span class="likes"><a href="#" rel="tooltip" title="Project likes" class="tip"><i class="icon-heart"></i></a>14</span>
+                </div-->
+            </div>
+            <div id="product{{ggp.product.uuid}}" class="modal hide" style="display: none; ">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">×</a>
+                    <h3>{{ ggp.product }}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="shot">
+                        <img src="{{ ggp.get_image.get_375X_url }}" />
+                    </div>
+                    <p>
+                        {{ ggp.get_description|safe }}
+                        {% if product.product.productcost %} {{ product.product.productcost }}{% endif %}
+                       
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-pinterest" href="//www.pinterest.com/pin/create/button/?url={{ 'http://www.modernmom.com'|add:ggp.product.get_absolute_url|urlencode }}&media={{ 'http://www.modernmom.com'|add:ggp.get_image.get_375X_url|urlencode }}&description={{ ggp|urlencode }}"><i class="icon-pinterest"></i>| Share On Pinterest</a>
+                    <a class="btn btn-facebook" href="https://www.facebook.com/dialog/feed?app_id=191747667578507&display=popup&caption={{ ggp|urlencode }}&link={{ 'http://www.modernmom.com'|add:ggp.product.get_absolute_url|urlencode }}&picture={{ 'http://www.modernmom.com'|add:ggp.get_image.get_370X250_url|urlencode }}&description={{ ggp.get_description|striptags|urlencode }}&redirect_uri={{ 'http://www.modernmom.com'|add:giftguide.get_absolute_url }}"><i class="icon-facebook"></i>| Share On Facebook</a>
+										 {% for link in ggp.product.productlink_set.all %}
+										  <a href="{{ link.url }}" target="_blank" class="btn">Details</a>
+                        {% endfor %}
+                    <a href="#" class="btn" data-dismiss="modal">Close</a>
                 </div>
             </div>
             {% endfor %}
+					
+			<a data-pin-do="embedPin" href="http://www.pinterest.com/pin/224476362650671050/"></a>
+				
         </div>
     </div>
 </div>
@@ -123,57 +158,5 @@
         </div>
     </div>
 </div>
-<script>
-    $(function(){
-        $(window).hashchange(hashchanged);
-        hashchanged();
-    });
-    
-    function hashchanged(){
-        console.log(location.hash);
-        
-        var url = document.location.toString();
-        if (url.match('#')) {
-            // Clear active item
-            $('.carousel-inner div').removeClass('active');
-            
-            // Activate item number #hash
-            var index = url.split('#')[1];
-            $('.carousel-inner div:nth-child(' + index + ')').addClass('active');
-            $('#myCarousel').carousel(index - 1);
-            $('#myCarouselText').carousel(index - 1);
-            
-            $('#giftguide_home').hide()
-            $('#giftguide_item_show').show()
-        }
-    }
-    
-    if (window.location.hash) {
-        $('#giftguide_home').hide()
-        $('#giftguide_item_show').show()
-    }
-    else {
-        $('#giftguide_home').show()
-        $('#giftguide_item_show').hide()
-    }
-    var url = document.location.toString();
-    if (url.match('#')) {
-        // Clear active item
-        $('.carousel-inner div').removeClass('active');
-        
-        // Activate item number #hash
-        var index = url.split('#')[1];
-        $('.carousel-inner div:nth-child(' + index + ')').addClass('active');
-    }
-    
-    $('#myCarousel').bind('slid', function(e){
-        // Update location based on slide (index is 0-based)
-        var item = $('#myCarousel .carousel-inner .item.active');
-        window.location.hash = "#" + parseInt(item.index() + 1);
-    })
-</script>
-<script type="text/javascript" src="/static/js/jquery.ba-hashchange.js">
-</script>
-{% endblock %}
-{% block lower_js %}
+<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
 {% endblock %}

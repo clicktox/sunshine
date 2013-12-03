@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     
     url(r'^producer/(?P<uuid>[\d\w-]+)/$', 'cissonius.views.producer_detail', name='producer_detail'),
     url(r'^giftguides/(?P<slug>[\d\w-]+)/$', 'cissonius.views.giftguide_detail', name='giftguide_detail'),
+    url(r'^giftguides/(?P<slug>[\d\w-]+)/(?P<id>\d+)/$', 'cissonius.views.giftguide_product_detail', name='giftguide_product_detail'),
     url(r'^giftguides/(?P<slug>[\d\w-]+)/add/$', 'cissonius.views.giftguide_product_add', name='giftguide_product_add'),
     url(r'^giftguides/(?P<slug>[\d\w-]+)/list/$', 'cissonius.views.giftguide_product_list', name='giftguide_product_list'),
     url(r'^giftguides/$', 'cissonius.views.giftguide_list', name='giftguide_list'),

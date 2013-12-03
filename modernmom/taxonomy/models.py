@@ -150,6 +150,9 @@ class Scoop(models.Model):
     
     def get_absolute_url(self):
         return reverse('scoop_detail',args=[self.slug])
+    
+    class Meta:
+        ordering = ('-priority',)
 
 class ScoopItem(models.Model):
     """

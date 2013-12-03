@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+{% block title %}Create New Content ModernMom{% endblock %}
+{% block meta_og %}
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bootstrap-wysihtml5.css">
+</link>
+{%endblock %}
+{% block content %}
+<form class="form-horizontal" name="" id="" method="post" action=".">
+    <div class="row">
+        <div class="span8">
+            {% csrf_token %}
+            <div class="span5">
+                <fieldset>
+                    {{ article_form.as_p }}
+                </fieldset>
+            </div>
+            <div class="span3">
+                <fieldset>
+                    {{ article_image_form.as_p }}
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span8">
+            <h2>Content</h2>
+            <hr>
+            <div class="span5">
+                <fieldset>
+                    {{ content_form.as_p }}
+                </fieldset>
+            </div>
+            <div class="span3">
+                <fieldset>
+                    {{ article_image_form.as_p }}
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span8">
+            <button type="submit">
+                Save
+            </button>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
+{% block js_lower %}
+<script src="{{ MEDIA_URL }}js/wysihtml5-0.3.0.js">
+</script>
+<script src="{{ MEDIA_URL }}js/bootstrap-wysihtml5.js">
+</script>
+<script type="text/javascript">
+    $('#id_introduction').wysihtml5();
+    $('#id_content').wysihtml5();
+</script>
+{% endblock %}

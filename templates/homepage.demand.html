@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="big-title">
+    <div id="title">
+        <h1>Featured Today</h1>
+    </div>
+</div>
+{% for item in featured_items|slice:'1' %}
+
+<!-- Start Featured Article -->
+<div id="featured" data-cme-module="featured_home" data-cme-module-min="1" data-cme-module-max="1">
+    <div id="article-1" class="article">
+        <a href="{{ item.get_absolute_url }}"><img src="{{ item.image.get_470X380_url }}" alt="" width="638" height="318"></a><h3>
+        	<a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h3>
+        <p>
+           {{ item.description|striptags|safe }}
+        </p>
+    </div>
+</div>
+{% endfor %}
+<div id="editors" class="clearfix">
+	{% for item in featured_items|slice:'1:10' %}
+	<div id="article-{{ item.id }}" class="article clearfix">
+<a href="{{ item.url }}"><img src="{{ item.image.get_180X180_url }}" data-src="/" alt="" width="170" height="113"></a><h3>
+	<a href="{{ item.url }}">{{ item.name }}</a></h3>
+        <p>
+            {{ item.description|striptags }}
+        </p>
+</div>
+{% endfor %}
+
+<!-- End Section -->
+
+    {% for category in CHANNELS %}<!-- Other Home Page Articles -->
+    <div id="article-1" class="article clearfix">
+        <h2 class="article-meta">{{ category }}</h2>
+        {% for ci in category.items.all|slice:'1' %}<a href="{{ ci.object.get_absolute_url }}"><img src="{{ ci.object.image.get_180X180_url }}" data-src="/" alt="" width="170" height="113"></a><h3><a href="{{ ci.object.get_absolute_url }}">{{ ci.object }}</a></h3>
+        <p>
+            {{ ci.object.description|striptags }}
+        </p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

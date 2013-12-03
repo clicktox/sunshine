@@ -1,0 +1,50 @@
+{% extends 'bootstrapbase.html' %}
+{% block container %}
+{{ image_form.errors }}
+		{{ form.errors }}
+		<form method="post" action="." enctype="multipart/form-data" class="form">
+			<input type="hidden" name="{{form.priority.html_name}}" value="{{ form.priority.value}}" />
+			<div class="row">
+			{% csrf_token %}
+			<div class="span6">
+			<img src="{{ item.image.get_470X233_url }}">
+			</div>
+			<div class="span6">
+				<div class="well">
+		{{ image_form }}</div>
+		</div></div>
+		<div class="row">
+			<div class="span12">
+
+	
+	<label>Featured Content Title</label>
+<input type="text" class="input-xxlarge" name="{{ form.name.html_name }}" value="{{ form.name.value }}">
+	<label>Content</label>
+<textarea name="{{ form.description.html_name }}" class="input-xxlarge" >{{ form.description.value }}</textarea>
+	<label>Caption</label>
+<input type="text" name="{{ form.caption.html_name }}" class="input-xxlarge" value="{{ form.caption.value }}">
+	<label>Link to page</label>
+<input type="text" name="{{ form.url.html_name }}" class="input-xxlarge" value="{{ form.url.value }}" >
+<label>Feature Date</label>
+<div class="input-append date" id="datepicker" data-date="{{ form.feature_date.value|date:'SHORT_DATE_FORMAT' }}" data-date-format="mm/dd/yyyy">
+				<input class="span2" size="16" type="text" value="{{ form.feature_date.value|date:'SHORT_DATE_FORMAT' }}" readonly="" name="{{ form.feature_date.html_name }}">
+				<span class="add-on"><i class="icon-calendar"></i></span>
+			  </div>
+				<br>
+				<button type='sumit' name="commit">Save</button>
+				<button type='sumit' name="continue">Save and Continue</button>
+				<button href='{% url 'manage_featured_content' %}'>Nevermind</button>
+								</div></div>
+				</form>
+
+{% endblock %}
+
+	{% block js_lower %}
+	        <script src="/static/js/bootstrap-datepicker.js">
+        </script>
+				<script type="text/javascript">
+					$('#datepicker').datepicker()
+					</script>
+					<script src='/static/js/jquery-sortable.js'></script>
+					<script src='/static/js/bootstrap-lightbox.js'></script>
+				{% endblock %}

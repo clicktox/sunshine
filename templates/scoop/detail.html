@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body_id %}article-template{% endblock %}
+{% block body_class %}Article Topic-View{% endblock %}
+{% block head_canonical %}
+        <link rel="canonical" href="{{ scoop.get_absolute_url }}">
+        {% endblock %}
+{% block content %}
+<div class="big-title">
+    <div id="title">
+        <h1>{{ scoop }}</h1>
+    </div>
+</div>
+
+
+{% for scoopitem in page_obj|slice:'10' %}
+{% if forloop.counter == 1 %}
+<!-- Start Featured Article -->
+<div id="featured" data-cme-module="featured_home" data-cme-module-min="1" data-cme-module-max="1">
+    <div id="article-1" class="article">
+        <a href="{{ scoopitem.object.get_absolute_url }}"><img src="{{ scoopitem.object.image.get_470X380_url }}" alt="" width="638" height="318"></a><h3>
+        	<a href="{{ scoopitem.object.get_absolute_url }}">{{ scoopitem.object }}</a></h3>
+        <p>
+           {{ scoopitem.object.description|striptags|safe }}
+        </p>
+    </div>
+</div>
+<div id="editors" class="clearfix">
+{% else %}
+<div id="article-1" class="article clearfix">
+	{% if scoopitem.object.image %}
+<a href="{{ scoopitem.object.get_absolute_url }}">
+	<img src="{{ scoopitem.object.image.get_180X180_url }}" data-src="/" alt="" width="170" height="113"></a>
+	{% endif %}
+	<h3><a href="{{ scoopitem.object.get_absolute_url }}">{{ scoopitem }}</a></h3>
+        <p>
+            {{ scoopitem.object.description|striptags|safe }}
+        </p>
+</div>
+{% endif %}
+
+{% endfor %}
+</div>
+{% if paginator and page_obj %}
+
+{% if page_obj.has_next %}
+<a href="{{ scoop.get_absolute_url }}?page={{page_obj.next_page_number}}">Load More</a>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+

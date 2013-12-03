@@ -1,0 +1,44 @@
+{% extends 'bootstrapbase.html'%}
+{% block title %}ModernMom Scoop{% endblock %}
+{% block meta_og %}
+<meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
+<meta property="og:description" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ModernMom Scoop">
+<meta property="og:image" content="">
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/bootstrap-wysihtml5.css">
+</link>
+{%endblock %}
+{% block container %}
+<div class="row">
+	<div class="span4">
+		<p class="">Hey there {{ user }}, it looks like you do not have any authors created to publish under yet!  Fill out the form below to create your first author profile.
+		</div>
+	<div class="span6">
+	<form  method="post" action="{% url 'create_author' %}">
+
+        
+        	{% csrf_token %}
+{{ form }}
+	<button type="submit">Save</button>
+	<button name="save_and_create" type="submit">Save and Create Content</button>
+	
+	</form>
+	</div>
+</div>
+<script type="text/javascript">
+
+</script>
+{% endblock %}
+{% block js_lower %}
+<script src="{{ MEDIA_URL }}js/wysihtml5-0.3.0.js">
+</script>
+<script src="{{ MEDIA_URL }}js/bootstrap-wysihtml5.js">
+</script>
+<script type="text/javascript">
+    $('#id_introduction').wysihtml5();
+
+</script>
+{% endblock %}

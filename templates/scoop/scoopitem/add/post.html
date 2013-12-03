@@ -1,0 +1,108 @@
+{% extends 'bootstrapbase.html'%}
+{% block title %}ModernMom Scoop{% endblock %}
+{% block head %}
+<link href="{{ STATIC_URL }}django_bootstrap_wysiwyg/css/bootstrap-wysiwyg.css" rel="stylesheet" />
+{%endblock %}
+{% block meta_og %}
+<meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
+<meta property="og:description" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ModernMom Scoop">
+<meta property="og:image" content="">
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span12">
+        <div id="reference_container">
+       
+            <form id="reference_form" class="well form-search" name="reference_form" method="post" action="{% url 'scoop_add_item' scoop.slug %}">
+            	<h2>Reference Urls</h2>
+            	 	<p class="">
+					<ul class="nav"><li class="nav-header">Currently Supported Urls</li>
+					<li>http://twitter.com</li>
+					<li>http://instagram.com</li>
+					<li>http://www.youtube.com ( must have the v=VIDEOID in the url )</li>
+					</ul>
+					</p>
+               {% csrf_token %}
+                <div class="input-append">
+                    <input type="text" class="span5" name="reference_url" placeholder="Seed url here...">
+                    <button type="submit" class="btn">
+                        Add Reference
+                    </button>
+                </div>
+            </form>
+        </div>
+        {{ form.errors }}
+				{{ imageform.errors }}
+        <form class="form-horizontal" name="scoop_add_item_form" id="id_scoop_add_item_form" method="post" action="." enctype="multipart/form-data">
+            {% csrf_token %}
+						<input type="hidden" name="reference_id" id="reference_id" value="">
+            <fieldset class="well">
+                <h2>Primary Post Image</h2>
+								<p class="">This is the primary image for the post. NOTE:  If a reference is assigned to this post, then this image will ONLY display on previews and listing pages, not on the actual post.  The assigned reference will take its' place.</p>
+                <div class="row">
+                    <div class="span4">
+                        {{ imageform.image }}
+                        {{ imageform.crop_from }}
+                        <label>
+                            Title of Image
+                        </label>
+                        <input type="text" class="span4" name="{{ imageform.title.html_name }}" id="id_{{ imageform.title.html_name }}" placeholder="{{ imageform.title.value }}">
+												<p class="note">You MUST submit an Image Title <b>if and only if</b> you are going to use a primary image.</p>
+                    </div>
+                    <div class="span4">
+                        <label>
+                            Caption of Image ( optional )
+                        </label>
+												<textarea name="{{ imageform.caption.html_name }}" id="id_{{ imageform.caption.html_name }}" class="span4" rows="5">{% if imageform.caption.value %}{{ imageform.caption.value }}{% endif %}</textarea>
+                     
+												<label>
+                            Image Source ( optional )
+                        </label>
+                       
+												<input type="text" class="span6" name="{{ imageform.source.html_name }}" id="id_{{ imageform.source.html_name }}" placeholder="http://example.com">
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="well">
+                <h2>Create your post!</h2>
+                {{ form }}
+            </fieldset>
+            <button type="submit">
+                Add Post
+            </button>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var frm = $('#reference_form');
+        
+        frm.submit(function(){
+            console.log(frm.serialize());
+            $.ajax({
+                type: frm.attr('method'),
+                url: frm.attr('action'),
+                data: frm.serialize(),
+                success: function(data){
+                    console.log(data);
+                    $('#reference_container').html(data['html']);
+                    $("#reference_id").val(data["id"]);
+										console.log(data["id"]);
+                }
+            });
+            
+            event.preventDefault();
+        });
+        
+    });
+    
+</script>
+{% endblock %}
+{% block js_lower %}
+<script src="https://mindmup.s3.amazonaws.com/lib/jquery.hotkeys.js">
+</script>
+<script src="{{ STATIC_URL }}django_bootstrap_wysiwyg/js/bootstrap-wysiwyg.js">
+</script>
+{% endblock %}

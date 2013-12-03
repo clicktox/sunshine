@@ -59,7 +59,7 @@ PASSWORD_HASHERS = (
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['www.modernmom.com',]
+ALLOWED_HOSTS = ['www.modernmom.com','modernmom.com']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -162,16 +162,16 @@ INSTALLED_APPS = (
 )
 LOGIN_URL = '/login/'
 WYSIWYH_DEFAULT_TOOLBAR_ITEMS = [
-    'fonts',
+    #'fonts',
     'font_size', 
     'font_weights', 
     'lists',
     'alignments', 
     'hyperlink', 
-    'image','video'
-    'speech',
-    'source',
-    'removeFormat',  # only available for chrome
+    'image','video','removeFormat'
+    #'speech',
+    #'source',
+    #'removeFormat',  # only available for chrome
 ]
 
 #Photologue
@@ -217,10 +217,10 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler'
         },
         # Log to a text file that can be rotated by logrotate
-        'logfile': {
-            'class': 'logging.handlers.WatchedFileHandler',
-            'filename': '/var/log/django/django3_modernmom.log'
-        },
+        #'logfile': {
+        #    'class': 'logging.handlers.WatchedFileHandler',
+        #    'filename': '/var/log/django/django3_modernmom.log'
+        #},
     },
     'loggers': {
         'django.request': {
@@ -228,11 +228,6 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        # Might as well log any errors anywhere else in Django
-        'django': {
-            'handlers': ['logfile'],
-            'level': 'ERROR',
-            'propagate': False,
-        },
+       
     }
 }

@@ -1,0 +1,119 @@
+{% extends 'bootstrapbase.html' %}
+{% block head %}
+<link href="/static/css/bootstrap-lightbox.min.css" rel="stylesheet">
+<style type="text/css">
+	body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+ol.nav>li>a{display:inline;}
+ol.example li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.example li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+</style>
+{% endblock %}
+{% block container %}
+<div class="row">
+				<div class="span8">
+		<form method="post" action="{% url 'new_featured_item' %}">
+			{% csrf_token %}
+			<input type="text" class="" name="source_url">
+			<button type="submit">Add From Url</button>
+		</form>
+		<hr>
+
+
+					{% regroup featured_items by feature_date as featured_list %}
+					
+{% for feature_date in featured_list %}
+<ol class="nav" data-date="{{ feature_date.grouper|date:"SHORT_DATE_FORMAT" }}">
+    <li class="nav-header">{{ feature_date.grouper|date:'l, F d, Y' }}</li>
+        {% for item in feature_date.list %}
+          <li id="featureditems_{{ item.id }}" class="items"><a href="{% url 'edit_featured_content_simple' item.id %}" ><i class="icon-edit"></i></a>&nbsp;<a data-toggle="lightbox" href="#imagefor{{item.id}}"><i class="icon-picture"></i></a>&nbsp;<a href="{{ item.url }}" target="_blank">{{ item.name }}</a>&nbsp;&nbsp;<a href="{% url 'remove_featured_content' item.id %}"><i class="icon-remove"></i></a></li>
+					<div id="imagefor{{item.id}}" class="lightbox hide"  tabindex="-1" role="dialog" aria-hidden="true">
+	<div class='lightbox-content'>
+		<img src="{{ item.image.get_470X233_url }}">
+		<div class="lightbox-caption"><p>{{ item.name }}</p></div>
+	</div>
+</div>
+        {% endfor %}
+</ol>
+{% endfor %}
+
+<script>
+$(function  () {
+  $("ol.nav").sortable({
+  exclude: '.nav-header',
+  update: function(event,ui) {
+		var order = $(this).sortable("serialize");
+		order = order + '&csrfmiddlewaretoken={{ csrf_token }}';
+		console.log(order);
+		p = ui.item.eq(0).parent().attr('data-date');
+		console.log(p);
+		$.post("{% url 'update_featured_ordering' %}?date="+p, order, function(data){});
+  },
+})
+});
+$(document).ajaxSend(function(event, xhr, settings) {
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function sameOrigin(url) {
+        // url could be relative or scheme relative or absolute
+        var host = document.location.host; // host + port
+        var protocol = document.location.protocol;
+        var sr_origin = '//' + host;
+        var origin = protocol + sr_origin;
+        // Allow absolute or scheme relative URLs to same origin
+        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+            // or any other URL that isn't scheme relative or absolute i.e relative.
+            !(/^(\/\/|http:|https:).*/.test(url));
+    }
+    function safeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+        xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+    }
+});
+
+</script>
+					</div>
+				</div>
+
+{% endblock %}
+
+	{% block js_lower %}
+	        <script src="/static/js/bootstrap-datepicker.js">
+        </script>
+				<script type="text/javascript">
+					$('#datepicker').datepicker()
+					</script>
+					<!--script src='/static/js/jquery-sortable.js'></script-->
+					<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+					<script src='/static/js/bootstrap-lightbox.js'></script>
+				{% endblock %}

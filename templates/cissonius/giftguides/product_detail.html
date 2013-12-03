@@ -1,0 +1,77 @@
+{% extends 'bootstrapmodalbase.html' %}
+{% block title %}{{ product }}{% endblock %}
+{% block meta %}
+				<meta property="og:site_name" content="ModernMom">
+        <meta property="fb:app_id" content="191747667578507" />
+        <meta name="description" content="{{ product.description }}">
+
+        <meta property="og:url" content="http://www.modernmom.com{{ product.get_absolute_url }}">
+        <meta property="og:description" content="{{ product.get_description }}">
+        <meta property="og:type" content="product">
+				{% if product.product.productcost %}
+				<meta property="og:price:amount" content="{{ product.product.productcost }}" /> 
+				<meta property="og:price:currency" content="USD" />
+				{% endif %}
+        <meta property="og:title" content="ModernMom">
+        <meta property="og:image" content="http://www.modernmom.com/{{ product.get_image.get_375X_url }}">
+        <link rel="canonical" href="http://www.modernmom.com{{ product.get_absolute_url }}">
+				{% endblock %}
+				
+{% block head %}
+ <link href="http://brookeburke.modernmom.com/static/bootstrap/css/bootstrap-scroll-modal.css" rel="stylesheet">
+	
+
+<style type="text/css">
+.modal-body {
+                max-height: none;
+                max-width: none;
+            }
+</style>{% endblock %}
+
+{% block content %}
+
+<div class="container center">
+
+      <div class="box project-details">
+        <div class="title">
+          {{ product }}
+        </div>
+
+        <div class="shot">
+          <img src="{{ product.get_image.get_375X_url }}" />
+        </div>
+
+        <div class="description">
+          <div class="desc">
+            <span class="title"></span>
+            <span class="main-text">
+              {{ product.get_description|safe }}
+							{% if product.product.productcost %} {{ product.product.productcost }}{% endif %}
+							{% for link in product.product.productlink_set.all %}
+							<a target="_blank" href="{{ link.url }}">More Info</a>
+							{% endfor %}
+            </span>
+          </div>
+
+          
+        </div>
+				<div class="back">
+        	<a class="btn btn-pinterest" href="//www.pinterest.com/pin/create/button/?url={{ 'http://www.modernmom.com'|add:product.product.get_absolute_url|urlencode }}&media={{ 'http://www.modernmom.com'|add:product.get_image.get_375X_url|urlencode }}&description={{ product|urlencode }}"><i class="icon-pinterest"></i> | Share On Pinterest</a>
+         
+				 
+				 <a class="btn btn-facebook" href="http://www.facebook.com/sharer.php?s=100&p[title]={{ product|urlencode }}&p[summary]={{ product.get_description|striptags|urlencode }}&p[url]={{ 'http://www.modernmom.com'|add:product.product.get_absolute_url|urlencode }}&p[images][0]={{ 'http://www.modernmom.com'|add:product.get_image.get_375X_url|urlencode }}"><i class="icon-facebook"></i> | Share On Facebook</a>
+        </div>
+        <div class="back">
+        	<a href="{{ giftguide.get_absolute_url }}" class = "btn btn-mini btn-inverse">
+            Back to {{ giftguide }}
+          </a>
+        </div>
+      </div>
+                
+</div>  
+
+
+    
+	
+
+{% endblock %}

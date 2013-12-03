@@ -29,7 +29,7 @@ def home(request,template="contests/homepage.html",extra_context=None):
     context={}
     if extra_context is not None:
         context.update(extra_context)
-    context['contests'] = Contest.active.all() #objects.filter(status=1)
+    context['contests'] = Contest.objects.active() #objects.filter(status=1)
     return render_to_response(template,context,context_instance=RequestContext(request))
 
 from django import forms
@@ -40,6 +40,8 @@ def detail(request,url,template="contests/detail.html",reached_daily_max=False,r
     context['contest'] = contest = get_object_or_404(Contest,url=url)
     if contest.is_expired():
         return expired(request,url=url)
+    if contest.status == 0 and not request.user.is_staff:
+        raise Http404
     myTemplate = u'contests/custom/%s.html' % contest.guid
     templates = [myTemplate,template]
     if not reached_daily_max and not reached_total_max:

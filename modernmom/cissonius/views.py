@@ -10,7 +10,8 @@ from models import *
 from forms import *
 from utils import *
 import datetime
-
+from django.views.decorators.csrf import csrf_exempt
+ 
 def product_list(request,template='cissonius/products/list.html'):
     context={}
     context['products'] = Product.objects.all()
@@ -19,6 +20,7 @@ def product_list(request,template='cissonius/products/list.html'):
 def product_detail(request,uuid,template='cissonius/products/detail.html'):
     context={}
     context['product'] = product = get_object_or_404(Product,uuid=uuid)
+    context['giftguides'] = GiftGuide.objects.filter(giftguideproduct__product=product)
     #has the user already committed a review?
     review = None
     if request.user.is_authenticated():
@@ -112,11 +114,28 @@ def product_add_fromurl(request):
             return HttpResponseRedirect(product.get_absolute_url())
     return HttpResponseRedirect(reverse('product_add'))
 
-
+@csrf_exempt 
 def giftguide_detail(request,slug,template='cissonius/giftguides/detail.html'):
     context={}
-    context['giftguide'] = get_object_or_404(GiftGuide,slug=slug)
+    context['filters'] = GiftGuideFilter.objects.all()
+    context['giftguide'] = giftguide = get_object_or_404(GiftGuide,slug=slug)
+    context['giftguideproducts'] = GiftGuideProduct.objects.filter(giftguide=giftguide).order_by('-promotedgiftguideproduct')
+    if 'for' in request.GET:
+        try:
+            filter = GiftGuideFilter.objects.get(slug=request.GET['for'])
+            context['giftguideproducts'] = GiftGuideProduct.objects.filter(giftguide=giftguide,giftguideproductfilter__giftguidefilter=filter).order_by('-promotedgiftguideproduct')
+        except GiftGuideFilter.DoesNotExist:
+            pass #context['giftguideproducts'] = GiftGuideProduct.objects.filter(giftguide=giftguide,giftguideproductfilter__giftguidefilter=filer).order_by('-promotedgiftguideproduct')
+    
+    
     templates = ['cissonius/giftguides/custom/%s.html' % slug,template]
+    return render_to_response(templates, context,context_instance=RequestContext(request))
+@csrf_exempt 
+def giftguide_product_detail(request,slug,id,template='cissonius/giftguides/product_detail.html'):
+    context={}
+    context['giftguide'] = giftguide = get_object_or_404(GiftGuide,slug=slug)
+    context['product'] = get_object_or_404(GiftGuideProduct,giftguide=giftguide,id=id)
+    templates = [template,]
     return render_to_response(templates, context,context_instance=RequestContext(request))
 
 @staff_member_required
@@ -170,7 +189,7 @@ def giftguide_product_list(request,slug,template='cissonius/giftguides/products_
     context['products'] = Product.objects.filter(giftguideproduct__giftguide=giftguide)
     return render_to_response(template, context,context_instance=RequestContext(request))
 
-
+@csrf_exempt 
 def giftguide_list(request,template='cissonius/giftguides/list.html'):
     context={}
     context['giftguides'] = GiftGuide.objects.all()

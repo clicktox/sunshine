@@ -12,10 +12,25 @@ import datetime
 from django.core.urlresolvers import reverse
 from photologue.models import ImageModel
 from fields import UUIDField
+from django.db.models import Q
 
-class ActiveContestManager(models.Manager):
-    def get_query_set(self):
-        return super(ActiveContestManager, self).get_query_set().filter(status=1)
+    
+class ContestManager(models.Manager):
+    #def get_query_set(self):
+    #    return super(ActiveContestManager, self).get_query_set().filter(status=1)
+    
+    def active(self):
+        """
+        Retrieves all active articles which have been published and have not
+        yet expired.
+        """
+        now = datetime.datetime.now()
+        return self.get_query_set().filter(
+                Q(ends_on__isnull=True) |
+                Q(ends_on__gte=now),
+                starts_on__lte=now,
+                status=1)
+
     
 class Contest(models.Model):
     name = models.CharField(max_length=255)
@@ -26,8 +41,8 @@ class Contest(models.Model):
     ends_on = models.DateTimeField(default=datetime.datetime.now())
     entries_per_day = models.IntegerField(default=0)
     total_entry_count = models.IntegerField(default=1)
-    objects = models.Manager()
-    active = ActiveContestManager()
+    objects = ContestManager()
+    #active = ActiveContestManager()
     
     def is_expired(self):
         if self.status == 2:

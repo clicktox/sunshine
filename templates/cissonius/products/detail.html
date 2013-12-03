@@ -1,37 +1,76 @@
-{% extends 'base.html' %}
-{% block title %}
-{{ product }}
-{% endblock %}
+{% extends 'bootstrapbase.html' %}
+{% block title %}{{ product }}{% endblock %}
+{% block meta %}
+				<meta property="og:site_name" content="ModernMom">
+        <meta property="fb:app_id" content="191747667578507" />
+        <meta name="description" content="{{ product.description }}">
+
+        <meta property="og:url" content="http://www.modernmom.com{{ product.get_absolute_url }}">
+        <meta property="og:description" content="{{ product.description }}">
+        <meta property="og:type" content="product">
+				{% if product.productcost %}
+				<meta property="og:price:amount" content="{{ product.productcost.low_cost }}" /> 
+				<meta property="og:price:currency" content="USD" />
+				{% endif %}
+        <meta property="og:title" content="ModernMom">
+        <meta property="og:image" content="http://www.modernmom.com/{{ product.image.get_375X_url }}">
+        <link rel="canonical" href="http://www.modernmom.com{{ product.get_absolute_url }}">
+				{% endblock %}
+				
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/giftguide.css" />
-{% endblock %}
+<link href="{{ MEDIA_URL }}css/giftguide.css" media="all" rel="stylesheet" type="text/css" />
+<style type="text/css">
+
+</style>{% endblock %}
+
+{% block after_body %}<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=191747667578507";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>{% endblock %}
+
+
 {% block container %}
-<div class="row">
-        <div class="span8">
-        	<div class="gift-intro">
-        		<div class="row">
-        			<div class="span2">
-        				<img src="{{ product.producer.image.get_thumbnail_url }}">
-					</div>
-					<div class="span6">
-					<h4>{{ product.producer }}</h4><p>{{ product.producer.description }}</p>
-					</div>
-					<div>
-						<div class="span6">
-							<a href="{{ product.producer.get_absolute_url }}">View All Products</a>
-						</div>
-					</div>
-				</div>
-			
-			</div>
-            <div id="content" class="popular">
-				<div class="post">
-                    <div class="content">
-                       
-                            <img class="post-media" src="{{ product.image.get_620X388_url }}">
-                            <h2>{{ product }}</h2>
-                            <p>{{ product.description }}</p>
-                            {% for link in product.productlink_set.all %}
+
+  <section id="gg_main">
+    <div class="container center">
+  <div class="row">
+    <div class="span7">
+
+      <div class="box project-details">
+        <div class="title">
+          {{ product }}
+        </div>
+
+        <div class="shot">
+          <img src="{{ product.image.get_375X_url }}" />
+        </div>
+
+        <div class="description">
+          <div class="desc">
+            <span class="title"></span>
+            <span class="main-text">
+              {{ product.description|safe }}
+							{% if product.productcost %} {{ product.productcost }}{% endif %}
+							{% for link in product.productlink_set.all %}
+							<a target="_blank" href="{{ link.url }}">More Info</a>
+							{% endfor %}
+            </span>
+          </div>
+
+          
+        </div>
+				<div class="back">
+        	<a class="btn btn-pinterest" href="//www.pinterest.com/pin/create/button/?url={{ 'http://www.modernmom.com'|add:product.get_absolute_url|urlencode }}&media={{ 'http://www.modernmom.com'|add:product.image.get_375X_url|urlencode }}&description={{ product|urlencode }}"><i class="icon-pinterest"></i> | Share On Pinterest</a>
+         
+				 
+				 <a class="btn btn-facebook" href="http://www.facebook.com/sharer.php?s=100&p[title]={{ product|urlencode }}&p[summary]={{ product.description|striptags|urlencode }}&p[url]={{ 'http://www.modernmom.com'|add:product.get_absolute_url|urlencode }}&p[images][0]={{ 'http://www.modernmom.com'|add:product.image.get_375X_url|urlencode }}"><i class="icon-facebook"></i> | Share On Facebook</a>
+        </div>
+        <div class="back">
+        	{% for link in product.productlink_set.all %}
 							<p><a target="_blank" href="{{ link.url }}">{{ link.label }} <i class="icon-angle-right"></i></a></p>
 							{% endfor %}
 							
@@ -47,33 +86,20 @@
 								{{ product_review_form.as_p }}
 								<button type="submit">Submit Review</button>
 							</form>
-					</div><!--/.content-->
-				</div><!--/.post-->
-            </div> <!-- /#content -->
-        </div> <!-- /span8 -->
-        <div class="span4">
-        	<div class="social">
-            		<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fpages%2FModernMom%2F197177430011&amp;width=292&amp;height=62&amp;show_faces=false&amp;colorscheme=light&amp;stream=false&amp;border_color&amp;header=false&amp;appId=215175268507724" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"></iframe>
-		</div> <!-- /social -->
-        	<div>
-        		
-				<ul class="nav">
-					{% if product.productretailer_set.count > 0 %}
-					<li class="nav-header">Retailers</li>
-					{% for retailer in product.productretailer_set.all %}
-					<li>{{ retailer }}</li>
-					{% endfor %}
-					{% endif %}
-					{% if product.giftguideproduct_set.count > 0 %}
-					<li class="nav-header">Gift Guides</li>
-					{% for g in product.giftguideproduct_set.all %}
-					<li><a href="{{ g.giftguide.get_absolute_url }}">{{ g.giftguide }}</a></li>
-					{% endfor %}
-					{% endif %}
-					
-				</ul>
-			
-			</div>
-        </div> <!-- /span4 -->
-    </div> <!-- /row -->
+		
+        </div>
+      </div>
+    </div>
+		<div class="span5">
+			{% for giftguide in giftguides %}
+			{% for ggtb in giftguide.giftguidetitlebanner_set.all|slice:'1' %}
+        <a href="{{ giftguide.get_absolute_url }}"><img src="{{ ggtb.get_700X_url }}"></a>
+				{% endfor %}
+			{% endfor %}
+			<div class="fb-comments" data-href="http://www.modernmom.com{{product.get_absolute_url }}" data-colorscheme="" data-numposts="5" data-width="450">
+		</div>
+  </div>
+</div>
+  </section>
+	
 {% endblock %}

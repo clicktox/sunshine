@@ -73,6 +73,16 @@ class Product(models.Model):
     def __unicode__(self):
         return u'%s' % self.name
 
+class ProductCost(models.Model):
+    product = models.OneToOneField(Product)
+    low_cost = models.FloatField()
+    high_cost = models.FloatField(blank=True,null=True)
+    def __unicode__(self):
+        if self.high_cost == None:
+            return u'$%.2f' % self.low_cost
+        else:
+            return u'$%.2f to $%.2f' % (self.low_cost,self.high_cost)
+    
 class ProductReview(models.Model):
     product = models.ForeignKey(Product)
     user = models.ForeignKey(User)
@@ -169,7 +179,7 @@ class GiftGuideProductImage(ImageModel):
 class GiftGuideProduct(models.Model):
     giftguide = models.ForeignKey(GiftGuide)
     name = models.CharField(max_length=255,blank=True,null=True)
-    description = models.TextField(blank=True,null=True)
+    #description = models.TextField(blank=True,null=True)
     product = models.ForeignKey(Product)
     active = models.BooleanField(default=False)
     added_by = models.ForeignKey(User)
@@ -181,11 +191,21 @@ class GiftGuideProduct(models.Model):
         return u'%s' % self.name
    
     @property
-    def description(self):
-        if self.description:
-            return self.description
+    def get_description(self):
+        #if self.description:
+        #    return self.description
+        #else:
+        return self.product.description
+    
+    
+    def get_image(self):
+        if self.image:
+            return self.image
         else:
-            return self.product.description
+            return self.product.image
+    
+    def get_absolute_url(self):
+        return reverse('giftguide_product_detail',args=[self.giftguide.slug,self.id])
     
     def get_slideshow_url(self):
         return u'%s#%s' % (self.giftguide.get_absolute_url(),self.id )
@@ -207,7 +227,10 @@ class GiftGuideProductLink(models.Model):
 
 class PromotedGiftGuideProduct(models.Model):
     giftguideproduct = models.OneToOneField(GiftGuideProduct)
-    score = models.IntegerField()
+    score = models.IntegerField(default=0)
+    
+    def __unicode__(self):
+        return u'%d' % self.score
     
 class GiftGuideProductCost(models.Model):
     giftguideproduct = models.OneToOneField(GiftGuideProduct)

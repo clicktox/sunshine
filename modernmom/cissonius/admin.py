@@ -1,6 +1,8 @@
 from django.contrib import admin
 from models import *
 
+class ProductCostInline(admin.TabularInline):
+    model = ProductCost
 class ProductCategoryInline(admin.TabularInline):
     model = ProductCategory
     extra = 3
@@ -25,11 +27,15 @@ class GiftGuideTitleBannerInline(admin.TabularInline):
     extra = 1
     
 class ProductAdmin(admin.ModelAdmin):
-    inlines = (ProductCategoryInline,ProductRetailerInline,ProductLinkInline)
+    inlines = (ProductCostInline,ProductLinkInline) #ProductCategoryInline,ProductRetailerInline)
     list_display = ('id','name','producer','image')
     search_fields = ('name',)
+    raw_id_fields = ('image',)
+
+
 
 admin.site.register(Product,ProductAdmin)
+admin.site.register(ProductCost)
 admin.site.register(Category)
 admin.site.register(ProductCategory)
 admin.site.register(ProductRetailer)
@@ -41,7 +47,10 @@ class ProducerLinkInline(admin.TabularInline):
 class ProducerAdmin(admin.ModelAdmin):
     inlines = [ProducerLinkInline,]
 admin.site.register(Producer,ProducerAdmin)
-admin.site.register(ProductImage)
+
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ('id','admin_thumbnail')
+admin.site.register(ProductImage,ProductImageAdmin)
 
 class GiftGuideAdmin(admin.ModelAdmin):
     inlines = [GiftGuideTitleBannerInline,GiftGuideProductInline]
@@ -61,11 +70,16 @@ admin.site.register(GiftGuideImage)
 class GiftGuideProductFilterInline(admin.TabularInline):
     model=GiftGuideProductFilter
     extra=2
+
+class PromotedGiftGuideProductInline(admin.TabularInline):
+    model = PromotedGiftGuideProduct
     
 class GiftGuideProductAdmin(admin.ModelAdmin):
-    inlines = [GiftGuideProductFilterInline,]
+    inlines = [GiftGuideProductFilterInline,PromotedGiftGuideProductInline]
     raw_id_fields = ('product',)
     exclude = ('added_by',)
+    list_display = ('product','giftguide')
+    list_filter = ('giftguide',)
     
     fieldsets = (
         (None, {
@@ -88,6 +102,7 @@ class ProductMustHaveAdmin(admin.ModelAdmin):
     list_display = ('user','product','added_on')
 
 admin.site.register(ProductMustHave,ProductMustHaveAdmin)
+admin.site.register(PromotedGiftGuideProduct)
 
 class GroupMustHaveAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('title',),}

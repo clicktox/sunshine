@@ -1,0 +1,72 @@
+{% extends 'base.html'%}
+{% block title %}ModernMom Scoop{% endblock %}
+
+{% block content %}
+
+
+				
+				<div id="editors" class="clearfix">
+	{% for author in authors %}
+<div id="article-1" class="article clearfix">
+
+{% if author.image %}
+        <div class="gcontent-thumb">
+            <a href="{{ author.get_absolute_url }}"><img src="{{ author.image.get_180X180_url }}" class="img-circle"/></a>
+        </div>{% endif %} 
+	<h3><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></h3>
+        <p>
+            {{ author.about_me|striptags }}  <a href="{{ author.get_absolute_url }}">
+               Read Posts...
+            </a>
+        </p>
+</div>
+
+
+{% endfor %}
+</div>
+{% endblock %}
+
+
+
+{% block comment %}
+<div class="row">
+    <div class="span8">
+        <div class="bars">
+            <span class="wht-bg-H1 pink"><span class="black">Contributors</span></span>
+        </div>
+        {% for author in authors %}
+        <div class="gcontent-box">
+        {% if author.image %}
+        <div class="gcontent-thumb">
+            <a href="{{ author.get_absolute_url }}"><img src="{{ author.image.get_180X180_url }}" class="img-circle"/></a>
+        </div>{% endif %} <h4 class="gtitle"><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></h4>
+        <p>
+            {{ author.about_me|striptags }}
+        </p>
+        <div class="button-align">
+            <a href="{{ author.get_absolute_url }}">
+                <button type="button" class="btn btn-info btn-xs">
+                    Read Posts...
+                </button>
+            </a>
+        </div>
+        </p>
+    </div>
+    <!--end gcontent-box-->{% endfor %}
+</div>
+<!--end span 8-->
+<div class="span4">
+    <!-- right rail-->{% for author in authors_image_only %}
+    <div class="gcontent-box-sm">
+        <div class="gcontent-thumb">
+            <a href="{{ author.get_absolute_url }}"><img src="{{ author.image.get_30X30_url }}" class="img-circle"/></a>
+        </div><h4 class="gtitle"><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></h4>
+    </div>
+    {% endfor %}
+    {% for author in authors_basic %}<h4 class="gtitle"><a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a></h4>
+    {% endfor %}<!-- /right rail-->
+    <!-- /row -->
+</div>
+
+<!-- /container -->
+{% endblock %}

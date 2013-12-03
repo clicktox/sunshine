@@ -1,0 +1,64 @@
+{% extends 'bootstrapbase.html' %}
+{% block title %}{{ contest.name }}{% endblock %}
+{% block meta %}
+<meta property="og:title" content="{{ contest.name }}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.modernmom.com{% url 'contest_detail' contest.url %}" />
+<meta property="og:description" content="{{ contest.contestdescription.content }}" />
+<meta property="og:image" content="http://www.modernmom.com{{ contest.contestimage.get_290X_url }}" />
+<meta property="og:site_name" content="Modernom Contests" />
+<meta property="fb:app_id" content="208027353668" />
+<meta property="fb:admins" content="622302511" />
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block container %}
+<div class="container">
+    <div class="row">
+    	<div class="span12">
+    	<h1>Win a Helzberg <a href="http://www.helzberg.com/product/infinity+x+infinity+diamond+necklace+1959544.do?sortby=ourPicks">INFINITY X INFINITY</a> Diamond Necklace</h1>
+			
+		
+	</div></div>
+	<div class="row">
+		<div class="span4">
+		
+		<img src="{{ MEDIA_URL }}contests/custom/{{contest.guid}}/177355297_AW_3380_BE677E9E4D1AD09E801458CBB78996CC.JPG" />
+	</div><div class="span4">
+		<p>{{ contest.contestdescription }}</p>
+		<img src="{{ contest.contestimage.image.url }}">
+                <form name="form_{{contest.guid }}" id="form_{{contest.guid }}" class="form-vertical" method="post" action="{% url 'contest_detail' contest.url %}">
+                    {% csrf_token %}
+                   
+                    <div class="control-group">
+                        <!-- Text input-->
+                        <div class="controls">
+                            <input type="text" name="{{ contest.guid }}full_name" placeholder="Full Name" class="input-xlarge">
+                            <p class="help-block">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <!-- Text input-->
+                        <div class="controls">
+                            <input type="text" name='email' placeholder="Email Address" class="input-xlarge">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-primary" type="submit">
+                                Enter Now
+                            </button>
+                        </div>
+                    </div>
+                </form>
+</div>
+    </div>
+    <!-- /row -->
+</div>
+<!-- /container -->
+        {% endblock %}
+{% block footer_scripts %}
+{% endblock %}

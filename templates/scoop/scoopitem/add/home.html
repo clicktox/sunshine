@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% block title %}ModernMom Scoop{% endblock %}
+{% block css %}
+        <link href="{{ STATIC_URL }}django_bootstrap_wysiwyg/css/bootstrap-wysiwyg.css" rel="stylesheet" />
+{%endblock %}
+{% block meta_og %}
+<meta property="og:url" content="http://www.modernmom.com{% url 'scoop_home' %}">
+<meta property="og:description" content="">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ModernMom Scoop">
+<meta property="og:image" content="">
+{% endblock %}
+{% block content %}
+
+		<p><a class="" href="{% url 'scoop_add_post' scoop.slug %}">Create Post</a></p>
+		<p><a class="" href="{% url 'scoop_add_slideshow' scoop.slug %}">Create Slideshow</a></p>
+   	
+{% endblock %}
+
+{% block js_lower %}
+
+{% endblock %}

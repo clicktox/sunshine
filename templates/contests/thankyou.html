@@ -2,14 +2,7 @@
 
 {% block title %}{{ contest.name }}{% endblock %}
         {% block meta %}
-     <meta property="og:title" content="{{ contest.name }}" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://contests.modernmom.com{% url contest_detail contest.url %}" />
-<meta property="og:description" content="{{ contest.contestdescription.content }}" />
-<meta property="og:image" content="http://contests.modernmom.com{{ contest.contestimage.get_largegrid_url }}" />
-<meta property="og:site_name" content="Modernom Contests" />
-<meta property="fb:app_id" content="208027353668" />
-<meta property="fb:admins" content="622302511" />
+     
         {% endblock %}
 		{% block head %}
 			<style type="text/css">

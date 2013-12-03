@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ member.name }}
+{% endblock %}
+{% block container %}
+<div class="row">
+    <div class="span8">
+    	<form method="post" action="{% url 'member_detail_edit' user.uuid %}" enctype="multipart/form-data">
+    	{% csrf_token %}
+       {{ form }}
+				<button type="submit">Save</button>
+				</form>
+    </div>
+    
+            {% endblock %}
