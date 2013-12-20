@@ -43,7 +43,9 @@
 .span3 {
     width: 300px;
 }
-
+.span2 {
+min-width: 140px;
+}
 
     /*POPULINKS*/
     p.popu {
