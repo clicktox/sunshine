@@ -36,7 +36,7 @@
 	}
 	
 	.span7{
-	width: 637px !important;
+	max-width: 637px !important;
 	box-shadow: 0 0 12px 0 #eee
 	}
 	
@@ -96,11 +96,12 @@
     }
     
     .thumb-title {
-        font-family: oswald;
+        font-family: oswald, Arial, Helvetica, sans-serif;
     	font-size: 18px;
     	line-height: 22px;
     	margin-top: 5px;
     	text-align: center;
+    	color: #808080;
     }
     
     .thumb-title a{
@@ -215,7 +216,7 @@
 
 .wht-bg-H1 {
  	color: #000;
-	font-family: "Euphoria Script", cursive;
+font-family: "Euphoria Script", cursive;
 	font-style: italic;
 	font-size: 26px;
 	background-color: #fff;
@@ -246,7 +247,7 @@
 
 .black {
 	color: #000;
-	font-family: "Oswald", sans-serif;
+	font-family:  "Oswald", Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-style: normal;
 }
